@@ -386,7 +386,7 @@ const MentalHealth = () => {
                     <p className="text-primary text-sm font-medium mt-0.5">{p.role}</p>
                     <p className="text-muted-foreground text-xs mt-0.5">{p.specialty}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      <span className="font-medium text-foreground">Available:</span> {p.days.join(", ")}
+                      <span className="font-medium text-foreground">Available:</span> By Appointment only
                     </p>
                   </div>
                 </div>
