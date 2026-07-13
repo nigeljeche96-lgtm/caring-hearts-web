@@ -33,6 +33,7 @@ const Navbar = () => {
       children: [
         { label: "Mental Health Services", path: "/mental-health" },
         { label: "Programmes & Impact", path: "/philanthropy" },
+        { label: "Gallery", path: "/gallery" },
         { label: t("nav.events"), path: "/events" },
       ],
     },
