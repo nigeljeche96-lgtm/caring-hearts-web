@@ -169,24 +169,6 @@ const MentalHealth = () => {
       <SEO title="Mental Health Care Programs & Booking — World Changers" description="Book counseling, therapy and wellness programs with our qualified mental health providers. Confidential care across Southern Africa." path="/mental-health" />
       <PageHero title={t("mentalHealth.heroTitle")} subtitle={t("mentalHealth.heroSubtitle")} bgImage={mentalHealthBg} />
 
-      {/* Programs */}
-      <section className="section-padding">
-        <div className="container mx-auto">
-          <SectionHeading label={t("mentalHealth.programsLabel")} title={t("mentalHealth.programsTitle")} description={t("mentalHealth.programsDesc")} />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {programs.map((p, i) => (
-              <motion.div key={p.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-all border border-border group">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-hero-gradient transition-all">
-                  <p.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
-                </div>
-                <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{p.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Call Now + Book Session - Side by Side */}
       <section className="section-padding bg-card">
@@ -386,7 +368,7 @@ const MentalHealth = () => {
                     <p className="text-primary text-sm font-medium mt-0.5">{p.role}</p>
                     <p className="text-muted-foreground text-xs mt-0.5">{p.specialty}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      <span className="font-medium text-foreground">Available:</span> {p.days.join(", ")}
+                      <span className="font-medium text-foreground">Available:</span> By Appointment only
                     </p>
                   </div>
                 </div>
@@ -399,6 +381,25 @@ const MentalHealth = () => {
                     {expandedBio === p.name ? "Show Less" : "Read Full Bio"}
                   </button>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Programs */}
+      <section className="section-padding">
+        <div className="container mx-auto">
+          <SectionHeading label={t("mentalHealth.programsLabel")} title={t("mentalHealth.programsTitle")} description={t("mentalHealth.programsDesc")} />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {programs.map((p, i) => (
+              <motion.div key={p.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+                className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-all border border-border group">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-hero-gradient transition-all">
+                  <p.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
+                </div>
+                <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{p.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>

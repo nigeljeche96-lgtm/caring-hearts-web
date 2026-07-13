@@ -56,8 +56,18 @@ import gallery49 from "@/assets/gallery-49.jpg";
 import gallery50 from "@/assets/gallery-50.jpg";
 import gallery51 from "@/assets/gallery-51.jpg";
 import gallery52 from "@/assets/gallery-52.jpg";
+import img7181 from "@/assets/img_7181.jpg.asset.json";
+import img7194 from "@/assets/img_7194.jpg.asset.json";
+import img7195 from "@/assets/img_7195.jpg.asset.json";
+import img7196 from "@/assets/img_7196.jpg.asset.json";
+import img7207 from "@/assets/img_7207.jpg.asset.json";
 
 const images = [
+  { src: img7181.url, alt: "Community kitchen outreach" },
+  { src: img7195.url, alt: "Community food distribution outreach" },
+  { src: img7194.url, alt: "Volunteers on community outreach" },
+  { src: img7196.url, alt: "Community outreach in partnership" },
+  { src: img7207.url, alt: "Volunteer at outreach event" },
   { src: gallery1, alt: "Men's Day Summit audience" },
   { src: gallery2, alt: "Volunteer registration" },
   { src: gallery3, alt: "EmpowaMen Speaker badge" },
