@@ -24,18 +24,23 @@ Deno.serve(async (req) => {
     const raw = await req.json();
     const full_name = e(raw.full_name);
     const email = String(raw.email || '').trim();
+    const provider_email = String(raw.provider_email || '').trim();
     const provider_name = e(raw.provider_name);
     const session_type = e(raw.session_type);
     const session_date = e(raw.session_date);
     const session_time = e(raw.session_time);
     const session_mode = e(raw.session_mode);
+    const phone = e(raw.phone || '');
+    const reason = e(raw.reason || '');
 
-    if (!email || !raw.full_name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !raw.full_name || !emailRegex.test(email)) {
       return new Response(JSON.stringify({ error: 'Invalid input' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
+    const validProviderEmail = provider_email && emailRegex.test(provider_email) ? provider_email : null;
 
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
     if (!RESEND_API_KEY) {
@@ -94,8 +99,10 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         from: 'World Changers MHC Bookings <onboarding@resend.dev>',
         to: [email],
+        cc: [validProviderEmail, 'info@worldchangersmh.org'].filter(Boolean),
+        reply_to: validProviderEmail || 'info@worldchangersmh.org',
         subject: `Booking Confirmed — ${String(raw.session_type || '').slice(0,80)} with ${String(raw.provider_name || '').slice(0,80)}`,
-        html: htmlBody,
+        html: htmlBody + `<div style="font-family:Arial,sans-serif;max-width:600px;margin:16px auto;padding:16px;background:#f9fafb;border-radius:8px;font-size:13px;color:#374151;"><strong>Client contact:</strong><br/>Phone: ${phone}<br/>Reason: ${reason}</div>`,
       }),
     });
 

@@ -18,6 +18,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import mentalHealthBg from "@/assets/mental-health-bg.jpg";
+import shelleyRoets from "@/assets/shelley-roets.png";
+import bongiweMthembu from "@/assets/bongiwe-mthembu.png";
+import nickyVlantis from "@/assets/nicky-vlantis.png";
+import masegoMitchell from "@/assets/masego-mitchell.png";
+import takalaniMulaudzi from "@/assets/takalani-mulaudzi.png";
+import patienceThabede from "@/assets/patience-thabede.png";
 
 const programs = [
   { icon: Brain, title: "Cognitive Behavioral Therapy", desc: "Evidence-based approach to treating anxiety, depression, and other mental health conditions through structured therapeutic sessions." },
@@ -34,66 +40,45 @@ const programs = [
   { icon: BookOpen, title: "Mental Health Seminars", desc: "Structured seminars for workspaces and educational institutions to promote mental wellbeing, resilience, and awareness in organizational settings." },
 ];
 
+const APPOINTMENT_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const APPOINTMENT_TIMES = ["09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00"];
+
 const professionals = [
   {
-    name: "Dr. Sarah Mitchell", role: "Clinical Psychologist", specialty: "Anxiety & Depression", image: null,
-    bio: "Dr. Sarah Mitchell is a registered Clinical Psychologist with over 12 years of experience specialising in anxiety disorders, clinical depression, and mood regulation. She holds a PhD in Clinical Psychology from the University of Cape Town and is trained in Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), and Acceptance and Commitment Therapy (ACT).",
-    days: ["Monday", "Tuesday", "Wednesday"], times: ["09:00", "10:00", "11:00", "14:00", "15:00"],
+    name: "Shelley Roets", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: shelleyRoets,
+    email: "scroets@gmail.com",
+    bio: "Shelley Roets is a Mental Health Counsellor dedicated to helping individuals navigate life's challenges while building resilience, confidence, and emotional wellbeing. She specialises in supporting clients experiencing anxiety, stress, grief, relationship difficulties, and major life transitions through a compassionate, client-centred approach.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Dr. James Hartwell", role: "Psychiatrist", specialty: "Trauma & PTSD", image: null,
-    bio: "Dr. James Hartwell is a board-certified Psychiatrist with 15 years of clinical experience in trauma recovery, PTSD, and complex dissociative disorders. He completed his medical degree at the University of the Witwatersrand and trained in psychopharmacology and trauma-focused interventions.",
-    days: ["Monday", "Wednesday", "Friday"], times: ["09:00", "10:00", "11:00", "12:00"],
+    name: "Bongiwe Mthembu", role: "Licensed Social Worker", specialty: "Anxiety & Depression", image: bongiweMthembu,
+    email: "mthembubongiwe9@gmail.com",
+    bio: "Bongiwe Nomshado Mthembu is a qualified Social Worker with extensive experience in child protection, family support, and statutory social work services. She holds a Bachelor of Arts Honours in Social Work from the University of Johannesburg and a Master's Degree in Occupational Social Work from the University of the Witwatersrand, specialising in psychosocial assessments, family mediation, and child welfare interventions.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Dr. Amara Osei", role: "Licensed Counselor", specialty: "Family Therapy", image: null,
-    bio: "Dr. Amara Osei is a Licensed Professional Counselor (LPC) with a Master's in Marriage and Family Therapy. With 10 years of experience, she specialises in systemic family therapy, couples counseling, and intergenerational trauma.",
-    days: ["Tuesday", "Thursday", "Friday"], times: ["10:00", "11:00", "13:00", "14:00", "15:00", "16:00"],
+    name: "Nicky Vlantis", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: nickyVlantis,
+    email: "nicky@worldchangersmh.org",
+    bio: "Nicky Vlantis is a qualified Counsellor with over six years of experience supporting learners, young professionals, and individuals facing personal and emotional challenges. She holds a BSc in Nutrition from the University of Natal and has completed counselling and life coaching training through Lifeline and Trifocus Academy, specialising in anxiety, depression, bereavement, addiction, eating disorders, and personal development using person-centred and cognitive behavioural approaches.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Dr. Linda Khumalo", role: "Neuropsychologist", specialty: "Cognitive Disorders", image: null,
-    bio: "Dr. Linda Khumalo is a Neuropsychologist specialising in cognitive assessment, brain injury rehabilitation, and neurodevelopmental disorders. With over 14 years of experience, she conducts comprehensive neuropsychological evaluations.",
-    days: ["Monday", "Tuesday", "Thursday"], times: ["09:00", "10:00", "11:00", "14:00"],
+    name: "Masego Mitchell", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: masegoMitchell,
+    email: "khabibmitchell02@gmail.com",
+    bio: "Masego Mitchell is a qualified Social Worker with four years of experience providing counselling, psychosocial support, and mental health advocacy services. She is passionate about empowering individuals and communities to build resilience and improve wellbeing, and is currently pursuing postgraduate studies in Clinical Social Work.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Dr. Michael Chen", role: "Child Psychiatrist", specialty: "Youth Mental Health", image: null,
-    bio: "Dr. Michael Chen is a Child and Adolescent Psychiatrist with 11 years of experience treating ADHD, autism spectrum disorders, childhood anxiety, and behavioral challenges.",
-    days: ["Monday", "Wednesday", "Thursday"], times: ["09:00", "10:00", "13:00", "14:00", "15:00"],
+    name: "Takalani Mulaudzi", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: takalaniMulaudzi,
+    email: "rmulaudzi796@gmail.com",
+    bio: "Ms Takalani Mulaudzi is a qualified Social Worker and Employee Assistance Programme (EAP) Specialist with over 15 years of experience in psychosocial support, counselling, and workplace wellbeing. She holds a Bachelor of Social Work, a BA Honours in Psychology, an Advanced EAP Certificate, and is currently pursuing a Master's degree in Psychology at the University of South Africa (UNISA), with a focus on employee wellbeing and mental health support.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Dr. Fatima Al-Rashid", role: "Clinical Psychologist", specialty: "OCD & Phobias", image: null,
-    bio: "Dr. Fatima Al-Rashid is a Clinical Psychologist specialising in Obsessive-Compulsive Disorder (OCD), specific phobias, and anxiety-related conditions. She is extensively trained in Exposure and Response Prevention (ERP) therapy.",
-    days: ["Tuesday", "Wednesday", "Friday"], times: ["10:00", "11:00", "12:00", "14:00", "15:00"],
-  },
-  {
-    name: "Dr. Robert Ndlovu", role: "Addiction Specialist", specialty: "Substance Abuse", image: null,
-    bio: "Dr. Robert Ndlovu is a certified Addiction Medicine Specialist with over 16 years of experience in substance abuse treatment, detoxification management, and relapse prevention.",
-    days: ["Monday", "Tuesday", "Wednesday", "Thursday"], times: ["09:00", "10:00", "11:00"],
-  },
-  {
-    name: "Dr. Emily Torres", role: "Trauma Therapist", specialty: "EMDR Therapy", image: null,
-    bio: "Dr. Emily Torres is a specialised Trauma Therapist and certified EMDR practitioner with 8 years of experience. She works with survivors of abuse, accident trauma, and combat-related PTSD.",
-    days: ["Wednesday", "Thursday", "Friday"], times: ["09:00", "10:00", "14:00", "15:00", "16:00"],
-  },
-  {
-    name: "Dr. David Moyo", role: "Forensic Psychologist", specialty: "Behavioral Analysis", image: null,
-    bio: "Dr. David Moyo is a Forensic Psychologist with 13 years of experience in criminal behavioural profiling, risk assessment, and court-mandated psychological evaluations.",
-    days: ["Monday", "Thursday", "Friday"], times: ["09:00", "11:00", "13:00", "14:00"],
-  },
-  {
-    name: "Dr. Priya Sharma", role: "Psychiatrist", specialty: "Bipolar Disorder", image: null,
-    bio: "Dr. Priya Sharma is a Psychiatrist with expertise in bipolar disorder, schizoaffective disorder, and treatment-resistant depression. With 12 years of clinical experience.",
-    days: ["Tuesday", "Wednesday", "Thursday"], times: ["10:00", "11:00", "12:00", "14:00", "15:00"],
-  },
-  {
-    name: "Dr. Nathan Brooks", role: "Geriatric Psychiatrist", specialty: "Elderly Care", image: null,
-    bio: "Dr. Nathan Brooks is a Geriatric Psychiatrist dedicated to the mental health of older adults. With 14 years of experience, he manages conditions including dementia-related behavioral issues and late-life depression.",
-    days: ["Monday", "Tuesday", "Friday"], times: ["09:00", "10:00", "11:00", "14:00"],
-  },
-  {
-    name: "Dr. Grace Okonkwo", role: "Licensed Counselor", specialty: "Grief Counseling", image: null,
-    bio: "Dr. Grace Okonkwo is a Licensed Grief Counselor with a Master's in Bereavement Studies and 10 years of experience helping individuals process loss through death, divorce, miscarriage, and significant life transitions.",
-    days: ["Monday", "Wednesday", "Thursday"], times: ["10:00", "11:00", "13:00", "14:00", "15:00"],
+    name: "Patience Thabede", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: patienceThabede,
+    email: "nzimande20@gmail.com",
+    bio: "Patience Thabede is a registered Social Worker and Mental Health Practitioner with over 10 years of experience in trauma-informed psychosocial care. She holds a BA in Social Work from the University of KwaZulu-Natal, a Master's degree in Social Development and Policy from the University of Pretoria, and an International Diploma in Humanitarian Assistance from Fordham University, specialising in evidence-based counselling, crisis intervention, and mental health support.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
 ];
 
@@ -158,12 +143,15 @@ const MentalHealth = () => {
       supabase.functions.invoke("send-booking-confirmation", {
         body: {
           full_name: bookingData.full_name,
-          email: "info@worldchangersmh.org",
+          email: bookingData.email,
           provider_name: bookingData.provider_name,
+          provider_email: selectedProfessional?.email,
           session_type: bookingData.session_type,
           session_date: bookingData.session_date,
           session_time: bookingData.session_time,
           session_mode: bookingData.session_mode,
+          phone: bookingData.phone,
+          reason: bookingData.reason,
         },
       }).then(({ error: emailErr }) => {
         if (emailErr) console.error("Email send failed:", emailErr);
