@@ -143,12 +143,15 @@ const MentalHealth = () => {
       supabase.functions.invoke("send-booking-confirmation", {
         body: {
           full_name: bookingData.full_name,
-          email: "info@worldchangersmh.org",
+          email: bookingData.email,
           provider_name: bookingData.provider_name,
+          provider_email: selectedProfessional?.email,
           session_type: bookingData.session_type,
           session_date: bookingData.session_date,
           session_time: bookingData.session_time,
           session_mode: bookingData.session_mode,
+          phone: bookingData.phone,
+          reason: bookingData.reason,
         },
       }).then(({ error: emailErr }) => {
         if (emailErr) console.error("Email send failed:", emailErr);
