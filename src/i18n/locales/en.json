@@ -191,7 +191,13 @@
     "videosDesc": "Educational videos on mental health awareness and wellbeing.",
     "available": "Available",
     "readFullBio": "Read Full Bio",
-    "showLess": "Show Less"
+    "showLess": "Show Less",
+    "emergencyLabel": "24/7 Emergency",
+    "emergencyTitle": "In a crisis? Get help now",
+    "emergencySuicide": "SADAG Suicide Crisis Line",
+    "emergencyMH": "SADAG Mental Health Line",
+    "emergencySMS": "SMS Support",
+    "emergencyNote": "If life is in immediate danger, call 10111 (SAPS) or 10177 (ambulance)."
   },
   "campaigns": {
     "heroTitle": "Donor Dashboard",
@@ -325,7 +331,15 @@
     "q7": "Do you accept insurance?",
     "a7": "We work with various insurance providers. Please contact us with your insurance details and we'll help verify your coverage.",
     "q8": "How can organizations partner with you?",
-    "a8": "We welcome partnerships with schools, businesses, and NGOs. Reach out via our Contact page to discuss collaboration opportunities."
+    "a8": "We welcome partnerships with schools, businesses, and NGOs. Reach out via our Contact page to discuss collaboration opportunities.",
+    "q9": "Do you offer crisis or emergency support?",
+    "a9": "For life-threatening emergencies, please contact SADAG's 24/7 Suicide Crisis Line on 0800 567 567, or call 10111 (SAPS) / 10177 (ambulance). Our team can also refer you to appropriate crisis services during working hours.",
+    "q10": "How do partnerships or corporate collaborations work?",
+    "a10": "We partner with corporates, schools, NGOs and government agencies on wellness programmes, sponsorships, and community outreach. Visit our Partnerships page or email info@worldchangersmh.org to start a conversation.",
+    "q11": "Are donations tax-deductible?",
+    "a11": "Yes. World Changers is a registered NPO/PBO, so South African donors can request a Section 18A tax certificate for eligible donations. Email info@worldchangersmh.org after donating and we'll issue your certificate.",
+    "q12": "How do I access support if I can't afford it?",
+    "a12": "No one is turned away for financial reasons. We offer free drop-in counselling, community workshops and subsidised sessions. Please contact us and we'll match you with the right support."
   },
   "shop": {
     "heroTitle": "Shop for a Cause",

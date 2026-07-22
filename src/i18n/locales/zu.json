@@ -191,7 +191,13 @@
     "videosDesc": "Amavidiyo okufunda ngokuqwashisa ngempilo yengqondo.",
     "available": "Uyatholakala",
     "readFullBio": "Funda I-Bio Ephelele",
-    "showLess": "Bonisa Okuncane"
+    "showLess": "Bonisa Okuncane",
+    "emergencyLabel": "Isimo Esiphuthumayo 24/7",
+    "emergencyTitle": "Ukwenkingeni? Thola usizo manje",
+    "emergencySuicide": "Ucingo lweSADAG lweSuicide",
+    "emergencyMH": "Ucingo lweSADAG lweMpilo yeNgqondo",
+    "emergencySMS": "Usizo nge-SMS",
+    "emergencyNote": "Uma impilo isengozini engokoqobo, shayela u-10111 (SAPS) noma u-10177 (i-ambulense)."
   },
   "campaigns": {
     "heroTitle": "Ibhodi Labaxhasi",
@@ -325,7 +331,15 @@
     "q7": "Niyakwamukela umshwalense?",
     "a7": "Sisebenza nabahlinzeki bomshwalense abahlukene. Sicela uxhumane nathi ngeiningizimu yakho yomshwalense ukuze sikusize ukuqinisekisa ukumbozwa kwakho.",
     "q8": "Izinhlangano zingabambisana kanjani nani?",
-    "a8": "Samukela ubambiswano nezikole, amabhizinisi, nezinhlangano ezingenzi nzuzo. Xhumana nathi ngekhasimende lethu lokuxhumana ukuxoxa ngamathuba okubambisana."
+    "a8": "Samukela ubambiswano nezikole, amabhizinisi, nezinhlangano ezingenzi nzuzo. Xhumana nathi ngekhasimende lethu lokuxhumana ukuxoxa ngamathuba okubambisana.",
+    "q9": "Ninikeza usizo oluphuthumayo noma lwenkinga?",
+    "a9": "Ezimweni eziphuthumayo ezisongela impilo, sicela ushayele i-SADAG Suicide Crisis Line ku-0800 567 567 (izinsuku zonke, 24/7), noma ushayele u-10111 (SAPS) / 10177 (i-ambulense). Ithimba lethu lingakuxhumanisa nezinsizakalo zezinkinga ngezikhathi zokusebenza.",
+    "q10": "Ubudlelwano nezinhlangano kanjani busebenza?",
+    "a10": "Sisebenzisana namabhizinisi, izikole, ama-NGO nomnyango kahulumeni ezinhlelweni zempilo, uxhaso, nokufinyelela emphakathini. Vakashela ikhasi lethu Le-Partnerships noma uthumele umyalezo ku-info@worldchangersmh.org.",
+    "q11": "Ingabe iminikelo iyanciphisa intela?",
+    "a11": "Yebo. I-World Changers iyi-NPO/PBO ebhalisiwe, ngakho abanikeli baseNingizimu Afrika bangacela isitifiketi sentela ye-Section 18A. Thumela i-imeyili ku-info@worldchangersmh.org emva kokunikela.",
+    "q12": "Ngingaluthola kanjani usizo uma ngingakwazi ukulukhokhela?",
+    "a12": "Akekho oxoshwayo ngenxa yezimo zezimali. Sinikela ngokwelulekwa kwamahhala, izinhlangano zomphakathi, kanye nezinhlelo ezisekelwe. Sicela usithinte."
   },
   "shop": {
     "heroTitle": "Thenga Ngenhloso",

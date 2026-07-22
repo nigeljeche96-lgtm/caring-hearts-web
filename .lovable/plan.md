@@ -1,72 +1,53 @@
-## Navigation & Homepage Wiring Overhaul
+# Site Updates: Branding, FAQ, Emergency Info, Translations, Volunteer Routing
 
-Strictly nav structure, routing, and CTA destinations — no visual, copy, or content changes.
+## 1. Brand colour update (#034694)
 
-### 1. `src/components/Navbar.tsx` — new nav structure
+Replace recently introduced grey tones with the World Changers brand blue.
 
-Replace `navLinks` with:
+- Update `--primary` (and `--ring`, `--teal-dark`, `--hero-gradient`) in `src/index.css` to `hsl(214 96% 30%)` (= `#034694`) so every `bg-primary`, `text-primary`, `bg-hero-gradient`, gradient text, and shadow token shifts automatically.
+- Audit for any lingering `text-gray-*` / `bg-gray-*` / `bg-muted` misused as brand accents introduced in recent changes (Team socials, Partnerships cards, Policies, VoiceAgent button) and re-point them to `primary` / `accent` semantic tokens.
+- Leave neutral `muted` / `border` greys alone — they are structural, not brand.
 
-```
-Home              → /
-About             → /about
-Our Work ▾
-  Mental Health Services → /mental-health
-  Programmes & Impact    → /philanthropy
-  Events                 → /events
-Get Involved ▾
-  Become a Volunteer → /become-volunteer
-  Donate             → https://paystack.shop/pay/87qgnu5n8o (target _blank)
-Contact           → /contact
-```
+## 2. FAQ page content
 
-- Dropdown items support either internal `path` or external `href` (open in new tab). Update the desktop dropdown render and mobile Sheet render to handle both (use `<a target="_blank" rel="noopener noreferrer">` when `href` is set).
-- Remove the Shop cart icon link (`/shop`) from the top-right icon cluster.
-- Remove the Login/User icon link from the top-right icon cluster.
-- Keep the Language selector.
-- Replace the single "Donate Now" right-side button with two right-side CTAs (desktop + mobile sheet footer):
-  - **Donate Now** → `https://paystack.shop/pay/87qgnu5n8o` (new tab) — `bg-accent text-accent-foreground hover:bg-accent/90` (accent, high contrast)
-  - **Get Help** → `/mental-health` — outlined primary (`variant="outline"` with `border-primary text-primary hover:bg-primary hover:text-primary-foreground`)
-- Remove "Pages" dropdown entirely (Portfolio, Gallery, FAQ, Shop, News, Team, Become Volunteer, Events all gone or relocated as above). Team/Portfolio/Gallery/FAQ/Shop/News pages remain reachable by URL but not from the menu.
+`src/pages/FAQ.tsx` currently renders 8 questions from i18n keys `faq.q1..q8`. Expand to ~12 questions covering: what WCMHCO does, who can access services, cost, booking a session, therapist qualifications, crisis/emergency (link to SADAG), confidentiality, volunteering, partnerships/corporate, donations & tax receipts, refund policy, and contact.
 
-### 2. `src/components/Footer.tsx` — new column structure
+- Extend the `faqs` array and matching keys `faq.q1..q12` / `faq.a1..a12` in all 6 locale files.
+- FAQPage JSON-LD auto-regenerates from the array.
 
-Replace the Quick Links + Programs columns with four columns. Keep the first column (org info + reg numbers) and the fourth column (Contact Info block with VoiceAgent/email/address). Update to:
+## 3. SADAG 24/7 emergency contact on Mental Health page
 
-- **Organisation**: Home (/), About Us (/about), Contact (/contact)
-- **Our Work**: Mental Health Services (/mental-health), Programmes & Impact (/philanthropy), Events (/events)
-- **Get Involved**: Become a Volunteer (/become-volunteer), Donate Now (Paystack, new tab)
-- **Legal**: Privacy Policy (/policies), and plain text "NPO 238-677 · PBO 930084594"
+Add a prominent, high-contrast emergency banner at the very top of `src/pages/MentalHealth.tsx` (above Call Now / Book Session), styled with the destructive/accent tone so it stands out.
 
-Keep the existing Contact info block by merging it into the org column or as a fifth block — to stay minimal and within the existing grid, fold contact email/address/voice into the **Organisation** column (under the existing reg numbers). Use `lg:grid-cols-4` with the four columns above. Remove Programs column.
+Content:
+- Heading: "In a crisis? Get help now"
+- SADAG Suicide Crisis Line: **0800 567 567** (24/7)
+- SADAG Mental Health Line: **011 234 4837**
+- SMS: **31393** or **32312**
+- WhatsApp: **076 882 2775** (9am–5pm)
+- Note: "If life is in immediate danger, call 10111 (SAPS) or 10177 (ambulance)."
 
-Remove from footer: Shop, Portfolio, Login, Donor Dashboard (/campaigns) link.
+All copy goes through i18n keys `mentalHealth.emergency.*` so it translates too.
 
-### 3. `src/pages/Index.tsx` — CTA wiring
+## 4. Complete multilingual translations
 
-- Hero **Explore More** button: change `<Link to="/about">` → `<Link to="/mental-health">`. Keep label/translation key.
-- Hero **Donate Now** button: already Paystack — leave.
-- **Portfolio CTA section** (lines 308–316, the `<section>` containing `SectionHeading` portfolioLabel/Title/Desc and "View All Projects" button): delete the entire section.
-- Scan the rest of Index.tsx for any other "Donate"/CTA bottom section pointing to `/contact`; if present, repoint to Paystack (new tab). Plan view shows lines 1–332; will read 333–367 during implementation to confirm and fix the bottom CTA referenced by user.
+- `src/i18n/locales/pt.json` is only 17 lines — it needs a full translation to match `en.json` (~350 lines).
+- Diff each of `zu.json`, `af.json`, `fr.json`, `es.json` against `en.json`; add any missing keys (Partnerships, Policies, Mental Health emergency block, new FAQ entries, Volunteer form labels currently hard-coded on lines ~161/183).
+- Replace remaining hard-coded English strings in `BecomeVolunteer.tsx` with `t(...)` calls.
 
-### 4. `src/App.tsx` — keep all routes
+## 5. Volunteer submissions -> hr@worldchangersmh.org
 
-No route deletions. `/shop`, `/portfolio`, `/login`, `/campaigns`, `/team`, `/gallery`, `/faq`, `/news`, `/product/:handle`, `/profile-settings`, `/mood-tracker` all remain so existing URLs/SEO don't 404.
+Route volunteer applications to HR while keeping the DB record.
 
-### 5. Out of scope (untouched)
+- `supabase/functions/send-volunteer-notification/index.ts`: change `to: ['info@worldchangersmh.org']` to `to: ['hr@worldchangersmh.org']`, keep `info@` on CC, set `reply_to` to the applicant.
+- Update the confirmation copy in `BecomeVolunteer.tsx` / i18n to reference HR.
+- Redeploy the edge function.
 
-- All page content, copy, images, styling, brand tokens
-- `/team`, `/mental-health` content, `/campaigns` Paystack/bank details
-- `VoiceAgent` component, i18n keys, SEO meta
+## Out of scope
+- No changes to booking flow, Paystack, Shopify, MCP server, or security policies.
+- No new pages, no nav changes.
 
-### Files touched
-
-- `src/components/Navbar.tsx`
-- `src/components/Footer.tsx`
-- `src/pages/Index.tsx`
-
-### Technical notes
-
-- Donate URL constant: `https://paystack.shop/pay/87qgnu5n8o`, always `target="_blank" rel="noopener noreferrer"`.
-- Dropdown item type extended: `{ label: string; path?: string; href?: string; external?: boolean }`.
-- "Get Help" button uses outlined primary variant; "Donate Now" uses accent fill — both visible on desktop top bar and inside the mobile Sheet footer.
-- i18n: reuse existing translation keys where they already exist (`nav.donateNow`, `nav.about`, `nav.mentalHealth`, `nav.philanthropy`, `nav.events`, `nav.becomeVolunteer`, `nav.contact`, `nav.home`). For new labels ("Our Work", "Get Involved", "Get Help", "Donate", "Programmes & Impact", "Mental Health Services", "Organisation", "Our Work", "Get Involved", "Legal", "Privacy Policy") use plain English strings inline — translation file edits are out of scope per Part 6.
+## Technical notes
+- `#034694` in HSL ≈ `214 96% 30%`; verify by eye in preview after swap.
+- Portuguese translation will be produced by translating the English source file key-for-key (no machine placeholders left in).
+- Emergency banner uses semantic `destructive` background with white foreground; verify contrast passes AA.

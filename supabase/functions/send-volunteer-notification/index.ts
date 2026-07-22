@@ -90,7 +90,8 @@ Deno.serve(async (req) => {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${RESEND_API_KEY}` },
       body: JSON.stringify({
         from: 'World Changers MHC Volunteers <onboarding@resend.dev>',
-        to: ['info@worldchangersmh.org'],
+        to: ['hr@worldchangersmh.org'],
+        cc: ['info@worldchangersmh.org'],
         reply_to: email,
         subject: `New Volunteer Application — ${String(body.first_name).slice(0,60)} ${String(body.last_name).slice(0,60)}`,
         html: htmlBody,

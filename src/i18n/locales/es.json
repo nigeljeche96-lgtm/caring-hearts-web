@@ -191,7 +191,13 @@
     "videosDesc": "Videos educativos sobre concientización en salud mental.",
     "available": "Disponible",
     "readFullBio": "Leer Biografía Completa",
-    "showLess": "Mostrar Menos"
+    "showLess": "Mostrar Menos",
+    "emergencyLabel": "Emergencia 24/7",
+    "emergencyTitle": "¿En crisis? Obtenga ayuda ahora",
+    "emergencySuicide": "Línea de Crisis por Suicidio SADAG",
+    "emergencyMH": "Línea de Salud Mental SADAG",
+    "emergencySMS": "Soporte por SMS",
+    "emergencyNote": "Si una vida está en peligro inmediato, llame al 10111 (SAPS) o al 10177 (ambulancia)."
   },
   "campaigns": {
     "heroTitle": "Panel de Donantes",
@@ -325,7 +331,15 @@
     "q7": "¿Aceptan seguros?",
     "a7": "Trabajamos con varios proveedores de seguros. Contáctenos con los detalles de su seguro y le ayudaremos a verificar su cobertura.",
     "q8": "¿Cómo pueden las organizaciones asociarse con ustedes?",
-    "a8": "Damos la bienvenida a asociaciones con escuelas, empresas y ONG. Contáctenos a través de nuestra página de Contacto para discutir oportunidades de colaboración."
+    "a8": "Damos la bienvenida a asociaciones con escuelas, empresas y ONG. Contáctenos a través de nuestra página de Contacto para discutir oportunidades de colaboración.",
+    "q9": "¿Ofrecen apoyo en crisis o emergencias?",
+    "a9": "Para emergencias que amenacen la vida, contacte la línea 24/7 de crisis por suicidio de SADAG al 0800 567 567, o llame al 10111 (SAPS) / 10177 (ambulancia). Nuestro equipo también puede referirle a servicios de crisis apropiados en horario laboral.",
+    "q10": "¿Cómo funcionan las alianzas o colaboraciones corporativas?",
+    "a10": "Colaboramos con empresas, escuelas, ONG y organismos gubernamentales en programas de bienestar, patrocinios y proyectos comunitarios. Visite nuestra página de Alianzas o escríbanos a info@worldchangersmh.org.",
+    "q11": "¿Las donaciones son deducibles de impuestos?",
+    "a11": "Sí. World Changers es una ONG/PBO registrada, por lo que los donantes sudafricanos pueden solicitar un certificado fiscal Sección 18A. Escríbanos a info@worldchangersmh.org tras donar.",
+    "q12": "¿Cómo accedo a apoyo si no puedo pagarlo?",
+    "a12": "Nadie es rechazado por razones económicas. Ofrecemos consejería gratuita, talleres comunitarios y sesiones subvencionadas. Póngase en contacto con nosotros."
   },
   "shop": {
     "heroTitle": "Compra por una Causa",

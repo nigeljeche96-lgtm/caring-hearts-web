@@ -191,7 +191,13 @@
     "videosDesc": "Opvoedkundige video's oor geestesgesondheid.",
     "available": "Beskikbaar",
     "readFullBio": "Lees Volle Bio",
-    "showLess": "Wys Minder"
+    "showLess": "Wys Minder",
+    "emergencyLabel": "24/7 Noodgeval",
+    "emergencyTitle": "In 'n krisis? Kry nou hulp",
+    "emergencySuicide": "SADAG Selfmoord Krisislyn",
+    "emergencyMH": "SADAG Geestesgesondheidslyn",
+    "emergencySMS": "SMS Ondersteuning",
+    "emergencyNote": "As lewe in onmiddellike gevaar is, skakel 10111 (SAPD) of 10177 (ambulans)."
   },
   "campaigns": {
     "heroTitle": "Skenker Paneelbord",
@@ -325,7 +331,15 @@
     "q7": "Aanvaar julle versekering?",
     "a7": "Ons werk met verskeie versekeringsverskaffers. Kontak ons asseblief met jou vesekeringsbesonderhede en ons sal help om jou dekking te verifieer.",
     "q8": "Hoe kan organisasies met julle vennoot?",
-    "a8": "Ons verwelkom vennootskappe met skole, besighede en NRO's. Kontak ons via ons Kontakbladsy om samewerkingsgeleenthede te bespreek."
+    "a8": "Ons verwelkom vennootskappe met skole, besighede en NRO's. Kontak ons via ons Kontakbladsy om samewerkingsgeleenthede te bespreek.",
+    "q9": "Bied julle noodhulp of krisisondersteuning?",
+    "a9": "Vir lewensgevaarlike noodgevalle, skakel SADAG se 24/7 Selfmoord Krisislyn op 0800 567 567, of bel 10111 (SAPD) / 10177 (ambulans). Ons span kan jou ook na toepaslike krisisdienste verwys tydens werksure.",
+    "q10": "Hoe werk vennootskappe of korporatiewe samewerkings?",
+    "a10": "Ons werk saam met korporatiewes, skole, NRO's en regeringsagentskappe aan welstandsprogramme, borgskappe en gemeenskapsuitreik. Besoek ons Vennootskapsbladsy of stuur 'n e-pos aan info@worldchangersmh.org.",
+    "q11": "Is skenkings belastingaftrekbaar?",
+    "a11": "Ja. World Changers is 'n geregistreerde NRO/PBO, dus kan Suid-Afrikaanse skenkers 'n Artikel 18A-belastingsertifikaat aanvra vir kwalifiserende skenkings. Stuur 'n e-pos na info@worldchangersmh.org.",
+    "q12": "Hoe kry ek hulp as ek dit nie kan bekostig nie?",
+    "a12": "Niemand word weggewys weens finansiële redes nie. Ons bied gratis inloop-berading, gemeenskapswerkswinkels en gesubsidieerde sessies. Kontak ons asseblief."
   },
   "shop": {
     "heroTitle": "Koop vir 'n Saak",

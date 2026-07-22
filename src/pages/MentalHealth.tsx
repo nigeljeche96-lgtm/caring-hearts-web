@@ -169,6 +169,41 @@ const MentalHealth = () => {
       <SEO title="Mental Health Care Programs & Booking — World Changers" description="Book counseling, therapy and wellness programs with our qualified mental health providers. Confidential care across Southern Africa." path="/mental-health" />
       <PageHero title={t("mentalHealth.heroTitle")} subtitle={t("mentalHealth.heroSubtitle")} bgImage={mentalHealthBg} />
 
+      {/* SADAG 24/7 Emergency Contact */}
+      <section className="bg-destructive text-destructive-foreground">
+        <div className="container mx-auto py-6 px-4">
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center">
+                <Phone className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-wider opacity-90">{t("mentalHealth.emergencyLabel")}</p>
+                <h2 className="font-heading text-lg md:text-xl font-bold leading-tight">{t("mentalHealth.emergencyTitle")}</h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 flex-1 text-sm">
+              <a href="tel:0800567567" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
+                <div className="text-[11px] opacity-90">{t("mentalHealth.emergencySuicide")}</div>
+                <div className="font-bold">0800 567 567</div>
+              </a>
+              <a href="tel:0112344837" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
+                <div className="text-[11px] opacity-90">{t("mentalHealth.emergencyMH")}</div>
+                <div className="font-bold">011 234 4837</div>
+              </a>
+              <a href="sms:31393" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
+                <div className="text-[11px] opacity-90">{t("mentalHealth.emergencySMS")}</div>
+                <div className="font-bold">31393 / 32312</div>
+              </a>
+              <a href="https://wa.me/27768822775" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
+                <div className="text-[11px] opacity-90">WhatsApp (9am–5pm)</div>
+                <div className="font-bold">076 882 2775</div>
+              </a>
+            </div>
+          </div>
+          <p className="text-xs opacity-90 mt-3 text-center md:text-left">{t("mentalHealth.emergencyNote")}</p>
+        </div>
+      </section>
 
       {/* Call Now + Book Session - Side by Side */}
       <section className="section-padding bg-card">
@@ -179,8 +214,8 @@ const MentalHealth = () => {
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <Phone className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="font-heading text-2xl font-bold text-foreground mb-2">Call Now</h2>
-              <p className="text-muted-foreground flex-1">Speak to our receptionist instantly for questions, scheduling, or support.</p>
+              <h2 className="font-heading text-2xl font-bold text-foreground mb-2">{t("mentalHealth.callNow")}</h2>
+              <p className="text-muted-foreground flex-1">{t("mentalHealth.callNowDesc")}</p>
               <div className="mt-6">
                 <VoiceAgent variant="button" />
               </div>
@@ -191,18 +226,19 @@ const MentalHealth = () => {
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
                 <CalendarDays className="w-8 h-8 text-accent" />
               </div>
-              <h2 className="font-heading text-2xl font-bold text-foreground mb-2">Book a Virtual Session</h2>
-              <p className="text-muted-foreground flex-1">Schedule a 60-minute virtual counseling session with your preferred provider.</p>
+              <h2 className="font-heading text-2xl font-bold text-foreground mb-2">{t("mentalHealth.bookSession")}</h2>
+              <p className="text-muted-foreground flex-1">{t("mentalHealth.bookSessionDesc")}</p>
               <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mt-4 mb-4">
-                <Video className="w-3.5 h-3.5" /> All sessions are conducted virtually
+                <Video className="w-3.5 h-3.5" /> {t("mentalHealth.virtualNote")}
               </div>
               <Button onClick={() => setBookingOpen(true)} size="lg" className="bg-hero-gradient text-primary-foreground hover:opacity-90">
-                <CalendarDays className="w-5 h-5 mr-2" /> Open Booking Calendar
+                <CalendarDays className="w-5 h-5 mr-2" /> {t("mentalHealth.openBooking")}
               </Button>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Booking Calendar Modal */}
       {bookingOpen && (
