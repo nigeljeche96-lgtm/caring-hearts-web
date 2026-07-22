@@ -191,7 +191,13 @@
     "videosDesc": "Vidéos éducatives sur la sensibilisation à la santé mentale.",
     "available": "Disponible",
     "readFullBio": "Lire la Bio Complète",
-    "showLess": "Montrer Moins"
+    "showLess": "Montrer Moins",
+    "emergencyLabel": "Urgence 24h/24",
+    "emergencyTitle": "En crise ? Obtenez de l'aide maintenant",
+    "emergencySuicide": "Ligne de crise suicidaire SADAG",
+    "emergencyMH": "Ligne santé mentale SADAG",
+    "emergencySMS": "Soutien par SMS",
+    "emergencyNote": "Si une vie est en danger immédiat, appelez le 10111 (police) ou le 10177 (ambulance)."
   },
   "campaigns": {
     "heroTitle": "Tableau des Donateurs",
@@ -325,7 +331,15 @@
     "q7": "Acceptez-vous les assurances ?",
     "a7": "Nous travaillons avec divers fournisseurs d'assurance. Veuillez nous contacter avec vos détails d'assurance et nous vous aiderons à vérifier votre couverture.",
     "q8": "Comment les organisations peuvent-elles s'associer avec vous ?",
-    "a8": "Nous accueillons les partenariats avec les écoles, les entreprises et les ONG. Contactez-nous via notre page Contact pour discuter des opportunités de collaboration."
+    "a8": "Nous accueillons les partenariats avec les écoles, les entreprises et les ONG. Contactez-nous via notre page Contact pour discuter des opportunités de collaboration.",
+    "q9": "Proposez-vous un soutien en cas de crise ou d'urgence ?",
+    "a9": "En cas d'urgence vitale, veuillez appeler la ligne SADAG de crise suicidaire 24/7 au 0800 567 567, ou composez le 10111 (police) / 10177 (ambulance). Notre équipe peut aussi vous orienter vers les services d'urgence appropriés pendant les heures d'ouverture.",
+    "q10": "Comment fonctionnent les partenariats ou collaborations d'entreprise ?",
+    "a10": "Nous collaborons avec des entreprises, écoles, ONG et institutions publiques sur des programmes de bien-être, des parrainages et des actions communautaires. Visitez notre page Partenariats ou écrivez à info@worldchangersmh.org.",
+    "q11": "Les dons sont-ils déductibles des impôts ?",
+    "a11": "Oui. World Changers est une ONG/PBO enregistrée, donc les donateurs sud-africains peuvent demander un certificat fiscal Section 18A. Envoyez un e-mail à info@worldchangersmh.org après votre don.",
+    "q12": "Comment obtenir un soutien si je n'ai pas les moyens ?",
+    "a12": "Personne n'est refusé pour des raisons financières. Nous offrons des consultations gratuites, des ateliers communautaires et des séances subventionnées. Contactez-nous."
   },
   "shop": {
     "heroTitle": "Acheter pour une Cause",
