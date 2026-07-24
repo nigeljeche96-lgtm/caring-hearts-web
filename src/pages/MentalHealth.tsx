@@ -169,6 +169,20 @@ const MentalHealth = () => {
       <SEO title="Mental Health Care Programs & Booking — World Changers" description="Book counseling, therapy and wellness programs with our qualified mental health providers. Confidential care across Southern Africa." path="/mental-health" />
       <PageHero title={t("mentalHealth.heroTitle")} subtitle={t("mentalHealth.heroSubtitle")} bgImage={mentalHealthBg} />
 
+      {/* Booking headline */}
+      <section className="py-12 md:py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-heading text-2xl md:text-4xl font-bold leading-tight mb-6">
+              {t("mentalHealth.bookingHeadline")}
+            </h2>
+            <Button onClick={() => setBookingOpen(true)} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              <CalendarDays className="w-5 h-5 mr-2" /> {t("mentalHealth.openBooking")}
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* SADAG 24/7 Emergency Contact */}
       <section className="bg-destructive text-destructive-foreground">
         <div className="container mx-auto py-6 px-4">
