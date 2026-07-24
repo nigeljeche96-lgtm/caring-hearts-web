@@ -45,37 +45,37 @@ const APPOINTMENT_TIMES = ["09:00", "10:00", "11:00", "12:00", "14:00", "15:00",
 
 const professionals = [
   {
-    name: "Nicky Vlantis", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: nickyVlantis,
+    name: "Nicky Vlantis", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: shelleyRoets,
     email: "nicky@worldchangersmh.org",
     bio: "Nicky Vlantis is a qualified Counsellor with over six years of experience supporting learners, young professionals, and individuals facing personal and emotional challenges. She holds a BSc in Nutrition from the University of Natal and has completed counselling and life coaching training through Lifeline and Trifocus Academy, specialising in anxiety, depression, bereavement, addiction, eating disorders, and personal development using person-centred and cognitive behavioural approaches.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Takalani Mulaudzi", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: takalaniMulaudzi,
+    name: "Takalani Mulaudzi", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: masegoMitchell,
     email: "rmulaudzi796@gmail.com",
     bio: "Ms Takalani Mulaudzi is a qualified Social Worker and Employee Assistance Programme (EAP) Specialist with over 15 years of experience in psychosocial support, counselling, and workplace wellbeing. She holds a Bachelor of Social Work, a BA Honours in Psychology, an Advanced EAP Certificate, and is currently pursuing a Master's degree in Psychology at the University of South Africa (UNISA), with a focus on employee wellbeing and mental health support.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Shelley Roets", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: shelleyRoets,
+    name: "Shelley Roets", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: nickyVlantis,
     email: "scroets@gmail.com",
     bio: "Shelley Roets is a Mental Health Counsellor dedicated to helping individuals navigate life's challenges while building resilience, confidence, and emotional wellbeing. She specialises in supporting clients experiencing anxiety, stress, grief, relationship difficulties, and major life transitions through a compassionate, client-centred approach.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Patience Thabede", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: patienceThabede,
+    name: "Patience Thabede", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: bongiweMthembu,
     email: "nzimande20@gmail.com",
     bio: "Patience Thabede is a registered Social Worker and Mental Health Practitioner with over 10 years of experience in trauma-informed psychosocial care. She holds a BA in Social Work from the University of KwaZulu-Natal, a Master's degree in Social Development and Policy from the University of Pretoria, and an International Diploma in Humanitarian Assistance from Fordham University, specialising in evidence-based counselling, crisis intervention, and mental health support.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Masego Mitchell", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: masegoMitchell,
+    name: "Masego Mitchell", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: patienceThabede,
     email: "khabibmitchell02@gmail.com",
     bio: "Masego Mitchell is a qualified Social Worker with four years of experience providing counselling, psychosocial support, and mental health advocacy services. She is passionate about empowering individuals and communities to build resilience and improve wellbeing, and is currently pursuing postgraduate studies in Clinical Social Work.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
   {
-    name: "Bongiwe Nomshado Mthembu", role: "Licensed Social Worker", specialty: "Anxiety & Depression", image: bongiweMthembu,
+    name: "Bongiwe Nomshado Mthembu", role: "Licensed Social Worker", specialty: "Anxiety & Depression", image: takalaniMulaudzi,
     email: "mthembubongiwe9@gmail.com",
     bio: "Bongiwe Nomshado Mthembu is a qualified Social Worker with extensive experience in child protection, family support, and statutory social work services. She holds a Bachelor of Arts Honours in Social Work from the University of Johannesburg and a Master's Degree in Occupational Social Work from the University of the Witwatersrand, specialising in psychosocial assessments, family mediation, and child welfare interventions.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
