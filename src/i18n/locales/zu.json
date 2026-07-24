@@ -197,7 +197,8 @@
     "emergencySuicide": "Ucingo lweSADAG lweSuicide",
     "emergencyMH": "Ucingo lweSADAG lweMpilo yeNgqondo",
     "emergencySMS": "Usizo nge-SMS",
-    "emergencyNote": "Uma impilo isengozini engokoqobo, shayela u-10111 (SAPS) noma u-10177 (i-ambulense)."
+    "emergencyNote": "Uma impilo isengozini engokoqobo, shayela u-10111 (SAPS) noma u-10177 (i-ambulense).",
+    "bookingHeadline": "Bhuka Namhlanje Iseshini Yakho Yokweluleka Ye-Virtual Yamahhala Nochwepheshe Bethu Abalizimele Kwezempilo Yengqondo."
   },
   "campaigns": {
     "heroTitle": "Ibhodi Labaxhasi",

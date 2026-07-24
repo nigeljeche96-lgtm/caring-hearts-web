@@ -169,6 +169,20 @@ const MentalHealth = () => {
       <SEO title="Mental Health Care Programs & Booking — World Changers" description="Book counseling, therapy and wellness programs with our qualified mental health providers. Confidential care across Southern Africa." path="/mental-health" />
       <PageHero title={t("mentalHealth.heroTitle")} subtitle={t("mentalHealth.heroSubtitle")} bgImage={mentalHealthBg} />
 
+      {/* Booking headline */}
+      <section className="py-12 md:py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-heading text-2xl md:text-4xl font-bold leading-tight mb-6">
+              {t("mentalHealth.bookingHeadline")}
+            </h2>
+            <Button onClick={() => setBookingOpen(true)} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              <CalendarDays className="w-5 h-5 mr-2" /> {t("mentalHealth.openBooking")}
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* SADAG 24/7 Emergency Contact */}
       <section className="bg-destructive text-destructive-foreground">
         <div className="container mx-auto py-6 px-4">
@@ -392,7 +406,7 @@ const MentalHealth = () => {
                 <div className="flex items-start gap-4 p-5">
                   <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-muted flex items-center justify-center">
                     {p.image ? (
-                      <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                      <img src={p.image} alt={p.name} className="w-full h-full object-contain" />
                     ) : (
                       <svg className="w-10 h-10 text-muted-foreground/40" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />

@@ -197,7 +197,8 @@
     "emergencySuicide": "Ligne de crise suicidaire SADAG",
     "emergencyMH": "Ligne santé mentale SADAG",
     "emergencySMS": "Soutien par SMS",
-    "emergencyNote": "Si une vie est en danger immédiat, appelez le 10111 (police) ou le 10177 (ambulance)."
+    "emergencyNote": "Si une vie est en danger immédiat, appelez le 10111 (police) ou le 10177 (ambulance).",
+    "bookingHeadline": "Réservez dès aujourd'hui votre séance de conseil virtuelle gratuite avec nos professionnels de santé mentale agréés."
   },
   "campaigns": {
     "heroTitle": "Tableau des Donateurs",
