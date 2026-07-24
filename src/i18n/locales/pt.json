@@ -197,7 +197,8 @@
     "emergencySuicide": "Linha de Crise Suicida SADAG",
     "emergencyMH": "Linha de Saúde Mental SADAG",
     "emergencySMS": "Apoio por SMS",
-    "emergencyNote": "Se a vida estiver em perigo imediato, ligue para 10111 (SAPS) ou 10177 (ambulância)."
+    "emergencyNote": "Se a vida estiver em perigo imediato, ligue para 10111 (SAPS) ou 10177 (ambulância).",
+    "bookingHeadline": "Agende hoje a sua sessão de aconselhamento virtual gratuita com os nossos profissionais de saúde mental licenciados."
   },
   "campaigns": {
     "heroTitle": "Painel do Doador",

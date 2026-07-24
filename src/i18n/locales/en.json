@@ -197,7 +197,8 @@
     "emergencySuicide": "SADAG Suicide Crisis Line",
     "emergencyMH": "SADAG Mental Health Line",
     "emergencySMS": "SMS Support",
-    "emergencyNote": "If life is in immediate danger, call 10111 (SAPS) or 10177 (ambulance)."
+    "emergencyNote": "If life is in immediate danger, call 10111 (SAPS) or 10177 (ambulance).",
+    "bookingHeadline": "Book Your Free Virtual Counselling Session with Our Licensed Mental Health Professionals Today."
   },
   "campaigns": {
     "heroTitle": "Donor Dashboard",

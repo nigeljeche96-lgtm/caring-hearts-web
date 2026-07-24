@@ -287,8 +287,8 @@ const Index = () => {
             {boardMembers.map((m, i) => (
               <motion.div key={m.role + i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-2xl overflow-hidden shadow-card group text-center">
-                <div className="aspect-[3/4] overflow-hidden">
-                  <img src={m.image} alt={m.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                <div className="aspect-[3/4] overflow-hidden bg-muted flex items-center justify-center">
+                  <img src={m.image} alt={m.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5">
                   <h3 className="font-heading text-lg font-semibold text-foreground">{m.name}</h3>
