@@ -61,8 +61,20 @@ import img7194 from "@/assets/img_7194.jpg.asset.json";
 import img7195 from "@/assets/img_7195.jpg.asset.json";
 import img7196 from "@/assets/img_7196.jpg.asset.json";
 import img7207 from "@/assets/img_7207.jpg.asset.json";
+import img9859 from "@/assets/img_9859.jpg.asset.json";
+import img9868 from "@/assets/img_9868.jpg.asset.json";
+import img9882 from "@/assets/img_9882.jpg.asset.json";
+import img9889 from "@/assets/img_9889.jpg.asset.json";
+import img9908 from "@/assets/img_9908.jpg.asset.json";
+import img9938 from "@/assets/img_9938.jpg.asset.json";
 
 const images = [
+  { src: img9859.url, alt: "The Daniel Project community outreach event" },
+  { src: img9868.url, alt: "Community wellness outreach with mobile clinic" },
+  { src: img9882.url, alt: "Community mental health outreach" },
+  { src: img9889.url, alt: "Community outreach gathering" },
+  { src: img9908.url, alt: "Mobile clinic community outreach" },
+  { src: img9938.url, alt: "Community health awareness event" },
   { src: img7181.url, alt: "Community kitchen outreach" },
   { src: img7195.url, alt: "Community food distribution outreach" },
   { src: img7194.url, alt: "Volunteers on community outreach" },
