@@ -67,8 +67,18 @@ import img9882 from "@/assets/img_9882.jpg.asset.json";
 import img9889 from "@/assets/img_9889.jpg.asset.json";
 import img9908 from "@/assets/img_9908.jpg.asset.json";
 import img9938 from "@/assets/img_9938.jpg.asset.json";
+import outreachBooks1 from "@/assets/outreach_books1.jpg.asset.json";
+import outreachHygiene from "@/assets/outreach_hygiene.jpg.asset.json";
+import outreachStationery from "@/assets/outreach_stationery.jpg.asset.json";
+import outreachCommunity from "@/assets/outreach_community.jpg.asset.json";
+import outreachPartners from "@/assets/outreach_partners.jpg.asset.json";
 
 const images = [
+  { src: outreachBooks1.url, alt: "Mental Health Matters school books distribution" },
+  { src: outreachStationery.url, alt: "Community stationery drive with volunteers" },
+  { src: outreachHygiene.url, alt: "Hygiene pack distribution outreach" },
+  { src: outreachCommunity.url, alt: "Community members at outreach event with SAPS" },
+  { src: outreachPartners.url, alt: "Daniel Project partners at mobile clinic outreach" },
   { src: img9859.url, alt: "The Daniel Project community outreach event" },
   { src: img9868.url, alt: "Community wellness outreach with mobile clinic" },
   { src: img9882.url, alt: "Community mental health outreach" },
