@@ -24,6 +24,8 @@ import nickyVlantis from "@/assets/nicky-vlantis.png";
 import masegoMitchell from "@/assets/masego-mitchell.png";
 import takalaniMulaudzi from "@/assets/takalani-mulaudzi.png";
 import patienceThabede from "@/assets/patience-thabede.png";
+import mimmyLedwabaAsset from "@/assets/mimmy-ledwaba.png.asset.json";
+const mimmyLedwaba = mimmyLedwabaAsset.url;
 
 const programs = [
   { icon: Brain, title: "Cognitive Behavioral Therapy", desc: "Evidence-based approach to treating anxiety, depression, and other mental health conditions through structured therapeutic sessions." },
@@ -78,6 +80,12 @@ const professionals = [
     name: "Bongiwe Nomshado Mthembu", role: "Licensed Social Worker", specialty: "Anxiety & Depression", image: takalaniMulaudzi,
     email: "mthembubongiwe9@gmail.com",
     bio: "Bongiwe Nomshado Mthembu is a qualified Social Worker with extensive experience in child protection, family support, and statutory social work services. She holds a Bachelor of Arts Honours in Social Work from the University of Johannesburg and a Master's Degree in Occupational Social Work from the University of the Witwatersrand, specialising in psychosocial assessments, family mediation, and child welfare interventions.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
+  },
+  {
+    name: "Ms Mimmy Ledwaba", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: mimmyLedwaba,
+    email: "mimmyledwaba@gmail.com",
+    bio: "Ms Mimmy Ledwaba is a qualified Social Worker with over 25 years of experience in both government and non-governmental organisations. She specialises in child protection, foster care management, victim empowerment, HIV/AIDS support, and community development. She serves as a member of the South African Medical Research Council Health Research Ethics Committee and is currently pursuing a Master's degree in Social Sciences (Community Development) at the University of KwaZulu-Natal. Ms Ledwaba is passionate about empowering children, youth, and women through ethical, community-centred social work and mental health support.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
 ];
