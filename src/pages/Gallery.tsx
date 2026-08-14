@@ -82,8 +82,26 @@ import o2_7 from "@/assets/outreach2_7.jpg.asset.json";
 import o2_8 from "@/assets/outreach2_8.jpg.asset.json";
 import o2_9 from "@/assets/outreach2_9.jpg.asset.json";
 import o2_10 from "@/assets/outreach2_10.jpg.asset.json";
+import o3_1 from "@/assets/outreach3_1.jpg.asset.json";
+import o3_2 from "@/assets/outreach3_2.jpg.asset.json";
+import o3_3 from "@/assets/outreach3_3.jpg.asset.json";
+import o3_4 from "@/assets/outreach3_4.jpg.asset.json";
+import o3_5 from "@/assets/outreach3_5.jpg.asset.json";
+import o3_6 from "@/assets/outreach3_6.jpg.asset.json";
+import o3_7 from "@/assets/outreach3_7.jpg.asset.json";
+import o3_8 from "@/assets/outreach3_8.jpg.asset.json";
+import o3_9 from "@/assets/outreach3_9.jpg.asset.json";
 
 const images = [
+  { src: o3_1.url, alt: "Community members seated at outreach event with SAPS support" },
+  { src: o3_2.url, alt: "Donation handover at D.E.O.P.R. older persons home" },
+  { src: o3_3.url, alt: "Elderly residents attending community wellness talk" },
+  { src: o3_4.url, alt: "Community audience receiving health information pamphlets" },
+  { src: o3_5.url, alt: "Large community turnout at outreach gathering" },
+  { src: o3_6.url, alt: "Residents listening at community outreach session" },
+  { src: o3_7.url, alt: "Volunteers distributing exercise books at mobile clinic outreach" },
+  { src: o3_8.url, alt: "Children receiving school books at community outreach" },
+  { src: o3_9.url, alt: "The Daniel Project distributing hygiene packs and school books" },
   { src: o2_1.url, alt: "Volunteers serving meals to children at community kitchen" },
   { src: o2_2.url, alt: "World Changers team at dealership partnership event" },
   { src: o2_3.url, alt: "Volunteer distributing exercise books to learners" },
