@@ -72,8 +72,28 @@ import outreachHygiene from "@/assets/outreach_hygiene.jpg.asset.json";
 import outreachStationery from "@/assets/outreach_stationery.jpg.asset.json";
 import outreachCommunity from "@/assets/outreach_community.jpg.asset.json";
 import outreachPartners from "@/assets/outreach_partners.jpg.asset.json";
+import o2_1 from "@/assets/outreach2_1.jpg.asset.json";
+import o2_2 from "@/assets/outreach2_2.jpg.asset.json";
+import o2_3 from "@/assets/outreach2_3.jpg.asset.json";
+import o2_4 from "@/assets/outreach2_4.jpg.asset.json";
+import o2_5 from "@/assets/outreach2_5.jpg.asset.json";
+import o2_6 from "@/assets/outreach2_6.jpg.asset.json";
+import o2_7 from "@/assets/outreach2_7.jpg.asset.json";
+import o2_8 from "@/assets/outreach2_8.jpg.asset.json";
+import o2_9 from "@/assets/outreach2_9.jpg.asset.json";
+import o2_10 from "@/assets/outreach2_10.jpg.asset.json";
 
 const images = [
+  { src: o2_1.url, alt: "Volunteers serving meals to children at community kitchen" },
+  { src: o2_2.url, alt: "World Changers team at dealership partnership event" },
+  { src: o2_3.url, alt: "Volunteer distributing exercise books to learners" },
+  { src: o2_4.url, alt: "Volunteers handing out school books during outreach" },
+  { src: o2_5.url, alt: "Outreach visit to older persons care home" },
+  { src: o2_6.url, alt: "Donation handover at older persons care home" },
+  { src: o2_7.url, alt: "Volunteers with adult care supplies donation" },
+  { src: o2_8.url, alt: "Team and residents at care home donation drive" },
+  { src: o2_9.url, alt: "Group photo at older persons rights outreach" },
+  { src: o2_10.url, alt: "Volunteers distributing books at community site" },
   { src: outreachBooks1.url, alt: "Mental Health Matters school books distribution" },
   { src: outreachStationery.url, alt: "Community stationery drive with volunteers" },
   { src: outreachHygiene.url, alt: "Hygiene pack distribution outreach" },
