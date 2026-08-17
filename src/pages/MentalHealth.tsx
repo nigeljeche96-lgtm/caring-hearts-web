@@ -162,7 +162,10 @@ const MentalHealth = () => {
           reason: bookingData.reason,
         },
       }).then(({ error: emailErr }) => {
-        if (emailErr) console.error("Email send failed:", emailErr);
+        if (emailErr) {
+          console.error("Booking notification email failed:", emailErr);
+          toast.warning("Booking saved, but the confirmation email could not be sent. Our team will follow up.");
+        }
       });
     } catch (err: any) {
       toast.error(err.message || "Failed to book session");
