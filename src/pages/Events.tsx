@@ -1,6 +1,6 @@
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Bell, Mail } from "lucide-react";
+import { Calendar, MapPin, Bell, Mail, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
@@ -14,12 +14,13 @@ type EventItem = {
   dateNote: string;
   location: string;
   category: string;
+  registerUrl?: string;
 };
 
 const events: EventItem[] = [
-  { title: "Mental Health Golf Day", monthLabel: "NOV", year: "2026", dateNote: "Date to be confirmed", location: "Johannesburg", category: "Fundraising" },
-  { title: "Thrive Fest – Wellness Festival", monthLabel: "DEC", year: "2026", dateNote: "Date to be confirmed", location: "Cape Town", category: "Wellness" },
-  { title: "Annual Fundraising Gala Dinner", monthLabel: "DEC", year: "2026", dateNote: "Date to be confirmed", location: "Johannesburg", category: "Fundraising" },
+  { title: "Mental Health Awareness Golf Day", monthLabel: "NOV", year: "2026", dateNote: "Friday, 20 November 2026", location: "Eye of Africa Golf Estate", category: "Fundraising", registerUrl: "https://form.jotform.com/World_Changers_Org/golf-tournament" },
+  { title: "Prestige Gala Dinner (Inspired by Met Gala)", monthLabel: "DEC", year: "2026", dateNote: "Saturday, 12 December 2026", location: "Johannesburg", category: "Fundraising" },
+  { title: "Thrive Fest – Wellness Festival", monthLabel: "FEB", year: "2027", dateNote: "February 2027 – date to be confirmed", location: "Cape Town", category: "Wellness" },
 ];
 
 const fadeUp = {
@@ -44,7 +45,7 @@ const Events = () => {
               <span className="text-xs sm:text-sm font-semibold text-accent uppercase tracking-wider">Coming Soon</span>
             </div>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-              Ticket sales are not yet open. Visitors will be notified once tickets become available.
+              Registration is open for the Mental Health Awareness Golf Day on 20 November 2026. Tickets for our other events will be announced soon.
             </p>
           </div>
         </div>
@@ -65,7 +66,7 @@ const Events = () => {
                     <span className="block font-heading text-3xl font-bold">{event.year}</span>
                   </div>
                   <span className="ml-auto inline-flex items-center gap-1 bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                    <Bell className="w-3 h-3" /> Coming Soon
+                    {event.registerUrl ? <><Ticket className="w-3 h-3" /> Registration Open</> : <><Bell className="w-3 h-3" /> Coming Soon</>}
                   </span>
                 </div>
                 <div className="p-5 flex-1 flex flex-col">
@@ -75,12 +76,25 @@ const Events = () => {
                     <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {event.dateNote}</span>
                     <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {event.location}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-4 italic">
-                    Ticket sales are not yet open. Visitors will be notified once tickets become available.
-                  </p>
-                  <Button size="sm" disabled className="mt-4 bg-muted text-muted-foreground cursor-not-allowed">
-                    Tickets Coming Soon
-                  </Button>
+                  {event.registerUrl ? (
+                    <>
+                      <p className="text-xs text-muted-foreground mt-4 italic">
+                        Individual – R3 000 · Four-Ball – R10 000. Includes 18 holes + cart access, lunch &amp; drinks, contests and prize-giving dinner.
+                      </p>
+                      <Button asChild size="sm" className="mt-4 bg-hero-gradient text-primary-foreground hover:opacity-90">
+                        <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">Register &amp; Buy Tickets</a>
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-xs text-muted-foreground mt-4 italic">
+                        Ticket sales are not yet open. Visitors will be notified once tickets become available.
+                      </p>
+                      <Button size="sm" disabled className="mt-4 bg-muted text-muted-foreground cursor-not-allowed">
+                        Tickets Coming Soon
+                      </Button>
+                    </>
+                  )}
                 </div>
               </motion.div>
             ))}
