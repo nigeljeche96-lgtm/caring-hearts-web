@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://world-changers-org.lovable.app/sitemap.xml
+Sitemap: https://worldchangersmh.org/sitemap.xml
