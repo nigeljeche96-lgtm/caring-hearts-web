@@ -1,10 +1,11 @@
 project_id = "wxtleqzdwrxnbfufxmmc"
 
-[functions.send-booking-confirmation]
-verify_jwt = false
-
-[functions.send-volunteer-notification]
-verify_jwt = false
-
-[functions.send-contact-notification]
-verify_jwt = false
+[functions]
+  [functions.auth-email-hook]
+    verify_jwt = false
+  [functions.send-booking-confirmation]
+    verify_jwt = false
+  [functions.send-contact-notification]
+    verify_jwt = false
+  [functions.send-volunteer-notification]
+    verify_jwt = false
