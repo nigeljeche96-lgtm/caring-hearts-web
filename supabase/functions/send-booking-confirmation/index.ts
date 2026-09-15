@@ -147,6 +147,27 @@ Deno.serve(async (req) => {
         { apiKey: LOVABLE_API_KEY },
       );
 
+      // Acknowledgement to the client (non-blocking)
+      try {
+        await sendLovableEmail(
+          {
+            to: email,
+            from: { name: `${SITE_NAME} Bookings`, address: FROM_ADDRESS },
+            sender_domain: SENDER_DOMAIN,
+            reply_to: BOOKINGS_INBOX,
+            subject: 'We have received your appointment request',
+            html: ackHtml,
+            text: ackText,
+            purpose: 'transactional',
+            label: 'booking-acknowledgement',
+            idempotency_key: crypto.randomUUID(),
+          },
+          { apiKey: LOVABLE_API_KEY },
+        );
+      } catch (ackErr) {
+        console.error('Booking acknowledgement email failed:', (ackErr as Error).message);
+      }
+
       return new Response(JSON.stringify({ success: true, id: result.message_id }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
