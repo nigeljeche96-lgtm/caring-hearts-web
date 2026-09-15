@@ -29,7 +29,7 @@ var get_org_info_default = defineTool2({
     const info = {
       name: "World Changers Mental Health Care Organisation",
       mission: "Providing accessible mental health care, community outreach, and advocacy across South Africa.",
-      website: "https://world-changers-org.lovable.app",
+      website: "https://worldchangersmh.org",
       contact_email: "info@worldchangersmh.org",
       focus_areas: [
         "Mental health care and counselling",

@@ -240,7 +240,7 @@ const Campaigns = () => {
                             <h3 className="font-heading text-lg font-semibold text-foreground mb-2 line-clamp-2 cursor-pointer"
                               onClick={() => setExpandedCampaign(isExpanded ? null : c.id)}>{c.title}</h3>
                             {canEditCampaign(c) && (
-                              <button onClick={() => startEditing(c)} className="text-muted-foreground hover:text-primary transition-colors ml-2 shrink-0">
+                              <button onClick={() => startEditing(c)} aria-label="Edit campaign" className="text-muted-foreground hover:text-primary transition-colors ml-2 shrink-0">
                                 <Pencil className="w-4 h-4" />
                               </button>
                             )}

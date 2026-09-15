@@ -17,6 +17,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { format, parseISO, addDays, isAfter } from "date-fns";
+import SEO from "@/components/SEO";
 import aboutBg from "@/assets/about-bg.jpg";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Calendar as CalendarPicker } from "@/components/ui/calendar";
@@ -182,6 +183,12 @@ const Login = () => {
   if (user) {
     return (
       <>
+      <SEO
+        title="My Wellness Dashboard — World Changers MHCO"
+        description="View your bookings, mood check-ins and account details on your World Changers Mental Health Care Organisation dashboard."
+        path="/login"
+        noindex
+      />
       <div>
         <PageHero title={`${greeting}, ${displayName}!`} subtitle="Your personal wellness dashboard" bgImage={aboutBg} />
 
@@ -451,6 +458,12 @@ const Login = () => {
 
   return (
     <div>
+      <SEO
+        title="Log In or Create an Account — World Changers MHCO"
+        description="Sign in to your World Changers Mental Health Care Organisation account to manage appointments, mood check-ins and orders."
+        path="/login"
+        noindex
+      />
       <PageHero title={isSignUp ? "Create Account" : "Log In"} subtitle="Access your profile and manage your activities" bgImage={aboutBg} />
 
       <section className="section-padding">

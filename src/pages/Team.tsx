@@ -175,12 +175,12 @@ const TeamSection = ({ title: sectionTitle, members, onClickMember }: { title: s
             {(m.linkedin || m.instagram) && (
               <div className="flex items-center justify-center gap-3 mt-3">
                 {m.linkedin && (
-                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:scale-110 transition-transform">
+                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on LinkedIn`} onClick={(e) => e.stopPropagation()} className="hover:scale-110 transition-transform">
                     <LinkedInIcon />
                   </a>
                 )}
                 {m.instagram && (
-                  <a href={m.instagram} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:scale-110 transition-transform">
+                  <a href={m.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on Instagram`} onClick={(e) => e.stopPropagation()} className="hover:scale-110 transition-transform">
                     <InstagramIcon />
                   </a>
                 )}
