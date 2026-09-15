@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
-import aboutBg from "@/assets/about-bg.jpg";
+import eventsHero from "@/assets/events-hero.jpg";
 
 type EventItem = {
   title: string;
@@ -34,7 +34,7 @@ const Events = () => {
   return (
     <div>
       <SEO title="Events & Workshops — World Changers MHCO" description="Upcoming mental health awareness, wellness and fundraising events. Tickets coming soon." path="/events" />
-      <PageHero title={t("events.heroTitle")} subtitle={t("events.heroSubtitle")} bgImage={aboutBg} />
+      <PageHero title={t("events.heroTitle")} subtitle={t("events.heroSubtitle")} bgImage={eventsHero} />
 
       {/* Events List */}
       <section className="section-padding">
