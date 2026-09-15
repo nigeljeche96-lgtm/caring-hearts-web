@@ -61,6 +61,7 @@ const AppContent = () => {
           <Route path="/profile-settings" element={<ProfileSettings />} />
           <Route path="/mood-tracker" element={<MoodTracker />} />
           <Route path="/policies" element={<Policies />} />
+          <Route path="/unsubscribe" element={<Unsubscribe />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
