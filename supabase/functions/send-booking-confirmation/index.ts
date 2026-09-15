@@ -1,9 +1,15 @@
 import { escapeHtml as e } from '../_shared/escape.ts';
+import { sendLovableEmail } from 'npm:@lovable.dev/email-js';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
+
+const SITE_NAME = 'World Changers MHC';
+const SENDER_DOMAIN = 'notify.worldchangersmh.org';
+const FROM_ADDRESS = 'bookings@worldchangersmh.org';
+const BOOKINGS_INBOX = 'help@worldchangersmh.org';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -11,8 +17,6 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Require a Supabase apikey header (sent automatically by supabase-js) to
-    // gate the endpoint against unauthenticated abuse.
     const apikey = req.headers.get('apikey') || req.headers.get('Authorization');
     if (!apikey) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), {
@@ -40,89 +44,89 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
-    const validProviderEmail = provider_email && emailRegex.test(provider_email) ? provider_email : null;
+    const validProviderEmail =
+      provider_email && emailRegex.test(provider_email) && provider_email.toLowerCase() !== BOOKINGS_INBOX
+        ? provider_email
+        : null;
 
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-    if (!RESEND_API_KEY) {
-      throw new Error('RESEND_API_KEY not configured');
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!LOVABLE_API_KEY) {
+      throw new Error('LOVABLE_API_KEY not configured');
     }
+
+    const row = (label: string, value: string) => `
+      <tr>
+        <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;color:#6b7280;font-size:13px;width:150px;">${label}</td>
+        <td style="padding:10px 14px;border-bottom:1px solid #e5e7eb;color:#111827;font-size:14px;font-weight:600;">${value || '—'}</td>
+      </tr>`;
 
     const htmlBody = `
-      <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb;">
-        <div style="background: linear-gradient(135deg, #1a6b4a, #2d9d6f); padding: 32px; text-align: center;">
-          <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Booking Confirmed ✓</h1>
-          <p style="color: #d1fae5; margin: 8px 0 0; font-size: 14px;">World Changers Mental Health Care Org</p>
+      <div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+        <div style="background:#034694;padding:28px;text-align:center;">
+          <h1 style="color:#ffffff;margin:0;font-size:22px;">New Session Booking</h1>
+          <p style="color:#cfe0f5;margin:8px 0 0;font-size:13px;">World Changers Mental Health Care Organisation</p>
         </div>
-        <div style="padding: 32px;">
-          <p style="color: #374151; font-size: 16px; margin: 0 0 24px;">Hi <strong>${full_name}</strong>,</p>
-          <p style="color: #374151; font-size: 15px; line-height: 1.6; margin: 0 0 24px;">
-            Your therapy session has been successfully booked. Here are your details:
-          </p>
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-            <tr>
-              <td style="padding: 12px 16px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-size: 13px; width: 140px;">Provider</td>
-              <td style="padding: 12px 16px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #111827; font-size: 14px; font-weight: 600;">${provider_name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-size: 13px;">Session Type</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; color: #111827; font-size: 14px; font-weight: 600;">${session_type}</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px 16px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-size: 13px;">Date</td>
-              <td style="padding: 12px 16px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #111827; font-size: 14px; font-weight: 600;">${session_date}</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-size: 13px;">Time</td>
-              <td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; color: #111827; font-size: 14px; font-weight: 600;">${session_time}</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px 16px; background: #f9fafb; color: #6b7280; font-size: 13px;">Mode</td>
-              <td style="padding: 12px 16px; background: #f9fafb; color: #111827; font-size: 14px; font-weight: 600;">${session_mode || 'Virtual'}</td>
-            </tr>
+        <div style="padding:28px;">
+          <p style="color:#374151;font-size:15px;margin:0 0 20px;">A new counselling session has been booked through the website.</p>
+          <table style="width:100%;border-collapse:collapse;">
+            ${row('Client', full_name)}
+            ${row('Email', e(email))}
+            ${row('Phone', phone)}
+            ${row('Professional', provider_name)}
+            ${row('Session type', session_type)}
+            ${row('Date', session_date)}
+            ${row('Time', session_time)}
+            ${row('Mode', session_mode || 'Virtual')}
+            ${row('Reason', reason)}
           </table>
-          <p style="color: #6b7280; font-size: 13px; line-height: 1.6; margin: 0;">
-            If you need to reschedule or cancel, please contact us at least 24 hours before your appointment.
-          </p>
         </div>
-        <div style="background: #f9fafb; padding: 20px 32px; text-align: center; border-top: 1px solid #e5e7eb;">
-          <p style="color: #9ca3af; font-size: 12px; margin: 0;">© World Changers Mental Health Care Org. All rights reserved.</p>
-        </div>
-      </div>
-    `;
+      </div>`;
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'World Changers MHC Bookings <bookings@worldchangersmh.org>',
-        // Notification goes to the bookings inbox, with the selected professional CC'd.
-        to: ['help@worldchangersmh.org'],
-        ...(validProviderEmail ? { cc: [validProviderEmail] } : {}),
-        reply_to: email,
-        subject: `New Booking — ${String(raw.session_type || '').slice(0,80)} with ${String(raw.provider_name || '').slice(0,80)}`,
-        html: htmlBody + `<div style="font-family:Arial,sans-serif;max-width:600px;margin:16px auto;padding:16px;background:#f9fafb;border-radius:8px;font-size:13px;color:#374151;"><strong>Client contact:</strong><br/>Email: ${e(email)}<br/>Phone: ${phone}<br/>Reason: ${reason}</div>`,
-      }),
-    });
+    const textBody = [
+      'New session booking',
+      `Client: ${raw.full_name}`,
+      `Email: ${email}`,
+      `Phone: ${raw.phone || '-'}`,
+      `Professional: ${raw.provider_name || '-'}`,
+      `Session type: ${raw.session_type || '-'}`,
+      `Date: ${raw.session_date || '-'}`,
+      `Time: ${raw.session_time || '-'}`,
+      `Mode: ${raw.session_mode || 'Virtual'}`,
+      `Reason: ${raw.reason || '-'}`,
+    ].join('\n');
 
-    const data = await res.json();
+    try {
+      const result = await sendLovableEmail(
+        {
+          to: BOOKINGS_INBOX,
+          ...(validProviderEmail ? { cc: [validProviderEmail] } : {}),
+          from: { name: `${SITE_NAME} Bookings`, address: FROM_ADDRESS },
+          sender_domain: SENDER_DOMAIN,
+          reply_to: email,
+          subject: `New Booking — ${String(raw.session_type || 'Session').slice(0, 80)} with ${String(raw.provider_name || '').slice(0, 80)}`,
+          html: htmlBody,
+          text: textBody,
+          purpose: 'transactional',
+          label: 'booking-notification',
+          idempotency_key: crypto.randomUUID(),
+        },
+        { apiKey: LOVABLE_API_KEY },
+      );
 
-    if (!res.ok) {
-      console.error('Booking notification email failed:', res.status, data);
-      return new Response(JSON.stringify({ success: false, error: 'Email delivery failed', status: res.status, details: data }), {
-        status: 502,
+      return new Response(JSON.stringify({ success: true, id: result.message_id }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
+    } catch (sendErr) {
+      const status = (sendErr as any)?.status ?? 502;
+      console.error('Booking notification email failed:', status, (sendErr as Error).message);
+      return new Response(
+        JSON.stringify({ success: false, error: 'Email delivery failed', status, details: (sendErr as Error).message }),
+        { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
+      );
     }
-
-    return new Response(JSON.stringify({ success: true, id: data.id }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
   } catch (err) {
     console.error('Error:', err);
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: (err as Error).message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
