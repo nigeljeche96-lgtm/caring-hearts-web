@@ -73,7 +73,7 @@ const Contact = () => {
   return (
     <div>
 
-      <SEO title="Contact World Changers MHCO" description="Get in touch with World Changers Mental Health Care Organisation in Kenilworth, South Africa. Email, address and contact form." path="/contact" jsonLd={{"@context":"https://schema.org","@type":"LocalBusiness","name":"World Changers Mental Health Care Organisation","email":"info@worldchangersmh.org","url":"https://world-changers-org.lovable.app/contact","address":{"@type":"PostalAddress","streetAddress":"114 George Street","addressLocality":"Kenilworth","addressCountry":"ZA"},"openingHours":"Mo-Fr 09:00-17:00"}} />
+      <SEO title="Contact World Changers MHCO" description="Get in touch with World Changers Mental Health Care Organisation in Kenilworth, South Africa. Email, address and contact form." path="/contact" jsonLd={{"@context":"https://schema.org","@type":"LocalBusiness","name":"World Changers Mental Health Care Organisation","email":"info@worldchangersmh.org","url":"https://worldchangersmh.org/contact","address":{"@type":"PostalAddress","streetAddress":"114 George Street","addressLocality":"Kenilworth","addressCountry":"ZA"},"openingHours":"Mo-Fr 09:00-17:00"}} />
       <PageHero title={t("contact.heroTitle")} subtitle={t("contact.heroSubtitle")} bgImage={aboutBg} />
 
       <section className="section-padding">
