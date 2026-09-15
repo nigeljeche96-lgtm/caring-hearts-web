@@ -78,6 +78,7 @@ const Contact = () => {
 
       <section className="section-padding">
         <div className="container mx-auto">
+          <h2 className="sr-only">{t("contact.getInTouch")}</h2>
           <div className="grid lg:grid-cols-5 gap-10">
             <div className="lg:col-span-2 space-y-6">
               <h3 className="font-heading text-2xl font-bold text-foreground">{t("contact.getInTouch")}</h3>
