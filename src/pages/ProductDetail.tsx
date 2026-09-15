@@ -8,6 +8,7 @@ import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, STOREFRONT_PRODUCT_BY_HANDLE_QUERY } from "@/lib/shopify";
 import { toast } from "sonner";
 import ProductReviews from "@/components/ProductReviews";
+import SEO from "@/components/SEO";
 
 const ProductDetail = () => {
   const { handle } = useParams();
