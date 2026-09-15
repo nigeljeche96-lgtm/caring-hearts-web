@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Brain, Shield, Users, Sparkles, HeartPulse, Leaf, Activity, Stethoscope, BookOpen, HandHeart, Presentation, CalendarDays, Clock, X, Mic, Play, Phone, Video, ExternalLink } from "lucide-react";
@@ -119,6 +119,15 @@ const MentalHealth = () => {
   const [bookingReason, setBookingReason] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const { user } = useAuth();
+  const bookingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (bookingOpen) {
+      requestAnimationFrame(() => {
+        bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, [bookingOpen]);
 
   const selectedProfessional = professionals.find((p) => p.name === selectedProvider);
   const availableDays = selectedProfessional?.days || [];
@@ -267,7 +276,7 @@ const MentalHealth = () => {
 
       {/* Booking Calendar Modal */}
       {bookingOpen && (
-        <section className="section-padding bg-muted">
+        <section className="section-padding bg-muted scroll-mt-24" ref={bookingRef}>
           <div className="container mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               className="max-w-2xl mx-auto bg-card rounded-2xl p-8 shadow-card border border-border relative">
@@ -282,7 +291,7 @@ const MentalHealth = () => {
                   </div>
                   <h3 className="font-heading text-2xl font-bold text-foreground mb-2">Booking Confirmed!</h3>
                   <p className="text-muted-foreground">Your 60-minute virtual {sessionType} session with {selectedProvider} is scheduled for {date && format(date, "PPP")} at {time}.</p>
-                  <p className="text-sm text-muted-foreground mt-2">A confirmation has been sent to info@worldchangersmh.org.</p>
+                  <p className="text-sm text-muted-foreground mt-2">An acknowledgement email has been sent to {bookingEmail || "your email address"}. Your professional will be in touch shortly.</p>
                   <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center">
                     <a
                       href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Virtual ${sessionType} — ${selectedProvider}`)}&dates=${date ? format(date, "yyyyMMdd") : ""}T${time.replace(":", "")}00/${date ? format(date, "yyyyMMdd") : ""}T${(() => { const [h, m] = time.split(":").map(Number); return `${String(h + 1).padStart(2, "0")}${String(m).padStart(2, "0")}`; })()}00&details=${encodeURIComponent(`Virtual session with ${selectedProvider}\nType: ${sessionType}\nMode: Virtual`)}&location=Virtual`}
