@@ -71,8 +71,38 @@ const ProductDetail = () => {
     toast.success("Added to cart", { description: `${product.title} - ${selectedVariant.title}` });
   };
 
+  const plainDescription: string = (product.description || `Shop ${product.title} from World Changers Mental Health Care Organisation. Every purchase supports mental health care and community outreach.`)
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 155);
+  const productPrice = selectedVariant?.price || product.priceRange?.minVariantPrice;
+
   return (
     <div className="min-h-screen pt-24 pb-16">
+      <SEO
+        title={`${product.title} — World Changers MHCO Shop`}
+        description={plainDescription}
+        path={`/product/${handle}`}
+        image={currentImage?.url}
+        ogType="product"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.title,
+          description: plainDescription,
+          image: images.map((i: any) => i.node.url),
+          brand: { "@type": "Brand", name: "World Changers Mental Health Care Organisation" },
+          offers: productPrice
+            ? {
+                "@type": "Offer",
+                price: productPrice.amount,
+                priceCurrency: productPrice.currencyCode,
+                availability: "https://schema.org/InStock",
+                url: `https://worldchangersmh.org/product/${handle}`,
+              }
+            : undefined,
+        }}
+      />
       <div className="container mx-auto px-4">
         <Button variant="ghost" onClick={() => navigate('/shop')} className="mb-6">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Shop
