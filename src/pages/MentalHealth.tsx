@@ -119,6 +119,15 @@ const MentalHealth = () => {
   const [bookingReason, setBookingReason] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const { user } = useAuth();
+  const bookingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (bookingOpen) {
+      requestAnimationFrame(() => {
+        bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, [bookingOpen]);
 
   const selectedProfessional = professionals.find((p) => p.name === selectedProvider);
   const availableDays = selectedProfessional?.days || [];
