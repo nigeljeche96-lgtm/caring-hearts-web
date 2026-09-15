@@ -95,6 +95,40 @@ Deno.serve(async (req) => {
       `Reason: ${raw.reason || '-'}`,
     ].join('\n');
 
+    const ackHtml = `
+      <div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+        <div style="background:#034694;padding:28px;text-align:center;">
+          <h1 style="color:#ffffff;margin:0;font-size:22px;">We've Received Your Appointment Request</h1>
+          <p style="color:#cfe0f5;margin:8px 0 0;font-size:13px;">World Changers Mental Health Care Organisation</p>
+        </div>
+        <div style="padding:28px;">
+          <p style="color:#374151;font-size:15px;margin:0 0 16px;">Hi ${full_name},</p>
+          <p style="color:#374151;font-size:15px;margin:0 0 20px;">Thank you for booking a session with us. We have received your appointment request and <strong>${provider_name || 'your professional'}</strong> will get in touch with you to confirm the details.</p>
+          <table style="width:100%;border-collapse:collapse;">
+            ${row('Professional', provider_name)}
+            ${row('Session type', session_type)}
+            ${row('Date', session_date)}
+            ${row('Time', session_time)}
+            ${row('Mode', session_mode || 'Virtual')}
+          </table>
+          <p style="color:#6b7280;font-size:13px;margin:20px 0 0;">If you need to change or cancel, simply reply to this email or contact help@worldchangersmh.org.</p>
+        </div>
+      </div>`;
+
+    const ackText = [
+      `Hi ${raw.full_name},`,
+      '',
+      `Thank you for booking a session with us. We have received your appointment request and ${raw.provider_name || 'your professional'} will get in touch with you to confirm the details.`,
+      '',
+      `Professional: ${raw.provider_name || '-'}`,
+      `Session type: ${raw.session_type || '-'}`,
+      `Date: ${raw.session_date || '-'}`,
+      `Time: ${raw.session_time || '-'}`,
+      `Mode: ${raw.session_mode || 'Virtual'}`,
+      '',
+      'World Changers Mental Health Care Organisation',
+    ].join('\n');
+
     try {
       const result = await sendLovableEmail(
         {
