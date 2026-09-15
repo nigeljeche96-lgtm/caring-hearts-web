@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
-import aboutBg from "@/assets/about-bg.jpg";
+import eventsHero from "@/assets/events-hero.jpg";
 
 type EventItem = {
   title: string;
