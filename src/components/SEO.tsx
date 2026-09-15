@@ -18,22 +18,25 @@ const SEO = ({ title, description, path, jsonLd, image, ogType = "website", noin
     ? image.startsWith("http")
       ? image
       : `${SITE_URL}${image}`
-    : undefined;
+    : null;
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex, follow" />}
+      {noindex ? <meta name="robots" content="noindex, follow" /> : null}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={ogType} />
-      {absoluteImage && <meta property="og:image" content={absoluteImage} />}
+      {absoluteImage ? <meta property="og:image" content={absoluteImage} /> : null}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      {absoluteImage && <meta name="twitter:image" content={absoluteImage} />}
+      {absoluteImage ? <meta name="twitter:image" content={absoluteImage} /> : null}
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json">{JSON.stringify(s)}</script>
+      ))}
     </Helmet>
   );
 };
