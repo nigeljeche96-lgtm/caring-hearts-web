@@ -458,6 +458,12 @@ const Login = () => {
 
   return (
     <div>
+      <SEO
+        title="Log In or Create an Account — World Changers MHCO"
+        description="Sign in to your World Changers Mental Health Care Organisation account to manage appointments, mood check-ins and orders."
+        path="/login"
+        noindex
+      />
       <PageHero title={isSignUp ? "Create Account" : "Log In"} subtitle="Access your profile and manage your activities" bgImage={aboutBg} />
 
       <section className="section-padding">
