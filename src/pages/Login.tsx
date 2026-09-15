@@ -17,6 +17,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import { format, parseISO, addDays, isAfter } from "date-fns";
+import SEO from "@/components/SEO";
 import aboutBg from "@/assets/about-bg.jpg";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Calendar as CalendarPicker } from "@/components/ui/calendar";
