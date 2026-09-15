@@ -28,7 +28,6 @@ import ProfileSettings from "./pages/ProfileSettings";
 import MoodTracker from "./pages/MoodTracker";
 import Events from "./pages/Events";
 import Policies from "./pages/Policies";
-import Unsubscribe from "./pages/Unsubscribe";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -61,7 +60,6 @@ const AppContent = () => {
           <Route path="/profile-settings" element={<ProfileSettings />} />
           <Route path="/mood-tracker" element={<MoodTracker />} />
           <Route path="/policies" element={<Policies />} />
-          <Route path="/unsubscribe" element={<Unsubscribe />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
