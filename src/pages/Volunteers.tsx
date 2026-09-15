@@ -28,11 +28,6 @@ const Volunteers = () => {
 
   return (
     <div>
-      <SEO
-        title="Volunteer With Us — World Changers MHCO"
-        description="Volunteer with World Changers Mental Health Care Organisation: flexible hours, hands-on community outreach and certified experience across Southern Africa."
-        path="/volunteers"
-      />
       <PageHero title="Become a Volunteer" subtitle="Join us in creating a world where mental health care is accessible to all" bgImage={philanthropyBg} />
 
       {/* Why Volunteer */}
