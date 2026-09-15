@@ -183,6 +183,12 @@ const Login = () => {
   if (user) {
     return (
       <>
+      <SEO
+        title="My Wellness Dashboard — World Changers MHCO"
+        description="View your bookings, mood check-ins and account details on your World Changers Mental Health Care Organisation dashboard."
+        path="/login"
+        noindex
+      />
       <div>
         <PageHero title={`${greeting}, ${displayName}!`} subtitle="Your personal wellness dashboard" bgImage={aboutBg} />
 
