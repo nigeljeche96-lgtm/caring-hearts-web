@@ -280,7 +280,7 @@ const MentalHealth = () => {
           <div className="container mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               className="max-w-2xl mx-auto bg-card rounded-2xl p-8 shadow-card border border-border relative">
-              <button onClick={() => { setBookingOpen(false); setBookingSubmitted(false); }} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
+              <button onClick={() => { setBookingOpen(false); setBookingSubmitted(false); }} aria-label="Close booking form" className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
                 <X className="w-5 h-5" />
               </button>
 
