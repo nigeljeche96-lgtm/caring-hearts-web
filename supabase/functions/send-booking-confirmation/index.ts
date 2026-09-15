@@ -98,8 +98,9 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         from: 'World Changers MHC Bookings <bookings@worldchangersmh.org>',
-        // Notification goes to the selected professional only.
-        to: [validProviderEmail || 'info@worldchangersmh.org'],
+        // Notification goes to the bookings inbox, with the selected professional CC'd.
+        to: ['help@worldchangersmh.org'],
+        ...(validProviderEmail ? { cc: [validProviderEmail] } : {}),
         reply_to: email,
         subject: `New Booking — ${String(raw.session_type || '').slice(0,80)} with ${String(raw.provider_name || '').slice(0,80)}`,
         html: htmlBody + `<div style="font-family:Arial,sans-serif;max-width:600px;margin:16px auto;padding:16px;background:#f9fafb;border-radius:8px;font-size:13px;color:#374151;"><strong>Client contact:</strong><br/>Email: ${e(email)}<br/>Phone: ${phone}<br/>Reason: ${reason}</div>`,
