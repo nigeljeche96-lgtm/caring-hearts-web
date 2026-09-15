@@ -224,9 +224,9 @@ const Gallery = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
             onClick={closeLightbox}>
-            <button onClick={closeLightbox} className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
-            <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 text-white/80 hover:text-white z-10"><ChevronLeft className="w-10 h-10" /></button>
-            <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 text-white/80 hover:text-white z-10"><ChevronRight className="w-10 h-10" /></button>
+            <button onClick={closeLightbox} aria-label="Close image viewer" className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
+            <button onClick={(e) => { e.stopPropagation(); prev(); }} aria-label="Previous image" className="absolute left-4 text-white/80 hover:text-white z-10"><ChevronLeft className="w-10 h-10" /></button>
+            <button onClick={(e) => { e.stopPropagation(); next(); }} aria-label="Next image" className="absolute right-4 text-white/80 hover:text-white z-10"><ChevronRight className="w-10 h-10" /></button>
             <motion.img
               key={lightboxIndex}
               initial={{ opacity: 0, scale: 0.9 }}
