@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { Shield, FileText, Lock, Eye, Scale, UserCheck, BookOpen, Download } from "lucide-react";
+import { Shield, FileText, Lock, Eye, Scale, UserCheck, BookOpen } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import aboutBg from "@/assets/about-bg.jpg";
@@ -48,20 +48,14 @@ const policies = [
   },
 ];
 
-const documents = [
-  { name: "Annual Financial Report 2024", type: "PDF" },
-  { name: "Audited Financial Statements 2024", type: "PDF" },
-  { name: "NPO Compliance Certificate", type: "PDF" },
-  { name: "PBO Registration Certificate", type: "PDF" },
-  { name: "B-BBEE Certificate", type: "PDF" },
-  { name: "Tax Exemption Certificate", type: "PDF" },
-];
-
 const Policies = () => (
   <div>
-
-    <SEO title="Site Policies — World Changers MHCO" description="Privacy, governance and compliance documents for World Changers Mental Health Care Organisation." path="/policies" />
-    <PageHero title="Site Policies" subtitle="Transparency, compliance, and governance" bgImage={aboutBg} />
+    <SEO
+      title="Privacy Policy, Terms & Governance — World Changers MHCO"
+      description="Read the privacy policy, terms and conditions, and governance commitments of World Changers Mental Health Care Organisation."
+      path="/policies"
+    />
+    <PageHero title="Policies, Privacy & Terms" subtitle="Transparency, compliance, and governance" bgImage={aboutBg} />
 
     {/* Policies Grid */}
     <section className="section-padding">
@@ -82,34 +76,210 @@ const Policies = () => (
       </div>
     </section>
 
-    {/* Financial & Compliance Documents */}
-    <section className="section-padding bg-muted">
+    {/* Privacy Policy */}
+    <section id="privacy" className="section-padding bg-muted scroll-mt-28">
       <div className="container mx-auto">
-        <SectionHeading label="Documents" title="Financial & Compliance Documents" description="Access our official financial reports and compliance certificates. Contact us for document access." />
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-card rounded-2xl shadow-card border border-border overflow-hidden">
-            {documents.map((doc, i) => (
-              <motion.div key={doc.name} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="flex items-center justify-between p-5 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <FileText className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-semibold text-foreground text-sm">{doc.name}</h4>
-                    <p className="text-xs text-muted-foreground">{doc.type} Document</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Lock className="w-4 h-4" />
-                  <span>Secure</span>
-                </div>
-              </motion.div>
-            ))}
+        <div className="max-w-3xl mx-auto bg-card rounded-2xl shadow-card border border-border p-6 md:p-10">
+          <h2 className="font-heading text-3xl font-bold text-foreground mb-2">Privacy Policy</h2>
+          <p className="text-sm text-muted-foreground mb-8">
+            This policy explains how World Changers Mental Health Care Organisation ("WCMHCO", "we", "us") collects and uses personal
+            information through this website, in line with the Protection of Personal Information Act, 2013 (POPIA).
+          </p>
+
+          <div className="space-y-6 text-sm text-foreground leading-relaxed">
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">1. Who we are</h3>
+              <p className="text-muted-foreground">
+                World Changers Mental Health Care Organisation, 114 George Street, Kenilworth, Johannesburg, 2190, South Africa.
+                For any privacy question or request, email{" "}
+                <a href="mailto:info@worldchangersmh.org" className="text-primary hover:underline">info@worldchangersmh.org</a>.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">2. Information we collect</h3>
+              <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                <li><strong className="text-foreground">Contact and enquiry details</strong> — your name, email address, phone number and message when you use our contact form.</li>
+                <li><strong className="text-foreground">Counselling booking details</strong> — your name, contact details, preferred professional, preferred date and the information you choose to share in your booking request.</li>
+                <li><strong className="text-foreground">Volunteer and partnership applications</strong> — the details you submit in those forms.</li>
+                <li><strong className="text-foreground">Newsletter subscriptions</strong> — your email address and name where provided.</li>
+                <li><strong className="text-foreground">Website usage data</strong> — pages viewed, device and browser type, and similar analytics information.</li>
+              </ul>
+              <p className="text-muted-foreground mt-2">
+                We do not collect or store card numbers, CVV codes or banking passwords on this website. Donations are completed on the secure
+                checkout pages of our payment providers.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">3. How we use your information</h3>
+              <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                <li>To respond to your enquiry or arrange a counselling appointment with the professional you selected.</li>
+                <li>To process volunteer, partnership and event applications.</li>
+                <li>To send newsletters and organisational updates where you have subscribed.</li>
+                <li>To administer donations, issue acknowledgements and meet our record-keeping obligations.</li>
+                <li>To understand how the website is used so that we can improve it.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">4. Sensitive information and counselling requests</h3>
+              <p className="text-muted-foreground">
+                Booking requests may include health-related information. This information is treated as confidential, shared only with the
+                mental health professional handling your request and the staff who support that process, and used only to arrange and deliver
+                your session. Please do not use website forms to report an emergency.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">5. Sharing your information</h3>
+              <p className="text-muted-foreground">
+                We do not sell your personal information. We share it only with the service providers that operate parts of this website and
+                our communications — our hosting and database provider, our email delivery provider, our payment providers (Paystack and our
+                international donation partner) and website analytics (Google Analytics) — and where the law requires disclosure.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">6. Cookies and analytics</h3>
+              <p className="text-muted-foreground">
+                This website uses cookies and similar technologies to keep the site working and to measure traffic through Google Analytics.
+                You can block or delete cookies in your browser settings; some parts of the site may then not work as intended.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">7. Retention and security</h3>
+              <p className="text-muted-foreground">
+                We keep personal information only as long as needed for the purpose it was collected or as required by law, and we apply
+                access controls and encryption in transit to protect it. No online transmission can be guaranteed to be completely secure.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">8. Your rights</h3>
+              <p className="text-muted-foreground">
+                Under POPIA you may request access to the personal information we hold about you, ask us to correct or delete it, object to
+                processing, and withdraw consent to marketing at any time. Email{" "}
+                <a href="mailto:info@worldchangersmh.org" className="text-primary hover:underline">info@worldchangersmh.org</a> and we will
+                respond within a reasonable period. You may also lodge a complaint with the South African Information Regulator.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">9. Children</h3>
+              <p className="text-muted-foreground">
+                Where a service involves a person under 18, we require the consent of a parent or legal guardian before processing their
+                personal information.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">10. Changes to this policy</h3>
+              <p className="text-muted-foreground">
+                We may update this policy from time to time. The version published on this page is the current version.
+              </p>
+            </div>
           </div>
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            To request access to any document, please email{" "}
-            <a href="mailto:info@worldchangersmh.org" className="text-primary hover:underline font-medium">info@worldchangersmh.org</a>
+        </div>
+      </div>
+    </section>
+
+    {/* Terms */}
+    <section id="terms" className="section-padding scroll-mt-28">
+      <div className="container mx-auto">
+        <div className="max-w-3xl mx-auto bg-card rounded-2xl shadow-card border border-border p-6 md:p-10">
+          <h2 className="font-heading text-3xl font-bold text-foreground mb-2">Terms &amp; Conditions</h2>
+          <p className="text-sm text-muted-foreground mb-8">
+            These terms govern your use of the WCMHCO website and the services offered through it. By using the website you accept them.
+          </p>
+
+          <div className="space-y-6 text-sm text-foreground leading-relaxed">
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">1. Use of this website</h3>
+              <p className="text-muted-foreground">
+                You agree to use this website lawfully and not to interfere with its operation, attempt unauthorised access, or submit false
+                or harmful information through our forms.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">2. Health information disclaimer</h3>
+              <p className="text-muted-foreground">
+                Information on this website is provided for general awareness and does not replace professional diagnosis, treatment or
+                advice. A counselling session is only confirmed once one of our professionals responds to your request.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">3. Emergencies</h3>
+              <p className="text-muted-foreground">
+                This website is not monitored around the clock and must not be used to report an emergency. If you or someone else is in
+                immediate danger, contact your local emergency services without delay.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">4. Bookings and appointments</h3>
+              <p className="text-muted-foreground">
+                Appointments are offered by arrangement with the professional you select and are subject to their availability. Please let us
+                know as early as possible if you need to reschedule or cancel.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">5. Donations</h3>
+              <p className="text-muted-foreground">
+                Donations are processed by our payment providers on their own secure platforms and are subject to their terms. Unless a
+                donation is given to a specific published appeal, it is applied to our general charitable work. If a donation is made in
+                error, contact us and we will assist with the provider's refund process where possible.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">6. Shop orders</h3>
+              <p className="text-muted-foreground">
+                Merchandise orders are fulfilled through our e-commerce provider, and the checkout, delivery and returns terms shown at
+                checkout apply to those purchases.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">7. Intellectual property</h3>
+              <p className="text-muted-foreground">
+                The content, logos and images on this website belong to WCMHCO or are used with permission, and may not be reproduced for
+                commercial purposes without our written consent.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">8. Third-party links</h3>
+              <p className="text-muted-foreground">
+                Our website links to external services such as payment providers, registration forms and social media. We are not responsible
+                for the content or practices of those websites.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">9. Liability</h3>
+              <p className="text-muted-foreground">
+                We take reasonable care to keep this website accurate and available, but we do not warrant uninterrupted access or
+                error-free content, to the extent permitted by South African law.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">10. Governing law and contact</h3>
+              <p className="text-muted-foreground">
+                These terms are governed by the laws of the Republic of South Africa. Questions may be sent to{" "}
+                <a href="mailto:info@worldchangersmh.org" className="text-primary hover:underline">info@worldchangersmh.org</a>.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-xs text-muted-foreground mt-8 border-t border-border pt-4">
+            Governance records, registration certificates and financial reports are available on request by emailing{" "}
+            <a href="mailto:info@worldchangersmh.org" className="text-primary hover:underline">info@worldchangersmh.org</a>.
           </p>
         </div>
       </div>
