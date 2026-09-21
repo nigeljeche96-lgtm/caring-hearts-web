@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Building2, Users, Heart, Handshake, Sparkles, Shield, ArrowRight, CheckCircle, Loader2, Send, Award, Globe, TrendingUp } from "lucide-react";
