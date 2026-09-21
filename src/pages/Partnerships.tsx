@@ -259,7 +259,7 @@ const Partnerships = () => {
                 ))}
               </ul>
               <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <a href={DONATE_URL} target="_blank" rel="noopener noreferrer">Become a Monthly Partner <ArrowRight className="w-4 h-4 ml-2" /></a>
+                <Link to="/donation">Become a Monthly Partner <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
             </motion.div>
 
