@@ -109,7 +109,8 @@ const Index = () => {
                 <Link to="/become-volunteer">{t("common.becomeVolunteer")} <HandHeart className="w-5 h-5 ml-2" /></Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground text-base px-8">
-                <a href="https://paystack.shop/pay/87qgnu5n8o" target="_blank" rel="noopener noreferrer">{t("common.donateNow")}</a>
+                <Link to="/donation">{t("common.donateNow")}</Link>
+
               </Button>
             </motion.div>
           </div>
@@ -342,7 +343,7 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8">
-                <a href="https://paystack.shop/pay/87qgnu5n8o" target="_blank" rel="noopener noreferrer">{t("common.donateNow")}</a>
+                <Link to="/donation">{t("common.donateNow")}</Link>
               </Button>
               <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base px-10 font-bold">
                 <Link to="/become-volunteer">{t("common.becomeVolunteer")} <HandHeart className="w-5 h-5 ml-2" /></Link>
