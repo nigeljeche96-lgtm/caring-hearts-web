@@ -46,12 +46,14 @@ const Footer = () => {
             <h4 className="font-heading text-base font-semibold mb-4">Get Involved</h4>
             <ul className="space-y-2 text-sm opacity-70">
               <li><Link to="/become-volunteer" className="hover:opacity-100 hover:text-accent transition-all">{t("nav.becomeVolunteer")}</Link></li>
-              <li><a href="https://paystack.shop/pay/87qgnu5n8o" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-accent transition-all">{t("nav.donateNow")}</a></li>
+              <li><Link to="/donation" className="hover:opacity-100 hover:text-accent transition-all">{t("nav.donateNow")}</Link></li>
             </ul>
             <h4 className="font-heading text-base font-semibold mt-6 mb-4">Legal</h4>
             <ul className="space-y-2 text-sm opacity-70">
-              <li><Link to="/policies" className="hover:opacity-100 hover:text-accent transition-all">Privacy Policy</Link></li>
+              <li><Link to="/policies#privacy" className="hover:opacity-100 hover:text-accent transition-all">Privacy Policy</Link></li>
+              <li><Link to="/policies#terms" className="hover:opacity-100 hover:text-accent transition-all">Terms &amp; Conditions</Link></li>
             </ul>
+
           </div>
           <div>
             <h4 className="font-heading text-base font-semibold mb-4">{t("footer.contactInfo")}</h4>
