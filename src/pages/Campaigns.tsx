@@ -17,6 +17,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import campaignBg from "@/assets/campaign-bg.jpg";
+import DonationWidget from "@/components/DonationWidget";
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -93,8 +95,8 @@ const Campaigns = () => {
   return (
     <div>
 
-      <SEO title="Active Campaigns & Donations — World Changers MHCO" description="Support active fundraising campaigns advancing mental health care, education and community wellness. Donate securely online." path="/campaigns" />
-      <PageHero title={t("campaigns.heroTitle")} subtitle={t("campaigns.heroSubtitle")} bgImage={campaignBg} />
+      <SEO title="Donate — World Changers Mental Health Care Organisation" description="Make a once-off or monthly donation supporting mental health care and community outreach. Secure local and international payment options." path="/donation" />
+      <PageHero title="Donation" subtitle={t("campaigns.heroSubtitle")} bgImage={campaignBg} />
 
       {/* Donate Online + Offline */}
       <section className="relative -mt-16 z-10 px-4 mb-12">
@@ -107,12 +109,12 @@ const Campaigns = () => {
               </div>
               <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{t("campaigns.donateOnline")}</h3>
               <p className="text-sm text-muted-foreground mb-6">{t("campaigns.donateOnlineDesc")}</p>
-              <Button asChild size="lg" className="bg-hero-gradient text-primary-foreground hover:opacity-90 w-full">
-                <a href="https://paystack.shop/pay/87qgnu5n8o" target="_blank" rel="noopener noreferrer">
-                  {t("common.donateNow")} <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
+              <Button size="lg" className="bg-hero-gradient text-primary-foreground hover:opacity-90 w-full"
+                onClick={() => document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })}>
+                {t("common.donateNow")} <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
+
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
               className="bg-card rounded-xl p-8 shadow-elevated border border-border text-center">
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -132,40 +134,14 @@ const Campaigns = () => {
         </div>
       </section>
 
-      {/* Get Involved */}
+      {/* Donation checkout */}
       <section className="px-4 mb-12">
         <div className="container mx-auto">
-          <SectionHeading label={t("campaigns.getInvolvedLabel")} title={t("campaigns.getInvolvedTitle")} description={t("campaigns.getInvolvedDesc")} />
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="bg-card rounded-xl p-8 shadow-elevated border border-border text-center hover:shadow-card transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-7 h-7 text-accent" />
-              </div>
-              <h3 className="font-heading text-xl font-bold text-foreground mb-2">{t("campaigns.saDonations")}</h3>
-              <p className="text-sm text-muted-foreground mb-6">{t("campaigns.saDonationsDesc")}</p>
-              <Button asChild size="lg" className="bg-hero-gradient text-primary-foreground hover:opacity-90 w-full">
-                <a href="https://paystack.shop/pay/87qgnu5n8o" target="_blank" rel="noopener noreferrer">
-                  {t("common.donateNow")} (SA) <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="bg-card rounded-xl p-8 shadow-elevated border border-border text-center hover:shadow-card transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-7 h-7 text-primary" />
-              </div>
-              <h3 className="font-heading text-xl font-bold text-foreground mb-2">{t("campaigns.intlDonations")}</h3>
-              <p className="text-sm text-muted-foreground mb-6">{t("campaigns.intlDonationsDesc")}</p>
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
-                <a href="https://donorbox.org/international-payments" target="_blank" rel="noopener noreferrer">
-                  {t("common.donateNow")} (Int'l) <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
-            </motion.div>
-          </div>
+          <SectionHeading label="Donate" title="Make a Difference Today" description="Choose an amount, give once or monthly, and complete your donation securely with our payment partners." />
+          <DonationWidget />
         </div>
       </section>
+
 
       {/* Dashboard Stats */}
       <section className="px-4">

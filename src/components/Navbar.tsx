@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { useTranslation } from "react-i18next";
 import { languages } from "@/i18n";
 
-const DONATE_URL = "https://paystack.shop/pay/87qgnu5n8o";
+const DONATE_URL = "/donation";
 
 type NavChild = { label: string; path?: string; href?: string };
 type NavLink = { label: string; path?: string; children?: NavChild[] };
@@ -48,7 +48,7 @@ const Navbar = () => {
       label: "Get Involved",
       children: [
         { label: t("nav.becomeVolunteer"), path: "/become-volunteer" },
-        { label: "Campaigns", path: "/campaigns" },
+        { label: "Donation", path: "/donation" },
         { label: "Partnerships", path: "/partnerships" },
       ],
     },
@@ -135,8 +135,9 @@ const Navbar = () => {
             <Link to="/mental-health">Get Help</Link>
           </Button>
           <Button asChild className="hidden md:inline-flex bg-accent text-accent-foreground hover:bg-accent/90">
-            <a href={DONATE_URL} target="_blank" rel="noopener noreferrer">{t("nav.donateNow")}</a>
+            <Link to={DONATE_URL}>{t("nav.donateNow")}</Link>
           </Button>
+
 
           {/* Mobile Menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -196,8 +197,9 @@ const Navbar = () => {
                   <Link to="/mental-health" onClick={() => setMobileOpen(false)}>Get Help</Link>
                 </Button>
                 <Button asChild className="mt-2 bg-accent text-accent-foreground hover:bg-accent/90">
-                  <a href={DONATE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>{t("nav.donateNow")}</a>
+                  <Link to={DONATE_URL} onClick={() => setMobileOpen(false)}>{t("nav.donateNow")}</Link>
                 </Button>
+
               </nav>
             </SheetContent>
           </Sheet>

@@ -45,6 +45,8 @@ const AppContent = () => {
           <Route path="/mental-health" element={<MentalHealth />} />
           <Route path="/philanthropy" element={<Philanthropy />} />
           <Route path="/campaigns" element={<Campaigns />} />
+          <Route path="/donation" element={<Campaigns />} />
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/team" element={<Team />} />
           <Route path="/become-volunteer" element={<BecomeVolunteer />} />
