@@ -10,13 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
 
-const PAYFAST_ACTION = "https://payment.payfast.io/eng/process";
-const PAYFAST_RECEIVER = "20490969";
-const PAYFAST_RETURN = "https://worldchangersmh.org/donation?status=success";
-const PAYFAST_CANCEL = "https://worldchangersmh.org/donation?status=cancelled";
-const PAYFAST_ITEM_NAME = "WORLD CHANGERS MENTAL HEALTH CARE ORG";
-const PAYFAST_ITEM_DESC =
-  "We can create a better tomorrow. Every donation supports our programs. Let us change the world together.";
+const PRESETS_PLACEHOLDER = null;
 
 const PRESETS = [100, 250, 500, 1000, 2500, 5000];
 
