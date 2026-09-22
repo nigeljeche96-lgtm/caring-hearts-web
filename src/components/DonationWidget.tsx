@@ -67,6 +67,27 @@ const DonationWidget = () => {
     }
   };
 
+  const startPayfast = async () => {
+    if (selected < 5) {
+      toast.error("Please choose an amount of at least R5.");
+      return;
+    }
+    setPayfastLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("payfast-initialize", {
+        body: { amount: selected, frequency, email, name },
+      });
+      if (error || !data?.redirect_url) {
+        throw new Error(data?.error || error?.message || "Payfast could not be opened.");
+      }
+      window.location.href = data.redirect_url as string;
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");
+      setPayfastLoading(false);
+    }
+  };
+
   return (
     <div id="donate" className="scroll-mt-28">
       <div className="max-w-4xl mx-auto bg-card rounded-2xl shadow-elevated border border-border overflow-hidden">
