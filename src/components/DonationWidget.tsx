@@ -143,7 +143,7 @@ const DonationWidget = () => {
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
-              South African Rand donations are processed by Yoco or Payfast. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
+              South African Rand donations are processed by Payfast or Yoco. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
             </p>
           </div>
 
@@ -222,14 +222,14 @@ const DonationWidget = () => {
               <Button
                 type="button"
                 size="lg"
-                disabled={selected <= 0 || loading}
-                onClick={startYoco}
+                disabled={selected <= 0 || payfastLoading}
+                onClick={startPayfast}
                 className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
               >
-                {loading ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Preparing secure checkout…</>
+                {payfastLoading ? (
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
                 ) : (
-                  <>Continue securely with Yoco <ArrowRight className="w-4 h-4 ml-2" /></>
+                  <>Continue securely with Payfast <ArrowRight className="w-4 h-4 ml-2" /></>
                 )}
               </Button>
 
@@ -243,14 +243,14 @@ const DonationWidget = () => {
                 type="button"
                 size="lg"
                 variant="outline"
-                disabled={selected <= 0 || payfastLoading}
-                onClick={startPayfast}
+                disabled={selected <= 0 || loading}
+                onClick={startYoco}
                 className="w-full border-primary/40 text-primary hover:bg-primary/5"
               >
-                {payfastLoading ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+                {loading ? (
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Preparing secure checkout…</>
                 ) : (
-                  <>Donate with Payfast <ExternalLink className="w-4 h-4 ml-2" /></>
+                  <>Donate with Yoco <ExternalLink className="w-4 h-4 ml-2" /></>
                 )}
               </Button>
 
