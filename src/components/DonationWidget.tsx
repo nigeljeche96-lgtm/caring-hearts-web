@@ -11,6 +11,12 @@ const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
 
 
+const PAYFAST_ACTION = "https://payment.payfast.io/eng/process";
+const PAYFAST_RECEIVER = "20490969";
+const PAYFAST_ITEM_NAME = "WORLD CHANGERS MENTAL HEALTH CARE ORG";
+const PAYFAST_ITEM_DESC =
+  "We can create a better tomorrow. Every donation supports our programs. Let us change the world together.";
+
 const PRESETS = [100, 250, 500, 1000, 2500, 5000];
 
 const CURRENCIES = [
