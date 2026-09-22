@@ -44,7 +44,7 @@ const DonationWidget = () => {
     (selected > 0 ? `&amount=${selected}` : "") +
     `&currency=${currency.toLowerCase()}&hide_donation_meter=true`;
 
-  const startPaystack = async () => {
+  const startYoco = async () => {
     if (selected < 5) {
       toast.error("Please choose an amount of at least R5.");
       return;
@@ -55,13 +55,13 @@ const DonationWidget = () => {
     }
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke("paystack-initialize", {
-        body: { email, name, amount: selected, currency, frequency },
+      const { data, error } = await supabase.functions.invoke("yoco-checkout", {
+        body: { email, name, amount: selected, frequency, origin: window.location.origin },
       });
-      if (error || !data?.authorization_url) {
+      if (error || !data?.redirectUrl) {
         throw new Error(data?.error || error?.message || "Checkout could not be started.");
       }
-      window.location.href = data.authorization_url as string;
+      window.top!.location.href = data.redirectUrl as string;
     } catch (err) {
       console.error(err);
       toast.error(err instanceof Error ? err.message : "Checkout could not be started. Please try again.");
@@ -143,7 +143,7 @@ const DonationWidget = () => {
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
-              South African Rand donations are processed by Paystack or Payfast. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
+              South African Rand donations are processed by Yoco or Payfast. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
             </p>
           </div>
 
@@ -223,13 +223,13 @@ const DonationWidget = () => {
                 type="button"
                 size="lg"
                 disabled={selected <= 0 || loading}
-                onClick={startPaystack}
+                onClick={startYoco}
                 className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
               >
                 {loading ? (
                   <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Preparing secure checkout…</>
                 ) : (
-                  <>Continue securely with Paystack <ArrowRight className="w-4 h-4 ml-2" /></>
+                  <>Continue securely with Yoco <ArrowRight className="w-4 h-4 ml-2" /></>
                 )}
               </Button>
 
