@@ -10,10 +10,9 @@ import { supabase } from "@/integrations/supabase/client";
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
 
+
 const PAYFAST_ACTION = "https://payment.payfast.io/eng/process";
 const PAYFAST_RECEIVER = "20490969";
-const PAYFAST_RETURN = "https://worldchangersmh.org/donation?status=success";
-const PAYFAST_CANCEL = "https://worldchangersmh.org/donation?status=cancelled";
 const PAYFAST_ITEM_NAME = "WORLD CHANGERS MENTAL HEALTH CARE ORG";
 const PAYFAST_ITEM_DESC =
   "We can create a better tomorrow. Every donation supports our programs. Let us change the world together.";
@@ -38,6 +37,7 @@ const DonationWidget = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [payfastLoading, setPayfastLoading] = useState(false);
 
   const selected = customAmount ? Number(customAmount) || 0 : amount ?? 0;
   const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
@@ -72,6 +72,48 @@ const DonationWidget = () => {
       toast.error(err instanceof Error ? err.message : "Checkout could not be started. Please try again.");
       setLoading(false);
     }
+  };
+
+  const startPayfast = () => {
+    if (selected < 5) {
+      toast.error("Please choose an amount of at least R5.");
+      return;
+    }
+    setPayfastLoading(true);
+
+    const origin = window.location.origin;
+    const fields: Record<string, string> = {
+      cmd: "_paynow",
+      receiver: PAYFAST_RECEIVER,
+      amount: selected.toFixed(2),
+      item_name: PAYFAST_ITEM_NAME,
+      item_description: PAYFAST_ITEM_DESC,
+      return_url: `${origin}/donation?status=success`,
+      cancel_url: `${origin}/donation?status=cancelled`,
+    };
+    if (name) fields.name_first = name;
+    if (email) fields.email_address = email;
+    if (frequency === "monthly") {
+      fields.subscription_type = "1";
+      fields.recurring_amount = selected.toFixed(2);
+      fields.frequency = "3";
+      fields.cycles = "0";
+    }
+
+    const form = document.createElement("form");
+    form.method = "post";
+    form.action = PAYFAST_ACTION;
+    form.target = "_top";
+    form.style.display = "none";
+    Object.entries(fields).forEach(([k, v]) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = k;
+      input.value = v;
+      form.appendChild(input);
+    });
+    document.body.appendChild(form);
+    form.submit();
   };
 
   return (
@@ -205,40 +247,20 @@ const DonationWidget = () => {
                 <span className="h-px flex-1 bg-border" />
               </div>
 
-              <form
-                action={PAYFAST_ACTION}
-                method="post"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full"
+              <Button
+                type="button"
+                size="lg"
+                variant="outline"
+                disabled={selected <= 0 || payfastLoading}
+                onClick={startPayfast}
+                className="w-full border-primary/40 text-primary hover:bg-primary/5"
               >
-                <input type="hidden" name="cmd" value="_paynow" />
-                <input type="hidden" name="receiver" value={PAYFAST_RECEIVER} />
-                <input type="hidden" name="return_url" value={PAYFAST_RETURN} />
-                <input type="hidden" name="cancel_url" value={PAYFAST_CANCEL} />
-                <input type="hidden" name="amount" value={selected > 0 ? selected.toFixed(2) : "5.00"} />
-                <input type="hidden" name="item_name" value={PAYFAST_ITEM_NAME} />
-                <input type="hidden" name="item_description" value={PAYFAST_ITEM_DESC} />
-                {name && <input type="hidden" name="name_first" value={name} />}
-                {email && <input type="hidden" name="email_address" value={email} />}
-                {frequency === "monthly" && (
-                  <>
-                    <input type="hidden" name="subscription_type" value="1" />
-                    <input type="hidden" name="recurring_amount" value={selected > 0 ? selected.toFixed(2) : "5.00"} />
-                    <input type="hidden" name="frequency" value="3" />
-                    <input type="hidden" name="cycles" value="0" />
-                  </>
+                {payfastLoading ? (
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+                ) : (
+                  <>Donate with Payfast <ExternalLink className="w-4 h-4 ml-2" /></>
                 )}
-                <Button
-                  type="submit"
-                  size="lg"
-                  variant="outline"
-                  disabled={selected <= 0}
-                  className="w-full border-primary/40 text-primary hover:bg-primary/5"
-                >
-                  Donate with Payfast <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-              </form>
+              </Button>
 
               <p className="text-xs text-muted-foreground text-center">
                 You will confirm your {frequency === "monthly" ? "monthly" : "once-off"} amount on the provider's secure checkout page. We never collect or store your card details on this website.
