@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { useExchangeRates } from "@/hooks/useExchangeRates";
 
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
 
-
-
-const PRESETS = [100, 250, 500, 1000, 2500, 5000];
+// Base amounts in ZAR (kept in sync with the partnerships page)
+const PRESETS = [100, 200, 400, 500, 800, 1000];
 
 const CURRENCIES = [
   { code: "ZAR", label: "South African Rand", symbol: "R" },
@@ -22,6 +22,11 @@ const CURRENCIES = [
   { code: "AUD", label: "Australian Dollar", symbol: "A$" },
   { code: "CAD", label: "Canadian Dollar", symbol: "C$" },
 ];
+
+const formatAmount = (value: number) =>
+  value >= 10
+    ? Math.round(value).toLocaleString()
+    : value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const DonationWidget = () => {
   const [amount, setAmount] = useState<number | null>(500);
@@ -34,14 +39,22 @@ const DonationWidget = () => {
   const [loading, setLoading] = useState(false);
   const [payfastLoading, setPayfastLoading] = useState(false);
 
-  const selected = customAmount ? Number(customAmount) || 0 : amount ?? 0;
+  const { rates, isLive } = useExchangeRates();
   const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
+  const rate = rates[currency] || 1;
   const isInternational = currency !== "ZAR";
+
+  // Amount the donor sees, in the currency they picked
+  const selectedDisplay = customAmount
+    ? Number(customAmount) || 0
+    : Math.round((amount ?? 0) * rate * 100) / 100;
+  // Same amount expressed in ZAR for the local (Payfast / Yoco) checkouts
+  const selected = customAmount ? (Number(customAmount) || 0) / rate : amount ?? 0;
 
   const donorboxSrc =
     `https://donorbox.org/embed/${DONORBOX_SLUG}` +
     `?default_interval=${frequency === "monthly" ? "m" : "o"}` +
-    (selected > 0 ? `&amount=${selected}` : "") +
+    (selectedDisplay > 0 ? `&amount=${Math.round(selectedDisplay)}` : "") +
     `&currency=${currency.toLowerCase()}&hide_donation_meter=true`;
 
   const startYoco = async () => {
@@ -56,7 +69,7 @@ const DonationWidget = () => {
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("yoco-checkout", {
-        body: { email, name, amount: selected, frequency, origin: window.location.origin },
+        body: { email, name, amount: Math.round(selected * 100) / 100, frequency, origin: window.location.origin },
       });
       if (error || !data?.redirectUrl) {
         throw new Error(data?.error || error?.message || "Checkout could not be started.");
@@ -77,7 +90,7 @@ const DonationWidget = () => {
     setPayfastLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("payfast-signature", {
-        body: { amount: selected, frequency, name, email, origin: window.location.origin },
+        body: { amount: Math.round(selected * 100) / 100, frequency, name, email, origin: window.location.origin },
       });
       if (error || !data?.fields || !data?.action) {
         throw new Error(data?.error || error?.message || "Payfast could not be opened.");
@@ -143,8 +156,11 @@ const DonationWidget = () => {
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
-              South African Rand donations are processed by Payfast or Yoco. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
+              {isInternational
+                ? `Amounts are converted from South African Rand at ${isLive ? "today's live" : "an indicative"} exchange rate (R1 = ${currencyMeta.symbol}${rate.toFixed(4)}). Your payment provider confirms the final rate at checkout.`
+                : "South African Rand donations are processed by Payfast or Yoco. Choose another currency to see the same amounts converted at today's rate."}
             </p>
+
           </div>
 
           {/* Amounts */}
@@ -165,7 +181,7 @@ const DonationWidget = () => {
                         : "border-border bg-background text-foreground hover:border-accent/60"
                     }`}
                   >
-                    {currencyMeta.symbol}{p.toLocaleString()}
+                    {currencyMeta.symbol}{formatAmount(p * rate)}
                   </button>
                 );
               })}
@@ -203,7 +219,7 @@ const DonationWidget = () => {
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Your donation</p>
             <p className="font-heading text-2xl font-bold text-foreground">
-              {currencyMeta.symbol}{selected.toLocaleString()}{" "}
+              {currencyMeta.symbol}{formatAmount(selectedDisplay)}{" "}
               <span className="text-sm font-medium text-muted-foreground">
                 {frequency === "monthly" ? "every month" : "once-off"} · {currency}
               </span>
