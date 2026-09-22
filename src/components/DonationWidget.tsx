@@ -219,7 +219,7 @@ const DonationWidget = () => {
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Your donation</p>
             <p className="font-heading text-2xl font-bold text-foreground">
-              {currencyMeta.symbol}{selected.toLocaleString()}{" "}
+              {currencyMeta.symbol}{formatAmount(selectedDisplay)}{" "}
               <span className="text-sm font-medium text-muted-foreground">
                 {frequency === "monthly" ? "every month" : "once-off"} · {currency}
               </span>
