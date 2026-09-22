@@ -31,6 +31,7 @@ const DonationWidget = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [payfastLoading, setPayfastLoading] = useState(false);
 
   const selected = customAmount ? Number(customAmount) || 0 : amount ?? 0;
   const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
