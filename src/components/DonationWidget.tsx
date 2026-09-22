@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { useExchangeRates } from "@/hooks/useExchangeRates";
 
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
 
-
-
-const PRESETS = [100, 250, 500, 1000, 2500, 5000];
+// Base amounts in ZAR (kept in sync with the partnerships page)
+const PRESETS = [100, 200, 400, 500, 800, 1000];
 
 const CURRENCIES = [
   { code: "ZAR", label: "South African Rand", symbol: "R" },
@@ -22,6 +22,11 @@ const CURRENCIES = [
   { code: "AUD", label: "Australian Dollar", symbol: "A$" },
   { code: "CAD", label: "Canadian Dollar", symbol: "C$" },
 ];
+
+const formatAmount = (value: number) =>
+  value >= 10
+    ? Math.round(value).toLocaleString()
+    : value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const DonationWidget = () => {
   const [amount, setAmount] = useState<number | null>(500);
@@ -34,14 +39,22 @@ const DonationWidget = () => {
   const [loading, setLoading] = useState(false);
   const [payfastLoading, setPayfastLoading] = useState(false);
 
-  const selected = customAmount ? Number(customAmount) || 0 : amount ?? 0;
+  const { rates, isLive } = useExchangeRates();
   const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
+  const rate = rates[currency] || 1;
   const isInternational = currency !== "ZAR";
+
+  // Amount the donor sees, in the currency they picked
+  const selectedDisplay = customAmount
+    ? Number(customAmount) || 0
+    : Math.round((amount ?? 0) * rate * 100) / 100;
+  // Same amount expressed in ZAR for the local (Payfast / Yoco) checkouts
+  const selected = customAmount ? (Number(customAmount) || 0) / rate : amount ?? 0;
 
   const donorboxSrc =
     `https://donorbox.org/embed/${DONORBOX_SLUG}` +
     `?default_interval=${frequency === "monthly" ? "m" : "o"}` +
-    (selected > 0 ? `&amount=${selected}` : "") +
+    (selectedDisplay > 0 ? `&amount=${Math.round(selectedDisplay)}` : "") +
     `&currency=${currency.toLowerCase()}&hide_donation_meter=true`;
 
   const startYoco = async () => {
