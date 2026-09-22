@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Globe, ShieldCheck, ArrowRight, ChevronDown, ExternalLink, Lock, Landmark } from "lucide-react";
+import { Heart, Globe, ShieldCheck, ArrowRight, ChevronDown, ExternalLink, Lock, Landmark, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
 
-const PAYSTACK_URL = "https://paystack.shop/pay/87qgnu5n8o";
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
+
+const PAYFAST_ACTION = "https://payment.payfast.io/eng/process";
+const PAYFAST_RECEIVER = "20490969";
+const PAYFAST_RETURN = "https://worldchangersmh.org/donation?status=success";
+const PAYFAST_CANCEL = "https://worldchangersmh.org/donation?status=cancelled";
+const PAYFAST_ITEM_NAME = "WORLD CHANGERS MENTAL HEALTH CARE ORG";
+const PAYFAST_ITEM_DESC =
+  "We can create a better tomorrow. Every donation supports our programs. Let us change the world together.";
 
 const PRESETS = [100, 250, 500, 1000, 2500, 5000];
 
@@ -26,7 +35,9 @@ const DonationWidget = () => {
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
   const [currency, setCurrency] = useState("ZAR");
   const [intlOpen, setIntlOpen] = useState(false);
-  const [iframeFailed, setIframeFailed] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const selected = customAmount ? Number(customAmount) || 0 : amount ?? 0;
   const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
@@ -38,8 +49,29 @@ const DonationWidget = () => {
     (selected > 0 ? `&amount=${selected}` : "") +
     `&currency=${currency.toLowerCase()}&hide_donation_meter=true`;
 
-  const openIntl = () => {
-    setIntlOpen((v) => !v);
+  const startPaystack = async () => {
+    if (selected < 5) {
+      toast.error("Please choose an amount of at least R5.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email address so we can send your receipt.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("paystack-initialize", {
+        body: { email, name, amount: selected, currency, frequency },
+      });
+      if (error || !data?.authorization_url) {
+        throw new Error(data?.error || error?.message || "Checkout could not be started.");
+      }
+      window.location.href = data.authorization_url as string;
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Checkout could not be started. Please try again.");
+      setLoading(false);
+    }
   };
 
   return (
@@ -69,7 +101,7 @@ const DonationWidget = () => {
             <select
               id="donation-currency"
               value={currency}
-              onChange={(e) => { setCurrency(e.target.value); setIframeFailed(false); }}
+              onChange={(e) => setCurrency(e.target.value)}
               className="mt-2 w-full h-11 rounded-lg border border-input bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {CURRENCIES.map((c) => (
@@ -77,7 +109,7 @@ const DonationWidget = () => {
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
-              South African Rand donations are processed by Paystack. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
+              South African Rand donations are processed by Paystack or Payfast. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
             </p>
           </div>
 
@@ -116,6 +148,20 @@ const DonationWidget = () => {
               />
             </div>
           </fieldset>
+
+          {/* Donor details (local checkout) */}
+          {!isInternational && (
+            <div className="grid sm:grid-cols-2 gap-3 mt-6">
+              <div>
+                <Label htmlFor="donor-name" className="text-sm">Your name (optional)</Label>
+                <Input id="donor-name" value={name} onChange={(e) => setName(e.target.value)} className="mt-2 h-11" placeholder="Full name" />
+              </div>
+              <div>
+                <Label htmlFor="donor-email" className="text-sm">Email for your receipt</Label>
+                <Input id="donor-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="mt-2 h-11" placeholder="you@example.com" />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Summary */}
@@ -139,14 +185,63 @@ const DonationWidget = () => {
         <div className="p-6 md:p-8 space-y-4">
           {!isInternational ? (
             <>
-              <Button asChild size="lg" disabled={selected <= 0}
-                className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90">
-                <a href={PAYSTACK_URL} target="_blank" rel="noopener noreferrer">
-                  Continue securely with Paystack <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
+              <Button
+                type="button"
+                size="lg"
+                disabled={selected <= 0 || loading}
+                onClick={startPaystack}
+                className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
+              >
+                {loading ? (
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Preparing secure checkout…</>
+                ) : (
+                  <>Continue securely with Paystack <ArrowRight className="w-4 h-4 ml-2" /></>
+                )}
               </Button>
+
+              <div className="flex items-center gap-3">
+                <span className="h-px flex-1 bg-border" />
+                <span className="text-xs text-muted-foreground">or pay with</span>
+                <span className="h-px flex-1 bg-border" />
+              </div>
+
+              <form
+                action={PAYFAST_ACTION}
+                method="post"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
+                <input type="hidden" name="cmd" value="_paynow" />
+                <input type="hidden" name="receiver" value={PAYFAST_RECEIVER} />
+                <input type="hidden" name="return_url" value={PAYFAST_RETURN} />
+                <input type="hidden" name="cancel_url" value={PAYFAST_CANCEL} />
+                <input type="hidden" name="amount" value={selected > 0 ? selected.toFixed(2) : "5.00"} />
+                <input type="hidden" name="item_name" value={PAYFAST_ITEM_NAME} />
+                <input type="hidden" name="item_description" value={PAYFAST_ITEM_DESC} />
+                {name && <input type="hidden" name="name_first" value={name} />}
+                {email && <input type="hidden" name="email_address" value={email} />}
+                {frequency === "monthly" && (
+                  <>
+                    <input type="hidden" name="subscription_type" value="1" />
+                    <input type="hidden" name="recurring_amount" value={selected > 0 ? selected.toFixed(2) : "5.00"} />
+                    <input type="hidden" name="frequency" value="3" />
+                    <input type="hidden" name="cycles" value="0" />
+                  </>
+                )}
+                <Button
+                  type="submit"
+                  size="lg"
+                  variant="outline"
+                  disabled={selected <= 0}
+                  className="w-full border-primary/40 text-primary hover:bg-primary/5"
+                >
+                  Donate with Payfast <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </form>
+
               <p className="text-xs text-muted-foreground text-center">
-                You will confirm your {frequency === "monthly" ? "monthly" : "once-off"} amount on Paystack's secure checkout page. We never collect or store your card details on this website.
+                You will confirm your {frequency === "monthly" ? "monthly" : "once-off"} amount on the provider's secure checkout page. We never collect or store your card details on this website.
               </p>
             </>
           ) : (
@@ -154,7 +249,7 @@ const DonationWidget = () => {
               <Button
                 type="button"
                 size="lg"
-                onClick={openIntl}
+                onClick={() => setIntlOpen((v) => !v)}
                 aria-expanded={intlOpen}
                 aria-controls="international-panel"
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
@@ -174,21 +269,14 @@ const DonationWidget = () => {
                     className="overflow-hidden"
                   >
                     <div className="rounded-xl border border-border bg-background p-3">
-                      {!iframeFailed ? (
-                        <iframe
-                          key={donorboxSrc}
-                          src={donorboxSrc}
-                          title="International donation checkout"
-                          name="donorbox"
-                          allow="payment"
-                          className="w-full min-h-[680px] rounded-lg border-0"
-                          onError={() => setIframeFailed(true)}
-                        />
-                      ) : (
-                        <p className="text-sm text-muted-foreground p-4">
-                          The international checkout could not load in this window.
-                        </p>
-                      )}
+                      <iframe
+                        key={donorboxSrc}
+                        src={donorboxSrc}
+                        title="International donation checkout"
+                        name="donorbox"
+                        allow="payment"
+                        className="w-full min-h-[680px] rounded-lg border-0"
+                      />
                       <p className="text-xs text-muted-foreground mt-3 text-center">
                         Having trouble?{" "}
                         <a href={DONORBOX_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
