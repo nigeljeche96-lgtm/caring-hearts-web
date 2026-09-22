@@ -388,6 +388,18 @@ const Partnerships = () => {
               </div>
             </div>
 
+            {/* Payer details */}
+            <div className="grid sm:grid-cols-2 gap-3 mb-6">
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Your name (optional)</label>
+                <Input value={payerName} onChange={(e) => setPayerName(e.target.value)} maxLength={80} placeholder="Full name" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Email for your receipt (optional)</label>
+                <Input type="email" value={payerEmail} onChange={(e) => setPayerEmail(e.target.value)} maxLength={100} placeholder="you@example.com" />
+              </div>
+            </div>
+
             {/* Summary */}
             <div className="bg-muted rounded-xl p-4 mb-6 flex items-center justify-between">
               <div>
@@ -399,13 +411,21 @@ const Partnerships = () => {
               <Shield className="w-8 h-8 text-primary/40" />
             </div>
 
-            <Button asChild size="lg" disabled={activeAmount <= 0} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-base">
-              <a href={DONATE_URL} target="_blank" rel="noopener noreferrer">
-                Continue to Secure Checkout <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
+            <Button
+              type="button"
+              size="lg"
+              disabled={activeAmount <= 0 || payfastLoading}
+              onClick={startPayfast}
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-base"
+            >
+              {payfastLoading ? (
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+              ) : (
+                <>Continue to Secure Checkout <ArrowRight className="w-4 h-4 ml-2" /></>
+              )}
             </Button>
             <p className="text-xs text-muted-foreground text-center mt-3">
-              You will be redirected to Paystack to complete your donation safely.
+              You will be redirected to Payfast to complete your donation safely. We never collect or store your card details on this website.
             </p>
           </div>
 
