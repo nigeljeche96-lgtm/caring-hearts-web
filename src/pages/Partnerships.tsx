@@ -105,6 +105,45 @@ const Partnerships = () => {
 
   const activeAmount = selectedAmount === "custom" ? Number(customAmount) || 0 : selectedAmount;
 
+  const startPayfast = async () => {
+    if (activeAmount < 5) {
+      toast.error("Please choose an amount of at least R5.");
+      return;
+    }
+    setPayfastLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("payfast-signature", {
+        body: { amount: activeAmount, frequency, name: payerName, email: payerEmail, origin: window.location.origin },
+      });
+      if (error || !data?.fields || !data?.action) {
+        throw new Error(data?.error || error?.message || "Payfast could not be opened.");
+      }
+
+      // Open a real browser tab first so the checkout is never trapped in an embedded frame.
+      const win = window.open("", "payfast_checkout");
+      const checkoutForm = document.createElement("form");
+      checkoutForm.method = "post";
+      checkoutForm.action = data.action as string;
+      checkoutForm.target = win ? "payfast_checkout" : "_top";
+      checkoutForm.style.display = "none";
+      Object.entries(data.fields as Record<string, string>).forEach(([k, v]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = k;
+        input.value = v;
+        checkoutForm.appendChild(input);
+      });
+      document.body.appendChild(checkoutForm);
+      checkoutForm.submit();
+      checkoutForm.remove();
+      setPayfastLoading(false);
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");
+      setPayfastLoading(false);
+    }
+  };
+
   return (
     <div>
       <SEO
@@ -287,7 +326,7 @@ const Partnerships = () => {
           <div className="max-w-3xl mx-auto bg-card rounded-3xl p-6 sm:p-10 shadow-elevated border border-border">
             <div className="text-center mb-8">
               <span className="inline-flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-wider">
-                <Shield className="w-3.5 h-3.5" /> Secure Payment · Paystack
+                <Shield className="w-3.5 h-3.5" /> Secure Payment · Payfast
               </span>
               <h3 className="font-heading text-3xl font-bold text-foreground mt-3">Make a Donation</h3>
               <p className="text-muted-foreground mt-2">Choose an amount and your preferred frequency.</p>
