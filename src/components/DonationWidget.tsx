@@ -44,7 +44,7 @@ const DonationWidget = () => {
     (selected > 0 ? `&amount=${selected}` : "") +
     `&currency=${currency.toLowerCase()}&hide_donation_meter=true`;
 
-  const startPaystack = async () => {
+  const startYoco = async () => {
     if (selected < 5) {
       toast.error("Please choose an amount of at least R5.");
       return;
@@ -55,13 +55,13 @@ const DonationWidget = () => {
     }
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke("paystack-initialize", {
-        body: { email, name, amount: selected, currency, frequency },
+      const { data, error } = await supabase.functions.invoke("yoco-checkout", {
+        body: { email, name, amount: selected, frequency, origin: window.location.origin },
       });
-      if (error || !data?.authorization_url) {
+      if (error || !data?.redirectUrl) {
         throw new Error(data?.error || error?.message || "Checkout could not be started.");
       }
-      window.location.href = data.authorization_url as string;
+      window.top!.location.href = data.redirectUrl as string;
     } catch (err) {
       console.error(err);
       toast.error(err instanceof Error ? err.message : "Checkout could not be started. Please try again.");
