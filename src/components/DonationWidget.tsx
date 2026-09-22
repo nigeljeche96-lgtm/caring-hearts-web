@@ -156,8 +156,11 @@ const DonationWidget = () => {
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
-              South African Rand donations are processed by Payfast or Yoco. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
+              {isInternational
+                ? `Amounts are converted from South African Rand at ${isLive ? "today's live" : "an indicative"} exchange rate (R1 = ${currencyMeta.symbol}${rate.toFixed(4)}). Your payment provider confirms the final rate at checkout.`
+                : "South African Rand donations are processed by Payfast or Yoco. Choose another currency to see the same amounts converted at today's rate."}
             </p>
+
           </div>
 
           {/* Amounts */}
