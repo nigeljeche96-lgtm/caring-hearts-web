@@ -198,40 +198,20 @@ const DonationWidget = () => {
                 <span className="h-px flex-1 bg-border" />
               </div>
 
-              <form
-                action={PAYFAST_ACTION}
-                method="post"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full"
+              <Button
+                type="button"
+                size="lg"
+                variant="outline"
+                disabled={selected <= 0 || payfastLoading}
+                onClick={startPayfast}
+                className="w-full border-primary/40 text-primary hover:bg-primary/5"
               >
-                <input type="hidden" name="cmd" value="_paynow" />
-                <input type="hidden" name="receiver" value={PAYFAST_RECEIVER} />
-                <input type="hidden" name="return_url" value={PAYFAST_RETURN} />
-                <input type="hidden" name="cancel_url" value={PAYFAST_CANCEL} />
-                <input type="hidden" name="amount" value={selected > 0 ? selected.toFixed(2) : "5.00"} />
-                <input type="hidden" name="item_name" value={PAYFAST_ITEM_NAME} />
-                <input type="hidden" name="item_description" value={PAYFAST_ITEM_DESC} />
-                {name && <input type="hidden" name="name_first" value={name} />}
-                {email && <input type="hidden" name="email_address" value={email} />}
-                {frequency === "monthly" && (
-                  <>
-                    <input type="hidden" name="subscription_type" value="1" />
-                    <input type="hidden" name="recurring_amount" value={selected > 0 ? selected.toFixed(2) : "5.00"} />
-                    <input type="hidden" name="frequency" value="3" />
-                    <input type="hidden" name="cycles" value="0" />
-                  </>
+                {payfastLoading ? (
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+                ) : (
+                  <>Donate with Payfast <ExternalLink className="w-4 h-4 ml-2" /></>
                 )}
-                <Button
-                  type="submit"
-                  size="lg"
-                  variant="outline"
-                  disabled={selected <= 0}
-                  className="w-full border-primary/40 text-primary hover:bg-primary/5"
-                >
-                  Donate with Payfast <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-              </form>
+              </Button>
 
               <p className="text-xs text-muted-foreground text-center">
                 You will confirm your {frequency === "monthly" ? "monthly" : "once-off"} amount on the provider's secure checkout page. We never collect or store your card details on this website.
