@@ -181,7 +181,7 @@ const DonationWidget = () => {
                         : "border-border bg-background text-foreground hover:border-accent/60"
                     }`}
                   >
-                    {currencyMeta.symbol}{p.toLocaleString()}
+                    {currencyMeta.symbol}{formatAmount(p * rate)}
                   </button>
                 );
               })}
