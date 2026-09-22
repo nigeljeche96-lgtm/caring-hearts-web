@@ -10,7 +10,6 @@ import { supabase } from "@/integrations/supabase/client";
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
 
-const PRESETS_PLACEHOLDER = null;
 
 const PRESETS = [100, 250, 500, 1000, 2500, 5000];
 
