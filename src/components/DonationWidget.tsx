@@ -69,7 +69,7 @@ const DonationWidget = () => {
     setLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("yoco-checkout", {
-        body: { email, name, amount: selected, frequency, origin: window.location.origin },
+        body: { email, name, amount: Math.round(selected * 100) / 100, frequency, origin: window.location.origin },
       });
       if (error || !data?.redirectUrl) {
         throw new Error(data?.error || error?.message || "Checkout could not be started.");
@@ -90,7 +90,7 @@ const DonationWidget = () => {
     setPayfastLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("payfast-signature", {
-        body: { amount: selected, frequency, name, email, origin: window.location.origin },
+        body: { amount: Math.round(selected * 100) / 100, frequency, name, email, origin: window.location.origin },
       });
       if (error || !data?.fields || !data?.action) {
         throw new Error(data?.error || error?.message || "Payfast could not be opened.");
