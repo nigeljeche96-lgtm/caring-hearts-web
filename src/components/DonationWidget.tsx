@@ -68,25 +68,46 @@ const DonationWidget = () => {
     }
   };
 
-  const startPayfast = async () => {
+  const startPayfast = () => {
     if (selected < 5) {
       toast.error("Please choose an amount of at least R5.");
       return;
     }
     setPayfastLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("payfast-initialize", {
-        body: { amount: selected, frequency, email, name },
-      });
-      if (error || !data?.redirect_url) {
-        throw new Error(data?.error || error?.message || "Payfast could not be opened.");
-      }
-      window.location.href = data.redirect_url as string;
-    } catch (err) {
-      console.error(err);
-      toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");
-      setPayfastLoading(false);
+
+    const origin = window.location.origin;
+    const fields: Record<string, string> = {
+      cmd: "_paynow",
+      receiver: PAYFAST_RECEIVER,
+      amount: selected.toFixed(2),
+      item_name: PAYFAST_ITEM_NAME,
+      item_description: PAYFAST_ITEM_DESC,
+      return_url: `${origin}/donation?status=success`,
+      cancel_url: `${origin}/donation?status=cancelled`,
+    };
+    if (name) fields.name_first = name;
+    if (email) fields.email_address = email;
+    if (frequency === "monthly") {
+      fields.subscription_type = "1";
+      fields.recurring_amount = selected.toFixed(2);
+      fields.frequency = "3";
+      fields.cycles = "0";
     }
+
+    const form = document.createElement("form");
+    form.method = "post";
+    form.action = PAYFAST_ACTION;
+    form.target = "_top";
+    form.style.display = "none";
+    Object.entries(fields).forEach(([k, v]) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = k;
+      input.value = v;
+      form.appendChild(input);
+    });
+    document.body.appendChild(form);
+    form.submit();
   };
 
   return (
