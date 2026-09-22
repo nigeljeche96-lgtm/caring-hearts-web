@@ -13,7 +13,6 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 
-const DONATE_URL = "https://paystack.shop/pay/87qgnu5n8o";
 
 const corporateOptions = [
   "Corporate Sponsorship",
@@ -56,6 +55,9 @@ const Partnerships = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | "custom">(500);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
+  const [payerName, setPayerName] = useState("");
+  const [payerEmail, setPayerEmail] = useState("");
+  const [payfastLoading, setPayfastLoading] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
