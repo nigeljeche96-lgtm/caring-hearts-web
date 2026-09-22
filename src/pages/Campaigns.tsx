@@ -347,7 +347,7 @@ const Campaigns = () => {
               <Link to="/contact">{t("campaigns.startCampaign")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10">
-              <Link to="/volunteers">{t("common.becomeVolunteer")}</Link>
+              <Link to="/become-volunteer">{t("common.becomeVolunteer")}</Link>
             </Button>
           </div>
         </div>
