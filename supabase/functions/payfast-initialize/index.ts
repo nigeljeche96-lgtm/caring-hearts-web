@@ -49,16 +49,16 @@ Deno.serve(async (req) => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: form.toString(),
-      redirect: "manual",
+      redirect: "follow",
     });
 
-    const location = res.headers.get("location");
-    if (!location) {
-      console.error("Payfast did not return a payment page", res.status, await res.text());
+    const finalUrl = res.url;
+    if (!res.ok || !finalUrl.includes("/eng/process/payment/")) {
+      console.error("Payfast did not return a payment page", res.status, finalUrl);
       return json({ error: "Payfast could not start the payment." }, 502);
     }
 
-    return json({ redirect_url: location });
+    return json({ redirect_url: finalUrl });
   } catch (err) {
     console.error("payfast-initialize error", err);
     return json({ error: "Unexpected error starting the Payfast payment." }, 500);
