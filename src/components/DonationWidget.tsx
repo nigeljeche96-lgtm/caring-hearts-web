@@ -83,10 +83,12 @@ const DonationWidget = () => {
         throw new Error(data?.error || error?.message || "Payfast could not be opened.");
       }
 
+      // Open a real browser tab first so the checkout is never trapped in an embedded frame.
+      const win = window.open("", "payfast_checkout");
       const form = document.createElement("form");
       form.method = "post";
       form.action = data.action as string;
-      form.target = "_top";
+      form.target = win ? "payfast_checkout" : "_top";
       form.style.display = "none";
       Object.entries(data.fields as Record<string, string>).forEach(([k, v]) => {
         const input = document.createElement("input");
@@ -97,6 +99,8 @@ const DonationWidget = () => {
       });
       document.body.appendChild(form);
       form.submit();
+      form.remove();
+      setPayfastLoading(false);
     } catch (err) {
       console.error(err);
       toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");

@@ -67,7 +67,7 @@ Deno.serve(async (req) => {
     const signature = createHash("md5").update(base).digest("hex");
 
     return json({
-      action: "https://www.payfast.co.za/eng/process",
+      action: "https://payment.payfast.io/eng/process",
       fields: Object.fromEntries([...fields, ["signature", signature]]),
     });
   } catch (err) {
