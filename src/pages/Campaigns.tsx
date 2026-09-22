@@ -143,23 +143,6 @@ const Campaigns = () => {
       </section>
 
 
-      {/* Dashboard Stats */}
-      <section className="px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {dashboardStats.map((s, i) => (
-              <motion.div key={s.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="bg-card rounded-xl p-6 shadow-elevated text-center border border-border">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                  <s.icon className="w-6 h-6 text-primary" />
-                </div>
-                <p className="font-heading text-2xl font-bold text-foreground">{s.value}</p>
-                <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* How It Works */}
