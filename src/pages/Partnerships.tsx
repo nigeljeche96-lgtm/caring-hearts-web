@@ -13,7 +13,6 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 
-const DONATE_URL = "https://paystack.shop/pay/87qgnu5n8o";
 
 const corporateOptions = [
   "Corporate Sponsorship",
@@ -56,6 +55,9 @@ const Partnerships = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | "custom">(500);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
+  const [payerName, setPayerName] = useState("");
+  const [payerEmail, setPayerEmail] = useState("");
+  const [payfastLoading, setPayfastLoading] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -102,6 +104,45 @@ const Partnerships = () => {
   };
 
   const activeAmount = selectedAmount === "custom" ? Number(customAmount) || 0 : selectedAmount;
+
+  const startPayfast = async () => {
+    if (activeAmount < 5) {
+      toast.error("Please choose an amount of at least R5.");
+      return;
+    }
+    setPayfastLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("payfast-signature", {
+        body: { amount: activeAmount, frequency, name: payerName, email: payerEmail, origin: window.location.origin },
+      });
+      if (error || !data?.fields || !data?.action) {
+        throw new Error(data?.error || error?.message || "Payfast could not be opened.");
+      }
+
+      // Open a real browser tab first so the checkout is never trapped in an embedded frame.
+      const win = window.open("", "payfast_checkout");
+      const checkoutForm = document.createElement("form");
+      checkoutForm.method = "post";
+      checkoutForm.action = data.action as string;
+      checkoutForm.target = win ? "payfast_checkout" : "_top";
+      checkoutForm.style.display = "none";
+      Object.entries(data.fields as Record<string, string>).forEach(([k, v]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = k;
+        input.value = v;
+        checkoutForm.appendChild(input);
+      });
+      document.body.appendChild(checkoutForm);
+      checkoutForm.submit();
+      checkoutForm.remove();
+      setPayfastLoading(false);
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");
+      setPayfastLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -285,7 +326,7 @@ const Partnerships = () => {
           <div className="max-w-3xl mx-auto bg-card rounded-3xl p-6 sm:p-10 shadow-elevated border border-border">
             <div className="text-center mb-8">
               <span className="inline-flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-wider">
-                <Shield className="w-3.5 h-3.5" /> Secure Payment · Paystack
+                <Shield className="w-3.5 h-3.5" /> Secure Payment · Payfast
               </span>
               <h3 className="font-heading text-3xl font-bold text-foreground mt-3">Make a Donation</h3>
               <p className="text-muted-foreground mt-2">Choose an amount and your preferred frequency.</p>
@@ -347,6 +388,18 @@ const Partnerships = () => {
               </div>
             </div>
 
+            {/* Payer details */}
+            <div className="grid sm:grid-cols-2 gap-3 mb-6">
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Your name (optional)</label>
+                <Input value={payerName} onChange={(e) => setPayerName(e.target.value)} maxLength={80} placeholder="Full name" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">Email for your receipt (optional)</label>
+                <Input type="email" value={payerEmail} onChange={(e) => setPayerEmail(e.target.value)} maxLength={100} placeholder="you@example.com" />
+              </div>
+            </div>
+
             {/* Summary */}
             <div className="bg-muted rounded-xl p-4 mb-6 flex items-center justify-between">
               <div>
@@ -358,13 +411,21 @@ const Partnerships = () => {
               <Shield className="w-8 h-8 text-primary/40" />
             </div>
 
-            <Button asChild size="lg" disabled={activeAmount <= 0} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-base">
-              <a href={DONATE_URL} target="_blank" rel="noopener noreferrer">
-                Continue to Secure Checkout <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
+            <Button
+              type="button"
+              size="lg"
+              disabled={activeAmount <= 0 || payfastLoading}
+              onClick={startPayfast}
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-base"
+            >
+              {payfastLoading ? (
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+              ) : (
+                <>Continue to Secure Checkout <ArrowRight className="w-4 h-4 ml-2" /></>
+              )}
             </Button>
             <p className="text-xs text-muted-foreground text-center mt-3">
-              You will be redirected to Paystack to complete your donation safely.
+              You will be redirected to Payfast to complete your donation safely. We never collect or store your card details on this website.
             </p>
           </div>
 
