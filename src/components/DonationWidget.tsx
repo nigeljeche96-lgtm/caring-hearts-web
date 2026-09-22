@@ -143,7 +143,7 @@ const DonationWidget = () => {
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
-              South African Rand donations are processed by Paystack or Payfast. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
+              South African Rand donations are processed by Yoco or Payfast. All other currencies are processed by our international donation partner, which applies its own conversion at checkout.
             </p>
           </div>
 
@@ -223,13 +223,13 @@ const DonationWidget = () => {
                 type="button"
                 size="lg"
                 disabled={selected <= 0 || loading}
-                onClick={startPaystack}
+                onClick={startYoco}
                 className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
               >
                 {loading ? (
                   <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Preparing secure checkout…</>
                 ) : (
-                  <>Continue securely with Paystack <ArrowRight className="w-4 h-4 ml-2" /></>
+                  <>Continue securely with Yoco <ArrowRight className="w-4 h-4 ml-2" /></>
                 )}
               </Button>
 
