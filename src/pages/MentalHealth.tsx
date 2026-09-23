@@ -26,6 +26,8 @@ import takalaniMulaudzi from "@/assets/takalani-mulaudzi.png";
 import patienceThabede from "@/assets/patience-thabede.png";
 import mimmyLedwabaAsset from "@/assets/mimmy-ledwaba.png.asset.json";
 const mimmyLedwaba = mimmyLedwabaAsset.url;
+import zukiswaNolutshunguAsset from "@/assets/zukiswa-nolutshungu.png.asset.json";
+const zukiswaNolutshungu = zukiswaNolutshunguAsset.url;
 
 const programs = [
   { icon: Brain, title: "Cognitive Behavioral Therapy", desc: "Evidence-based approach to treating anxiety, depression, and other mental health conditions through structured therapeutic sessions." },
