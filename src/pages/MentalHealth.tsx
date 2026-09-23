@@ -90,6 +90,12 @@ const professionals = [
     bio: "Ms Mimmy Ledwaba is a qualified Social Worker with over 25 years of experience in both government and non-governmental organisations. She specialises in child protection, foster care management, victim empowerment, HIV/AIDS support, and community development. She serves as a member of the South African Medical Research Council Health Research Ethics Committee and is currently pursuing a Master's degree in Social Sciences (Community Development) at the University of KwaZulu-Natal. Ms Ledwaba is passionate about empowering children, youth, and women through ethical, community-centred social work and mental health support.",
     days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
   },
+  {
+    name: "Zukiswa Nolutshungu", role: "Licensed Counsellor", specialty: "Anxiety & Depression", image: zukiswaNolutshungu,
+    email: "zukienol@gmail.com",
+    bio: "Zukiswa Nolutshungu is a qualified Social Worker, EAP Clinician, and Psychosocial Support Practitioner with over 17 years of experience in social work, employee wellness, counselling, case management, and therapeutic interventions. She holds a Bachelor of Social Science in Social Work (Honours) from Nelson Mandela Metropolitan University and is registered with the South African Council for Social Service Professions. Her areas of expertise include trauma, grief and bereavement, workplace stress, relationship challenges, crisis intervention, substance-use concerns, and psychosocial support, with a compassionate and strengths-based approach focused on helping individuals develop healthier coping strategies and meaningful change.",
+    days: APPOINTMENT_DAYS, times: APPOINTMENT_TIMES,
+  },
 ];
 
 const sessionTypes = ["Individual Counseling", "Couples Counseling", "Family Counseling", "Grief & Loss Counseling"];
