@@ -9,11 +9,22 @@ declare global {
 }
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      const id = decodeURIComponent(hash.slice(1));
+      let tries = 0;
+      const tryScroll = () => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        else if (tries++ < 20) setTimeout(tryScroll, 50);
+      };
+      tryScroll();
+      return;
+    }
     window.scrollTo({ top: 0, left: 0 });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   useEffect(() => {
     // SPA route changes don't fire a page view automatically — send one.
