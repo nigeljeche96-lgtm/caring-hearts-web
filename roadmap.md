@@ -1,7 +1,7 @@
 # WCMHCO overhaul roadmap
 
 - [ ] Phase 1: Donation navigation and same-page checkout foundation
-- [ ] Phase 1: Remove unsupported public impact figures and false document listings
+- [x] Phase 1: Remove unsupported public impact figures and false document listings (figures dated as cumulative, South Africa, 2017–2026 — confirmed by owner 2026-09-28)
 - [ ] Phase 1: Publish substantial Privacy Policy and Terms & Conditions
 - [ ] Phase 1: Verify desktop/mobile donation and key journeys
 - [ ] Phase 2: Mission-first homepage, Get Help, services, impact, and governance content
