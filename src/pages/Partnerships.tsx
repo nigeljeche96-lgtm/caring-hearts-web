@@ -52,6 +52,20 @@ const membershipBenefits = [
 
 const donationAmounts = [100, 200, 400, 500, 800, 1000];
 
+const CURRENCIES = [
+  { code: "ZAR", label: "South African Rand", symbol: "R" },
+  { code: "USD", label: "US Dollar", symbol: "$" },
+  { code: "EUR", label: "Euro", symbol: "€" },
+  { code: "GBP", label: "British Pound", symbol: "£" },
+  { code: "AUD", label: "Australian Dollar", symbol: "A$" },
+  { code: "CAD", label: "Canadian Dollar", symbol: "C$" },
+];
+
+const formatConverted = (value: number) =>
+  value >= 10
+    ? Math.round(value).toLocaleString()
+    : value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 const Partnerships = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | "custom">(500);
   const [customAmount, setCustomAmount] = useState("");
