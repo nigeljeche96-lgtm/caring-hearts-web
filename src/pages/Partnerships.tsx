@@ -449,6 +449,11 @@ const Partnerships = () => {
                 <p className="font-heading text-2xl font-bold text-foreground">
                   R{activeAmount.toLocaleString()} <span className="text-sm font-normal text-muted-foreground">/ {frequency === "monthly" ? "month" : "once"}</span>
                 </p>
+                {isInternational && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    About {currencyMeta.symbol}{formatConverted(toDisplay(activeAmount))} {currency} · {isLive ? "live rate" : "indicative rate"}. Charged in ZAR.
+                  </p>
+                )}
               </div>
               <Shield className="w-8 h-8 text-primary/40" />
             </div>
