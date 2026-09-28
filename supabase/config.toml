@@ -9,3 +9,5 @@ project_id = "wxtleqzdwrxnbfufxmmc"
     verify_jwt = false
   [functions.send-volunteer-notification]
     verify_jwt = false
+  [functions.support-chat]
+    verify_jwt = false

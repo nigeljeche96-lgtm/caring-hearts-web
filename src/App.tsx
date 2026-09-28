@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import SupportChat from "@/components/SupportChat";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import MentalHealth from "./pages/MentalHealth";
@@ -69,6 +70,7 @@ const AppContent = () => {
         </Routes>
       </main>
       <Footer />
+      <SupportChat />
     </>
   );
 };
