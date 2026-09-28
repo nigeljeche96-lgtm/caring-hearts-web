@@ -12,7 +12,7 @@ const STORAGE_KEY = "wcmhco-support-chat";
 const WELCOME: ChatMessage = {
   role: "assistant",
   content:
-    "Hi, I'm **Amani**, the World Changers help assistant. I can help with booking a free counselling session, donating, volunteering, events or anything else about our work. How can I help you today?",
+    "Hi, I'm **Nelly**, the World Changers help assistant. I can help with booking a free counselling session, donating, volunteering, events or anything else about our work. How can I help you today?",
 };
 
 const SUGGESTIONS = [
@@ -123,7 +123,7 @@ const SupportChat = () => {
                 <HeartHandshake className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="font-heading text-sm font-semibold leading-tight">Amani — Help Assistant</p>
+                <p className="font-heading text-sm font-semibold leading-tight">Nelly — Help Assistant</p>
                 <p className="text-xs text-primary-foreground/80">World Changers MHCO</p>
               </div>
               <button
