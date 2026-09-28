@@ -73,6 +73,13 @@ const Partnerships = () => {
   const [payerName, setPayerName] = useState("");
   const [payerEmail, setPayerEmail] = useState("");
   const [payfastLoading, setPayfastLoading] = useState(false);
+  const [currency, setCurrency] = useState("ZAR");
+
+  const { rates, isLive } = useExchangeRates();
+  const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
+  const rate = rates[currency] || 1;
+  const isInternational = currency !== "ZAR";
+  const toDisplay = (zar: number) => zar * rate;
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
