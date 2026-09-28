@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div>
             <h4 className="font-heading text-base font-semibold mb-4">World Changers MHC</h4>
             <p className="text-sm opacity-70 leading-relaxed mb-4">

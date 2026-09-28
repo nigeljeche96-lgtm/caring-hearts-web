@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
+import { useExchangeRates } from "@/hooks/useExchangeRates";
 
 
 const corporateOptions = [
@@ -51,6 +52,20 @@ const membershipBenefits = [
 
 const donationAmounts = [100, 200, 400, 500, 800, 1000];
 
+const CURRENCIES = [
+  { code: "ZAR", label: "South African Rand", symbol: "R" },
+  { code: "USD", label: "US Dollar", symbol: "$" },
+  { code: "EUR", label: "Euro", symbol: "€" },
+  { code: "GBP", label: "British Pound", symbol: "£" },
+  { code: "AUD", label: "Australian Dollar", symbol: "A$" },
+  { code: "CAD", label: "Canadian Dollar", symbol: "C$" },
+];
+
+const formatConverted = (value: number) =>
+  value >= 10
+    ? Math.round(value).toLocaleString()
+    : value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 const Partnerships = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | "custom">(500);
   const [customAmount, setCustomAmount] = useState("");
@@ -58,6 +73,13 @@ const Partnerships = () => {
   const [payerName, setPayerName] = useState("");
   const [payerEmail, setPayerEmail] = useState("");
   const [payfastLoading, setPayfastLoading] = useState(false);
+  const [currency, setCurrency] = useState("ZAR");
+
+  const { rates, isLive } = useExchangeRates();
+  const currencyMeta = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
+  const rate = rates[currency] || 1;
+  const isInternational = currency !== "ZAR";
+  const toDisplay = (zar: number) => zar * rate;
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -350,6 +372,21 @@ const Partnerships = () => {
               </div>
             </div>
 
+            {/* Currency selector */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+              <label htmlFor="partner-currency" className="text-sm text-muted-foreground">Show amounts in</label>
+              <select
+                id="partner-currency"
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+                className="rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                {CURRENCIES.map((c) => (
+                  <option key={c.code} value={c.code}>{c.code} — {c.label}</option>
+                ))}
+              </select>
+            </div>
+
             {/* Amount cards */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
               {donationAmounts.map((amt) => {
@@ -365,7 +402,12 @@ const Partnerships = () => {
                         : "border-border bg-background hover:border-primary/50"
                     }`}
                   >
-                    <p className={`font-heading text-2xl font-bold ${active ? "text-primary" : "text-foreground"}`}>R{amt.toLocaleString()}</p>
+                    <p className={`font-heading text-2xl font-bold ${active ? "text-primary" : "text-foreground"}`}>
+                      {isInternational
+                        ? `${currencyMeta.symbol}${formatConverted(toDisplay(amt))}`
+                        : `R${amt.toLocaleString()}`}
+                    </p>
+                    {isInternational && <p className="text-[11px] text-muted-foreground mt-1">R{amt.toLocaleString()}</p>}
                     {amt === 500 && <p className="text-[10px] uppercase tracking-wider text-accent mt-1">Most Popular</p>}
                   </button>
                 );
@@ -407,6 +449,11 @@ const Partnerships = () => {
                 <p className="font-heading text-2xl font-bold text-foreground">
                   R{activeAmount.toLocaleString()} <span className="text-sm font-normal text-muted-foreground">/ {frequency === "monthly" ? "month" : "once"}</span>
                 </p>
+                {isInternational && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    About {currencyMeta.symbol}{formatConverted(toDisplay(activeAmount))} {currency} · {isLive ? "live rate" : "indicative rate"}. Charged in ZAR.
+                  </p>
+                )}
               </div>
               <Shield className="w-8 h-8 text-primary/40" />
             </div>
