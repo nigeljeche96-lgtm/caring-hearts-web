@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
+import { useExchangeRates } from "@/hooks/useExchangeRates";
 
 
 const corporateOptions = [
