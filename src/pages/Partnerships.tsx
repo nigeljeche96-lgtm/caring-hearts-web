@@ -372,6 +372,21 @@ const Partnerships = () => {
               </div>
             </div>
 
+            {/* Currency selector */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+              <label htmlFor="partner-currency" className="text-sm text-muted-foreground">Show amounts in</label>
+              <select
+                id="partner-currency"
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+                className="rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                {CURRENCIES.map((c) => (
+                  <option key={c.code} value={c.code}>{c.code} — {c.label}</option>
+                ))}
+              </select>
+            </div>
+
             {/* Amount cards */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
               {donationAmounts.map((amt) => {
@@ -387,7 +402,12 @@ const Partnerships = () => {
                         : "border-border bg-background hover:border-primary/50"
                     }`}
                   >
-                    <p className={`font-heading text-2xl font-bold ${active ? "text-primary" : "text-foreground"}`}>R{amt.toLocaleString()}</p>
+                    <p className={`font-heading text-2xl font-bold ${active ? "text-primary" : "text-foreground"}`}>
+                      {isInternational
+                        ? `${currencyMeta.symbol}${formatConverted(toDisplay(amt))}`
+                        : `R${amt.toLocaleString()}`}
+                    </p>
+                    {isInternational && <p className="text-[11px] text-muted-foreground mt-1">R{amt.toLocaleString()}</p>}
                     {amt === 500 && <p className="text-[10px] uppercase tracking-wider text-accent mt-1">Most Popular</p>}
                   </button>
                 );
