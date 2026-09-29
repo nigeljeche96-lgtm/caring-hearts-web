@@ -196,86 +196,102 @@ const Policies = () => (
 
           <div className="space-y-6 text-sm text-foreground leading-relaxed">
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">1. Use of this website</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">1. Website usage</h3>
               <p className="text-muted-foreground">
-                You agree to use this website lawfully and not to interfere with its operation, attempt unauthorised access, or submit false
-                or harmful information through our forms.
+                You agree to use this website lawfully and not to interfere with its operation, attempt unauthorised access, or submit
+                false, misleading or harmful information through our forms. If you are under 18, please use this website with the
+                knowledge and consent of a parent or legal guardian.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">2. Health information disclaimer</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">2. Our services</h3>
               <p className="text-muted-foreground">
-                Information on this website is provided for general awareness and does not replace professional diagnosis, treatment or
-                advice. A counselling session is only confirmed once one of our professionals responds to your request.
+                Through this website we share mental health awareness information, offer counselling session requests with registered
+                professionals, and run community outreach, volunteering, events and fundraising activities. Information published here is
+                for general awareness and does not replace professional diagnosis, treatment or advice.
               </p>
-            </div>
-
-            <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">3. Emergencies</h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground mt-2">
                 This website is not monitored around the clock and must not be used to report an emergency. If you or someone else is in
                 immediate danger, contact your local emergency services without delay.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">4. Bookings and appointments</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">3. Bookings and appointments</h3>
               <p className="text-muted-foreground">
-                Appointments are offered by arrangement with the professional you select and are subject to their availability. Please let us
-                know as early as possible if you need to reschedule or cancel.
+                A booking made on this website is a request, not a confirmed appointment. Sessions are offered by arrangement with the
+                professional you select and are subject to their availability. Your session is confirmed only once that professional
+                responds to you directly. Please let us know as early as possible if you need to reschedule or cancel, and be aware that
+                the professional you consult remains responsible for the clinical care they provide.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">5. Donations</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">4. Communications</h3>
               <p className="text-muted-foreground">
-                Donations are processed by our payment providers on their own secure platforms and are subject to their terms. Unless a
-                donation is given to a specific published appeal, it is applied to our general charitable work. If a donation is made in
-                error, contact us and we will assist with the provider's refund process where possible.
+                When you submit a booking, contact, volunteer or partnership form, you agree that we may reply to you by email or phone
+                about that request. Newsletters and organisational updates are only sent where you have subscribed, and you may
+                unsubscribe at any time. Our online assistant and voice assistant give general guidance only and do not provide
+                counselling, diagnosis or crisis support.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">6. Shop orders</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">5. Donations and shop orders</h3>
               <p className="text-muted-foreground">
-                Merchandise orders are fulfilled through our e-commerce provider, and the checkout, delivery and returns terms shown at
-                checkout apply to those purchases.
+                Donations and merchandise payments are processed by our payment providers on their own secure platforms and are subject to
+                their terms. Unless a donation is given to a specific published appeal, it is applied to our general charitable work. If a
+                payment is made in error, contact us and we will assist with the provider's refund process where possible.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">7. Intellectual property</h3>
-              <p className="text-muted-foreground">
-                The content, logos and images on this website belong to WCMHCO or are used with permission, and may not be reproduced for
-                commercial purposes without our written consent.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">8. Third-party links</h3>
-              <p className="text-muted-foreground">
-                Our website links to external services such as payment providers, registration forms and social media. We are not responsible
-                for the content or practices of those websites.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">9. Liability</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">6. Limitations</h3>
               <p className="text-muted-foreground">
                 We take reasonable care to keep this website accurate and available, but we do not warrant uninterrupted access or
-                error-free content, to the extent permitted by South African law.
+                error-free content. To the extent permitted by South African law, we are not liable for any loss or damage arising from
+                your use of this website, from reliance on information published here, or from any interruption to the website or the
+                third-party services it links to.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading text-lg font-semibold mb-2">10. Governing law and contact</h3>
+              <h3 className="font-heading text-lg font-semibold mb-2">7. Third-party resources</h3>
               <p className="text-muted-foreground">
-                These terms are governed by the laws of the Republic of South Africa. Questions may be sent to{" "}
+                Our website links to and embeds external services such as payment providers, registration and booking forms, maps,
+                analytics, social media pages and helpline resources. Those services are operated independently and are governed by their
+                own terms and privacy policies. We are not responsible for their content, availability or practices.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">8. Intellectual property</h3>
+              <p className="text-muted-foreground">
+                The content, logos, photographs, articles and designs on this website belong to WCMHCO or are used with permission. You may
+                view and share this material for personal, non-commercial purposes with credit to us, but it may not be copied, adapted or
+                used commercially without our written consent.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">9. Changes to these terms</h3>
+              <p className="text-muted-foreground">
+                We may update these terms from time to time. The version published on this page is the current version, and your continued
+                use of the website means you accept it.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-2">10. Governing law and contact details</h3>
+              <p className="text-muted-foreground">
+                These terms are governed by the laws of the Republic of South Africa. For any question about them, contact World Changers
+                Mental Health Care Organisation, 114 George Street, Kenilworth, Johannesburg, 2190, South Africa, or email{" "}
                 <a href="mailto:info@worldchangersmh.org" className="text-primary hover:underline">info@worldchangersmh.org</a>.
               </p>
             </div>
           </div>
+
 
           <p className="text-xs text-muted-foreground mt-8 border-t border-border pt-4">
             Governance records, registration certificates and financial reports are available on request by emailing{" "}
