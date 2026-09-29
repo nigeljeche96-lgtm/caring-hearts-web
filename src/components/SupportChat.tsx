@@ -38,6 +38,9 @@ const loadMessages = (): ChatMessage[] => {
 };
 
 const SupportChat = () => {
+  const location = useLocation();
+  const onShopPages = location.pathname.startsWith("/shop") || location.pathname.startsWith("/product");
+  const stackOffset = onShopPages ? "bottom-20 sm:bottom-24" : "bottom-4 sm:bottom-6";
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(loadMessages);
   const [input, setInput] = useState("");
