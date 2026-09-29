@@ -120,7 +120,7 @@ const SupportChat = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-4 right-4 z-[60] flex h-[min(78vh,620px)] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-elevated sm:bottom-6 sm:right-6"
+            className={`fixed ${stackOffset} right-4 z-[60] flex h-[min(78vh,620px)] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-elevated sm:right-6`}
           >
             <div className="flex items-center gap-3 bg-primary px-4 py-3 text-primary-foreground">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-foreground/15">
