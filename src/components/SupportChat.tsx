@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X, Send, Loader2, HeartHandshake } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -37,6 +38,9 @@ const loadMessages = (): ChatMessage[] => {
 };
 
 const SupportChat = () => {
+  const location = useLocation();
+  const onShopPages = location.pathname.startsWith("/shop") || location.pathname.startsWith("/product");
+  const stackOffset = onShopPages ? "bottom-20 sm:bottom-24" : "bottom-4 sm:bottom-6";
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(loadMessages);
   const [input, setInput] = useState("");
@@ -116,7 +120,7 @@ const SupportChat = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-4 right-4 z-[60] flex h-[min(78vh,620px)] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-elevated sm:bottom-6 sm:right-6"
+            className={`fixed ${stackOffset} right-4 z-[60] flex h-[min(78vh,620px)] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-elevated sm:right-6`}
           >
             <div className="flex items-center gap-3 bg-primary px-4 py-3 text-primary-foreground">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-foreground/15">
@@ -232,7 +236,7 @@ const SupportChat = () => {
         <button
           onClick={() => setOpen(true)}
           aria-label="Open help chat"
-          className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
+          className={`fixed ${stackOffset} right-4 z-[60] flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-105 sm:right-6`}
         >
           <MessageCircle className="h-5 w-5" />
           <span className="hidden sm:inline">Need help?</span>
