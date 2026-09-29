@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X, Send, Loader2, HeartHandshake } from "lucide-react";
 import ReactMarkdown from "react-markdown";
