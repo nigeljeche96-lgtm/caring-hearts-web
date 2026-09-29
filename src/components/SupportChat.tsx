@@ -236,7 +236,7 @@ const SupportChat = () => {
         <button
           onClick={() => setOpen(true)}
           aria-label="Open help chat"
-          className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
+          className={`fixed ${stackOffset} right-4 z-[60] flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-105 sm:right-6`}
         >
           <MessageCircle className="h-5 w-5" />
           <span className="hidden sm:inline">Need help?</span>
