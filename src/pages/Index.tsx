@@ -68,8 +68,8 @@ const Index = () => {
   return (
     <div>
       <SEO
-        title="World Changers MHCO — Mental Health Care & Philanthropy"
-        description="Transforming lives across Southern Africa through compassionate mental health care, counseling, education and philanthropic action. Donate or volunteer today."
+        title="World Changers Mental Health Care Organisation - Mental Health Care & Philanthropy"
+        description="World Changers Mental Health Care Organisation is a humanitarian mental health organisation dedicated to promoting mental health awareness and transforming communities through accessible counselling, therapy, skills development, crisis management, charity work, and community service. We empower individuals, families, and communities to build resilience, improve emotional well-being, and create healthier, more supportive environments while making a meaningful difference in the lives of those in need."
         path="/"
       />
       {/* Hero */}
