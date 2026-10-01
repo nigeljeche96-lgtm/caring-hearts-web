@@ -18,7 +18,7 @@ const SEO = ({ title, description, path, jsonLd, image, ogType = "website", noin
     ? image.startsWith("http")
       ? image
       : `${SITE_URL}${image}`
-    : null;
+    : `${SITE_URL}/og-preview.jpg`;
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <Helmet>
