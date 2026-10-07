@@ -167,7 +167,7 @@ const News = () => {
                   <h3 className="font-heading text-lg font-semibold text-foreground mb-2 line-clamp-2">{a.title}</h3>
                   <p className="text-sm text-muted-foreground line-clamp-3 mb-3">{a.excerpt}</p>
                   <span className="text-sm font-medium text-accent flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read More <ArrowRight className="w-3.5 h-3.5" />
+                    Read more<span className="sr-only">: {a.title}</span> <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </motion.article>
@@ -183,7 +183,7 @@ const News = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/70" onClick={() => setSelectedArticle(null)} />
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}
               className="fixed inset-4 md:inset-10 lg:inset-20 z-50 bg-card rounded-2xl shadow-elevated overflow-y-auto">
-              <button onClick={() => setSelectedArticle(null)} className="sticky top-4 float-right mr-4 mt-4 z-10 bg-muted rounded-full p-2 hover:bg-muted/80">
+              <button aria-label="Close article" onClick={() => setSelectedArticle(null)} className="sticky top-4 float-right mr-4 mt-4 z-10 bg-muted rounded-full p-2 hover:bg-muted/80">
                 <X className="w-5 h-5 text-foreground" />
               </button>
               <div className="aspect-video w-full overflow-hidden">

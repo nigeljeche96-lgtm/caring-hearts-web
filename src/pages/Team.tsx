@@ -222,7 +222,7 @@ const Team = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
             onClick={() => setSelectedMember(null)}>
-            <button onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
+            <button aria-label="Close profile" onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
             <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               {selectedMember.image && (
                 <motion.img

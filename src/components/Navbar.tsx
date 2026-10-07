@@ -142,7 +142,7 @@ const Navbar = () => {
           {/* Mobile Menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <button className="lg:hidden p-2 text-foreground">
+              <button className="lg:hidden p-2 text-foreground" aria-label="Open menu">
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
