@@ -175,7 +175,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="w-full h-[450px]">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.4!2d28.0456!3d-26.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s114+George+Street%2C+Kenilworth%2C+Johannesburg%2C+2190!5e0!3m2!1sen!2sza!4v1700000000000!5m2!1sen!2sza"
+          <iframe src="https://maps.google.com/maps?q=114%20George%20Street%2C%20Kenilworth%2C%20Johannesburg%2C%202190&output=embed"
             width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="World Changers MHC Location" />
         </div>
       </section>
