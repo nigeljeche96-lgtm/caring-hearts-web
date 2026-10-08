@@ -107,7 +107,7 @@ const Navbar = () => {
         {/* Right Side */}
         <div className="flex items-center gap-2">
           {/* Language Selector */}
-          <div className="relative" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
+          <div className="relative hidden sm:block" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
             <button className="flex items-center gap-1 p-2 text-primary-foreground hover:text-gold transition-colors" title="Language">
               <Globe className="w-5 h-5" />
               <span className="hidden sm:inline text-xs font-medium">{currentLang.flag}</span>
