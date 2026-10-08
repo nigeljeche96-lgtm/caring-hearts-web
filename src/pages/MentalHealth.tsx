@@ -203,7 +203,7 @@ const MentalHealth = () => {
             <h2 className="font-heading text-2xl md:text-4xl font-bold leading-tight mb-6">
               {t("mentalHealth.bookingHeadline")}
             </h2>
-            <Button onClick={() => setBookingOpen(true)} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+            <Button onClick={() => setBookingOpen(true)} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <CalendarDays className="w-5 h-5 mr-2" /> {t("mentalHealth.openBooking")}
             </Button>
           </div>

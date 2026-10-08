@@ -134,7 +134,7 @@ const Navbar = () => {
           <Button asChild variant="outline" className="hidden md:inline-flex border-primary text-primary hover:bg-primary hover:text-primary-foreground ml-2">
             <Link to="/mental-health">Get Help</Link>
           </Button>
-          <Button asChild className="hidden md:inline-flex bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button asChild className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90">
             <Link to={DONATE_URL}>{t("nav.donateNow")}</Link>
           </Button>
 
@@ -196,7 +196,7 @@ const Navbar = () => {
                 <Button asChild variant="outline" className="mt-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Link to="/mental-health" onClick={() => setMobileOpen(false)}>Get Help</Link>
                 </Button>
-                <Button asChild className="mt-2 bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button asChild className="mt-2 bg-primary text-primary-foreground hover:bg-primary/90">
                   <Link to={DONATE_URL} onClick={() => setMobileOpen(false)}>{t("nav.donateNow")}</Link>
                 </Button>
 

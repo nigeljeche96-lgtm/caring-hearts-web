@@ -323,7 +323,7 @@ const Partnerships = () => {
                   </li>
                 ))}
               </ul>
-              <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link to="/donation">Become a Monthly Partner <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
             </motion.div>
@@ -463,7 +463,7 @@ const Partnerships = () => {
               size="lg"
               disabled={activeAmount <= 0 || payfastLoading}
               onClick={startPayfast}
-              className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-base"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base"
             >
               {payfastLoading ? (
                 <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
