@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { useTranslation } from "react-i18next";
 import { languages } from "@/i18n";
-import logoWhite from "@/assets/logo-white.png.asset.json";
 
 const DONATE_URL = "/donation";
 
@@ -64,7 +63,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-28 md:h-32 px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img alt="World Changers" className="h-10 sm:h-14 md:h-20 w-auto" src={logoWhite.url} />
+          <img alt="World Changers" className="h-10 sm:h-14 md:h-20 w-auto" src="/logo-white.png" />
         </Link>
 
         {/* Desktop Nav */}
