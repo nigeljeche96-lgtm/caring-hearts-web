@@ -59,11 +59,11 @@ const Navbar = () => {
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
 
   return (
-    <header className="sticky top-0 z-50 bg-card/90 backdrop-blur-md border-b border-border">
+    <header className="sticky top-0 z-50 bg-navy border-b border-gold/50">
       <div className="container mx-auto flex items-center justify-between h-28 md:h-32 px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img alt="World Changers" className="h-24 md:h-32 w-auto mix-blend-multiply" src="/lovable-uploads/23ca8ce6-94a0-490f-b830-aa186f641c8c.png" />
+          <img alt="World Changers" className="h-10 sm:h-14 md:h-20 w-auto" src="/logo-white.png" />
         </Link>
 
         {/* Desktop Nav */}
@@ -71,7 +71,7 @@ const Navbar = () => {
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label} className="relative" onMouseEnter={() => setOpenDropdown(link.label)} onMouseLeave={() => setOpenDropdown(null)}>
-                <button className="flex items-center gap-1 px-4 py-2 text-sm font-bold text-foreground hover:text-primary transition-colors rounded-lg">
+                <button className="flex items-center gap-1 px-4 py-2 text-sm font-bold text-primary-foreground hover:text-gold transition-colors rounded-lg">
                   {link.label} <ChevronDown className="w-3.5 h-3.5" />
                 </button>
                 <AnimatePresence>
@@ -96,7 +96,7 @@ const Navbar = () => {
               </div>
             ) : (
               <Link key={link.path} to={link.path!}
-                className={`px-4 py-2 text-sm font-bold rounded-lg transition-colors ${location.pathname === link.path ? "text-primary bg-primary/10" : "text-foreground hover:text-primary"}`}>
+                className={`px-4 py-2 text-sm font-bold rounded-lg transition-colors ${location.pathname === link.path ? "text-gold bg-primary-foreground/10" : "text-primary-foreground hover:text-gold"}`}>
                 {link.label}
               </Link>
             )
@@ -106,8 +106,8 @@ const Navbar = () => {
         {/* Right Side */}
         <div className="flex items-center gap-2">
           {/* Language Selector */}
-          <div className="relative" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
-            <button className="flex items-center gap-1 p-2 text-foreground hover:text-primary transition-colors" title="Language">
+          <div className="relative hidden sm:block" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
+            <button className="flex items-center gap-1 p-2 text-primary-foreground hover:text-gold transition-colors" title="Language">
               <Globe className="w-5 h-5" />
               <span className="hidden sm:inline text-xs font-medium">{currentLang.flag}</span>
             </button>
@@ -131,10 +131,10 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          <Button asChild variant="outline" className="hidden md:inline-flex border-primary text-primary hover:bg-primary hover:text-primary-foreground ml-2">
+          <Button asChild variant="outline" className="inline-flex h-9 px-3 text-[14px] md:h-10 md:px-4 md:text-sm bg-transparent border-2 border-teal-light text-primary-foreground hover:bg-teal-light/20 hover:text-primary-foreground ml-1 md:ml-2">
             <Link to="/mental-health">Get Help</Link>
           </Button>
-          <Button asChild className="hidden md:inline-flex bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button asChild className="inline-flex h-9 px-3 text-[17px] md:h-11 md:px-5 md:text-[19px] font-bold bg-donate text-donate-foreground hover:bg-donate/90">
             <Link to={DONATE_URL}>{t("nav.donateNow")}</Link>
           </Button>
 
@@ -142,7 +142,7 @@ const Navbar = () => {
           {/* Mobile Menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <button className="lg:hidden p-2 text-foreground" aria-label="Open menu">
+              <button className="lg:hidden p-2 text-primary-foreground" aria-label="Open menu">
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
@@ -196,7 +196,7 @@ const Navbar = () => {
                 <Button asChild variant="outline" className="mt-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Link to="/mental-health" onClick={() => setMobileOpen(false)}>Get Help</Link>
                 </Button>
-                <Button asChild className="mt-2 bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button asChild className="mt-2 text-[19px] font-bold bg-donate text-donate-foreground hover:bg-donate/90">
                   <Link to={DONATE_URL} onClick={() => setMobileOpen(false)}>{t("nav.donateNow")}</Link>
                 </Button>
 

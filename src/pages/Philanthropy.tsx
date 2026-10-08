@@ -78,7 +78,7 @@ const Philanthropy = () => {
         <div className="relative container mx-auto px-4 pt-20 pb-72 sm:pb-48 md:pb-32">
           <div className="max-w-3xl">
             <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
+              className="inline-flex items-center gap-2 bg-gold/20 backdrop-blur-sm text-gold px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Heart className="w-4 h-4" /> {t("philanthropy.heroTagline")}
             </motion.span>
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.6 }}
@@ -86,7 +86,7 @@ const Philanthropy = () => {
               {t("philanthropy.heroTitle")}
             </motion.h1>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8 font-bold shadow-lg">
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 font-bold shadow-lg">
                 <Link to="/become-volunteer">{t("common.becomeVolunteer")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
               <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base px-8 font-bold shadow-lg">
@@ -99,12 +99,12 @@ const Philanthropy = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-3 gap-0">
               {stats.map((stat) => (
-                <div key={stat.label} className="bg-accent/90 p-3 sm:p-6 text-center first:rounded-tl-xl last:rounded-tr-xl">
-                  <div className="w-12 h-12 rounded-full bg-accent-foreground/20 flex items-center justify-center mx-auto mb-2">
-                    <stat.icon className="w-6 h-6 text-accent-foreground" />
+                <div key={stat.label} className="bg-primary p-3 sm:p-6 text-center first:rounded-tl-xl last:rounded-tr-xl">
+                  <div className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center mx-auto mb-2">
+                    <stat.icon className="w-6 h-6 text-primary-foreground" />
                   </div>
-                  <p className="font-heading text-2xl md:text-3xl font-bold text-accent-foreground">{stat.value}</p>
-                  <p className="text-xs md:text-sm text-accent-foreground/80 mt-1">{stat.label}</p>
+                  <p className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground">{stat.value}</p>
+                  <p className="text-xs md:text-sm text-primary-foreground/85 mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -118,9 +118,9 @@ const Philanthropy = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="relative">
               <img src={philanthropyHeroNew} alt="Community food distribution outreach" className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
-              <div className="absolute -bottom-6 -right-6 bg-accent rounded-xl p-4 shadow-elevated hidden md:block">
-                <p className="font-heading text-xl font-bold text-accent-foreground">90%</p>
-                <p className="text-xs text-accent-foreground/80">{t("philanthropy.aidDelivered")}</p>
+              <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
+                <p className="font-heading text-xl font-bold text-primary-foreground">90%</p>
+                <p className="text-xs text-primary-foreground/80">{t("philanthropy.aidDelivered")}</p>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
@@ -165,7 +165,7 @@ const Philanthropy = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
               <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-                <p className="font-heading text-3xl md:text-5xl font-bold text-accent">{stat.value}</p>
+                <p className="font-heading text-3xl md:text-5xl font-bold text-gold">{stat.value}</p>
                 <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{stat.label}</p>
               </motion.div>
             ))}
@@ -197,10 +197,10 @@ const Philanthropy = () => {
       </section>
 
       {/* Marquee */}
-      <section className="py-6 bg-accent overflow-hidden">
+      <section className="py-6 bg-primary overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="mx-8 font-heading text-xl font-bold text-accent-foreground flex items-center gap-3">
+            <span key={i} className="mx-8 font-heading text-xl font-bold text-primary-foreground flex items-center gap-3">
               <Star className="w-4 h-4" /> {item}
             </span>
           ))}
@@ -263,7 +263,7 @@ const Philanthropy = () => {
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-5">{t("philanthropy.ctaTitle")}</h2>
             <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8">{t("philanthropy.ctaDesc")}</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8 font-bold shadow-lg">
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 font-bold shadow-lg">
                 <Link to="/contact">{t("common.donateNow")} <Heart className="w-4 h-4 ml-2" /></Link>
               </Button>
               <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base px-8 font-bold shadow-lg">

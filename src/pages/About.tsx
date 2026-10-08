@@ -55,9 +55,9 @@ const About = () => {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="relative">
               <img src={teamPhoto} alt="Our team in action" className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
-              <div className="absolute -bottom-6 -right-6 bg-accent rounded-xl p-4 shadow-elevated hidden md:block">
+              <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
                 <p className="font-heading text-xl font-bold text-accent-foreground">{t("about.since2017")}</p>
-                <p className="text-xs text-accent-foreground/80">{t("about.servingVulnerable")}</p>
+                <p className="text-xs text-primary-foreground/80">{t("about.servingVulnerable")}</p>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -124,7 +124,7 @@ const About = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
               <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-                <CountUp value={stat.value} className="font-heading text-3xl md:text-5xl font-bold text-accent" />
+                <CountUp value={stat.value} className="font-heading text-3xl md:text-5xl font-bold text-gold" />
                 <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{stat.label}</p>
               </motion.div>
             ))}

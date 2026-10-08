@@ -63,6 +63,11 @@ export default {
           light: "hsl(var(--gold-light))",
         },
         cream: "hsl(var(--cream))",
+        navy: { DEFAULT: "hsl(var(--navy))", dark: "hsl(var(--navy-dark))" },
+        donate: { DEFAULT: "hsl(var(--donate))", foreground: "hsl(var(--donate-foreground))" },
+        "teal-light": "hsl(var(--teal-light))",
+        sand: "hsl(var(--sand))",
+        "sage-tint": "hsl(var(--sage-tint))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

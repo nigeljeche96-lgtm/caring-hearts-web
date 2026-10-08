@@ -216,7 +216,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
           onClick={isActive ? stopConversation : startConversation}
           disabled={isConnecting}
           aria-label={isActive ? "End reception call" : "Call the Reception now"}
-          className="inline-flex items-center justify-center gap-2 px-5 h-11 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm"
+          className="inline-flex items-center justify-center gap-2 px-5 h-11 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm"
           title={isActive ? "End call" : "Call the Reception"}
         >
           <Phone className="w-4 h-4" />
@@ -305,7 +305,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
               onClick={startConversation}
               disabled={isConnecting}
               aria-label="Call the Reception now"
-              className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm w-full max-w-xs"
+              className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm w-full max-w-xs"
               title="Call the Reception"
             >
               <Phone className="w-4 h-4" />

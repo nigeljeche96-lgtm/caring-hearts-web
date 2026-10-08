@@ -94,7 +94,7 @@ const Events = () => {
           <Mail className="w-12 h-12 text-accent mx-auto mb-4" />
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Be the first to know</h2>
           <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">Get in touch and we'll notify you as soon as ticket sales open for our upcoming events.</p>
-          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Link to="/contact">Notify Me</Link>
           </Button>
         </div>
