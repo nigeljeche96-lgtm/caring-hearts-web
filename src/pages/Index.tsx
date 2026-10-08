@@ -76,7 +76,7 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <img src={volunteerHero} alt="World Changers volunteers supporting communities" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-overlay-gradient" />
-        <div className="absolute inset-0 bg-primary/30" />
+        <div className="absolute inset-0 bg-navy/30" />
         <div className="relative container mx-auto px-4 pt-20 pb-72 sm:pb-48 md:pb-32">
           <div className="max-w-3xl">
             <motion.span
@@ -102,13 +102,13 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
               className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8">
+              <Button asChild size="lg" className="bg-gold text-navy hover:bg-gold/90 text-base px-8">
                 <Link to="/mental-health">{t("common.exploreMore")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
               <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base px-10 font-bold shadow-elevated">
                 <Link to="/become-volunteer">{t("common.becomeVolunteer")} <HandHeart className="w-5 h-5 ml-2" /></Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground text-base px-8">
+              <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground text-base px-8">
                 <Link to="/donation">{t("common.donateNow")}</Link>
 
               </Button>
