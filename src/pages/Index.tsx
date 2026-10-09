@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import VoiceAgent from "@/components/VoiceAgent";
 import CountUp from "@/components/CountUp";
+import GlobeMark from "@/components/GlobeMark";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import volunteerHero from "@/assets/volunteer-hero.jpg";
