@@ -60,10 +60,10 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-navy border-b border-gold/50">
-      <div className="container mx-auto flex items-center justify-between h-28 md:h-32 px-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img alt="World Changers" className="h-10 sm:h-14 md:h-20 w-auto" src="/logo-white.png" />
+      <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 gap-3">
+        {/* Logo — fixed size so it never shifts or stretches */}
+        <Link to="/" className="flex items-center shrink-0">
+          <img alt="World Changers" width={1448} height={438} className="h-9 md:h-11 w-auto max-w-none object-contain" src="/logo-white.png" />
         </Link>
 
         {/* Desktop Nav */}
@@ -131,10 +131,10 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          <Button asChild variant="outline" className="inline-flex h-9 px-3 text-[14px] md:h-10 md:px-4 md:text-sm bg-transparent border-2 border-teal-light text-primary-foreground hover:bg-teal-light/20 hover:text-primary-foreground ml-1 md:ml-2">
+          <Button asChild variant="outline" className="hidden sm:inline-flex h-9 px-3 text-sm md:h-10 md:px-4 bg-transparent border-2 border-teal-light text-primary-foreground hover:bg-teal-light/20 hover:text-primary-foreground">
             <Link to="/mental-health">Get Help</Link>
           </Button>
-          <Button asChild className="inline-flex h-9 px-3 text-[17px] md:h-11 md:px-5 md:text-[19px] font-bold bg-donate text-donate-foreground hover:bg-donate/90">
+          <Button asChild className="inline-flex h-9 px-3 text-sm md:h-10 md:px-4 font-semibold border-2 border-donate bg-donate text-donate-foreground hover:bg-donate/90">
             <Link to={DONATE_URL}>{t("nav.donateNow")}</Link>
           </Button>
 
@@ -196,7 +196,7 @@ const Navbar = () => {
                 <Button asChild variant="outline" className="mt-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Link to="/mental-health" onClick={() => setMobileOpen(false)}>Get Help</Link>
                 </Button>
-                <Button asChild className="mt-2 text-[19px] font-bold bg-donate text-donate-foreground hover:bg-donate/90">
+                <Button asChild className="mt-2 font-semibold bg-donate text-donate-foreground hover:bg-donate/90">
                   <Link to={DONATE_URL} onClick={() => setMobileOpen(false)}>{t("nav.donateNow")}</Link>
                 </Button>
 
