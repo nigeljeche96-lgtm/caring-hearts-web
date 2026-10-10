@@ -87,6 +87,14 @@ const DonationWidget = () => {
       toast.error("Please choose an amount of at least R5.");
       return;
     }
+    // Open the checkout tab synchronously on the click, before any await,
+    // so popup blockers allow it. It shows a loading page until Payfast loads.
+    const win = window.open("", "payfast_checkout");
+    if (win) {
+      win.document.write(
+        '<p style="font-family:sans-serif;text-align:center;margin-top:4rem">Opening secure Payfast checkout…</p>'
+      );
+    }
     setPayfastLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("payfast-signature", {
@@ -96,8 +104,6 @@ const DonationWidget = () => {
         throw new Error(data?.error || error?.message || "Payfast could not be opened.");
       }
 
-      // Open a real browser tab first so the checkout is never trapped in an embedded frame.
-      const win = window.open("", "payfast_checkout");
       const form = document.createElement("form");
       form.method = "post";
       form.action = data.action as string;
@@ -116,6 +122,7 @@ const DonationWidget = () => {
       setPayfastLoading(false);
     } catch (err) {
       console.error(err);
+      if (win) win.close();
       toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");
       setPayfastLoading(false);
     }
