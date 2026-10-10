@@ -17,8 +17,8 @@ const Footer = () => {
   return (
     <footer className="bg-navy-dark text-primary-foreground">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div>
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10">
+          <div className="col-span-2 lg:col-span-1">
             <h4 className="font-heading text-base font-semibold mb-4">World Changers MHC</h4>
             <p className="text-sm opacity-70 leading-relaxed mb-4">
               NGO REG: 238-677<br />
@@ -55,7 +55,7 @@ const Footer = () => {
             </ul>
 
           </div>
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h4 className="font-heading text-base font-semibold mb-4">{t("footer.contactInfo")}</h4>
             <ul className="space-y-3 text-sm opacity-70">
               <li>
