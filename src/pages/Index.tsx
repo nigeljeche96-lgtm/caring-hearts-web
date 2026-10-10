@@ -266,7 +266,7 @@ const Index = () => {
           </motion.div>
 
           <h3 className="font-heading text-2xl font-bold text-foreground mb-8 text-center">{t("index.boardMembers")}</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
             {boardMembers.map((m, i) => (
               <motion.div key={m.role + i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-2xl overflow-hidden shadow-card group text-center">
