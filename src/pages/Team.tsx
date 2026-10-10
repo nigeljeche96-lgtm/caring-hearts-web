@@ -155,7 +155,7 @@ const InstagramIcon = () => (
 const TeamSection = ({ title: sectionTitle, members, onClickMember }: { title: string; members: TeamMember[]; onClickMember: (m: TeamMember) => void }) => (
   <div className="mb-16">
     <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{sectionTitle}</h3>
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
       {members.map((m, i) => (
         <motion.div key={m.name + i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
           className="bg-card rounded-2xl overflow-hidden shadow-card group text-center cursor-pointer hover:shadow-elevated transition-shadow"

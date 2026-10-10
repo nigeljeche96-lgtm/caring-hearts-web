@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import VoiceAgent from "@/components/VoiceAgent";
+import GlobeMark from "@/components/GlobeMark";
 
 const socialLinks = [
   { label: "Instagram", url: "https://www.instagram.com/wc_mentalhealthcare", icon: "instagram" },
@@ -15,10 +16,11 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-navy-dark text-primary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
-          <div>
+    <footer className="relative overflow-hidden bg-navy-dark text-primary-foreground">
+      <GlobeMark sizeClass="w-[70%] md:w-[520px]" positionClass="-left-[20%] md:-left-32 -bottom-24" opacityClass="opacity-[0.08] md:opacity-[0.1]" />
+      <div className="relative z-10 container mx-auto px-4 py-16">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10">
+          <div className="col-span-2 lg:col-span-1">
             <h4 className="font-heading text-base font-semibold mb-4">World Changers MHC</h4>
             <p className="text-sm opacity-70 leading-relaxed mb-4">
               NGO REG: 238-677<br />
@@ -55,7 +57,7 @@ const Footer = () => {
             </ul>
 
           </div>
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h4 className="font-heading text-base font-semibold mb-4">{t("footer.contactInfo")}</h4>
             <ul className="space-y-3 text-sm opacity-70">
               <li>

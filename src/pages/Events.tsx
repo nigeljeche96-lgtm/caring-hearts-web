@@ -35,7 +35,7 @@ const Events = () => {
   return (
     <div>
       <SEO title="Events & Workshops — World Changers MHCO" description="Upcoming mental health awareness, wellness and fundraising events. Tickets coming soon." path="/events" />
-      <PageHero title={t("events.heroTitle")} subtitle={t("events.heroSubtitle")} bgImage={eventsHero} />
+      <PageHero title={t("events.heroTitle")} subtitle={t("events.heroSubtitle")} bgImage={eventsHero} globe />
 
       {/* Events List */}
       <section className="section-padding">

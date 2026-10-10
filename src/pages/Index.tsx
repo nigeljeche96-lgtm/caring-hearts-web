@@ -165,22 +165,22 @@ const Index = () => {
       {/* Vision & Mission */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="bg-card rounded-2xl p-8 shadow-card border border-border">
+              className="bg-card rounded-2xl p-4 sm:p-8 shadow-card border border-border">
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
                 <Eye className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-foreground mb-4">{t("index.visionTitle")}</h3>
-              <p className="text-muted-foreground leading-relaxed">{t("index.visionDesc")}</p>
+              <h3 className="font-heading text-lg sm:text-2xl font-bold text-foreground mb-4">{t("index.visionTitle")}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">{t("index.visionDesc")}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="bg-card rounded-2xl p-8 shadow-card border border-border">
+              className="bg-card rounded-2xl p-4 sm:p-8 shadow-card border border-border">
               <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
                 <Target className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-foreground mb-4">{t("index.missionTitle")}</h3>
-              <p className="text-muted-foreground leading-relaxed">{t("index.missionDesc")}</p>
+              <h3 className="font-heading text-lg sm:text-2xl font-bold text-foreground mb-4">{t("index.missionTitle")}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">{t("index.missionDesc")}</p>
             </motion.div>
           </div>
         </div>
@@ -224,10 +224,10 @@ const Index = () => {
       {/* Features */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {features.map((f, i) => (
               <motion.div key={f.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
+                className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <f.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
@@ -266,7 +266,7 @@ const Index = () => {
           </motion.div>
 
           <h3 className="font-heading text-2xl font-bold text-foreground mb-8 text-center">{t("index.boardMembers")}</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
             {boardMembers.map((m, i) => (
               <motion.div key={m.role + i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-2xl overflow-hidden shadow-card group text-center">

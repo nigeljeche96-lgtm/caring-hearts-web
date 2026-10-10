@@ -100,17 +100,17 @@ const About = () => {
       {/* Mission & Vision */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-2 gap-3 sm:gap-10">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-card rounded-2xl p-8 shadow-card border-l-4 border-primary">
+              className="bg-card rounded-2xl p-4 sm:p-8 shadow-card border-l-4 border-primary">
               <span className="text-sm font-semibold text-accent uppercase tracking-wider">{t("about.missionLabel")}</span>
-              <h3 className="font-heading text-2xl font-bold text-foreground mt-3 mb-4">{t("about.missionTitle")}</h3>
+              <h3 className="font-heading text-lg sm:text-2xl font-bold text-foreground mt-3 mb-4">{t("about.missionTitle")}</h3>
               <p className="text-muted-foreground leading-relaxed">{t("about.missionDesc")}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-card rounded-2xl p-8 shadow-card border-l-4 border-accent">
+              className="bg-card rounded-2xl p-4 sm:p-8 shadow-card border-l-4 border-accent">
               <span className="text-sm font-semibold text-accent uppercase tracking-wider">{t("about.visionLabel")}</span>
-              <h3 className="font-heading text-2xl font-bold text-foreground mt-3 mb-4">{t("about.visionTitle")}</h3>
+              <h3 className="font-heading text-lg sm:text-2xl font-bold text-foreground mt-3 mb-4">{t("about.visionTitle")}</h3>
               <p className="text-muted-foreground leading-relaxed">{t("about.visionDesc")}</p>
             </motion.div>
           </div>
