@@ -122,6 +122,7 @@ const DonationWidget = () => {
       setPayfastLoading(false);
     } catch (err) {
       console.error(err);
+      if (win) win.close();
       toast.error(err instanceof Error ? err.message : "Payfast could not be opened. Please try again.");
       setPayfastLoading(false);
     }
