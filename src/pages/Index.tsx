@@ -115,6 +115,24 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Credentials band */}
+      <section className="bg-primary">
+        <div className="container mx-auto px-4 py-8 md:py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 text-center sm:text-left">
+            {[
+              { value: "2017", label: t("about.credFounded", "Founded in South Africa") },
+              { value: "NPO 238-677", label: t("about.credNgo", "Registered non-profit organisation") },
+              { value: "PBO 930084594", label: t("about.credPbo", "Public benefit organisation") },
+            ].map((c) => (
+              <div key={c.value}>
+                <p className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground">{c.value}</p>
+                <p className="text-sm text-primary-foreground/80 mt-1">{c.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Get Inspired Section */}
       <section className="section-padding">
         <div className="container mx-auto">
