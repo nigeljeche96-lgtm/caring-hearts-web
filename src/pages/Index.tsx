@@ -193,7 +193,7 @@ const Index = () => {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {values.map((v, i) => (
               <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
+                className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <v.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
