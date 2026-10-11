@@ -58,12 +58,12 @@ const Index = () => {
   ];
 
   const values = [
-    { icon: Heart, title: t("index.compassion"), desc: t("index.compassionDesc") },
-    { icon: Users, title: t("index.collaboration"), desc: t("index.collaborationDesc") },
-    { icon: Shield, title: t("index.integrity"), desc: t("index.integrityDesc") },
-    { icon: Lightbulb, title: t("index.innovation"), desc: t("index.innovationDesc") },
-    { icon: Globe, title: t("index.inclusivity"), desc: t("index.inclusivityDesc") },
-    { icon: BookOpen, title: t("index.education"), desc: t("index.educationDesc") },
+    { icon: Heart, title: t("index.wwdCounselling", "Counselling and therapy"), desc: t("index.wwdCounsellingDesc", "Accessible, professional support for individuals, families and communities.") },
+    { icon: Shield, title: t("index.wwdCrisis", "Crisis support"), desc: t("index.wwdCrisisDesc", "Fast, calm help when people need it most, with clear routes to further care.") },
+    { icon: Lightbulb, title: t("index.wwdSkills", "Skills development"), desc: t("index.wwdSkillsDesc", "Building resilience and practical skills that last beyond the programme.") },
+    { icon: BookOpen, title: t("index.wwdAwareness", "Awareness and education"), desc: t("index.wwdAwarenessDesc", "Open, honest conversations that reduce stigma and encourage people to ask for help.") },
+    { icon: HandHeart, title: t("index.wwdCharity", "Charity and humanitarian work"), desc: t("index.wwdCharityDesc", "Aid and outreach for families and communities in need.") },
+    { icon: Users, title: t("index.wwdCommunity", "Community service"), desc: t("index.wwdCommunityDesc", "Volunteers and partners working side by side with local communities.") },
   ];
 
   return (
@@ -189,11 +189,11 @@ const Index = () => {
       {/* Our Values */}
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
-          <SectionHeading label={t("index.valuesLabel")} title={t("index.valuesTitle")} description={t("index.valuesDesc")} />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <SectionHeading label={t("index.wwdLabel", "Our Work")} title={t("index.wwdTitle", "What we do")} description={t("index.wwdDesc", "Practical mental health care and community support, delivered with dignity.")} />
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {values.map((v, i) => (
               <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
+                className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <v.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
