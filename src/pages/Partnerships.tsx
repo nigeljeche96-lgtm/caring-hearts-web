@@ -215,7 +215,7 @@ const Partnerships = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3 mb-12">
             {corporateOptions.map((opt, i) => (
               <motion.div
-                key={tx(opt)}
+                key={opt}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -279,7 +279,7 @@ const Partnerships = () => {
                     >
                       <option value="">{tx("Select a partnership type")}</option>
                       {corporateOptions.map((o) => (
-                        <option key={tx(o)} value={tx(o)}>{tx(o)}</option>
+                        <option key={o} value={o}>{tx(o)}</option>
                       ))}
                     </select>
                   </div>
@@ -321,7 +321,7 @@ const Partnerships = () => {
               <p className="text-muted-foreground mb-5"> {tx("Support our mission through a recurring monthly contribution and become part of our community of changemakers.")} </p>
               <ul className="space-y-2 mb-6">
                 {membershipBenefits.map((b) => (
-                  <li key={tx(b)} className="flex items-start gap-2 text-sm text-foreground">
+                  <li key={b} className="flex items-start gap-2 text-sm text-foreground">
                     <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" /> {tx(b)}
                   </li>
                 ))}

@@ -135,23 +135,23 @@ const BecomeVolunteer = () => {
                     <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Area of Interest *")}</label>
                     <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required value={form.area_of_interest} onChange={(e) => updateField("area_of_interest", e.target.value)}>
                       <option value="">{tx("Select an area")}</option>
-                      <option>{tx("Mental Health Outreach")}</option>
-                      <option>{tx("Community Counseling")}</option>
-                      <option>{tx("Youth Programs")}</option>
-                      <option>{tx("Fundraising & Events")}</option>
-                      <option>{tx("Administrative Support")}</option>
-                      <option>{tx("Social Media & Marketing")}</option>
+                      <option value={"Mental Health Outreach"}>{tx("Mental Health Outreach")}</option>
+                      <option value={"Community Counseling"}>{tx("Community Counseling")}</option>
+                      <option value={"Youth Programs"}>{tx("Youth Programs")}</option>
+                      <option value={"Fundraising & Events"}>{tx("Fundraising & Events")}</option>
+                      <option value={"Administrative Support"}>{tx("Administrative Support")}</option>
+                      <option value={"Social Media & Marketing"}>{tx("Social Media & Marketing")}</option>
                     </select>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Availability *")}</label>
                     <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required value={form.availability} onChange={(e) => updateField("availability", e.target.value)}>
                       <option value="">{tx("Select availability")}</option>
-                      <option>{tx("Weekdays (Morning)")}</option>
-                      <option>{tx("Weekdays (Afternoon)")}</option>
-                      <option>{tx("Weekends")}</option>
-                      <option>{tx("Evenings")}</option>
-                      <option>{tx("Flexible / Remote")}</option>
+                      <option value={"Weekdays (Morning)"}>{tx("Weekdays (Morning)")}</option>
+                      <option value={"Weekdays (Afternoon)"}>{tx("Weekdays (Afternoon)")}</option>
+                      <option value={"Weekends"}>{tx("Weekends")}</option>
+                      <option value={"Evenings"}>{tx("Evenings")}</option>
+                      <option value={"Flexible / Remote"}>{tx("Flexible / Remote")}</option>
                     </select>
                   </div>
                 </div>

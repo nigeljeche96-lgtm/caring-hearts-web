@@ -467,7 +467,7 @@ const MentalHealth = () => {
           <SectionHeading label={t("mentalHealth.programsLabel")} title={t("mentalHealth.programsTitle")} description={t("mentalHealth.programsDesc")} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {programs.map((p, i) => (
-              <motion.div key={tx(p.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={p.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-all border border-border group">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-hero-gradient transition-all">
                   <p.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />

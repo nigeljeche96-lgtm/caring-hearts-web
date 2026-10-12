@@ -109,7 +109,7 @@ const About = () => {
           <SectionHeading label={t("about.whatWeDoLabel")} title={t("about.whatWeDoTitle")} description={t("about.whatWeDoDesc")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whatWeDo.map((item, i) => (
-              <motion.div key={tx(item.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={item.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 shadow-soft border border-border">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="w-7 h-7 text-primary" />

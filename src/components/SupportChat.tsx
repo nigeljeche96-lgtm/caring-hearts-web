@@ -192,7 +192,7 @@ const SupportChat = () => {
                 <div className="space-y-2 pt-2">
                   {SUGGESTIONS.map((s) => (
                     <button
-                      key={tx(s)}
+                      key={s}
                       onClick={() => send(s)}
                       className="block w-full rounded-xl border border-border bg-card px-3 py-2 text-left text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                     >

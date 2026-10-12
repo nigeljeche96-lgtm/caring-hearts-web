@@ -72,7 +72,7 @@ const Navbar = () => {
         <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) =>
             link.children ? (
-              <div key={tx(link.label)} className="relative" onMouseEnter={() => setOpenDropdown(link.label)} onMouseLeave={() => setOpenDropdown(null)}>
+              <div key={link.label} className="relative" onMouseEnter={() => setOpenDropdown(link.label)} onMouseLeave={() => setOpenDropdown(null)}>
                 <button className="flex items-center gap-1 px-4 py-2 text-sm font-bold text-primary-foreground hover:text-gold transition-colors rounded-lg">
                   {tx(link.label)} <ChevronDown className="w-3.5 h-3.5" />
                 </button>
@@ -82,7 +82,7 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-1 w-56 bg-card rounded-lg shadow-elevated border border-border py-2">
                       {link.children.map((child) =>
                         child.href ? (
-                          <a key={tx(child.label)} href={child.href} target="_blank" rel="noopener noreferrer"
+                          <a key={child.label} href={child.href} target="_blank" rel="noopener noreferrer"
                             className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
                             {tx(child.label)}
                           </a>
@@ -172,11 +172,11 @@ const Navbar = () => {
 
                 {navLinks.map((link) =>
                   link.children ? (
-                    <div key={tx(link.label)}>
+                    <div key={link.label}>
                       <p className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-4">{tx(link.label)}</p>
                       {link.children.map((child) =>
                         child.href ? (
-                          <a key={tx(child.label)} href={child.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}
+                          <a key={child.label} href={child.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}
                             className="block px-6 py-2.5 text-sm rounded-lg text-foreground hover:text-primary hover:bg-muted transition-colors">
                             {tx(child.label)}
                           </a>

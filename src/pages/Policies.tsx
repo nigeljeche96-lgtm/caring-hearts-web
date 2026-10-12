@@ -66,7 +66,7 @@ const Policies = () => {
         <SectionHeading label={tx("Governance")} title={tx("Our Policies")} description={tx("We are committed to the highest standards of transparency, ethics, and compliance.")} />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {policies.map((p, i) => (
-            <motion.div key={tx(p.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            <motion.div key={p.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
               className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-shadow border border-border">
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                 <p.icon className="w-7 h-7 text-primary" />

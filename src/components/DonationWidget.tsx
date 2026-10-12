@@ -332,7 +332,7 @@ const DonationWidget = () => {
           { icon: Landmark, title: "Registered organisation", desc: "NPO 238-677 · PBO 930084594 — donations are tax deductible in South Africa." },
           { icon: Heart, title: "Direct to our work", desc: "Gifts support our mental health care and community outreach programmes." },
         ].map((item) => (
-          <div key={tx(item.title)} className="bg-card rounded-xl border border-border p-5">
+          <div key={item.title} className="bg-card rounded-xl border border-border p-5">
             <item.icon className="w-6 h-6 text-primary mb-2" />
             <h3 className="font-heading text-sm font-semibold text-foreground">{tx(item.title)}</h3>
             <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{tx(item.desc)}</p>
