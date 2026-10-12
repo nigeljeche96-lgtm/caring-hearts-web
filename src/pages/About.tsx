@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ const fadeUp = {
 };
 
 const About = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
 
   const values = [
@@ -45,7 +47,7 @@ const About = () => {
   return (
     <div>
 
-      <SEO title="About Us — World Changers MHCO" description="Learn about World Changers Mental Health Care Organisation — our story, mission, values and the team transforming mental health across Southern Africa." path="/about" />
+      <SEO title={tx("About Us — World Changers MHCO")} description={tx("Learn about World Changers Mental Health Care Organisation — our story, mission, values and the team transforming mental health across Southern Africa.")} path="/about" />
       <PageHero title={t("nav.about")} subtitle={t("about.whoWeAreTitle")} bgImage={aboutBg} />
 
       {/* Credentials */}
@@ -57,12 +59,12 @@ const About = () => {
               { icon: Shield, label: t("about.credNgo", "Registered NGO"), value: "238-677" },
               { icon: Award, label: t("about.credPbo", "Public Benefits Organisation"), value: "930084594" },
             ].map((c) => (
-              <div key={c.label} className="flex items-center gap-4 bg-card rounded-xl p-4 sm:p-5 shadow-soft border border-border">
+              <div key={tx(c.label)} className="flex items-center gap-4 bg-card rounded-xl p-4 sm:p-5 shadow-soft border border-border">
                 <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                   <c.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm text-muted-foreground">{c.label}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{tx(c.label)}</p>
                   <p className="font-heading text-lg font-bold text-foreground">{c.value}</p>
                 </div>
               </div>
@@ -77,7 +79,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="relative">
-              <img src={teamPhoto} alt="Our team in action" className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
+              <img src={teamPhoto} alt={tx("Our team in action")} className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
                 <p className="font-heading text-xl font-bold text-accent-foreground">{t("about.since2017")}</p>
                 <p className="text-xs text-primary-foreground/80">{t("about.servingVulnerable")}</p>
@@ -107,13 +109,13 @@ const About = () => {
           <SectionHeading label={t("about.whatWeDoLabel")} title={t("about.whatWeDoTitle")} description={t("about.whatWeDoDesc")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whatWeDo.map((item, i) => (
-              <motion.div key={item.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(item.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 shadow-soft border border-border">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(item.title)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{tx(item.desc)}</p>
               </motion.div>
             ))}
           </div>
@@ -146,9 +148,9 @@ const About = () => {
         <div className="relative container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.div key={tx(stat.label)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <CountUp value={stat.value} className="font-heading text-3xl md:text-5xl font-bold text-gold" />
-                <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{stat.label}</p>
+                <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{tx(stat.label)}</p>
               </motion.div>
             ))}
           </div>
@@ -161,13 +163,13 @@ const About = () => {
           <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(v.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 text-center shadow-soft">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <v.icon className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{v.title}</h3>
-                <p className="text-sm text-muted-foreground">{v.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(v.title)}</h3>
+                <p className="text-sm text-muted-foreground">{tx(v.desc)}</p>
               </motion.div>
             ))}
           </div>

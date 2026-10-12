@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import PageHero from "@/components/PageHero";
 import SEO from "@/components/SEO";
 import SectionHeading from "@/components/SectionHeading";
@@ -6,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import aboutBg from "@/assets/about-bg.jpg";
 
 const FAQ = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
 
   const faqs = [
@@ -36,7 +38,7 @@ const FAQ = () => {
   return (
     <div>
 
-      <SEO title="Frequently Asked Questions — World Changers MHCO" description="Answers to common questions about World Changers programs, donations, volunteering and mental health services." path="/faq" jsonLd={faqJsonLd} />
+      <SEO title={tx("Frequently Asked Questions — World Changers MHCO")} description={tx("Answers to common questions about World Changers programs, donations, volunteering and mental health services.")} path="/faq" jsonLd={faqJsonLd} />
       <PageHero title={t("faq.heroTitle")} subtitle={t("faq.heroSubtitle")} bgImage={aboutBg} />
       <section className="section-padding">
         <div className="container mx-auto max-w-3xl">

@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -38,6 +39,7 @@ const fetchDonations = async () => {
 };
 
 const Campaigns = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
   const { user } = useAuth();
   const { isAdmin } = useIsAdmin();
@@ -84,7 +86,7 @@ const Campaigns = () => {
     if (error) {
       toast.error("Failed to update: " + error.message);
     } else {
-      toast.success("Campaign updated!");
+      toast.success(tx("Campaign updated!"));
       setEditingCampaign(null);
       refetchCampaigns();
     }
@@ -95,8 +97,8 @@ const Campaigns = () => {
   return (
     <div>
 
-      <SEO title="Donate — World Changers Mental Health Care Organisation" description="Make a once-off or monthly donation supporting mental health care and community outreach. Secure local and international payment options." path="/donation" />
-      <PageHero title="Donation" subtitle={t("campaigns.heroSubtitle")} bgImage={campaignBg} />
+      <SEO title={tx("Donate — World Changers Mental Health Care Organisation")} description={tx("Make a once-off or monthly donation supporting mental health care and community outreach. Secure local and international payment options.")} path="/donation" />
+      <PageHero title={tx("Donation")} subtitle={t("campaigns.heroSubtitle")} bgImage={campaignBg} />
 
       {/* Donate Online + Offline */}
       <section className="relative -mt-16 z-10 px-4 mb-12">
@@ -123,11 +125,11 @@ const Campaigns = () => {
               <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{t("campaigns.offlineDonation")}</h3>
               <p className="text-sm text-muted-foreground mb-4">{t("campaigns.offlineDonationDesc")}</p>
               <div className="text-left text-sm space-y-2">
-                <p><span className="font-semibold">Bank:</span> Standard Bank</p>
-                <p><span className="font-semibold">Acc:</span> 10169316864</p>
-                <p><span className="font-semibold">Branch:</span> 051001</p>
-                <p><span className="font-semibold">SWIFT:</span> SBZA ZA JJ</p>
-                <p className="text-xs text-muted-foreground mt-2">PBO: 930084594 · Tax deductible</p>
+                <p><span className="font-semibold">{tx("Bank:")}</span> {tx("Standard Bank")}</p>
+                <p><span className="font-semibold">{tx("Acc:")}</span> 10169316864</p>
+                <p><span className="font-semibold">{tx("Branch:")}</span> 051001</p>
+                <p><span className="font-semibold">{tx("SWIFT:")}</span> {tx("SBZA ZA JJ")}</p>
+                <p className="text-xs text-muted-foreground mt-2">{tx("PBO: 930084594 · Tax deductible")}</p>
               </div>
             </motion.div>
           </div>
@@ -137,7 +139,7 @@ const Campaigns = () => {
       {/* Donation checkout */}
       <section className="px-4 mb-12">
         <div className="container mx-auto">
-          <SectionHeading label="Donate" title="Make a Difference Today" description="Choose an amount, give once or monthly, and complete your donation securely with our payment partners." />
+          <SectionHeading label={tx("Donate")} title={tx("Make a Difference Today")} description={tx("Choose an amount, give once or monthly, and complete your donation securely with our payment partners.")} />
           <DonationWidget />
         </div>
       </section>
@@ -160,8 +162,8 @@ const Campaigns = () => {
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                   <span className="font-heading text-2xl font-bold text-accent">{item.step}</span>
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(item.title)}</h3>
+                <p className="text-sm text-muted-foreground">{tx(item.desc)}</p>
               </motion.div>
             ))}
           </div>

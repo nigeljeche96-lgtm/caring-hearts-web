@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Heart, Users, Brain, HandHeart, ArrowRight, Shield, Sparkles, Building, Star, Eye, Target, Lightbulb, Globe, BookOpen } from "lucide-react";
@@ -35,6 +36,7 @@ const fadeUp = {
 };
 
 const Index = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
 
   const stats = [
@@ -69,13 +71,13 @@ const Index = () => {
   return (
     <div>
       <SEO
-        title="World Changers Mental Health Care Organisation - Mental Health Care & Philanthropy"
-        description="World Changers Mental Health Care Organisation is a humanitarian mental health organisation dedicated to promoting mental health awareness and transforming communities through accessible counselling, therapy, skills development, crisis management, charity work, and community service. We empower individuals, families, and communities to build resilience, improve emotional well-being, and create healthier, more supportive environments while making a meaningful difference in the lives of those in need."
+        title={tx("World Changers Mental Health Care Organisation - Mental Health Care & Philanthropy")}
+        description={tx("World Changers Mental Health Care Organisation is a humanitarian mental health organisation dedicated to promoting mental health awareness and transforming communities through accessible counselling, therapy, skills development, crisis management, charity work, and community service. We empower individuals, families, and communities to build resilience, improve emotional well-being, and create healthier, more supportive environments while making a meaningful difference in the lives of those in need.")}
         path="/"
       />
       {/* Hero */}
       <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
-        <img src={volunteerHero} alt="World Changers volunteers supporting communities" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={volunteerHero} alt={tx("World Changers volunteers supporting communities")} fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-overlay-gradient opacity-90" />
         <div className="absolute inset-0 bg-navy/20" />
         <GlobeMark sizeClass="w-[55%] md:w-[720px]" positionClass="-right-[10%] md:-right-40 top-1/2 -translate-y-1/2" opacityClass="opacity-[0.11] md:opacity-[0.16]" />
@@ -105,10 +107,10 @@ const Index = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-gold text-navy hover:bg-gold/90 font-semibold px-6">
-                <Link to="/partnerships">Partner with Us <ArrowRight className="w-4 h-4 ml-2" /></Link>
+                <Link to="/partnerships">{tx("Partner with Us")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
               <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-6">
-                <Link to="/mental-health">Get Help</Link>
+                <Link to="/mental-health">{tx("Get Help")}</Link>
               </Button>
             </motion.div>
           </div>
@@ -126,7 +128,7 @@ const Index = () => {
             ].map((c) => (
               <div key={c.value}>
                 <p className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground">{c.value}</p>
-                <p className="text-sm text-primary-foreground/80 mt-1">{c.label}</p>
+                <p className="text-sm text-primary-foreground/80 mt-1">{tx(c.label)}</p>
               </div>
             ))}
           </div>
@@ -138,7 +140,7 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="relative">
-              <img src={aboutBg} alt="Support group session" className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
+              <img src={aboutBg} alt={tx("Support group session")} className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
                 <p className="font-heading text-xl font-bold text-primary-foreground">90%</p>
                 <p className="text-xs text-primary-foreground/80">{t("index.successRate")}</p>
@@ -210,13 +212,13 @@ const Index = () => {
           <SectionHeading label={t("index.wwdLabel", "Our Work")} title={t("index.wwdTitle", "What we do")} description={t("index.wwdDesc", "Practical mental health care and community support, delivered with dignity.")} />
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {values.map((v, i) => (
-              <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(v.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <v.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{v.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(v.title)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{tx(v.desc)}</p>
               </motion.div>
             ))}
           </div>
@@ -230,9 +232,9 @@ const Index = () => {
           <p className="text-sm md:text-base text-primary-foreground/70 text-center mb-8">{t("stats.impactNote")}</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.div key={tx(stat.label)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <CountUp value={stat.value} className="font-heading text-3xl md:text-5xl font-bold text-gold" />
-                <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{stat.label}</p>
+                <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{tx(stat.label)}</p>
               </motion.div>
             ))}
           </div>
@@ -244,13 +246,13 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {features.map((f, i) => (
-              <motion.div key={f.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(f.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <f.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(f.title)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{tx(f.desc)}</p>
               </motion.div>
             ))}
           </div>
@@ -262,7 +264,7 @@ const Index = () => {
         <div className="flex animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} className="mx-8 font-heading text-xl font-bold text-primary-foreground flex items-center gap-3">
-              <Star className="w-4 h-4" /> {item}
+              <Star className="w-4 h-4" /> {tx(item)}
             </span>
           ))}
         </div>
@@ -280,7 +282,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="mb-12 rounded-2xl overflow-hidden shadow-elevated"
           >
-            <img src={teamPhoto} alt="World Changers Team" className="w-full object-cover" />
+            <img src={teamPhoto} alt={tx("World Changers Team")} className="w-full object-cover" />
           </motion.div>
 
           <h3 className="font-heading text-2xl font-bold text-foreground mb-8 text-center">{t("index.boardMembers")}</h3>
@@ -293,7 +295,7 @@ const Index = () => {
                 </div>
                 <div className="p-5">
                   <h3 className="font-heading text-lg font-semibold text-foreground">{m.name}</h3>
-                  <p className="text-sm text-primary mt-1">{m.role}</p>
+                  <p className="text-sm text-primary mt-1">{tx(m.role)}</p>
                 </div>
               </motion.div>
             ))}
@@ -319,7 +321,7 @@ const Index = () => {
           >
             <iframe
               src="https://www.youtube.com/embed/UQM-mYx3qcY"
-              title="World Changers - Our Impact"
+              title={tx("World Changers - Our Impact")}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full"
