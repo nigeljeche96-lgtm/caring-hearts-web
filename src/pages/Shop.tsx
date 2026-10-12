@@ -200,7 +200,7 @@ const Shop = () => {
         ) : products.length === 0 ? (
           <div className="text-center py-20">
             <ShoppingBag className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
-            <p className="text-sm text-muted-foreground">{t("shop.noProducts")} "{activeCategory}"</p>
+            <p className="text-sm text-muted-foreground">{t("shop.noProducts")} "{tx(activeCategory)}"</p>
             <p className="text-xs text-muted-foreground mt-1">{t("shop.checkBackSoon")}</p>
           </div>
         ) : (

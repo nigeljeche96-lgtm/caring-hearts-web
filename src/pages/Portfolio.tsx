@@ -56,7 +56,7 @@ const Portfolio = () => {
             {filters.map((f) => (
               <button key={f} onClick={() => setActiveFilter(f)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${activeFilter === f ? "bg-primary text-primary-foreground" : "border border-border hover:bg-primary hover:text-primary-foreground"}`}>
-                {f}
+                {tx(f)}
               </button>
             ))}
           </div>
@@ -71,7 +71,7 @@ const Portfolio = () => {
                 <div className="p-3 sm:p-5">
                   <div className="flex gap-2 mb-2 flex-wrap">
                     {project.cats.map((c) => (
-                      <span key={c} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{c}</span>
+                      <span key={c} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{tx(c)}</span>
                     ))}
                   </div>
                   <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{tx(project.title)}</h3>
