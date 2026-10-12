@@ -212,7 +212,7 @@ const Index = () => {
           <SectionHeading label={t("index.wwdLabel", "Our Work")} title={t("index.wwdTitle", "What we do")} description={t("index.wwdDesc", "Practical mental health care and community support, delivered with dignity.")} />
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {values.map((v, i) => (
-              <motion.div key={tx(v.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <v.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
@@ -232,7 +232,7 @@ const Index = () => {
           <p className="text-sm md:text-base text-primary-foreground/70 text-center mb-8">{t("stats.impactNote")}</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div key={tx(stat.label)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <CountUp value={stat.value} className="font-heading text-3xl md:text-5xl font-bold text-gold" />
                 <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{tx(stat.label)}</p>
               </motion.div>
@@ -246,7 +246,7 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {features.map((f, i) => (
-              <motion.div key={tx(f.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={f.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <f.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />

@@ -59,7 +59,7 @@ const About = () => {
               { icon: Shield, label: t("about.credNgo", "Registered NGO"), value: "238-677" },
               { icon: Award, label: t("about.credPbo", "Public Benefits Organisation"), value: "930084594" },
             ].map((c) => (
-              <div key={tx(c.label)} className="flex items-center gap-4 bg-card rounded-xl p-4 sm:p-5 shadow-soft border border-border">
+              <div key={c.label} className="flex items-center gap-4 bg-card rounded-xl p-4 sm:p-5 shadow-soft border border-border">
                 <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                   <c.icon className="w-5 h-5 text-primary" />
                 </div>
@@ -148,7 +148,7 @@ const About = () => {
         <div className="relative container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div key={tx(stat.label)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <CountUp value={stat.value} className="font-heading text-3xl md:text-5xl font-bold text-gold" />
                 <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{tx(stat.label)}</p>
               </motion.div>
@@ -163,7 +163,7 @@ const About = () => {
           <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <motion.div key={tx(v.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 text-center shadow-soft">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <v.icon className="w-7 h-7 text-primary" />

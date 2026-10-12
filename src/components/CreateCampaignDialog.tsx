@@ -72,11 +72,11 @@ const CreateCampaignDialog = ({ onCreated }: Props) => {
         <form onSubmit={handleSubmit} className="space-y-4 mt-2">
           <div>
             <Label htmlFor="title">{tx("Campaign Title *")}</Label>
-            <Input id="title" value={tx(form.title)} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder={tx("e.g. Help Youth Mental Health")} required />
+            <Input id="title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder={tx("e.g. Help Youth Mental Health")} required />
           </div>
           <div>
             <Label htmlFor="description">{tx("Description *")}</Label>
-            <Textarea id="description" value={tx(form.description)} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder={tx("Describe your campaign...")} rows={3} required />
+            <Textarea id="description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder={tx("Describe your campaign...")} rows={3} required />
           </div>
           <div>
             <Label htmlFor="goal">{tx("Goal Amount (ZAR) *")}</Label>

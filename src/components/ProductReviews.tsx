@@ -45,7 +45,7 @@ const StarRating = ({
           onClick={() => onRate?.(star)}
           onMouseEnter={() => interactive && setHovered(star)}
           onMouseLeave={() => interactive && setHovered(0)}
-          className={interactive ? tx("cursor-pointer") : tx("cursor-default")}
+          className={interactive ? "cursor-pointer" : "cursor-default"}
         >
           <Star
             className={`${size} transition-colors ${
@@ -167,7 +167,7 @@ const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
           </div>
         </div>
         <Button
-          variant={showForm ? tx("outline") : tx("default")}
+          variant={showForm ? "outline" : "default"}
           onClick={() => setShowForm(!showForm)}
         >
           {showForm ? tx("Cancel") : tx("Write a Review")}

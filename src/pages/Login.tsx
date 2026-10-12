@@ -231,7 +231,7 @@ const Login = () => {
                 {/* Quick Actions */}
                 <motion.div variants={fadeUp} className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {quickActions.map((action) => (
-                    <Link key={tx(action.label)} to={action.path}
+                    <Link key={action.label} to={action.path}
                       className="bg-card rounded-xl p-4 shadow-card border border-border hover:border-primary/30 hover:shadow-elevated transition-all group text-center">
                       <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
                         <action.icon className="w-5 h-5 text-primary" />
@@ -497,7 +497,7 @@ const Login = () => {
                   <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Password")}</label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input type={showPassword ? tx("text") : tx("password")} placeholder="••••••••" className="pl-10 pr-10" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Input type={showPassword ? "text" : "password"} placeholder="••••••••" className="pl-10 pr-10" required value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>

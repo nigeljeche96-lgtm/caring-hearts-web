@@ -87,14 +87,14 @@ const Contact = () => {
               <p className="text-muted-foreground">{t("contact.getInTouchDesc")}</p>
               <div className="space-y-4">
                 {contactInfo.map((c) => (
-                  <div key={tx(c.label)} className="flex items-start gap-3">
+                  <div key={c.label} className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                       <c.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">{tx(c.label)}</p>
                       {c.href ? (
-                        <a href={c.href} target={c.label === t("contact.address") ? tx("_blank") : undefined} rel="noopener noreferrer" className="text-sm text-primary hover:underline">{c.value}</a>
+                        <a href={c.href} target={c.label === t("contact.address") ? "_blank" : undefined} rel="noopener noreferrer" className="text-sm text-primary hover:underline">{c.value}</a>
                       ) : (
                         <p className="text-sm text-muted-foreground">{c.value}</p>
                       )}

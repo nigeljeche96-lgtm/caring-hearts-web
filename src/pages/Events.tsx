@@ -46,7 +46,7 @@ const Events = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event, i) => (
-              <motion.div key={tx(event.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={event.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl shadow-soft border border-border overflow-hidden flex flex-col group hover:shadow-card transition-shadow">
                 <div className="w-full bg-primary flex items-center justify-center text-primary-foreground p-5 gap-4">
                   <div className="text-center">

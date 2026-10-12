@@ -66,7 +66,7 @@ const BecomeVolunteer = () => {
           <SectionHeading label={t("volunteer.whyVolunteerLabel")} title={t("volunteer.whyVolunteerTitle")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((b, i) => (
-              <motion.div key={tx(b.title)} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              <motion.div key={b.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                 className="bg-card rounded-xl p-6 text-center shadow-soft">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <b.icon className="w-7 h-7 text-primary" />

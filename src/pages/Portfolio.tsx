@@ -63,7 +63,7 @@ const Portfolio = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filtered.map((project, i) => (
-              <motion.div key={tx(project.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={project.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl overflow-hidden shadow-soft border border-border group">
                 <div className="aspect-video overflow-hidden">
                   <img src={project.image} alt={tx(project.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />

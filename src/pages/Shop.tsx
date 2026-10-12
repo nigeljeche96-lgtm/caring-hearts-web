@@ -176,7 +176,7 @@ const Shop = () => {
           <div className="flex gap-1.5 min-w-max">
             {CATEGORIES.map((cat) => (
               <button
-                key={tx(cat.label)}
+                key={cat.label}
                 onClick={() => setActiveCategory(cat.label)}
                 className={`px-3 py-1.5 text-xs rounded-full border whitespace-nowrap transition-colors font-medium ${
                   activeCategory === cat.label

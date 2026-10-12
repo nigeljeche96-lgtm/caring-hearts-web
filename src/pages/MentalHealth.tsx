@@ -355,7 +355,7 @@ const MentalHealth = () => {
                       <SelectTrigger><SelectValue placeholder={tx("Select session type")} /></SelectTrigger>
                       <SelectContent>
                         {sessionTypes.map((t) => (
-                          <SelectItem key={t} value={t}>{t}</SelectItem>
+                          <SelectItem key={t} value={t}>{tx(t)}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -364,7 +364,7 @@ const MentalHealth = () => {
                   {selectedProvider && (
                     <>
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block"> {tx("Preferred Date")} <span className="text-xs text-muted-foreground">({selectedProfessional?.days.join(", ")})</span>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block"> {tx("Preferred Date")} <span className="text-xs text-muted-foreground">({selectedProfessional?.days.map(tx).join(", ")})</span>
                         </label>
                         <Popover>
                           <PopoverTrigger asChild>

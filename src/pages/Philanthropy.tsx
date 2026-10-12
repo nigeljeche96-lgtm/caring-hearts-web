@@ -101,7 +101,7 @@ const Philanthropy = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-3 gap-0">
               {stats.map((stat) => (
-                <div key={tx(stat.label)} className="bg-primary p-3 sm:p-6 text-center first:rounded-tl-xl last:rounded-tr-xl">
+                <div key={stat.label} className="bg-primary p-3 sm:p-6 text-center first:rounded-tl-xl last:rounded-tr-xl">
                   <div className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center mx-auto mb-2">
                     <stat.icon className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -166,7 +166,7 @@ const Philanthropy = () => {
           <p className="text-sm md:text-base text-primary-foreground/70 text-center mb-8">{t("stats.impactNote")}</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div key={tx(stat.label)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <p className="font-heading text-3xl md:text-5xl font-bold text-gold">{stat.value}</p>
                 <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{tx(stat.label)}</p>
               </motion.div>
@@ -180,7 +180,7 @@ const Philanthropy = () => {
         <div className="container mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
-              <motion.div key={tx(f.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={f.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <f.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
@@ -215,7 +215,7 @@ const Philanthropy = () => {
           <SectionHeading label={t("philanthropy.portfolioLabel")} title={t("philanthropy.portfolioTitle")} description={t("philanthropy.portfolioDesc")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {portfolioProjects.map((project, i) => (
-              <motion.div key={tx(project.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={project.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl overflow-hidden shadow-soft border border-border group">
                 <div className="aspect-video overflow-hidden">
                   <img src={project.image} alt={tx(project.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />

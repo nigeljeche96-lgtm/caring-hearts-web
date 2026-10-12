@@ -143,12 +143,12 @@ const SupportChat = () => {
 
             <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-background px-4 py-4">
               {messages.map((m, i) => (
-                <div key={i} className={m.role === "user" ? tx("flex justify-end") : tx("flex justify-start")}>
+                <div key={i} className={m.role === "user" ? "flex justify-end" : "flex justify-start"}>
                   <div
                     className={
                       m.role === "user"
-                        ? tx("max-w-[85%] rounded-2xl rounded-br-sm bg-primary px-3.5 py-2.5 text-sm text-primary-foreground")
-                        : tx("max-w-[92%] rounded-2xl rounded-bl-sm bg-secondary px-3.5 py-2.5 text-sm text-foreground")
+                        ? "max-w-[85%] rounded-2xl rounded-br-sm bg-primary px-3.5 py-2.5 text-sm text-primary-foreground"
+                        : "max-w-[92%] rounded-2xl rounded-bl-sm bg-secondary px-3.5 py-2.5 text-sm text-foreground"
                     }
                   >
                     {m.role === "assistant" ? (

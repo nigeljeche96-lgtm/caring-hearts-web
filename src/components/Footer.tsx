@@ -77,7 +77,7 @@ const Footer = () => {
             <p className="text-xs opacity-60">{t("footer.allRightsReserved")}</p>
             <div className="flex items-center gap-4">
               {socialLinks.map((s) => (
-                <a key={tx(s.label)} href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm opacity-70 hover:opacity-100 hover:text-gold transition-all">{tx(s.label)}</a>
+                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm opacity-70 hover:opacity-100 hover:text-gold transition-all">{tx(s.label)}</a>
               ))}
             </div>
           </div>

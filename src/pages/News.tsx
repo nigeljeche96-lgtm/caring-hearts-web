@@ -150,7 +150,7 @@ const News = () => {
           <SectionHeading label={tx("Blog & News")} title={tx("All Articles")} description={tx("Stay informed about mental health, humanitarian efforts, and community outreach across South Africa.")} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.slice(1).map((a, i) => (
-              <motion.article key={tx(a.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.article key={a.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl overflow-hidden shadow-soft border border-border group cursor-pointer hover:shadow-card transition-shadow"
                 onClick={() => setSelectedArticle(a)}>
                 <div className="aspect-video overflow-hidden relative">
