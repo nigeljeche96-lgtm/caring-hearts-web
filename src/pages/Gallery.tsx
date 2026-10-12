@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion, AnimatePresence } from "framer-motion";
@@ -182,6 +183,7 @@ const images = [
 ];
 
 const Gallery = () => {
+  const tx = useSiteCopy();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = (i: number) => setLightboxIndex(i);
@@ -192,11 +194,11 @@ const Gallery = () => {
   return (
     <div>
 
-      <SEO title="Photo Gallery — World Changers MHCO" description="Photos from our programs, outreach campaigns, events and community wellness initiatives across Southern Africa." path="/gallery" />
-      <PageHero title="Gallery" subtitle="Moments that capture our impact" bgImage={philanthropyBg} />
+      <SEO title={tx("Photo Gallery — World Changers MHCO")} description={tx("Photos from our programs, outreach campaigns, events and community wellness initiatives across Southern Africa.")} path="/gallery" />
+      <PageHero title={tx("Gallery")} subtitle={tx("Moments that capture our impact")} bgImage={philanthropyBg} />
       <section className="section-padding">
         <div className="container mx-auto">
-          <SectionHeading label="Visual Impact" title="Our Work in Pictures" />
+          <SectionHeading label={tx("Visual Impact")} title={tx("Our Work in Pictures")} />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {images.map((img, i) => (
               <motion.div
@@ -224,9 +226,9 @@ const Gallery = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
             onClick={closeLightbox}>
-            <button onClick={closeLightbox} aria-label="Close image viewer" className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
-            <button onClick={(e) => { e.stopPropagation(); prev(); }} aria-label="Previous image" className="absolute left-4 text-white/80 hover:text-white z-10"><ChevronLeft className="w-10 h-10" /></button>
-            <button onClick={(e) => { e.stopPropagation(); next(); }} aria-label="Next image" className="absolute right-4 text-white/80 hover:text-white z-10"><ChevronRight className="w-10 h-10" /></button>
+            <button onClick={closeLightbox} aria-label={tx("Close image viewer")} className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
+            <button onClick={(e) => { e.stopPropagation(); prev(); }} aria-label={tx("Previous image")} className="absolute left-4 text-white/80 hover:text-white z-10"><ChevronLeft className="w-10 h-10" /></button>
+            <button onClick={(e) => { e.stopPropagation(); next(); }} aria-label={tx("Next image")} className="absolute right-4 text-white/80 hover:text-white z-10"><ChevronRight className="w-10 h-10" /></button>
             <motion.img
               key={lightboxIndex}
               initial={{ opacity: 0, scale: 0.9 }}

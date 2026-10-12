@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { Link } from "react-router-dom";
 import { Mail, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +14,7 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
 
   return (
@@ -21,15 +23,11 @@ const Footer = () => {
       <div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10">
           <div className="col-span-2 lg:col-span-1">
-            <h4 className="font-heading text-base font-semibold mb-4">World Changers MHC</h4>
-            <p className="text-sm opacity-70 leading-relaxed mb-4">
-              NGO REG: 238-677<br />
-              PBO Number: 930084594<br /><br />
-              Your donations are eligible for tax deduction.
-            </p>
+            <h4 className="font-heading text-base font-semibold mb-4">{tx("World Changers MHC")}</h4>
+            <p className="text-sm opacity-70 leading-relaxed mb-4"> {tx("NGO REG: 238-677")}<br /> {tx("PBO Number: 930084594")}<br /><br /> {tx("Your donations are eligible for tax deduction.")} </p>
           </div>
           <div>
-            <h4 className="font-heading text-base font-semibold mb-4">Organisation</h4>
+            <h4 className="font-heading text-base font-semibold mb-4">{tx("Organisation")}</h4>
             <ul className="space-y-2 text-sm opacity-70">
               <li><Link to="/" className="hover:opacity-100 hover:text-gold transition-all">{t("nav.home")}</Link></li>
               <li><Link to="/about" className="hover:opacity-100 hover:text-gold transition-all">{t("nav.about")}</Link></li>
@@ -37,23 +35,23 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-heading text-base font-semibold mb-4">Our Work</h4>
+            <h4 className="font-heading text-base font-semibold mb-4">{tx("Our Work")}</h4>
             <ul className="space-y-2 text-sm opacity-70">
-              <li><Link to="/mental-health" className="hover:opacity-100 hover:text-gold transition-all">Mental Health Services</Link></li>
-              <li><Link to="/philanthropy" className="hover:opacity-100 hover:text-gold transition-all">Programmes & Impact</Link></li>
+              <li><Link to="/mental-health" className="hover:opacity-100 hover:text-gold transition-all">{tx("Mental Health Services")}</Link></li>
+              <li><Link to="/philanthropy" className="hover:opacity-100 hover:text-gold transition-all">{tx("Programmes & Impact")}</Link></li>
               <li><Link to="/events" className="hover:opacity-100 hover:text-gold transition-all">{t("nav.events")}</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-heading text-base font-semibold mb-4">Get Involved</h4>
+            <h4 className="font-heading text-base font-semibold mb-4">{tx("Get Involved")}</h4>
             <ul className="space-y-2 text-sm opacity-70">
               <li><Link to="/become-volunteer" className="hover:opacity-100 hover:text-gold transition-all">{t("nav.becomeVolunteer")}</Link></li>
               <li><Link to="/donation" className="hover:opacity-100 hover:text-gold transition-all">{t("nav.donateNow")}</Link></li>
             </ul>
-            <h4 className="font-heading text-base font-semibold mt-6 mb-4">Legal</h4>
+            <h4 className="font-heading text-base font-semibold mt-6 mb-4">{tx("Legal")}</h4>
             <ul className="space-y-2 text-sm opacity-70">
-              <li><Link to="/policies#privacy" className="hover:opacity-100 hover:text-gold transition-all">Privacy Policy</Link></li>
-              <li><Link to="/policies#terms" className="hover:opacity-100 hover:text-gold transition-all">Terms &amp; Conditions</Link></li>
+              <li><Link to="/policies#privacy" className="hover:opacity-100 hover:text-gold transition-all">{tx("Privacy Policy")}</Link></li>
+              <li><Link to="/policies#terms" className="hover:opacity-100 hover:text-gold transition-all">{tx("Terms &amp; Conditions")}</Link></li>
             </ul>
 
           </div>
@@ -69,7 +67,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-accent" />
-                <a href="https://maps.google.com/?q=114+George+Street,+Kenilworth,+Johannesburg,+2190" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-gold transition-all">114 George Street, Kenilworth, Johannesburg, 2190</a>
+                <a href="https://maps.google.com/?q=114+George+Street,+Kenilworth,+Johannesburg,+2190" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-gold transition-all">{tx("114 George Street, Kenilworth, Johannesburg, 2190")}</a>
               </li>
             </ul>
           </div>
@@ -79,7 +77,7 @@ const Footer = () => {
             <p className="text-xs opacity-60">{t("footer.allRightsReserved")}</p>
             <div className="flex items-center gap-4">
               {socialLinks.map((s) => (
-                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm opacity-70 hover:opacity-100 hover:text-gold transition-all">{s.label}</a>
+                <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm opacity-70 hover:opacity-100 hover:text-gold transition-all">{tx(s.label)}</a>
               ))}
             </div>
           </div>

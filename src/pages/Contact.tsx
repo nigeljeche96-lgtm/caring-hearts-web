@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -13,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import aboutBg from "@/assets/about-bg.jpg";
 
 const Contact = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,7 +44,7 @@ const Contact = () => {
       supabase.functions.invoke("send-contact-notification", { body: form }).catch(console.warn);
     } catch (err: any) {
       console.error(err);
-      toast.error("Failed to send message. Please try again.");
+      toast.error(tx("Failed to send message. Please try again."));
     } finally { setLoading(false); }
   };
 
@@ -55,16 +57,16 @@ const Contact = () => {
       });
       if (error) {
         if (error.code === '23505') {
-          toast.info("You're already subscribed!");
+          toast.info(tx("You're already subscribed!"));
         } else {
           throw error;
         }
       }
       setNewsletterSubmitted(true);
-      toast.success("Successfully subscribed!");
+      toast.success(tx("Successfully subscribed!"));
     } catch (err: any) {
       console.error(err);
-      toast.error("Failed to subscribe. Please try again.");
+      toast.error(tx("Failed to subscribe. Please try again."));
     } finally {
       setNewsletterLoading(false);
     }
@@ -73,7 +75,7 @@ const Contact = () => {
   return (
     <div>
 
-      <SEO title="Contact World Changers MHCO" description="Get in touch with World Changers Mental Health Care Organisation in Kenilworth, South Africa. Email, address and contact form." path="/contact" jsonLd={{"@context":"https://schema.org","@type":"LocalBusiness","name":"World Changers Mental Health Care Organisation","email":"info@worldchangersmh.org","url":"https://worldchangersmh.org/contact","address":{"@type":"PostalAddress","streetAddress":"114 George Street","addressLocality":"Kenilworth","addressCountry":"ZA"},"openingHours":"Mo-Fr 09:00-17:00"}} />
+      <SEO title={tx("Contact World Changers MHCO")} description={tx("Get in touch with World Changers Mental Health Care Organisation in Kenilworth, South Africa. Email, address and contact form.")} path="/contact" jsonLd={{"@context":"https://schema.org","@type":"LocalBusiness","name":"World Changers Mental Health Care Organisation","email":"info@worldchangersmh.org","url":"https://worldchangersmh.org/contact","address":{"@type":"PostalAddress","streetAddress":"114 George Street","addressLocality":"Kenilworth","addressCountry":"ZA"},"openingHours":"Mo-Fr 09:00-17:00"}} />
       <PageHero title={t("contact.heroTitle")} subtitle={t("contact.heroSubtitle")} bgImage={aboutBg} />
 
       <section className="section-padding">
@@ -90,7 +92,7 @@ const Contact = () => {
                       <c.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-foreground">{c.label}</p>
+                      <p className="text-sm font-medium text-foreground">{tx(c.label)}</p>
                       {c.href ? (
                         <a href={c.href} target={c.label === t("contact.address") ? "_blank" : undefined} rel="noopener noreferrer" className="text-sm text-primary hover:underline">{c.value}</a>
                       ) : (
@@ -117,7 +119,7 @@ const Contact = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.fullName")}</label>
-                      <Input placeholder="John Doe" required value={form.full_name} onChange={(e) => updateField("full_name", e.target.value)} maxLength={100} />
+                      <Input placeholder={tx("John Doe")} required value={form.full_name} onChange={(e) => updateField("full_name", e.target.value)} maxLength={100} />
                     </div>
                     <div>
                       <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.emailLabel")}</label>
@@ -126,14 +128,14 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.subject")}</label>
-                    <Input placeholder="How can we help?" required value={form.subject} onChange={(e) => updateField("subject", e.target.value)} maxLength={200} />
+                    <Input placeholder={tx("How can we help?")} required value={form.subject} onChange={(e) => updateField("subject", e.target.value)} maxLength={200} />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.message")}</label>
-                    <Textarea placeholder="Tell us more..." rows={5} required value={form.message} onChange={(e) => updateField("message", e.target.value)} maxLength={2000} />
+                    <Textarea placeholder={tx("Tell us more...")} rows={5} required value={form.message} onChange={(e) => updateField("message", e.target.value)} maxLength={2000} />
                   </div>
                   <Button type="submit" size="lg" className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90" disabled={loading}>
-                    {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</> : <>{t("common.sendMessage")} <Send className="w-4 h-4 ml-2" /></>}
+                    {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {tx("Sending...")}</> : <>{t("common.sendMessage")} <Send className="w-4 h-4 ml-2" /></>}
                   </Button>
                 </form>
               )}
@@ -176,7 +178,7 @@ const Contact = () => {
         </div>
         <div className="w-full h-[450px]">
           <iframe src="https://maps.google.com/maps?q=114%20George%20Street%2C%20Kenilworth%2C%20Johannesburg%2C%202190&output=embed"
-            width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="World Changers MHC Location" />
+            width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title={tx("World Changers MHC Location")} />
         </div>
       </section>
     </div>

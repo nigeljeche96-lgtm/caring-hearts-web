@@ -1,5 +1,8 @@
 # WCMHCO overhaul roadmap
 
+- [ ] Current request: Complete missing translations across pages, forms, donation controls, professional biographies and shared navigation.
+- [ ] Current request: Verify language switching across the site without changing form values or payment behavior.
+
 - [ ] Phase 1: Donation navigation and same-page checkout foundation
 - [x] Phase 1: Remove unsupported public impact figures and false document listings (figures dated as cumulative, South Africa, 2017–2026 — confirmed by owner 2026-09-28)
 - [ ] Phase 1: Publish substantial Privacy Policy and Terms & Conditions

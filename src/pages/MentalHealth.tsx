@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useRef, useEffect } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -112,6 +113,7 @@ const fadeUp = {
 };
 
 const MentalHealth = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [date, setDate] = useState<Date>();
@@ -161,7 +163,7 @@ const MentalHealth = () => {
       const { error } = await supabase.from("bookings").insert(bookingData);
       if (error) throw error;
       setBookingSubmitted(true);
-      toast.success("Booking confirmed!");
+      toast.success(tx("Booking confirmed!"));
 
       // Send confirmation email (fire-and-forget)
       supabase.functions.invoke("send-booking-confirmation", {
@@ -180,7 +182,7 @@ const MentalHealth = () => {
       }).then(({ error: emailErr }) => {
         if (emailErr) {
           console.error("Booking notification email failed:", emailErr);
-          toast.warning("Booking saved, but the confirmation email could not be sent. Our team will follow up.");
+          toast.warning(tx("Booking saved, but the confirmation email could not be sent. Our team will follow up."));
         }
       });
     } catch (err: any) {
@@ -193,7 +195,7 @@ const MentalHealth = () => {
   return (
     <div>
 
-      <SEO title="Mental Health Care Programs & Booking — World Changers" description="Book counseling, therapy and wellness programs with our qualified mental health providers. Confidential care across Southern Africa." path="/mental-health" />
+      <SEO title={tx("Mental Health Care Programs & Booking — World Changers")} description={tx("Book counseling, therapy and wellness programs with our qualified mental health providers. Confidential care across Southern Africa.")} path="/mental-health" />
       <PageHero title={t("mentalHealth.heroTitle")} subtitle={t("mentalHealth.heroSubtitle")} bgImage={mentalHealthBg} />
 
       {/* Booking headline */}
@@ -237,7 +239,7 @@ const MentalHealth = () => {
                 <div className="font-bold">31393 / 32312</div>
               </a>
               <a href="https://wa.me/27768822775" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
-                <div className="text-[11px] opacity-90">WhatsApp (9am–5pm)</div>
+                <div className="text-[11px] opacity-90">{tx("WhatsApp (9am–5pm)")}</div>
                 <div className="font-bold">076 882 2775</div>
               </a>
             </div>
@@ -287,7 +289,7 @@ const MentalHealth = () => {
           <div className="container mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               className="max-w-2xl mx-auto bg-card rounded-2xl p-8 shadow-card border border-border relative">
-              <button onClick={() => { setBookingOpen(false); setBookingSubmitted(false); }} aria-label="Close booking form" className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
+              <button onClick={() => { setBookingOpen(false); setBookingSubmitted(false); }} aria-label={tx("Close booking form")} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
                 <X className="w-5 h-5" />
               </button>
 
@@ -296,9 +298,9 @@ const MentalHealth = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <CalendarDays className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-foreground mb-2">Booking Confirmed!</h3>
-                  <p className="text-muted-foreground">Your 60-minute virtual {sessionType} session with {selectedProvider} is scheduled for {date && format(date, "PPP")} at {time}.</p>
-                  <p className="text-sm text-muted-foreground mt-2">An acknowledgement email has been sent to {bookingEmail || "your email address"}. Your professional will be in touch shortly.</p>
+                  <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{tx("Booking Confirmed!")}</h3>
+                  <p className="text-muted-foreground">{tx("Your 60-minute virtual")} {sessionType} {tx("session with")} {selectedProvider} {tx("is scheduled for")} {date && format(date, "PPP")} {tx("at")} {time}.</p>
+                  <p className="text-sm text-muted-foreground mt-2">{tx("An acknowledgement email has been sent to")} {bookingEmail || "your email address"}{tx(". Your professional will be in touch shortly.")}</p>
                   <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center">
                     <a
                       href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Virtual ${sessionType} — ${selectedProvider}`)}&dates=${date ? format(date, "yyyyMMdd") : ""}T${time.replace(":", "")}00/${date ? format(date, "yyyyMMdd") : ""}T${(() => { const [h, m] = time.split(":").map(Number); return `${String(h + 1).padStart(2, "0")}${String(m).padStart(2, "0")}`; })()}00&details=${encodeURIComponent(`Virtual session with ${selectedProvider}\nType: ${sessionType}\nMode: Virtual`)}&location=Virtual`}
@@ -306,57 +308,54 @@ const MentalHealth = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity"
                     >
-                      <CalendarDays className="w-4 h-4" /> Add to Google Calendar <ExternalLink className="w-3.5 h-3.5" />
+                      <CalendarDays className="w-4 h-4" /> {tx("Add to Google Calendar")} <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                     <Button onClick={() => { setBookingSubmitted(false); setDate(undefined); setTime(""); setSessionType(""); setSelectedProvider(""); setBookingName(""); setBookingEmail(""); setBookingPhone(""); setBookingReason(""); }}
-                      variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                      Book Another Session
-                    </Button>
+                      variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"> {tx("Book Another Session")} </Button>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleBookingSubmit} className="space-y-5">
-                  <h3 className="font-heading text-xl font-bold text-foreground mb-2">Schedule Your Virtual Session</h3>
-                  <p className="text-sm text-muted-foreground mb-2">All sessions are 60 minutes and conducted virtually. Select your preferred provider to see their availability.</p>
+                  <h3 className="font-heading text-xl font-bold text-foreground mb-2">{tx("Schedule Your Virtual Session")}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">{tx("All sessions are 60 minutes and conducted virtually. Select your preferred provider to see their availability.")}</p>
                   <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
-                    <Video className="w-3.5 h-3.5" /> Session Mode: Virtual
-                  </div>
+                    <Video className="w-3.5 h-3.5" /> {tx("Session Mode: Virtual")} </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Full Name</label>
-                      <Input placeholder="Your name" required value={bookingName} onChange={(e) => setBookingName(e.target.value)} />
+                      <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Full Name")}</label>
+                      <Input placeholder={tx("Your name")} required value={bookingName} onChange={(e) => setBookingName(e.target.value)} />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
+                      <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Email")}</label>
                       <Input type="email" placeholder="your@email.com" required value={bookingEmail} onChange={(e) => setBookingEmail(e.target.value)} />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Phone Number</label>
-                    <Input type="tel" placeholder="+27 XX XXX XXXX" required value={bookingPhone} onChange={(e) => setBookingPhone(e.target.value)} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Phone Number")}</label>
+                    <Input type="tel" placeholder={tx("+27 XX XXX XXXX")} required value={bookingPhone} onChange={(e) => setBookingPhone(e.target.value)} />
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Preferred Provider</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Preferred Provider")}</label>
                     <Select value={selectedProvider} onValueChange={(val) => { setSelectedProvider(val); setDate(undefined); setTime(""); }}>
-                      <SelectTrigger><SelectValue placeholder="Select a provider" /></SelectTrigger>
+                      <SelectTrigger><SelectValue placeholder={tx("Select a provider")} /></SelectTrigger>
                       <SelectContent>
                         {professionals.map((p) => (
-                          <SelectItem key={p.name} value={p.name}>{p.name} — {p.specialty}</SelectItem>
+                          <SelectItem key={p.name} value={p.name}>{p.name} — {tx(p.specialty)}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Session Type</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Session Type")}</label>
                     <Select value={sessionType} onValueChange={setSessionType} required>
-                      <SelectTrigger><SelectValue placeholder="Select session type" /></SelectTrigger>
+                      <SelectTrigger><SelectValue placeholder={tx("Select session type")} /></SelectTrigger>
                       <SelectContent>
                         {sessionTypes.map((t) => (
-                          <SelectItem key={t} value={t}>{t}</SelectItem>
+                          <SelectItem key={t} value={t}>{tx(t)}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -365,14 +364,13 @@ const MentalHealth = () => {
                   {selectedProvider && (
                     <>
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">
-                          Preferred Date <span className="text-xs text-muted-foreground">({selectedProfessional?.days.join(", ")})</span>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block"> {tx("Preferred Date")} <span className="text-xs text-muted-foreground">({selectedProfessional?.days.map(tx).join(", ")})</span>
                         </label>
                         <Popover>
                           <PopoverTrigger asChild>
                             <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !date && "text-muted-foreground")}>
                               <CalendarDays className="mr-2 h-4 w-4" />
-                              {date ? format(date, "PPP") : "Pick a date"}
+                              {date ? format(date, "PPP") : tx("Pick a date")}
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
@@ -390,7 +388,7 @@ const MentalHealth = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium text-foreground mb-1.5 block">Preferred Time</label>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Preferred Time")}</label>
                         <div className="grid grid-cols-4 gap-2">
                           {availableTimes.map((slot) => (
                             <button key={slot} type="button" onClick={() => setTime(slot)}
@@ -407,13 +405,13 @@ const MentalHealth = () => {
                   )}
 
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Brief Reason for Visit</label>
-                    <Textarea placeholder="Please briefly describe the reason for your visit..." rows={3} value={bookingReason} onChange={(e) => setBookingReason(e.target.value)} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Brief Reason for Visit")}</label>
+                    <Textarea placeholder={tx("Please briefly describe the reason for your visit...")} rows={3} value={bookingReason} onChange={(e) => setBookingReason(e.target.value)} />
                   </div>
 
                   <Button type="submit" size="lg" className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
                     disabled={!date || !time || !sessionType || !selectedProvider || submitting}>
-                    {submitting ? "Booking..." : "Confirm Booking"}
+                    {submitting ? tx("Booking...") : tx("Confirm Booking")}
                   </Button>
                 </form>
               )}
@@ -425,7 +423,7 @@ const MentalHealth = () => {
       {/* Professionals */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <SectionHeading label="Our Professionals" title="Meet the Experts Who Care" description="Review our providers below and choose your preferred professional when booking." />
+          <SectionHeading label={tx("Our Professionals")} title={tx("Meet the Experts Who Care")} description={tx("Review our providers below and choose your preferred professional when booking.")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {professionals.map((p, i) => (
               <motion.div key={p.name} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
@@ -442,20 +440,19 @@ const MentalHealth = () => {
                   </div>
                   <div className="min-w-0">
                     <h3 className="font-heading text-base font-semibold text-foreground">{p.name}</h3>
-                    <p className="text-primary text-sm font-medium mt-0.5">{p.role}</p>
-                    <p className="text-muted-foreground text-xs mt-0.5">{p.specialty}</p>
+                    <p className="text-primary text-sm font-medium mt-0.5">{tx(p.role)}</p>
+                    <p className="text-muted-foreground text-xs mt-0.5">{tx(p.specialty)}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      <span className="font-medium text-foreground">Available:</span> By Appointment only
-                    </p>
+                      <span className="font-medium text-foreground">{tx("Available:")}</span> {tx("By Appointment only")} </p>
                   </div>
                 </div>
                 <div className="px-5 pb-5">
                   <p className={cn("text-sm text-muted-foreground leading-relaxed", expandedBio !== p.name && "line-clamp-3")}>
-                    {p.bio}
+                    {tx(p.bio)}
                   </p>
                   <button onClick={() => setExpandedBio(expandedBio === p.name ? null : p.name)}
                     className="text-xs text-primary font-medium mt-2 hover:underline">
-                    {expandedBio === p.name ? "Show Less" : "Read Full Bio"}
+                    {expandedBio === p.name ? tx("Show Less") : tx("Read Full Bio")}
                   </button>
                 </div>
               </motion.div>
@@ -475,8 +472,8 @@ const MentalHealth = () => {
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-hero-gradient transition-all">
                   <p.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
-                <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{p.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                <h3 className="font-heading text-xl font-semibold text-foreground mb-2">{tx(p.title)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{tx(p.desc)}</p>
               </motion.div>
             ))}
           </div>
@@ -486,18 +483,18 @@ const MentalHealth = () => {
       {/* YouTube Videos */}
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
-          <SectionHeading label="Watch & Learn" title="Mental Health Videos" description="Educational videos on mental health awareness and wellbeing." />
+          <SectionHeading label={tx("Watch & Learn")} title={tx("Mental Health Videos")} description={tx("Educational videos on mental health awareness and wellbeing.")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {youtubeVideos.map((video, i) => (
               <motion.div key={video.id} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="rounded-xl overflow-hidden shadow-soft border border-border bg-card">
                 <div className="aspect-video">
-                  <iframe src={`https://www.youtube.com/embed/${video.id}`} title={video.title}
+                  <iframe src={`https://www.youtube.com/embed/${video.id}`} title={tx(video.title)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen className="w-full h-full" />
                 </div>
                 <div className="p-3">
-                  <p className="text-sm font-medium text-foreground flex items-center gap-2"><Play className="w-3.5 h-3.5 text-primary" /> {video.title}</p>
+                  <p className="text-sm font-medium text-foreground flex items-center gap-2"><Play className="w-3.5 h-3.5 text-primary" /> {tx(video.title)}</p>
                 </div>
               </motion.div>
             ))}

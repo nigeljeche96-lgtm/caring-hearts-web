@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -38,6 +39,7 @@ const loadMessages = (): ChatMessage[] => {
 };
 
 const SupportChat = () => {
+  const tx = useSiteCopy();
   const location = useLocation();
   const onShopPages = location.pathname.startsWith("/shop") || location.pathname.startsWith("/product");
   const stackOffset = onShopPages ? "bottom-20 sm:bottom-24" : "bottom-4 sm:bottom-6";
@@ -127,12 +129,12 @@ const SupportChat = () => {
                 <HeartHandshake className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="font-heading text-sm font-semibold leading-tight">Nelly — Help Assistant</p>
-                <p className="text-xs text-primary-foreground/80">World Changers MHCO</p>
+                <p className="font-heading text-sm font-semibold leading-tight">{tx("Nelly — Help Assistant")}</p>
+                <p className="text-xs text-primary-foreground/80">{tx("World Changers MHCO")}</p>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                aria-label="Close chat"
+                aria-label={tx("Close chat")}
                 className="rounded-full p-1.5 transition-colors hover:bg-primary-foreground/15"
               >
                 <X className="h-4 w-4" />
@@ -178,8 +180,7 @@ const SupportChat = () => {
               {loading && messages[messages.length - 1]?.role === "user" && (
                 <div className="flex justify-start">
                   <div className="flex items-center gap-2 rounded-2xl rounded-bl-sm bg-secondary px-3.5 py-2.5 text-sm text-muted-foreground">
-                    <Loader2 className="h-4 w-4 animate-spin" /> Typing…
-                  </div>
+                    <Loader2 className="h-4 w-4 animate-spin" /> {tx("Typing…")} </div>
                 </div>
               )}
 
@@ -195,7 +196,7 @@ const SupportChat = () => {
                       onClick={() => send(s)}
                       className="block w-full rounded-xl border border-border bg-card px-3 py-2 text-left text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                     >
-                      {s}
+                      {tx(s)}
                     </button>
                   ))}
                 </div>
@@ -220,11 +221,11 @@ const SupportChat = () => {
                   }
                 }}
                 rows={1}
-                placeholder="Ask us anything…"
-                aria-label="Type your message"
+                placeholder={tx("Ask us anything…")}
+                aria-label={tx("Type your message")}
                 className="max-h-28 min-h-[42px] flex-1 resize-none rounded-xl border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
               />
-              <Button type="submit" size="icon" disabled={loading || !input.trim()} className="h-[42px] w-[42px] shrink-0 rounded-xl" aria-label="Send message">
+              <Button type="submit" size="icon" disabled={loading || !input.trim()} className="h-[42px] w-[42px] shrink-0 rounded-xl" aria-label={tx("Send message")}>
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
               </Button>
             </form>
@@ -235,11 +236,11 @@ const SupportChat = () => {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          aria-label="Open help chat"
+          aria-label={tx("Open help chat")}
           className={`fixed ${stackOffset} right-4 z-[60] flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-105 sm:right-6`}
         >
           <MessageCircle className="h-5 w-5" />
-          <span className="hidden sm:inline">Need help?</span>
+          <span className="hidden sm:inline">{tx("Need help?")}</span>
         </button>
       )}
     </>

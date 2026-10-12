@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -13,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 
 const BecomeVolunteer = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,14 +51,14 @@ const BecomeVolunteer = () => {
       supabase.functions.invoke("send-volunteer-notification", { body: form }).catch(console.warn);
     } catch (err: any) {
       console.error(err);
-      toast.error("Failed to submit application. Please try again.");
+      toast.error(tx("Failed to submit application. Please try again."));
     } finally { setLoading(false); }
   };
 
   return (
     <div>
 
-      <SEO title="Become a Volunteer — World Changers MHCO" description="Join 2,000+ volunteers transforming mental health and community wellness across Southern Africa. Apply to volunteer today." path="/become-volunteer" />
+      <SEO title={tx("Become a Volunteer — World Changers MHCO")} description={tx("Join 2,000+ volunteers transforming mental health and community wellness across Southern Africa. Apply to volunteer today.")} path="/become-volunteer" />
       <PageHero title={t("volunteer.heroTitle")} subtitle={t("volunteer.heroSubtitle")} bgImage={philanthropyBg} />
 
       <section className="section-padding">
@@ -69,8 +71,8 @@ const BecomeVolunteer = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <b.icon className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{b.title}</h3>
-                <p className="text-sm text-muted-foreground">{b.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(b.title)}</h3>
+                <p className="text-sm text-muted-foreground">{tx(b.desc)}</p>
               </motion.div>
             ))}
           </div>
@@ -95,11 +97,11 @@ const BecomeVolunteer = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.fullName").split(" ")[0]} *</label>
-                    <Input placeholder="John" required value={form.first_name} onChange={(e) => updateField("first_name", e.target.value)} maxLength={100} />
+                    <Input placeholder={tx("John")} required value={form.first_name} onChange={(e) => updateField("first_name", e.target.value)} maxLength={100} />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Last Name *</label>
-                    <Input placeholder="Doe" required value={form.last_name} onChange={(e) => updateField("last_name", e.target.value)} maxLength={100} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Last Name *")}</label>
+                    <Input placeholder={tx("Doe")} required value={form.last_name} onChange={(e) => updateField("last_name", e.target.value)} maxLength={100} />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -114,77 +116,77 @@ const BecomeVolunteer = () => {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Date of Birth</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Date of Birth")}</label>
                     <Input type="date" value={form.date_of_birth} onChange={(e) => updateField("date_of_birth", e.target.value)} />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">City / Town</label>
-                    <Input placeholder="Johannesburg" value={form.city} onChange={(e) => updateField("city", e.target.value)} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("City / Town")}</label>
+                    <Input placeholder={tx("Johannesburg")} value={form.city} onChange={(e) => updateField("city", e.target.value)} />
                   </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.address")}</label>
-                  <Input placeholder="114 George Street, Kenilworth, Johannesburg, 2190" value={form.address} onChange={(e) => updateField("address", e.target.value)} />
+                  <Input placeholder={tx("114 George Street, Kenilworth, Johannesburg, 2190")} value={form.address} onChange={(e) => updateField("address", e.target.value)} />
                 </div>
 
                 <h4 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-3 pt-4">{t("volunteer.volunteerDetails")}</h4>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Area of Interest *</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Area of Interest *")}</label>
                     <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required value={form.area_of_interest} onChange={(e) => updateField("area_of_interest", e.target.value)}>
-                      <option value="">Select an area</option>
-                      <option>Mental Health Outreach</option>
-                      <option>Community Counseling</option>
-                      <option>Youth Programs</option>
-                      <option>Fundraising & Events</option>
-                      <option>Administrative Support</option>
-                      <option>Social Media & Marketing</option>
+                      <option value="">{tx("Select an area")}</option>
+                      <option value={"Mental Health Outreach"}>{tx("Mental Health Outreach")}</option>
+                      <option value={"Community Counseling"}>{tx("Community Counseling")}</option>
+                      <option value={"Youth Programs"}>{tx("Youth Programs")}</option>
+                      <option value={"Fundraising & Events"}>{tx("Fundraising & Events")}</option>
+                      <option value={"Administrative Support"}>{tx("Administrative Support")}</option>
+                      <option value={"Social Media & Marketing"}>{tx("Social Media & Marketing")}</option>
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Availability *</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Availability *")}</label>
                     <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required value={form.availability} onChange={(e) => updateField("availability", e.target.value)}>
-                      <option value="">Select availability</option>
-                      <option>Weekdays (Morning)</option>
-                      <option>Weekdays (Afternoon)</option>
-                      <option>Weekends</option>
-                      <option>Evenings</option>
-                      <option>Flexible / Remote</option>
+                      <option value="">{tx("Select availability")}</option>
+                      <option value={"Weekdays (Morning)"}>{tx("Weekdays (Morning)")}</option>
+                      <option value={"Weekdays (Afternoon)"}>{tx("Weekdays (Afternoon)")}</option>
+                      <option value={"Weekends"}>{tx("Weekends")}</option>
+                      <option value={"Evenings"}>{tx("Evenings")}</option>
+                      <option value={"Flexible / Remote"}>{tx("Flexible / Remote")}</option>
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Previous Volunteer Experience</label>
-                  <Textarea placeholder="Describe any relevant experience..." rows={3} value={form.previous_experience} onChange={(e) => updateField("previous_experience", e.target.value)} />
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Previous Volunteer Experience")}</label>
+                  <Textarea placeholder={tx("Describe any relevant experience...")} rows={3} value={form.previous_experience} onChange={(e) => updateField("previous_experience", e.target.value)} />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Why do you want to volunteer with us? *</label>
-                  <Textarea placeholder="Tell us about your motivation..." rows={4} required value={form.motivation} onChange={(e) => updateField("motivation", e.target.value)} maxLength={2000} />
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Why do you want to volunteer with us? *")}</label>
+                  <Textarea placeholder={tx("Tell us about your motivation...")} rows={4} required value={form.motivation} onChange={(e) => updateField("motivation", e.target.value)} maxLength={2000} />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Special Skills or Qualifications</label>
-                  <Textarea placeholder="Languages spoken, certifications, etc." rows={3} value={form.special_skills} onChange={(e) => updateField("special_skills", e.target.value)} />
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Special Skills or Qualifications")}</label>
+                  <Textarea placeholder={tx("Languages spoken, certifications, etc.")} rows={3} value={form.special_skills} onChange={(e) => updateField("special_skills", e.target.value)} />
                 </div>
 
                 <h4 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-3 pt-4">{t("volunteer.emergencyContact")}</h4>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Emergency Contact Name</label>
-                    <Input placeholder="Full name" value={form.emergency_contact_name} onChange={(e) => updateField("emergency_contact_name", e.target.value)} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Emergency Contact Name")}</label>
+                    <Input placeholder={tx("Full name")} value={form.emergency_contact_name} onChange={(e) => updateField("emergency_contact_name", e.target.value)} />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Emergency Contact Phone</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Emergency Contact Phone")}</label>
                     <Input type="tel" placeholder="+27 ..." value={form.emergency_contact_phone} onChange={(e) => updateField("emergency_contact_phone", e.target.value)} />
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2 pt-2">
                   <input type="checkbox" required className="mt-1 rounded border-input" />
-                  <label className="text-sm text-muted-foreground">I agree to the terms and conditions and understand that my information will be used for volunteer coordination purposes only.</label>
+                  <label className="text-sm text-muted-foreground">{tx("I agree to the terms and conditions and understand that my information will be used for volunteer coordination purposes only.")}</label>
                 </div>
 
                 <Button type="submit" size="lg" className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90" disabled={loading}>
-                  {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting...</> : <>{t("common.submitApplication")} <ArrowRight className="w-4 h-4 ml-2" /></>}
+                  {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {tx("Submitting...")}</> : <>{t("common.submitApplication")} <ArrowRight className="w-4 h-4 ml-2" /></>}
                 </Button>
               </motion.form>
             )}

@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -30,17 +31,18 @@ const fadeUp = {
 };
 
 const Events = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
 
   return (
     <div>
-      <SEO title="Events & Workshops — World Changers MHCO" description="Upcoming mental health awareness, wellness and fundraising events. Tickets coming soon." path="/events" />
+      <SEO title={tx("Events & Workshops — World Changers MHCO")} description={tx("Upcoming mental health awareness, wellness and fundraising events. Tickets coming soon.")} path="/events" />
       <PageHero title={t("events.heroTitle")} subtitle={t("events.heroSubtitle")} bgImage={eventsHero} globe />
 
       {/* Events List */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <SectionHeading label={t("events.eventsLabel")} title={t("events.eventsTitle")} description="Save the date for our upcoming events. Ticket details will be shared soon." />
+          <SectionHeading label={t("events.eventsLabel")} title={t("events.eventsTitle")} description={tx("Save the date for our upcoming events. Ticket details will be shared soon.")} />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event, i) => (
@@ -48,37 +50,31 @@ const Events = () => {
                 className="bg-card rounded-xl shadow-soft border border-border overflow-hidden flex flex-col group hover:shadow-card transition-shadow">
                 <div className="w-full bg-primary flex items-center justify-center text-primary-foreground p-5 gap-4">
                   <div className="text-center">
-                    <span className="block text-xs uppercase font-semibold opacity-80">{event.monthLabel}</span>
+                    <span className="block text-xs uppercase font-semibold opacity-80">{tx(event.monthLabel)}</span>
                     <span className="block font-heading text-3xl font-bold">{event.year}</span>
                   </div>
                   <span className="ml-auto inline-flex items-center gap-1 bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                    {event.registerUrl ? <><Ticket className="w-3 h-3" /> Registration Open</> : <><Bell className="w-3 h-3" /> Coming Soon</>}
+                    {event.registerUrl ? <><Ticket className="w-3 h-3" /> {tx("Registration Open")}</> : <><Bell className="w-3 h-3" /> {tx("Coming Soon")}</>}
                   </span>
                 </div>
                 <div className="p-5 flex-1 flex flex-col">
-                  <span className="text-xs font-medium text-accent">{event.category}</span>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{event.title}</h3>
+                  <span className="text-xs font-medium text-accent">{tx(event.category)}</span>
+                  <h3 className="font-heading text-lg font-semibold text-foreground mt-1">{tx(event.title)}</h3>
                   <div className="flex flex-wrap gap-4 mt-3 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {event.dateNote}</span>
-                    <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {event.location}</span>
+                    <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {tx(event.dateNote)}</span>
+                    <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {tx(event.location)}</span>
                   </div>
                   {event.registerUrl ? (
                     <>
-                      <p className="text-xs text-muted-foreground mt-4 italic">
-                        Individual – R3 000 · Four-Ball – R10 000. Includes 18 holes + cart access, lunch &amp; drinks, contests and prize-giving dinner.
-                      </p>
+                      <p className="text-xs text-muted-foreground mt-4 italic"> {tx("Individual – R3 000 · Four-Ball – R10 000. Includes 18 holes + cart access, lunch &amp; drinks, contests and prize-giving dinner.")} </p>
                       <Button asChild size="sm" className="mt-4 bg-hero-gradient text-primary-foreground hover:opacity-90">
-                        <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">Register &amp; Buy Tickets</a>
+                        <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">{tx("Register &amp; Buy Tickets")}</a>
                       </Button>
                     </>
                   ) : (
                     <>
-                      <p className="text-xs text-muted-foreground mt-4 italic">
-                        Ticket sales are not yet open. Visitors will be notified once tickets become available.
-                      </p>
-                      <Button size="sm" disabled className="mt-4 bg-muted text-muted-foreground cursor-not-allowed">
-                        Tickets Coming Soon
-                      </Button>
+                      <p className="text-xs text-muted-foreground mt-4 italic"> {tx("Ticket sales are not yet open. Visitors will be notified once tickets become available.")} </p>
+                      <Button size="sm" disabled className="mt-4 bg-muted text-muted-foreground cursor-not-allowed"> {tx("Tickets Coming Soon")} </Button>
                     </>
                   )}
                 </div>
@@ -92,10 +88,10 @@ const Events = () => {
       <section className="py-20 bg-primary">
         <div className="container mx-auto px-4 text-center">
           <Mail className="w-12 h-12 text-accent mx-auto mb-4" />
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground mb-4">Be the first to know</h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">Get in touch and we'll notify you as soon as ticket sales open for our upcoming events.</p>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground mb-4">{tx("Be the first to know")}</h2>
+          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">{tx("Get in touch and we'll notify you as soon as ticket sales open for our upcoming events.")}</p>
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link to="/contact">Notify Me</Link>
+            <Link to="/contact">{tx("Notify Me")}</Link>
           </Button>
         </div>
       </section>

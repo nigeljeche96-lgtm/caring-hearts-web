@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import SEO from "@/components/SEO";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -33,6 +34,7 @@ const CATEGORIES = [
 ];
 
 const Shop = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
@@ -112,12 +114,12 @@ const Shop = () => {
       quantity: 1,
       selectedOptions: variant.selectedOptions || [],
     });
-    toast.success("Added to cart", { description: `${product.node.title} - ${variant.title}` });
+    toast.success(tx("Added to cart"), { description: `${product.node.title} - ${variant.title}` });
   };
 
   return (
     <div className="bg-background min-h-screen">
-      <SEO title="Shop — Branded Apparel & Merch — World Changers MHCO" description="Buy World Changers branded clothing and accessories. Every purchase supports our mental health and outreach work." path="/shop" />
+      <SEO title={tx("Shop — Branded Apparel & Merch — World Changers MHCO")} description={tx("Buy World Changers branded clothing and accessories. Every purchase supports our mental health and outreach work.")} path="/shop" />
       {/* Slim Hero Banner */}
       <div className="relative h-40 sm:h-48 overflow-hidden">
         <img src={philanthropyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -154,7 +156,7 @@ const Shop = () => {
                       selectedCurrency.code === c.code ? "text-primary bg-primary/10 font-medium" : "text-foreground hover:bg-muted"
                     }`}
                   >
-                    {c.symbol} {c.label}
+                    {c.symbol} {tx(c.label)}
                   </button>
                 ))}
               </div>
@@ -182,7 +184,7 @@ const Shop = () => {
                     : "border-border text-muted-foreground hover:border-primary hover:text-foreground"
                 }`}
               >
-                {cat.label}
+                {tx(cat.label)}
               </button>
             ))}
           </div>
@@ -198,7 +200,7 @@ const Shop = () => {
         ) : products.length === 0 ? (
           <div className="text-center py-20">
             <ShoppingBag className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
-            <p className="text-sm text-muted-foreground">{t("shop.noProducts")} "{activeCategory}"</p>
+            <p className="text-sm text-muted-foreground">{t("shop.noProducts")} "{tx(activeCategory)}"</p>
             <p className="text-xs text-muted-foreground mt-1">{t("shop.checkBackSoon")}</p>
           </div>
         ) : (
@@ -234,8 +236,7 @@ const Shop = () => {
                     {/* Multiple images indicator */}
                     {p.node.images.edges.length > 1 && (
                       <div className="absolute bottom-1.5 right-1.5 bg-foreground/60 text-primary-foreground text-[10px] px-1.5 py-0.5 rounded-full">
-                        {p.node.images.edges.length} imgs
-                      </div>
+                        {p.node.images.edges.length} {tx("imgs")} </div>
                     )}
                   </div>
 
@@ -245,7 +246,7 @@ const Shop = () => {
                       className="text-xs sm:text-sm font-medium text-foreground leading-tight line-clamp-2 cursor-pointer hover:text-primary transition-colors"
                       onClick={() => navigate(`/product/${p.node.handle}`)}
                     >
-                      {p.node.title}
+                      {tx(p.node.title)}
                     </h3>
 
                     {/* Rating */}
@@ -274,7 +275,7 @@ const Shop = () => {
                                   : "border-border text-muted-foreground hover:border-primary"
                               }`}
                             >
-                              {v.node.title}
+                              {tx(v.node.title)}
                             </button>
                           ))}
                           {p.node.variants.edges.length > 5 && (
@@ -295,7 +296,7 @@ const Shop = () => {
                         disabled={isLoading}
                         className="bg-primary text-primary-foreground hover:bg-primary/90 h-7 px-2 text-[10px] sm:text-xs"
                       >
-                        {isLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <><ShoppingBag className="w-3 h-3 mr-0.5" /> Add</>}
+                        {isLoading ? <Loader2 className="w-3 h-3 animate-spin" /> : <><ShoppingBag className="w-3 h-3 mr-0.5" /> {tx("Add")}</>}
                       </Button>
                     </div>
                   </div>
