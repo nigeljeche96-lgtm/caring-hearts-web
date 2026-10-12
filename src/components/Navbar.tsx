@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, ChevronDown, Globe } from "lucide-react";
@@ -13,6 +14,7 @@ type NavChild = { label: string; path?: string; href?: string };
 type NavLink = { label: string; path?: string; children?: NavChild[] };
 
 const Navbar = () => {
+  const tx = useSiteCopy();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -63,16 +65,16 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 gap-3">
         {/* Logo — fixed size so it never shifts or stretches */}
         <Link to="/" className="flex items-center shrink-0">
-          <img alt="World Changers" width={1448} height={438} className="h-9 md:h-11 w-auto max-w-none object-contain" src="/logo-white.png" />
+          <img alt={tx("World Changers")} width={1448} height={438} className="h-9 md:h-11 w-auto max-w-none object-contain" src="/logo-white.png" />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) =>
             link.children ? (
-              <div key={link.label} className="relative" onMouseEnter={() => setOpenDropdown(link.label)} onMouseLeave={() => setOpenDropdown(null)}>
+              <div key={tx(link.label)} className="relative" onMouseEnter={() => setOpenDropdown(link.label)} onMouseLeave={() => setOpenDropdown(null)}>
                 <button className="flex items-center gap-1 px-4 py-2 text-sm font-bold text-primary-foreground hover:text-gold transition-colors rounded-lg">
-                  {link.label} <ChevronDown className="w-3.5 h-3.5" />
+                  {tx(link.label)} <ChevronDown className="w-3.5 h-3.5" />
                 </button>
                 <AnimatePresence>
                   {openDropdown === link.label && (
@@ -80,13 +82,13 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-1 w-56 bg-card rounded-lg shadow-elevated border border-border py-2">
                       {link.children.map((child) =>
                         child.href ? (
-                          <a key={child.label} href={child.href} target="_blank" rel="noopener noreferrer"
+                          <a key={tx(child.label)} href={child.href} target="_blank" rel="noopener noreferrer"
                             className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
-                            {child.label}
+                            {tx(child.label)}
                           </a>
                         ) : (
                           <Link key={child.path} to={child.path!} className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
-                            {child.label}
+                            {tx(child.label)}
                           </Link>
                         )
                       )}
@@ -97,7 +99,7 @@ const Navbar = () => {
             ) : (
               <Link key={link.path} to={link.path!}
                 className={`px-4 py-2 text-sm font-bold rounded-lg transition-colors ${location.pathname === link.path ? "text-gold bg-primary-foreground/10" : "text-primary-foreground hover:text-gold"}`}>
-                {link.label}
+                {tx(link.label)}
               </Link>
             )
           )}
@@ -107,7 +109,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           {/* Language Selector */}
           <div className="relative hidden sm:block" onMouseEnter={() => setLangOpen(true)} onMouseLeave={() => setLangOpen(false)}>
-            <button className="flex items-center gap-1 p-2 text-primary-foreground hover:text-gold transition-colors" title="Language">
+            <button className="flex items-center gap-1 p-2 text-primary-foreground hover:text-gold transition-colors" title={tx("Language")}>
               <Globe className="w-5 h-5" />
               <span className="hidden sm:inline text-xs font-medium">{currentLang.flag}</span>
             </button>
@@ -123,7 +125,7 @@ const Navbar = () => {
                         i18n.language === lang.code ? "text-primary bg-primary/10 font-medium" : "text-foreground hover:bg-muted hover:text-primary"
                       }`}
                     >
-                      <span>{lang.flag}</span> {lang.label}
+                      <span>{lang.flag}</span> {tx(lang.label)}
                     </button>
                   ))}
                 </motion.div>
@@ -132,7 +134,7 @@ const Navbar = () => {
           </div>
 
           <Button asChild variant="outline" className="inline-flex h-9 px-3 text-sm md:h-10 md:px-4 bg-transparent border-2 border-teal-light text-primary-foreground hover:bg-teal-light/20 hover:text-primary-foreground">
-            <Link to="/mental-health">Get Help</Link>
+            <Link to="/mental-health">{tx("Get Help")}</Link>
           </Button>
           <Button asChild className="hidden sm:inline-flex h-9 px-3 text-sm md:h-10 md:px-4 font-semibold border-2 border-donate bg-donate text-donate-foreground hover:bg-donate/90">
             <Link to={DONATE_URL}>{t("nav.donateNow")}</Link>
@@ -142,15 +144,15 @@ const Navbar = () => {
           {/* Mobile Menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <button className="lg:hidden p-2 text-primary-foreground" aria-label="Open menu">
+              <button className="lg:hidden p-2 text-primary-foreground" aria-label={tx("Open menu")}>
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0">
-              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              <SheetTitle className="sr-only">{tx("Navigation Menu")}</SheetTitle>
               <nav className="flex flex-col py-6 px-4 gap-1 h-full overflow-y-auto">
                 <div className="mb-4">
-                  <img alt="World Changers" className="h-20 w-auto mix-blend-multiply" src="/lovable-uploads/23ca8ce6-94a0-490f-b830-aa186f641c8c.png" />
+                  <img alt={tx("World Changers")} className="h-20 w-auto mix-blend-multiply" src="/lovable-uploads/23ca8ce6-94a0-490f-b830-aa186f641c8c.png" />
                 </div>
 
                 {/* Mobile Language Selector */}
@@ -163,25 +165,25 @@ const Navbar = () => {
                         i18n.language === lang.code ? "bg-primary text-primary-foreground border-primary" : "border-border text-foreground hover:border-primary"
                       }`}
                     >
-                      {lang.flag} {lang.label}
+                      {lang.flag} {tx(lang.label)}
                     </button>
                   ))}
                 </div>
 
                 {navLinks.map((link) =>
                   link.children ? (
-                    <div key={link.label}>
-                      <p className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-4">{link.label}</p>
+                    <div key={tx(link.label)}>
+                      <p className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-4">{tx(link.label)}</p>
                       {link.children.map((child) =>
                         child.href ? (
-                          <a key={child.label} href={child.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}
+                          <a key={tx(child.label)} href={child.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}
                             className="block px-6 py-2.5 text-sm rounded-lg text-foreground hover:text-primary hover:bg-muted transition-colors">
-                            {child.label}
+                            {tx(child.label)}
                           </a>
                         ) : (
                           <Link key={child.path} to={child.path!} onClick={() => setMobileOpen(false)}
                             className={`block px-6 py-2.5 text-sm rounded-lg transition-colors ${location.pathname === child.path ? "text-primary bg-primary/10 font-medium" : "text-foreground hover:text-primary hover:bg-muted"}`}>
-                            {child.label}
+                            {tx(child.label)}
                           </Link>
                         )
                       )}
@@ -189,12 +191,12 @@ const Navbar = () => {
                   ) : (
                     <Link key={link.path} to={link.path!} onClick={() => setMobileOpen(false)}
                       className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${location.pathname === link.path ? "text-primary bg-primary/10" : "text-foreground hover:text-primary hover:bg-muted"}`}>
-                      {link.label}
+                      {tx(link.label)}
                     </Link>
                   )
                 )}
                 <Button asChild variant="outline" className="mt-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Link to="/mental-health" onClick={() => setMobileOpen(false)}>Get Help</Link>
+                  <Link to="/mental-health" onClick={() => setMobileOpen(false)}>{tx("Get Help")}</Link>
                 </Button>
                 <Button asChild className="mt-2 font-semibold bg-donate text-donate-foreground hover:bg-donate/90">
                   <Link to={DONATE_URL} onClick={() => setMobileOpen(false)}>{t("nav.donateNow")}</Link>

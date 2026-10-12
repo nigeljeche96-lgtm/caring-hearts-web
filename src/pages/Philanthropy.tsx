@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -44,6 +45,7 @@ const fadeUp = {
 };
 
 const Philanthropy = () => {
+  const tx = useSiteCopy();
   const { t } = useTranslation();
 
   const stats = [
@@ -69,7 +71,7 @@ const Philanthropy = () => {
   return (
     <div>
 
-      <SEO title="Philanthropy & Community Outreach — World Changers" description="Explore our humanitarian portfolio: education, community wellness and outreach projects making real impact across Southern Africa." path="/philanthropy" />
+      <SEO title={tx("Philanthropy & Community Outreach — World Changers")} description={tx("Explore our humanitarian portfolio: education, community wellness and outreach projects making real impact across Southern Africa.")} path="/philanthropy" />
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         <img src={philanthropyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
@@ -99,12 +101,12 @@ const Philanthropy = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-3 gap-0">
               {stats.map((stat) => (
-                <div key={stat.label} className="bg-primary p-3 sm:p-6 text-center first:rounded-tl-xl last:rounded-tr-xl">
+                <div key={tx(stat.label)} className="bg-primary p-3 sm:p-6 text-center first:rounded-tl-xl last:rounded-tr-xl">
                   <div className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center mx-auto mb-2">
                     <stat.icon className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <p className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground">{stat.value}</p>
-                  <p className="text-xs md:text-sm text-primary-foreground/85 mt-1">{stat.label}</p>
+                  <p className="text-xs md:text-sm text-primary-foreground/85 mt-1">{tx(stat.label)}</p>
                 </div>
               ))}
             </div>
@@ -117,7 +119,7 @@ const Philanthropy = () => {
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="relative">
-              <img src={philanthropyHeroNew} alt="Community food distribution outreach" className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
+              <img src={philanthropyHeroNew} alt={tx("Community food distribution outreach")} className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
                 <p className="font-heading text-xl font-bold text-primary-foreground">90%</p>
                 <p className="text-xs text-primary-foreground/80">{t("philanthropy.aidDelivered")}</p>
@@ -164,9 +166,9 @@ const Philanthropy = () => {
           <p className="text-sm md:text-base text-primary-foreground/70 text-center mb-8">{t("stats.impactNote")}</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {impactStats.map((stat, i) => (
-              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.div key={tx(stat.label)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <p className="font-heading text-3xl md:text-5xl font-bold text-gold">{stat.value}</p>
-                <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{stat.label}</p>
+                <p className="text-sm md:text-base text-primary-foreground/80 mt-2">{tx(stat.label)}</p>
               </motion.div>
             ))}
           </div>
@@ -178,16 +180,16 @@ const Philanthropy = () => {
         <div className="container mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
-              <motion.div key={f.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(f.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
                   <f.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(f.title)}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{tx(f.desc)}</p>
                 {f.title === t("philanthropy.becomeVolunteer") && (
                   <Button asChild size="sm" className="mt-4 bg-hero-gradient text-primary-foreground hover:opacity-90">
-                    <Link to="/become-volunteer">Join Now <ArrowRight className="w-3 h-3 ml-1" /></Link>
+                    <Link to="/become-volunteer">{tx("Join Now")} <ArrowRight className="w-3 h-3 ml-1" /></Link>
                   </Button>
                 )}
               </motion.div>
@@ -201,7 +203,7 @@ const Philanthropy = () => {
         <div className="flex animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} className="mx-8 font-heading text-xl font-bold text-primary-foreground flex items-center gap-3">
-              <Star className="w-4 h-4" /> {item}
+              <Star className="w-4 h-4" /> {tx(item)}
             </span>
           ))}
         </div>
@@ -213,10 +215,10 @@ const Philanthropy = () => {
           <SectionHeading label={t("philanthropy.portfolioLabel")} title={t("philanthropy.portfolioTitle")} description={t("philanthropy.portfolioDesc")} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {portfolioProjects.map((project, i) => (
-              <motion.div key={project.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(project.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl overflow-hidden shadow-soft border border-border group">
                 <div className="aspect-video overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={project.image} alt={tx(project.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-3 sm:p-5">
                   <div className="flex gap-2 mb-2 flex-wrap">
@@ -224,8 +226,8 @@ const Philanthropy = () => {
                       <span key={c} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{c}</span>
                     ))}
                   </div>
-                   <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{project.title}</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">{project.desc}</p>
+                   <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{tx(project.title)}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">{tx(project.desc)}</p>
                 </div>
               </motion.div>
             ))}
@@ -242,11 +244,11 @@ const Philanthropy = () => {
               <motion.div key={video.id} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="rounded-xl overflow-hidden shadow-soft border border-border bg-card">
                 <div className="aspect-video">
-                  <iframe src={`https://www.youtube.com/embed/${video.id}`} title={video.title}
+                  <iframe src={`https://www.youtube.com/embed/${video.id}`} title={tx(video.title)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
                 </div>
                 <div className="p-3">
-                  <p className="text-sm font-medium text-foreground flex items-center gap-2"><Play className="w-3.5 h-3.5 text-primary" /> {video.title}</p>
+                  <p className="text-sm font-medium text-foreground flex items-center gap-2"><Play className="w-3.5 h-3.5 text-primary" /> {tx(video.title)}</p>
                 </div>
               </motion.div>
             ))}

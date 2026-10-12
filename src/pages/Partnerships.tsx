@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -67,6 +68,7 @@ const formatConverted = (value: number) =>
     : value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const Partnerships = () => {
+  const tx = useSiteCopy();
   const [selectedAmount, setSelectedAmount] = useState<number | "custom">(500);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
@@ -115,11 +117,11 @@ const Partnerships = () => {
       const { error } = await supabase.from("contact_messages").insert(payload);
       if (error) throw error;
       setSubmitted(true);
-      toast.success("Partnership enquiry submitted successfully");
+      toast.success(tx("Partnership enquiry submitted successfully"));
       supabase.functions.invoke("send-contact-notification", { body: payload }).catch(console.warn);
     } catch (err: any) {
       console.error(err);
-      toast.error("Failed to submit enquiry. Please try again.");
+      toast.error(tx("Failed to submit enquiry. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -129,7 +131,7 @@ const Partnerships = () => {
 
   const startPayfast = async () => {
     if (activeAmount < 5) {
-      toast.error("Please choose an amount of at least R5.");
+      toast.error(tx("Please choose an amount of at least R5."));
       return;
     }
     // Open the checkout tab synchronously on the click, before any await,
@@ -176,29 +178,26 @@ const Partnerships = () => {
   return (
     <div>
       <SEO
-        title="Partner With Us — World Changers MHCO"
-        description="Join us in creating lasting social impact through corporate and individual partnerships. Fund programmes, volunteer, or become a recurring supporter."
+        title={tx("Partner With Us — World Changers MHCO")}
+        description={tx("Join us in creating lasting social impact through corporate and individual partnerships. Fund programmes, volunteer, or become a recurring supporter.")}
         path="/partnerships"
       />
       <PageHero
-        title="Partner With Us"
-        subtitle="Join us in creating lasting social impact through meaningful partnerships."
+        title={tx("Partner With Us")}
+        subtitle={tx("Join us in creating lasting social impact through meaningful partnerships.")}
         bgImage={philanthropyBg}
       />
 
       {/* Intro */}
       <section className="section-padding">
         <div className="container mx-auto max-w-4xl text-center">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Whether you are a business, foundation, community organisation, or individual supporter, your partnership helps us expand access to mental health services,
-            community development programmes, education initiatives, and sustainable social change. Together, we can build healthier, stronger, and more empowered communities.
-          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed"> {tx("Whether you are a business, foundation, community organisation, or individual supporter, your partnership helps us expand access to mental health services, community development programmes, education initiatives, and sustainable social change. Together, we can build healthier, stronger, and more empowered communities.")} </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="bg-hero-gradient text-primary-foreground hover:opacity-90">
-              <a href="#corporate-form">Become a Partner <ArrowRight className="w-4 h-4 ml-2" /></a>
+              <a href="#corporate-form">{tx("Become a Partner")} <ArrowRight className="w-4 h-4 ml-2" /></a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              <a href="#individual">Support as an Individual</a>
+              <a href="#individual">{tx("Support as an Individual")}</a>
             </Button>
           </div>
         </div>
@@ -208,15 +207,15 @@ const Partnerships = () => {
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
           <SectionHeading
-            label="For Organisations"
-            title="Corporate & Business Partnerships"
-            description="Build a partnership that aligns with your values and creates measurable social impact."
+            label={tx("For Organisations")}
+            title={tx("Corporate & Business Partnerships")}
+            description={tx("Build a partnership that aligns with your values and creates measurable social impact.")}
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3 mb-12">
             {corporateOptions.map((opt, i) => (
               <motion.div
-                key={opt}
+                key={tx(opt)}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -224,16 +223,15 @@ const Partnerships = () => {
                 className="bg-card rounded-xl p-4 shadow-soft border border-border flex items-start gap-2"
               >
                 <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-sm font-medium text-foreground">{opt}</span>
+                <span className="text-sm font-medium text-foreground">{tx(opt)}</span>
               </motion.div>
             ))}
           </div>
 
           <div id="corporate-form" className="max-w-3xl mx-auto">
             <div className="bg-card rounded-2xl p-8 shadow-card">
-              <h3 className="font-heading text-2xl font-bold text-foreground mb-2">Corporate Partnership Enquiry</h3>
-              <p className="text-sm text-muted-foreground mb-6">
-                Submissions are sent directly to{" "}
+              <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{tx("Corporate Partnership Enquiry")}</h3>
+              <p className="text-sm text-muted-foreground mb-6"> {tx("Submissions are sent directly to")}{" "}
                 <a href="mailto:info@worldchangersmh.org" className="text-primary underline">info@worldchangersmh.org</a>.
               </p>
 
@@ -242,59 +240,59 @@ const Partnerships = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <Send className="w-8 h-8 text-primary" />
                   </div>
-                  <h4 className="font-heading text-2xl font-bold text-foreground mb-2">Enquiry Received</h4>
-                  <p className="text-muted-foreground">Thank you. Our partnerships team will be in touch shortly.</p>
+                  <h4 className="font-heading text-2xl font-bold text-foreground mb-2">{tx("Enquiry Received")}</h4>
+                  <p className="text-muted-foreground">{tx("Thank you. Our partnerships team will be in touch shortly.")}</p>
                 </div>
               ) : (
                 <form onSubmit={handleCorporateSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Company Name *</label>
+                      <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Company Name *")}</label>
                       <Input required value={form.company_name} onChange={(e) => updateField("company_name", e.target.value)} maxLength={150} />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Contact Person *</label>
+                      <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Contact Person *")}</label>
                       <Input required value={form.contact_person} onChange={(e) => updateField("contact_person", e.target.value)} maxLength={100} />
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Email Address *</label>
+                      <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Email Address *")}</label>
                       <Input type="email" required value={form.email} onChange={(e) => updateField("email", e.target.value)} maxLength={255} />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Phone Number *</label>
+                      <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Phone Number *")}</label>
                       <Input type="tel" required value={form.phone} onChange={(e) => updateField("phone", e.target.value)} maxLength={30} />
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Website</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Website")}</label>
                     <Input type="url" placeholder="https://" value={form.website} onChange={(e) => updateField("website", e.target.value)} maxLength={255} />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Partnership Type *</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Partnership Type *")}</label>
                     <select
                       required
                       className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                       value={form.partnership_type}
                       onChange={(e) => updateField("partnership_type", e.target.value)}
                     >
-                      <option value="">Select a partnership type</option>
+                      <option value="">{tx("Select a partnership type")}</option>
                       {corporateOptions.map((o) => (
-                        <option key={o} value={o}>{o}</option>
+                        <option key={tx(o)} value={tx(o)}>{tx(o)}</option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Proposed Partnership Details *</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Proposed Partnership Details *")}</label>
                     <Textarea required rows={4} maxLength={3000} value={form.partnership_details} onChange={(e) => updateField("partnership_details", e.target.value)} />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Expected Outcomes *</label>
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Expected Outcomes *")}</label>
                     <Textarea required rows={3} maxLength={2000} value={form.expected_outcomes} onChange={(e) => updateField("expected_outcomes", e.target.value)} />
                   </div>
                   <Button type="submit" size="lg" disabled={loading} className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90">
-                    {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting...</> : <>Submit Enquiry <ArrowRight className="w-4 h-4 ml-2" /></>}
+                    {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {tx("Submitting...")}</> : <>{tx("Submit Enquiry")} <ArrowRight className="w-4 h-4 ml-2" /></>}
                   </Button>
                 </form>
               )}
@@ -307,9 +305,9 @@ const Partnerships = () => {
       <section id="individual" className="section-padding">
         <div className="container mx-auto">
           <SectionHeading
-            label="For Individuals"
-            title="Individual Partnerships"
-            description="Every contribution — of time, voice, or resource — strengthens our communities."
+            label={tx("For Individuals")}
+            title={tx("Individual Partnerships")}
+            description={tx("Every contribution — of time, voice, or resource — strengthens our communities.")}
           />
 
           {/* Membership */}
@@ -318,20 +316,18 @@ const Partnerships = () => {
               className="bg-card rounded-2xl p-8 shadow-card border border-border">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Users className="w-6 h-6 text-primary" /></div>
-                <h3 className="font-heading text-2xl font-bold text-foreground">Membership & Partner Subscription</h3>
+                <h3 className="font-heading text-2xl font-bold text-foreground">{tx("Membership & Partner Subscription")}</h3>
               </div>
-              <p className="text-muted-foreground mb-5">
-                Support our mission through a recurring monthly contribution and become part of our community of changemakers.
-              </p>
+              <p className="text-muted-foreground mb-5"> {tx("Support our mission through a recurring monthly contribution and become part of our community of changemakers.")} </p>
               <ul className="space-y-2 mb-6">
                 {membershipBenefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2 text-sm text-foreground">
-                    <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" /> {b}
+                  <li key={tx(b)} className="flex items-start gap-2 text-sm text-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" /> {tx(b)}
                   </li>
                 ))}
               </ul>
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link to="/donation">Become a Monthly Partner <ArrowRight className="w-4 h-4 ml-2" /></Link>
+                <Link to="/donation">{tx("Become a Monthly Partner")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
             </motion.div>
 
@@ -339,15 +335,10 @@ const Partnerships = () => {
               className="bg-card rounded-2xl p-8 shadow-card border border-border">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center"><Heart className="w-6 h-6 text-primary" /></div>
-                <h3 className="font-heading text-2xl font-bold text-foreground">One-Time Donation</h3>
+                <h3 className="font-heading text-2xl font-bold text-foreground">{tx("One-Time Donation")}</h3>
               </div>
-              <p className="text-muted-foreground">
-                Make a single, meaningful gift. Donations help expand services, support vulnerable communities, and strengthen the long-term
-                sustainability of our organisation and its programmes.
-              </p>
-              <p className="text-sm text-muted-foreground mt-4">
-                Choose your amount below — every contribution counts.
-              </p>
+              <p className="text-muted-foreground"> {tx("Make a single, meaningful gift. Donations help expand services, support vulnerable communities, and strengthen the long-term sustainability of our organisation and its programmes.")} </p>
+              <p className="text-sm text-muted-foreground mt-4"> {tx("Choose your amount below — every contribution counts.")} </p>
             </motion.div>
           </div>
 
@@ -355,10 +346,9 @@ const Partnerships = () => {
           <div className="max-w-3xl mx-auto bg-card rounded-3xl p-6 sm:p-10 shadow-elevated border border-border">
             <div className="text-center mb-8">
               <span className="inline-flex items-center gap-2 text-xs font-semibold text-accent uppercase tracking-wider">
-                <Shield className="w-3.5 h-3.5" /> Secure Payment · Payfast
-              </span>
-              <h3 className="font-heading text-3xl font-bold text-foreground mt-3">Make a Donation</h3>
-              <p className="text-muted-foreground mt-2">Choose an amount and your preferred frequency.</p>
+                <Shield className="w-3.5 h-3.5" /> {tx("Secure Payment · Payfast")} </span>
+              <h3 className="font-heading text-3xl font-bold text-foreground mt-3">{tx("Make a Donation")}</h3>
+              <p className="text-muted-foreground mt-2">{tx("Choose an amount and your preferred frequency.")}</p>
             </div>
 
             {/* Frequency toggle */}
@@ -373,7 +363,7 @@ const Partnerships = () => {
                       frequency === f ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {f === "once" ? "One-Time" : "Monthly"}
+                    {f === "once" ? tx("One-Time") : tx("Monthly")}
                   </button>
                 ))}
               </div>
@@ -381,7 +371,7 @@ const Partnerships = () => {
 
             {/* Currency selector */}
             <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
-              <label htmlFor="partner-currency" className="text-sm text-muted-foreground">Show amounts in</label>
+              <label htmlFor="partner-currency" className="text-sm text-muted-foreground">{tx("Show amounts in")}</label>
               <select
                 id="partner-currency"
                 value={currency}
@@ -389,7 +379,7 @@ const Partnerships = () => {
                 className="rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
                 {CURRENCIES.map((c) => (
-                  <option key={c.code} value={c.code}>{c.code} — {c.label}</option>
+                  <option key={c.code} value={c.code}>{c.code} — {tx(c.label)}</option>
                 ))}
               </select>
             </div>
@@ -415,7 +405,7 @@ const Partnerships = () => {
                         : `R${amt.toLocaleString()}`}
                     </p>
                     {isInternational && <p className="text-[11px] text-muted-foreground mt-1">R{amt.toLocaleString()}</p>}
-                    {amt === 500 && <p className="text-[10px] uppercase tracking-wider text-accent mt-1">Most Popular</p>}
+                    {amt === 500 && <p className="text-[10px] uppercase tracking-wider text-accent mt-1">{tx("Most Popular")}</p>}
                   </button>
                 );
               })}
@@ -423,13 +413,13 @@ const Partnerships = () => {
 
             {/* Custom amount */}
             <div className="mb-6">
-              <label className="text-sm font-medium text-foreground mb-1.5 block">Custom Amount (ZAR)</label>
+              <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Custom Amount (ZAR)")}</label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">R</span>
                 <Input
                   type="number"
                   min={1}
-                  placeholder="Enter amount"
+                  placeholder={tx("Enter amount")}
                   value={customAmount}
                   onChange={(e) => { setCustomAmount(e.target.value); setSelectedAmount("custom"); }}
                   className="pl-8"
@@ -440,11 +430,11 @@ const Partnerships = () => {
             {/* Payer details */}
             <div className="grid sm:grid-cols-2 gap-3 mb-6">
               <div>
-                <label className="text-sm font-medium text-foreground mb-1.5 block">Your name (optional)</label>
-                <Input value={payerName} onChange={(e) => setPayerName(e.target.value)} maxLength={80} placeholder="Full name" />
+                <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Your name (optional)")}</label>
+                <Input value={payerName} onChange={(e) => setPayerName(e.target.value)} maxLength={80} placeholder={tx("Full name")} />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground mb-1.5 block">Email for your receipt (optional)</label>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">{tx("Email for your receipt (optional)")}</label>
                 <Input type="email" value={payerEmail} onChange={(e) => setPayerEmail(e.target.value)} maxLength={100} placeholder="you@example.com" />
               </div>
             </div>
@@ -452,14 +442,12 @@ const Partnerships = () => {
             {/* Summary */}
             <div className="bg-muted rounded-xl p-4 mb-6 flex items-center justify-between">
               <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Your contribution</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">{tx("Your contribution")}</p>
                 <p className="font-heading text-2xl font-bold text-foreground">
-                  R{activeAmount.toLocaleString()} <span className="text-sm font-normal text-muted-foreground">/ {frequency === "monthly" ? "month" : "once"}</span>
+                  R{activeAmount.toLocaleString()} <span className="text-sm font-normal text-muted-foreground">/ {frequency === "monthly" ? tx("month") : tx("once")}</span>
                 </p>
                 {isInternational && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    About {currencyMeta.symbol}{formatConverted(toDisplay(activeAmount))} {currency} · {isLive ? "live rate" : "indicative rate"}. Charged in ZAR.
-                  </p>
+                  <p className="text-xs text-muted-foreground mt-1"> {tx("About")} {currencyMeta.symbol}{formatConverted(toDisplay(activeAmount))} {currency} · {isLive ? tx("live rate") : tx("indicative rate")}{tx(". Charged in ZAR.")} </p>
                 )}
               </div>
               <Shield className="w-8 h-8 text-primary/40" />
@@ -473,23 +461,21 @@ const Partnerships = () => {
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-base"
             >
               {payfastLoading ? (
-                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {tx("Opening Payfast…")}</>
               ) : (
-                <>Continue to Secure Checkout <ArrowRight className="w-4 h-4 ml-2" /></>
+                <>{tx("Continue to Secure Checkout")} <ArrowRight className="w-4 h-4 ml-2" /></>
               )}
             </Button>
-            <p className="text-xs text-muted-foreground text-center mt-3">
-              You will be redirected to Payfast to complete your donation safely. We never collect or store your card details on this website.
-            </p>
+            <p className="text-xs text-muted-foreground text-center mt-3"> {tx("You will be redirected to Payfast to complete your donation safely. We never collect or store your card details on this website.")} </p>
           </div>
 
           {/* Individual partnership options */}
           <div className="mt-20">
-            <SectionHeading label="More Ways To Help" title="Additional Individual Partnership Options" />
+            <SectionHeading label={tx("More Ways To Help")} title={tx("Additional Individual Partnership Options")} />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {individualOptions.map((o, i) => (
                 <motion.div
-                  key={o.title}
+                  key={tx(o.title)}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -499,8 +485,8 @@ const Partnerships = () => {
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                     <o.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h4 className="font-heading text-lg font-semibold text-foreground mb-2">{o.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{o.desc}</p>
+                  <h4 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(o.title)}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{tx(o.desc)}</p>
                 </motion.div>
               ))}
             </div>

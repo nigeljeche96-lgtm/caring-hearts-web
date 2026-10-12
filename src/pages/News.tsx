@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion, AnimatePresence } from "framer-motion";
@@ -110,33 +111,33 @@ const fadeUp = {
 };
 
 const News = () => {
+  const tx = useSiteCopy();
   const [selectedArticle, setSelectedArticle] = useState<typeof articles[0] | null>(null);
 
   return (
     <div>
 
-      <SEO title="News & Articles — World Changers MHCO" description="Latest articles, announcements and stories from World Changers Mental Health Care Organisation." path="/news" />
-      <PageHero title="News & Articles" subtitle="Mental health resources, humanitarian stories, and community outreach updates" bgImage={heroBg} />
+      <SEO title={tx("News & Articles — World Changers MHCO")} description={tx("Latest articles, announcements and stories from World Changers Mental Health Care Organisation.")} path="/news" />
+      <PageHero title={tx("News & Articles")} subtitle={tx("Mental health resources, humanitarian stories, and community outreach updates")} bgImage={heroBg} />
 
       {/* Featured Article */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <SectionHeading label="Featured" title="Latest Headlines" />
+          <SectionHeading label={tx("Featured")} title={tx("Latest Headlines")} />
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="grid lg:grid-cols-2 gap-8 mb-16 cursor-pointer" onClick={() => setSelectedArticle(articles[0])}>
             <div className="aspect-video rounded-2xl overflow-hidden">
-              <img src={articles[0].image} alt={articles[0].title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              <img src={articles[0].image} alt={tx(articles[0].title)} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
             </div>
             <div className="flex flex-col justify-center">
-              <span className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">{articles[0].category}</span>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">{articles[0].title}</h2>
-              <p className="text-muted-foreground mb-4 leading-relaxed">{articles[0].excerpt}</p>
+              <span className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">{tx(articles[0].category)}</span>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">{tx(articles[0].title)}</h2>
+              <p className="text-muted-foreground mb-4 leading-relaxed">{tx(articles[0].excerpt)}</p>
               <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
-                <span className="flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {articles[0].date}</span>
-                <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {articles[0].readTime} read</span>
+                <span className="flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {tx(articles[0].date)}</span>
+                <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {tx(articles[0].readTime)} {tx("read")}</span>
               </div>
-              <span className="text-sm font-medium text-accent flex items-center gap-1 hover:gap-2 transition-all">
-                Read Full Article <ArrowRight className="w-3.5 h-3.5" />
+              <span className="text-sm font-medium text-accent flex items-center gap-1 hover:gap-2 transition-all"> {tx("Read Full Article")} <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </div>
           </motion.div>
@@ -146,28 +147,27 @@ const News = () => {
       {/* All Articles */}
       <section className="section-padding bg-muted pt-0">
         <div className="container mx-auto">
-          <SectionHeading label="Blog & News" title="All Articles" description="Stay informed about mental health, humanitarian efforts, and community outreach across South Africa." />
+          <SectionHeading label={tx("Blog & News")} title={tx("All Articles")} description={tx("Stay informed about mental health, humanitarian efforts, and community outreach across South Africa.")} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.slice(1).map((a, i) => (
-              <motion.article key={a.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.article key={tx(a.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl overflow-hidden shadow-soft border border-border group cursor-pointer hover:shadow-card transition-shadow"
                 onClick={() => setSelectedArticle(a)}>
                 <div className="aspect-video overflow-hidden relative">
-                  <img src={a.image} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={a.image} alt={tx(a.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute top-3 left-3 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-lg">
-                    {a.date}
+                    {tx(a.date)}
                   </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-3 text-xs text-muted-foreground mb-2">
-                    <span className="flex items-center gap-1 text-primary font-medium"><Tag className="w-3 h-3" /> {a.category}</span>
+                    <span className="flex items-center gap-1 text-primary font-medium"><Tag className="w-3 h-3" /> {tx(a.category)}</span>
                     <span>•</span>
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {a.readTime}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {tx(a.readTime)}</span>
                   </div>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2 line-clamp-2">{a.title}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-3 mb-3">{a.excerpt}</p>
-                  <span className="text-sm font-medium text-accent flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read more<span className="sr-only">: {a.title}</span> <ArrowRight className="w-3.5 h-3.5" />
+                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2 line-clamp-2">{tx(a.title)}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-3 mb-3">{tx(a.excerpt)}</p>
+                  <span className="text-sm font-medium text-accent flex items-center gap-1 group-hover:gap-2 transition-all"> {tx("Read more")}<span className="sr-only">: {tx(a.title)}</span> <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </motion.article>
@@ -183,22 +183,22 @@ const News = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/70" onClick={() => setSelectedArticle(null)} />
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}
               className="fixed inset-4 md:inset-10 lg:inset-20 z-50 bg-card rounded-2xl shadow-elevated overflow-y-auto">
-              <button aria-label="Close article" onClick={() => setSelectedArticle(null)} className="sticky top-4 float-right mr-4 mt-4 z-10 bg-muted rounded-full p-2 hover:bg-muted/80">
+              <button aria-label={tx("Close article")} onClick={() => setSelectedArticle(null)} className="sticky top-4 float-right mr-4 mt-4 z-10 bg-muted rounded-full p-2 hover:bg-muted/80">
                 <X className="w-5 h-5 text-foreground" />
               </button>
               <div className="aspect-video w-full overflow-hidden">
-                <img src={selectedArticle.image} alt={selectedArticle.title} className="w-full h-full object-cover" />
+                <img src={selectedArticle.image} alt={tx(selectedArticle.title)} className="w-full h-full object-cover" />
               </div>
               <div className="p-6 md:p-10 max-w-3xl mx-auto">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
-                  <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full font-bold">{selectedArticle.category}</span>
-                  <span className="flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {selectedArticle.date}</span>
-                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {selectedArticle.readTime} read</span>
+                  <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full font-bold">{tx(selectedArticle.category)}</span>
+                  <span className="flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {tx(selectedArticle.date)}</span>
+                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {tx(selectedArticle.readTime)} {tx("read")}</span>
                 </div>
-                <h1 className="font-heading text-2xl md:text-4xl font-bold text-foreground mb-6">{selectedArticle.title}</h1>
+                <h1 className="font-heading text-2xl md:text-4xl font-bold text-foreground mb-6">{tx(selectedArticle.title)}</h1>
                 <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed">
                   {selectedArticle.fullContent.split("\n\n").map((paragraph, idx) => (
-                    <p key={idx} className="mb-4">{paragraph}</p>
+                    <p key={idx} className="mb-4">{tx(paragraph)}</p>
                   ))}
                 </div>
               </div>

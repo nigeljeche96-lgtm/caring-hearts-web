@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const CreateCampaignDialog = ({ onCreated }: Props) => {
+  const tx = useSiteCopy();
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,11 +30,11 @@ const CreateCampaignDialog = ({ onCreated }: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) {
-      toast.error("Please log in to create a campaign");
+      toast.error(tx("Please log in to create a campaign"));
       return;
     }
     if (!form.title || !form.description || !form.goal_amount) {
-      toast.error("Please fill in all required fields");
+      toast.error(tx("Please fill in all required fields"));
       return;
     }
 
@@ -50,7 +52,7 @@ const CreateCampaignDialog = ({ onCreated }: Props) => {
     if (error) {
       toast.error("Failed to create campaign: " + error.message);
     } else {
-      toast.success("Campaign created successfully!");
+      toast.success(tx("Campaign created successfully!"));
       setForm({ title: "", description: "", goal_amount: "", paystack_link: "", image_url: "" });
       setOpen(false);
       onCreated();
@@ -61,36 +63,35 @@ const CreateCampaignDialog = ({ onCreated }: Props) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size="lg" className="bg-hero-gradient text-primary-foreground hover:opacity-90">
-          <Plus className="w-5 h-5 mr-2" /> Create Campaign
-        </Button>
+          <Plus className="w-5 h-5 mr-2" /> {tx("Create Campaign")} </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-heading text-2xl">Create a New Campaign</DialogTitle>
+          <DialogTitle className="font-heading text-2xl">{tx("Create a New Campaign")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-2">
           <div>
-            <Label htmlFor="title">Campaign Title *</Label>
-            <Input id="title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="e.g. Help Youth Mental Health" required />
+            <Label htmlFor="title">{tx("Campaign Title *")}</Label>
+            <Input id="title" value={tx(form.title)} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder={tx("e.g. Help Youth Mental Health")} required />
           </div>
           <div>
-            <Label htmlFor="description">Description *</Label>
-            <Textarea id="description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="Describe your campaign..." rows={3} required />
+            <Label htmlFor="description">{tx("Description *")}</Label>
+            <Textarea id="description" value={tx(form.description)} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder={tx("Describe your campaign...")} rows={3} required />
           </div>
           <div>
-            <Label htmlFor="goal">Goal Amount (ZAR) *</Label>
+            <Label htmlFor="goal">{tx("Goal Amount (ZAR) *")}</Label>
             <Input id="goal" type="number" min="1" step="0.01" value={form.goal_amount} onChange={(e) => setForm({ ...form, goal_amount: e.target.value })} placeholder="e.g. 50000" required />
           </div>
           <div>
-            <Label htmlFor="paystack">Paystack Payment Link</Label>
+            <Label htmlFor="paystack">{tx("Paystack Payment Link")}</Label>
             <Input id="paystack" value={form.paystack_link} onChange={(e) => setForm({ ...form, paystack_link: e.target.value })} placeholder="https://paystack.com/pay/..." />
           </div>
           <div>
-            <Label htmlFor="image">Image URL (optional)</Label>
+            <Label htmlFor="image">{tx("Image URL (optional)")}</Label>
             <Input id="image" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." />
           </div>
           <Button type="submit" disabled={loading} className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90">
-            {loading ? "Creating..." : "Create Campaign"}
+            {loading ? tx("Creating...") : tx("Create Campaign")}
           </Button>
         </form>
       </DialogContent>

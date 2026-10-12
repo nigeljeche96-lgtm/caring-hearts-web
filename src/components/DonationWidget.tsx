@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Globe, ShieldCheck, ArrowRight, ChevronDown, ExternalLink, Lock, Landmark, Loader2 } from "lucide-react";
@@ -29,6 +30,7 @@ const formatAmount = (value: number) =>
     : value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const DonationWidget = () => {
+  const tx = useSiteCopy();
   const [amount, setAmount] = useState<number | null>(500);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"once" | "monthly">("once");
@@ -59,11 +61,11 @@ const DonationWidget = () => {
 
   const startYoco = async () => {
     if (selected < 5) {
-      toast.error("Please choose an amount of at least R5.");
+      toast.error(tx("Please choose an amount of at least R5."));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error("Please enter a valid email address so we can send your receipt.");
+      toast.error(tx("Please enter a valid email address so we can send your receipt."));
       return;
     }
     setLoading(true);
@@ -84,7 +86,7 @@ const DonationWidget = () => {
 
   const startPayfast = async () => {
     if (selected < 5) {
-      toast.error("Please choose an amount of at least R5.");
+      toast.error(tx("Please choose an amount of at least R5."));
       return;
     }
     // Open the checkout tab synchronously on the click, before any await,
@@ -133,7 +135,7 @@ const DonationWidget = () => {
       <div className="max-w-4xl mx-auto bg-card rounded-2xl shadow-elevated border border-border overflow-hidden">
         {/* Frequency */}
         <div className="p-6 md:p-8 border-b border-border">
-          <div className="grid grid-cols-2 gap-2 p-1 bg-muted rounded-xl mb-6" role="group" aria-label="Donation frequency">
+          <div className="grid grid-cols-2 gap-2 p-1 bg-muted rounded-xl mb-6" role="group" aria-label={tx("Donation frequency")}>
             {(["once", "monthly"] as const).map((f) => (
               <button
                 key={f}
@@ -144,14 +146,14 @@ const DonationWidget = () => {
                   frequency === f ? "bg-card text-primary shadow-soft" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {f === "once" ? "Give Once" : "Give Monthly"}
+                {f === "once" ? tx("Give Once") : tx("Give Monthly")}
               </button>
             ))}
           </div>
 
           {/* Currency */}
           <div className="mb-6">
-            <Label htmlFor="donation-currency" className="text-sm font-semibold">Currency</Label>
+            <Label htmlFor="donation-currency" className="text-sm font-semibold">{tx("Currency")}</Label>
             <select
               id="donation-currency"
               value={currency}
@@ -159,20 +161,20 @@ const DonationWidget = () => {
               className="mt-2 w-full h-11 rounded-lg border border-input bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {CURRENCIES.map((c) => (
-                <option key={c.code} value={c.code}>{c.code} — {c.label}</option>
+                <option key={c.code} value={c.code}>{c.code} — {tx(c.label)}</option>
               ))}
             </select>
             <p className="text-xs text-muted-foreground mt-2">
               {isInternational
                 ? `Amounts are converted from South African Rand at ${isLive ? "today's live" : "an indicative"} exchange rate (R1 = ${currencyMeta.symbol}${rate.toFixed(4)}). Your payment provider confirms the final rate at checkout.`
-                : "South African Rand donations are processed by Payfast or Yoco. Choose another currency to see the same amounts converted at today's rate."}
+                : tx("South African Rand donations are processed by Payfast or Yoco. Choose another currency to see the same amounts converted at today's rate.")}
             </p>
 
           </div>
 
           {/* Amounts */}
           <fieldset>
-            <legend className="text-sm font-semibold text-foreground mb-3">Choose an amount</legend>
+            <legend className="text-sm font-semibold text-foreground mb-3">{tx("Choose an amount")}</legend>
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {PRESETS.map((p) => {
                 const active = !customAmount && amount === p;
@@ -194,7 +196,7 @@ const DonationWidget = () => {
               })}
             </div>
             <div className="mt-3">
-              <Label htmlFor="custom-amount" className="text-sm">Or enter your own amount</Label>
+              <Label htmlFor="custom-amount" className="text-sm">{tx("Or enter your own amount")}</Label>
               <Input
                 id="custom-amount"
                 inputMode="numeric"
@@ -210,11 +212,11 @@ const DonationWidget = () => {
           {!isInternational && (
             <div className="grid sm:grid-cols-2 gap-3 mt-6">
               <div>
-                <Label htmlFor="donor-name" className="text-sm">Your name (optional)</Label>
-                <Input id="donor-name" value={name} onChange={(e) => setName(e.target.value)} className="mt-2 h-11" placeholder="Full name" />
+                <Label htmlFor="donor-name" className="text-sm">{tx("Your name (optional)")}</Label>
+                <Input id="donor-name" value={name} onChange={(e) => setName(e.target.value)} className="mt-2 h-11" placeholder={tx("Full name")} />
               </div>
               <div>
-                <Label htmlFor="donor-email" className="text-sm">Email for your receipt</Label>
+                <Label htmlFor="donor-email" className="text-sm">{tx("Email for your receipt")}</Label>
                 <Input id="donor-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="mt-2 h-11" placeholder="you@example.com" />
               </div>
             </div>
@@ -224,18 +226,16 @@ const DonationWidget = () => {
         {/* Summary */}
         <div className="px-6 md:px-8 py-5 bg-muted/60 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-xs uppercase tracking-wider text-muted-foreground">Your donation</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">{tx("Your donation")}</p>
             <p className="font-heading text-2xl font-bold text-foreground">
               {currencyMeta.symbol}{formatAmount(selectedDisplay)}{" "}
               <span className="text-sm font-medium text-muted-foreground">
-                {frequency === "monthly" ? "every month" : "once-off"} · {currency}
+                {frequency === "monthly" ? tx("every month") : tx("once-off")} · {currency}
               </span>
             </p>
           </div>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Lock className="w-4 h-4 text-primary" />
-            Payment is completed securely with our payment provider
-          </div>
+            <Lock className="w-4 h-4 text-primary" /> {tx("Payment is completed securely with our payment provider")} </div>
         </div>
 
         {/* Actions */}
@@ -250,15 +250,15 @@ const DonationWidget = () => {
                 className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
               >
                 {payfastLoading ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Opening Payfast…</>
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {tx("Opening Payfast…")}</>
                 ) : (
-                  <>Continue securely with Payfast <ArrowRight className="w-4 h-4 ml-2" /></>
+                  <>{tx("Continue securely with Payfast")} <ArrowRight className="w-4 h-4 ml-2" /></>
                 )}
               </Button>
 
               <div className="flex items-center gap-3">
                 <span className="h-px flex-1 bg-border" />
-                <span className="text-xs text-muted-foreground">or pay with</span>
+                <span className="text-xs text-muted-foreground">{tx("or pay with")}</span>
                 <span className="h-px flex-1 bg-border" />
               </div>
 
@@ -271,15 +271,13 @@ const DonationWidget = () => {
                 className="w-full border-primary/40 text-primary hover:bg-primary/5"
               >
                 {loading ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Preparing secure checkout…</>
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> {tx("Preparing secure checkout…")}</>
                 ) : (
-                  <>Donate with Yoco <ExternalLink className="w-4 h-4 ml-2" /></>
+                  <>{tx("Donate with Yoco")} <ExternalLink className="w-4 h-4 ml-2" /></>
                 )}
               </Button>
 
-              <p className="text-xs text-muted-foreground text-center">
-                You will confirm your {frequency === "monthly" ? "monthly" : "once-off"} amount on the provider's secure checkout page. We never collect or store your card details on this website.
-              </p>
+              <p className="text-xs text-muted-foreground text-center"> {tx("You will confirm your")} {frequency === "monthly" ? tx("monthly") : tx("once-off")} {tx("amount on the provider's secure checkout page. We never collect or store your card details on this website.")} </p>
             </>
           ) : (
             <>
@@ -292,7 +290,7 @@ const DonationWidget = () => {
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <Globe className="w-4 h-4 mr-2" />
-                {intlOpen ? "Hide international checkout" : "Continue with international payment"}
+                {intlOpen ? tx("Hide international checkout") : tx("Continue with international payment")}
                 <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${intlOpen ? "rotate-180" : ""}`} />
               </Button>
 
@@ -309,15 +307,13 @@ const DonationWidget = () => {
                       <iframe
                         key={donorboxSrc}
                         src={donorboxSrc}
-                        title="International donation checkout"
+                        title={tx("International donation checkout")}
                         name="donorbox"
                         allow="payment"
                         className="w-full min-h-[680px] rounded-lg border-0"
                       />
-                      <p className="text-xs text-muted-foreground mt-3 text-center">
-                        Having trouble?{" "}
-                        <a href={DONORBOX_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                          Open the international donation page in a new tab <ExternalLink className="w-3 h-3 inline" />
+                      <p className="text-xs text-muted-foreground mt-3 text-center"> {tx("Having trouble?")}{" "}
+                        <a href={DONORBOX_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium"> {tx("Open the international donation page in a new tab")} <ExternalLink className="w-3 h-3 inline" />
                         </a>
                       </p>
                     </div>
@@ -336,10 +332,10 @@ const DonationWidget = () => {
           { icon: Landmark, title: "Registered organisation", desc: "NPO 238-677 · PBO 930084594 — donations are tax deductible in South Africa." },
           { icon: Heart, title: "Direct to our work", desc: "Gifts support our mental health care and community outreach programmes." },
         ].map((item) => (
-          <div key={item.title} className="bg-card rounded-xl border border-border p-5">
+          <div key={tx(item.title)} className="bg-card rounded-xl border border-border p-5">
             <item.icon className="w-6 h-6 text-primary mb-2" />
-            <h3 className="font-heading text-sm font-semibold text-foreground">{item.title}</h3>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.desc}</p>
+            <h3 className="font-heading text-sm font-semibold text-foreground">{tx(item.title)}</h3>
+            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{tx(item.desc)}</p>
           </div>
         ))}
       </div>

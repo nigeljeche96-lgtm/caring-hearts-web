@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -30,6 +31,7 @@ interface MoodEntry {
 }
 
 const MoodTracker = () => {
+  const tx = useSiteCopy();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [entries, setEntries] = useState<MoodEntry[]>([]);
@@ -72,7 +74,7 @@ const MoodTracker = () => {
         entry_date: today,
       });
       if (error) throw error;
-      toast.success("Mood logged!");
+      toast.success(tx("Mood logged!"));
       setSelectedMood(null);
       setNote("");
       await fetchEntries();
@@ -85,9 +87,9 @@ const MoodTracker = () => {
 
   const handleDelete = async (id: string) => {
     const { error } = await supabase.from("mood_entries").delete().eq("id", id);
-    if (error) toast.error("Failed to delete");
+    if (error) toast.error(tx("Failed to delete"));
     else {
-      toast.success("Entry removed");
+      toast.success(tx("Entry removed"));
       await fetchEntries();
     }
   };
@@ -114,13 +116,12 @@ const MoodTracker = () => {
 
   return (
     <div>
-      <PageHero title="Mood Tracker" subtitle="Log your daily mood and discover patterns in your wellbeing" bgImage={aboutBg} />
+      <PageHero title={tx("Mood Tracker")} subtitle={tx("Log your daily mood and discover patterns in your wellbeing")} bgImage={aboutBg} />
 
       <section className="section-padding">
         <div className="container mx-auto max-w-4xl">
           <Button variant="ghost" size="sm" onClick={() => navigate("/login")} className="mb-6">
-            <ArrowLeft className="w-4 h-4 mr-1" /> Back to Dashboard
-          </Button>
+            <ArrowLeft className="w-4 h-4 mr-1" /> {tx("Back to Dashboard")} </Button>
 
           {loading ? (
             <div className="flex items-center justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-primary" /></div>
@@ -131,15 +132,15 @@ const MoodTracker = () => {
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-card rounded-xl p-5 shadow-card border border-border text-center">
                   <p className="text-3xl font-bold text-primary">{avgMood}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Avg Mood (30d)</p>
+                  <p className="text-xs text-muted-foreground mt-1">{tx("Avg Mood (30d)")}</p>
                 </div>
                 <div className="bg-card rounded-xl p-5 shadow-card border border-border text-center">
                   <p className="text-3xl font-bold text-accent">{streak}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Day Streak</p>
+                  <p className="text-xs text-muted-foreground mt-1">{tx("Day Streak")}</p>
                 </div>
                 <div className="bg-card rounded-xl p-5 shadow-card border border-border text-center">
                   <p className="text-3xl font-bold text-foreground">{entries.length}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Total Entries</p>
+                  <p className="text-xs text-muted-foreground mt-1">{tx("Total Entries")}</p>
                 </div>
               </div>
 
@@ -147,9 +148,8 @@ const MoodTracker = () => {
               {!todayLogged ? (
                 <div className="bg-card rounded-2xl p-6 shadow-card border border-border">
                   <h2 className="font-heading text-lg font-bold text-foreground mb-1 flex items-center gap-2">
-                    <Plus className="w-5 h-5 text-primary" /> How are you feeling today?
-                  </h2>
-                  <p className="text-sm text-muted-foreground mb-5">Select your mood and optionally add a note</p>
+                    <Plus className="w-5 h-5 text-primary" /> {tx("How are you feeling today?")} </h2>
+                  <p className="text-sm text-muted-foreground mb-5">{tx("Select your mood and optionally add a note")}</p>
 
                   <div className="flex justify-center gap-3 mb-5">
                     {moodOptions.map((mood) => (
@@ -164,14 +164,14 @@ const MoodTracker = () => {
                       >
                         <mood.icon className={`w-8 h-8 ${mood.color}`} />
                         <span className={`text-xs font-medium ${selectedMood === mood.value ? mood.color : "text-muted-foreground"}`}>
-                          {mood.label}
+                          {tx(mood.label)}
                         </span>
                       </button>
                     ))}
                   </div>
 
                   <Textarea
-                    placeholder="What's on your mind? (optional)"
+                    placeholder={tx("What's on your mind? (optional)")}
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
                     rows={2}
@@ -184,15 +184,13 @@ const MoodTracker = () => {
                     disabled={selectedMood === null || submitting}
                     className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
                   >
-                    {submitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                    Log Mood
-                  </Button>
+                    {submitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null} {tx("Log Mood")} </Button>
                 </div>
               ) : (
                 <div className="bg-card rounded-2xl p-6 shadow-card border border-border text-center">
                   <Sun className="w-10 h-10 text-accent mx-auto mb-2" />
-                  <p className="font-heading font-bold text-foreground">Today's mood logged!</p>
-                  <p className="text-sm text-muted-foreground">Come back tomorrow to keep your streak going</p>
+                  <p className="font-heading font-bold text-foreground">{tx("Today's mood logged!")}</p>
+                  <p className="text-sm text-muted-foreground">{tx("Come back tomorrow to keep your streak going")}</p>
                 </div>
               )}
 
@@ -200,8 +198,7 @@ const MoodTracker = () => {
               {chartData.length > 1 && (
                 <div className="bg-card rounded-2xl p-6 shadow-card border border-border">
                   <h2 className="font-heading text-lg font-bold text-foreground mb-5 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-primary" /> Mood Trend (Last 30 Days)
-                  </h2>
+                    <TrendingUp className="w-5 h-5 text-primary" /> {tx("Mood Trend (Last 30 Days)")} </h2>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={chartData}>
@@ -222,9 +219,9 @@ const MoodTracker = () => {
 
               {/* Recent Entries */}
               <div className="bg-card rounded-2xl p-6 shadow-card border border-border">
-                <h2 className="font-heading text-lg font-bold text-foreground mb-5">Recent Entries</h2>
+                <h2 className="font-heading text-lg font-bold text-foreground mb-5">{tx("Recent Entries")}</h2>
                 {entries.length === 0 ? (
-                  <p className="text-sm text-muted-foreground text-center py-4">No mood entries yet. Start logging above!</p>
+                  <p className="text-sm text-muted-foreground text-center py-4">{tx("No mood entries yet. Start logging above!")}</p>
                 ) : (
                   <div className="space-y-3">
                     {[...entries].reverse().slice(0, 10).map((entry) => {
@@ -236,7 +233,7 @@ const MoodTracker = () => {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                              <p className="font-medium text-sm text-foreground">{mood.label}</p>
+                              <p className="font-medium text-sm text-foreground">{tx(mood.label)}</p>
                               <Badge variant="secondary" className="text-xs">
                                 {format(parseISO(entry.entry_date), "MMM d")}
                               </Badge>

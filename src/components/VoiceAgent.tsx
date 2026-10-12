@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useCallback } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { MicOff, Phone } from "lucide-react";
@@ -46,6 +47,7 @@ const SpeakingWaves = ({ isSpeaking }: { isSpeaking: boolean }) => (
 );
 
 const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => {
+  const tx = useSiteCopy();
   const [isConnecting, setIsConnecting] = useState(false);
 
   const conversation = useConversation({
@@ -117,7 +119,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
               session_mode: params.session_mode || "Virtual",
             },
           });
-          toast.success("Session booked via AI agent!");
+          toast.success(tx("Session booked via AI agent!"));
           return `Booking confirmed for ${params.full_name} with ${params.provider_name} on ${params.session_date} at ${params.session_time}.`;
         } catch (err: any) {
           return `Error booking session: ${err.message}`;
@@ -132,7 +134,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
             });
             if (error) throw error;
             if (!data) return "No matching upcoming booking found to cancel.";
-            toast.info("Booking cancelled via AI agent.");
+            toast.info(tx("Booking cancelled via AI agent."));
             return "Booking has been cancelled successfully.";
           }
           if (params.email && params.session_date) {
@@ -142,7 +144,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
             });
             if (error) throw error;
             if (!data) return "No matching upcoming booking found to cancel.";
-            toast.info("Booking cancelled via AI agent.");
+            toast.info(tx("Booking cancelled via AI agent."));
             return "Booking has been cancelled successfully.";
           }
           return "Please provide a booking ID + email, or email + date to cancel.";
@@ -165,7 +167,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
             });
             if (error) throw error;
             if (!data) return "No matching upcoming booking found to reschedule.";
-            toast.success("Booking rescheduled via AI agent!");
+            toast.success(tx("Booking rescheduled via AI agent!"));
             return `Booking rescheduled to ${params.new_date} at ${params.new_time}.`;
           }
           if (params.original_date) {
@@ -177,7 +179,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
             });
             if (error) throw error;
             if (!data) return "No matching upcoming booking found to reschedule.";
-            toast.success("Booking rescheduled via AI agent!");
+            toast.success(tx("Booking rescheduled via AI agent!"));
             return `Booking rescheduled to ${params.new_date} at ${params.new_time}.`;
           }
           return "Please provide a booking ID or original date to reschedule.";
@@ -215,24 +217,24 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
         <button
           onClick={isActive ? stopConversation : startConversation}
           disabled={isConnecting}
-          aria-label={isActive ? "End reception call" : "Call the Reception now"}
+          aria-label={isActive ? tx("End reception call") : tx("Call the Reception now")}
           className="inline-flex items-center justify-center gap-2 px-5 h-11 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm"
-          title={isActive ? "End call" : "Call the Reception"}
+          title={isActive ? tx("End call") : tx("Call the Reception")}
         >
           <Phone className="w-4 h-4" />
-          {isActive ? "End Call" : isConnecting ? "Connecting..." : "Call Now"}
+          {isActive ? tx("End Call") : isConnecting ? "Connecting..." : "Call Now"}
         </button>
         <button
           onClick={isActive ? stopConversation : startConversation}
           disabled={isConnecting}
           className="relative flex items-center gap-3 group"
-          title={isActive ? "End call" : "Call now"}
+          title={isActive ? tx("End call") : tx("Call now")}
         >
           <div className="relative flex items-center justify-center" style={{ width: 56, height: 56 }}>
             {isActive && <SpeakingWaves isSpeaking={conversation.isSpeaking} />}
             <img
               src={receptionistAvatar}
-              alt="AI Receptionist"
+              alt={tx("AI Receptionist")}
               className={`w-12 h-12 rounded-full object-cover border-2 relative z-10 transition-all ${
                 isActive ? "border-primary shadow-lg" : "border-border group-hover:border-primary/50"
               }`}
@@ -243,14 +245,14 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
           </div>
           <div className="text-left">
             <span className="text-xs text-muted-foreground block">
-              {isActive ? "On call" : "The Reception"}
+              {isActive ? tx("On call") : tx("The Reception")}
             </span>
             <span className="font-semibold text-sm text-foreground">
               {isActive
                 ? conversation.isSpeaking
                   ? "Agent speaking..."
                   : "Listening..."
-                : "AI Receptionist"}
+                : tx("AI Receptionist")}
             </span>
           </div>
         </button>
@@ -273,16 +275,16 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
               <SpeakingWaves isSpeaking={conversation.isSpeaking} />
               <img
                 src={receptionistAvatar}
-                alt="AI Receptionist"
+                alt={tx("AI Receptionist")}
                 className="w-20 h-20 rounded-full object-cover border-3 border-primary shadow-lg relative z-10"
               />
               <span className="absolute top-4 right-4 w-4 h-4 bg-accent rounded-full border-2 border-card z-20" />
             </div>
             <div className="text-center">
               <p className="font-heading font-semibold text-foreground">
-                {conversation.isSpeaking ? "Agent is speaking..." : "Listening to you..."}
+                {conversation.isSpeaking ? tx("Agent is speaking...") : tx("Listening to you...")}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">World Changers AI Receptionist</p>
+              <p className="text-sm text-muted-foreground mt-1">{tx("World Changers AI Receptionist")}</p>
             </div>
             <Button
               onClick={stopConversation}
@@ -290,8 +292,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
               size="lg"
               className="w-full"
             >
-              <MicOff className="w-4 h-4 mr-2" /> End Call
-            </Button>
+              <MicOff className="w-4 h-4 mr-2" /> {tx("End Call")} </Button>
           </motion.div>
         ) : (
           <motion.div
@@ -304,12 +305,12 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
             <button
               onClick={startConversation}
               disabled={isConnecting}
-              aria-label="Call the Reception now"
+              aria-label={tx("Call the Reception now")}
               className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm w-full max-w-xs"
-              title="Call the Reception"
+              title={tx("Call the Reception")}
             >
               <Phone className="w-4 h-4" />
-              {isConnecting ? "Connecting..." : "Call Now"}
+              {isConnecting ? tx("Connecting...") : tx("Call Now")}
             </button>
             <button
               onClick={startConversation}
@@ -324,11 +325,11 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
                 />
                 <img
                   src={receptionistAvatar}
-                  alt="AI Receptionist"
+                  alt={tx("AI Receptionist")}
                   className="w-20 h-20 rounded-full object-cover border-2 border-border group-hover:border-primary transition-all shadow-md relative z-10"
                 />
               </div>
-              <span className="text-xs text-muted-foreground">The Reception · AI Receptionist</span>
+              <span className="text-xs text-muted-foreground">{tx("The Reception · AI Receptionist")}</span>
             </button>
           </motion.div>
         )}

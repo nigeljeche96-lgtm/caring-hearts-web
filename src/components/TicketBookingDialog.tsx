@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -24,6 +25,7 @@ interface TicketBookingDialogProps {
 }
 
 const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogProps) => {
+  const tx = useSiteCopy();
   const [step, setStep] = useState<"form" | "confirm" | "success">("form");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -52,7 +54,7 @@ const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogP
 
   const handleSubmit = async () => {
     if (!fullName.trim() || !email.trim() || !phone.trim()) {
-      toast.error("Please fill in all fields");
+      toast.error(tx("Please fill in all fields"));
       return;
     }
     if (step === "form") {
@@ -71,7 +73,7 @@ const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogP
     });
 
     if (error) {
-      toast.error("Booking failed. Please try again.");
+      toast.error(tx("Booking failed. Please try again."));
       setLoading(false);
       return;
     }
@@ -91,44 +93,40 @@ const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogP
           <div className="text-center py-6">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
             <DialogHeader>
-              <DialogTitle className="text-2xl">Booking Confirmed!</DialogTitle>
-              <DialogDescription className="mt-2">
-                You've booked {ticketCount} ticket{ticketCount > 1 ? "s" : ""} for <strong>{event.title}</strong>.
-                A confirmation will be sent to <strong>{email}</strong>.
+              <DialogTitle className="text-2xl">{tx("Booking Confirmed!")}</DialogTitle>
+              <DialogDescription className="mt-2"> {tx("You've booked")} {ticketCount} {tx("ticket")}{ticketCount > 1 ? "s" : ""} {tx("for")} <strong>{tx(event.title)}</strong>{tx(". A confirmation will be sent to")} <strong>{email}</strong>.
               </DialogDescription>
             </DialogHeader>
-            <Button className="mt-6 bg-hero-gradient text-primary-foreground" onClick={() => handleClose(false)}>
-              Done
-            </Button>
+            <Button className="mt-6 bg-hero-gradient text-primary-foreground" onClick={() => handleClose(false)}> {tx("Done")} </Button>
           </div>
         ) : (
           <>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <Ticket className="w-5 h-5 text-primary" />
-                {step === "form" ? "Book Tickets" : "Confirm Booking"}
+                {step === "form" ? tx("Book Tickets") : tx("Confirm Booking")}
               </DialogTitle>
               <DialogDescription>
-                {event.title} — {dateStr} at {event.time}
+                {tx(event.title)} — {dateStr} {tx("at")} {event.time}
               </DialogDescription>
             </DialogHeader>
 
             {step === "form" ? (
               <div className="space-y-4 mt-2">
                 <div>
-                  <Label htmlFor="fullName">Full Name</Label>
-                  <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} placeholder="Your full name" />
+                  <Label htmlFor="fullName">{tx("Full Name")}</Label>
+                  <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} placeholder={tx("Your full name")} />
                 </div>
                 <div>
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{tx("Email")}</Label>
                   <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" />
                 </div>
                 <div>
-                  <Label htmlFor="phone">Phone</Label>
+                  <Label htmlFor="phone">{tx("Phone")}</Label>
                   <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+27 ..." />
                 </div>
                 <div>
-                  <Label>Number of Tickets</Label>
+                  <Label>{tx("Number of Tickets")}</Label>
                   <div className="flex items-center gap-3 mt-1">
                     <Button type="button" variant="outline" size="icon" onClick={() => setTicketCount(Math.max(1, ticketCount - 1))} disabled={ticketCount <= 1}>
                       <Minus className="w-4 h-4" />
@@ -140,35 +138,31 @@ const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogP
                   </div>
                 </div>
                 <div className="flex justify-between items-center pt-2 border-t border-border">
-                  <span className="text-sm text-muted-foreground">Total</span>
+                  <span className="text-sm text-muted-foreground">{tx("Total")}</span>
                   <span className="font-heading text-xl font-bold text-primary">
-                    {totalPrice === 0 ? "Free" : `R${totalPrice.toLocaleString()}`}
+                    {totalPrice === 0 ? tx("Free") : `R${totalPrice.toLocaleString()}`}
                   </span>
                 </div>
-                <Button className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90" onClick={handleSubmit}>
-                  Continue to Confirmation
-                </Button>
+                <Button className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90" onClick={handleSubmit}> {tx("Continue to Confirmation")} </Button>
               </div>
             ) : (
               <div className="space-y-4 mt-2">
                 <div className="bg-muted rounded-lg p-4 space-y-2 text-sm">
-                  <div className="flex justify-between"><span className="text-muted-foreground">Event</span><span className="font-medium text-foreground">{event.title}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Date</span><span className="font-medium text-foreground">{dateStr}, {event.time}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Location</span><span className="font-medium text-foreground">{event.location}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Name</span><span className="font-medium text-foreground">{fullName}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Email</span><span className="font-medium text-foreground">{email}</span></div>
-                  <div className="flex justify-between"><span className="text-muted-foreground">Tickets</span><span className="font-medium text-foreground">{ticketCount}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">{tx("Event")}</span><span className="font-medium text-foreground">{tx(event.title)}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">{tx("Date")}</span><span className="font-medium text-foreground">{dateStr}, {event.time}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">{tx("Location")}</span><span className="font-medium text-foreground">{tx(event.location)}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">{tx("Name")}</span><span className="font-medium text-foreground">{fullName}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">{tx("Email")}</span><span className="font-medium text-foreground">{email}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">{tx("Tickets")}</span><span className="font-medium text-foreground">{ticketCount}</span></div>
                   <div className="flex justify-between border-t border-border pt-2">
-                    <span className="font-semibold text-foreground">Total</span>
-                    <span className="font-bold text-primary">{totalPrice === 0 ? "Free" : `R${totalPrice.toLocaleString()}`}</span>
+                    <span className="font-semibold text-foreground">{tx("Total")}</span>
+                    <span className="font-bold text-primary">{totalPrice === 0 ? tx("Free") : `R${totalPrice.toLocaleString()}`}</span>
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <Button variant="outline" className="flex-1" onClick={() => setStep("form")}>Back</Button>
+                  <Button variant="outline" className="flex-1" onClick={() => setStep("form")}>{tx("Back")}</Button>
                   <Button className="flex-1 bg-hero-gradient text-primary-foreground hover:opacity-90" onClick={handleSubmit} disabled={loading}>
-                    {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                    Confirm Booking
-                  </Button>
+                    {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null} {tx("Confirm Booking")} </Button>
                 </div>
               </div>
             )}

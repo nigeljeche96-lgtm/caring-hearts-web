@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
@@ -37,18 +38,19 @@ const fadeUp = {
 };
 
 const Portfolio = () => {
+  const tx = useSiteCopy();
   const [activeFilter, setActiveFilter] = useState("All");
   const filtered = activeFilter === "All" ? portfolioProjects : portfolioProjects.filter((p) => p.cats.some((c) => c === activeFilter));
 
   return (
     <div>
 
-      <SEO title="Project Portfolio — World Changers MHCO" description="Browse our portfolio of mental health, education, community and wellness projects delivered across Southern Africa." path="/portfolio" />
-      <PageHero title="Our Portfolio" subtitle="Successful projects and case studies from our global mission" bgImage={aboutBg} />
+      <SEO title={tx("Project Portfolio — World Changers MHCO")} description={tx("Browse our portfolio of mental health, education, community and wellness projects delivered across Southern Africa.")} path="/portfolio" />
+      <PageHero title={tx("Our Portfolio")} subtitle={tx("Successful projects and case studies from our global mission")} bgImage={aboutBg} />
 
       <section className="section-padding">
         <div className="container mx-auto">
-          <SectionHeading label="Case Studies" title="Successful Projects" description="See the impact of our programs across the globe." />
+          <SectionHeading label={tx("Case Studies")} title={tx("Successful Projects")} description={tx("See the impact of our programs across the globe.")} />
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {filters.map((f) => (
@@ -61,10 +63,10 @@ const Portfolio = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filtered.map((project, i) => (
-              <motion.div key={project.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+              <motion.div key={tx(project.title)} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl overflow-hidden shadow-soft border border-border group">
                 <div className="aspect-video overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={project.image} alt={tx(project.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-3 sm:p-5">
                   <div className="flex gap-2 mb-2 flex-wrap">
@@ -72,8 +74,8 @@ const Portfolio = () => {
                       <span key={c} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{c}</span>
                     ))}
                   </div>
-                  <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{project.title}</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">{project.desc}</p>
+                  <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{tx(project.title)}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">{tx(project.desc)}</p>
                 </div>
               </motion.div>
             ))}
@@ -81,7 +83,7 @@ const Portfolio = () => {
 
           <div className="text-center mt-10">
             <Button asChild className="bg-hero-gradient text-primary-foreground hover:opacity-90">
-              <Link to="/contact">Start A Project <ArrowRight className="w-4 h-4 ml-2" /></Link>
+              <Link to="/contact">{tx("Start A Project")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
         </div>

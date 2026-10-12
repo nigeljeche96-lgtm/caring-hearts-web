@@ -1,3 +1,4 @@
+import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion, AnimatePresence } from "framer-motion";
@@ -152,9 +153,11 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const TeamSection = ({ title: sectionTitle, members, onClickMember }: { title: string; members: TeamMember[]; onClickMember: (m: TeamMember) => void }) => (
+const TeamSection = ({ title: sectionTitle, members, onClickMember }: { title: string; members: TeamMember[]; onClickMember: (m: TeamMember) => void }) => {
+  const tx = useSiteCopy();
+  return (
   <div className="mb-16">
-    <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{sectionTitle}</h3>
+    <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{tx(sectionTitle)}</h3>
     <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
       {members.map((m, i) => (
         <motion.div key={m.name + i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
@@ -171,7 +174,7 @@ const TeamSection = ({ title: sectionTitle, members, onClickMember }: { title: s
           </div>
           <div className="p-3 sm:p-5">
             <h4 className="font-heading text-sm sm:text-lg font-semibold text-foreground leading-tight">{m.name}</h4>
-            <p className="text-xs sm:text-sm text-primary mt-1">{m.role}</p>
+            <p className="text-xs sm:text-sm text-primary mt-1">{tx(m.role)}</p>
             {(m.linkedin || m.instagram) && (
               <div className="flex items-center justify-center gap-3 mt-3">
                 {m.linkedin && (
@@ -192,28 +195,30 @@ const TeamSection = ({ title: sectionTitle, members, onClickMember }: { title: s
     </div>
   </div>
 );
+};
 
 const Team = () => {
+  const tx = useSiteCopy();
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
     <div>
-      <SEO title="Our Team & Leadership — World Changers MHCO" description="Meet the Board and Executive Leadership driving World Changers Mental Health Care Organisation across Southern Africa." path="/team" />
-      <PageHero title="Our Team" subtitle="The dedicated people behind our mission" bgImage={aboutBg} />
+      <SEO title={tx("Our Team & Leadership — World Changers MHCO")} description={tx("Meet the Board and Executive Leadership driving World Changers Mental Health Care Organisation across Southern Africa.")} path="/team" />
+      <PageHero title={tx("Our Team")} subtitle={tx("The dedicated people behind our mission")} bgImage={aboutBg} />
 
       <section className="px-4 -mt-10 relative z-10">
         <div className="container mx-auto">
           <div className="rounded-2xl overflow-hidden shadow-elevated">
-            <img src={teamPhoto} alt="World Changers Team" className="w-full object-cover" />
+            <img src={teamPhoto} alt={tx("World Changers Team")} className="w-full object-cover" />
           </div>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container mx-auto">
-          <SectionHeading label="Leadership" title="Meet Our Team" description="Passionate professionals committed to making a difference." />
-          <TeamSection title="Board Members" members={boardMembers} onClickMember={setSelectedMember} />
-          <TeamSection title="Executive Leadership" members={executiveLeadership} onClickMember={setSelectedMember} />
+          <SectionHeading label={tx("Leadership")} title={tx("Meet Our Team")} description={tx("Passionate professionals committed to making a difference.")} />
+          <TeamSection title={tx("Board Members")} members={boardMembers} onClickMember={setSelectedMember} />
+          <TeamSection title={tx("Executive Leadership")} members={executiveLeadership} onClickMember={setSelectedMember} />
         </div>
       </section>
 
@@ -222,7 +227,7 @@ const Team = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
             onClick={() => setSelectedMember(null)}>
-            <button aria-label="Close profile" onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
+            <button aria-label={tx("Close profile")} onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 text-white/80 hover:text-white z-10"><X className="w-8 h-8" /></button>
             <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               {selectedMember.image && (
                 <motion.img
@@ -235,23 +240,23 @@ const Team = () => {
               )}
               <div className="text-center mt-4">
                 <p className="text-white font-heading text-xl font-bold">{selectedMember.name}</p>
-                <p className="text-white/90 text-sm">{selectedMember.role}</p>
+                <p className="text-white/90 text-sm">{tx(selectedMember.role)}</p>
                 {(selectedMember.linkedin || selectedMember.instagram) && (
                   <div className="flex items-center justify-center gap-4 mt-3">
                     {selectedMember.linkedin && (
                       <a href={selectedMember.linkedin} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform flex items-center gap-1.5 text-sm text-white/90">
-                        <LinkedInIcon /> <span>LinkedIn</span>
+                        <LinkedInIcon /> <span>{tx("LinkedIn")}</span>
                       </a>
                     )}
                     {selectedMember.instagram && (
                       <a href={selectedMember.instagram} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform flex items-center gap-1.5 text-sm text-white/90">
-                        <InstagramIcon /> <span>Instagram</span>
+                        <InstagramIcon /> <span>{tx("Instagram")}</span>
                       </a>
                     )}
                   </div>
                 )}
                 {selectedMember.bio && (
-                  <p className="text-white/90 text-sm mt-4 leading-relaxed text-left px-4">{selectedMember.bio}</p>
+                  <p className="text-white/90 text-sm mt-4 leading-relaxed text-left px-4">{tx(selectedMember.bio)}</p>
                 )}
               </div>
             </div>
