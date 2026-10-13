@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
+import OutreachVideos from "@/components/OutreachVideos";
 import aboutBg from "@/assets/about-bg.jpg";
 import portfolioEdu1 from "@/assets/portfolio-edu-1.jpg";
 import portfolioEdu2 from "@/assets/portfolio-edu-2.jpg";
@@ -88,6 +89,7 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+      <OutreachVideos />
     </div>
   );
 };

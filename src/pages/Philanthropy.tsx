@@ -6,6 +6,7 @@ import { Heart, Users, HandHeart, ArrowRight, Shield, Globe, Building, Star, Pla
 import VoiceAgent from "@/components/VoiceAgent";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
+import OutreachVideos from "@/components/OutreachVideos";
 import { useTranslation } from "react-i18next";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 import philanthropyHeroNew from "@/assets/philanthropy-hero-new.jpg";
@@ -223,7 +224,7 @@ const Philanthropy = () => {
                 <div className="p-3 sm:p-5">
                   <div className="flex gap-2 mb-2 flex-wrap">
                     {project.cats.map((c) => (
-                      <span key={c} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{c}</span>
+                      <span key={c} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{tx(c)}</span>
                     ))}
                   </div>
                    <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">{tx(project.title)}</h3>
@@ -255,6 +256,8 @@ const Philanthropy = () => {
           </div>
         </div>
       </section>
+
+      <OutreachVideos />
 
       {/* CTA */}
       <section className="relative py-24 overflow-hidden">

@@ -116,6 +116,42 @@
 }
 
 @layer utilities {
+  .donor-track {
+    display: flex;
+    width: max-content;
+    animation: donor-scroll 32s linear infinite;
+  }
+
+  .donor-group {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding-right: 3rem;
+  }
+
+  .donor-logo {
+    width: 180px;
+    height: 96px;
+    flex-shrink: 0;
+    padding: 8px;
+    background: hsl(var(--card));
+  }
+
+  .donor-marquee:hover .donor-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes donor-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .donor-track { animation: none; width: 100%; }
+    .donor-group { flex-wrap: wrap; justify-content: center; width: 100%; padding: 0 1rem; gap: 1rem; }
+    .donor-group[aria-hidden="true"] { display: none; }
+    .donor-logo { width: 140px; height: 80px; }
+  }
+
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
     background-image: var(--hero-gradient);
