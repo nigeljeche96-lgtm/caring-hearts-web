@@ -1,5 +1,7 @@
 # WCMHCO overhaul roadmap
 
+- [ ] Add uploaded previous-donor logos in an animated “Trusted by” strip above the homepage closing invitation.
+- [ ] Add the three supplied YouTube Shorts to Portfolio and Programmes & Impact.
 - [ ] Current request: Complete missing translations across pages, forms, donation controls, professional biographies and shared navigation.
 - [ ] Current request: Verify language switching across the site without changing form values or payment behavior.
 
