@@ -9,11 +9,11 @@ interface GlobeMarkProps {
   opacityClass: string;
 }
 
-/** Decorative gold globe watermark for dark sections. */
+/** Decorative light blue globe watermark for dark sections. */
 const GlobeMark = ({ sizeClass, positionClass, opacityClass }: GlobeMarkProps) => (
   <div
     aria-hidden="true"
-    className={cn("pointer-events-none absolute z-0 aspect-square bg-gold blur-[1.5px]", sizeClass, positionClass, opacityClass)}
+    className={cn("pointer-events-none absolute z-0 aspect-square bg-gold", sizeClass, positionClass, opacityClass)}
     style={{
       WebkitMask: "url(/globe-white.png) center / contain no-repeat",
       mask: "url(/globe-white.png) center / contain no-repeat",

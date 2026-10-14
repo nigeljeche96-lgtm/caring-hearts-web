@@ -7,6 +7,7 @@ import SectionHeading from "@/components/SectionHeading";
 import VoiceAgent from "@/components/VoiceAgent";
 import CountUp from "@/components/CountUp";
 import GlobeMark from "@/components/GlobeMark";
+import CredentialsBand from "@/components/CredentialsBand";
 import TrustedDonors from "@/components/TrustedDonors";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
@@ -79,9 +80,7 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden">
         <img src={volunteerHero} alt={tx("World Changers volunteers supporting communities")} fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-overlay-gradient opacity-90" />
-        <div className="absolute inset-0 bg-navy/20" />
-        <GlobeMark sizeClass="w-[55%] md:w-[720px]" positionClass="-right-[10%] md:-right-40 top-1/2 -translate-y-1/2" opacityClass="opacity-[0.11] md:opacity-[0.16]" />
+        <div className="absolute inset-0 bg-overlay-gradient" />
         <div className="relative z-10 container mx-auto px-4 py-16 md:py-24">
           <div className="max-w-3xl">
             <motion.span
@@ -119,21 +118,8 @@ const Index = () => {
       </section>
 
       {/* Credentials band */}
-      <section className="bg-primary">
-        <div className="container mx-auto px-4 py-8 md:py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 text-center sm:text-left">
-            {[
-              { value: "2017", label: t("about.credFounded", "Founded in South Africa") },
-              { value: "NPO 238-677", label: t("about.credNgo", "Registered non-profit organisation") },
-              { value: "PBO 930084594", label: t("about.credPbo", "Public benefit organisation") },
-            ].map((c) => (
-              <div key={c.value}>
-                <p className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground">{c.value}</p>
-                <p className="text-sm text-primary-foreground/80 mt-1">{tx(c.label)}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="bg-navy overflow-hidden">
+        <CredentialsBand />
       </section>
 
       {/* Get Inspired Section */}
@@ -186,7 +172,7 @@ const Index = () => {
       {/* Vision & Mission */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 gap-3 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               className="bg-card rounded-2xl p-4 sm:p-8 shadow-card border border-border">
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
@@ -211,7 +197,7 @@ const Index = () => {
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
           <SectionHeading label={t("index.wwdLabel", "Our Work")} title={t("index.wwdTitle", "What we do")} description={t("index.wwdDesc", "Practical mental health care and community support, delivered with dignity.")} />
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {values.map((v, i) => (
               <motion.div key={v.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow border border-border group text-center">
@@ -287,15 +273,15 @@ const Index = () => {
           </motion.div>
 
           <h3 className="font-heading text-2xl font-bold text-foreground mb-8 text-center">{t("index.boardMembers")}</h3>
-          <div className="grid grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
             {boardMembers.map((m, i) => (
               <motion.div key={m.role + i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="bg-card rounded-2xl overflow-hidden shadow-card group text-center">
                 <div className="aspect-[3/4] overflow-hidden bg-muted flex items-center justify-center">
                   <img src={m.image} alt={m.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-heading text-lg font-semibold text-foreground">{m.name}</h3>
+                <div className="p-3 sm:p-5">
+                  <h3 className="font-heading text-sm sm:text-lg font-semibold text-foreground">{m.name}</h3>
                   <p className="text-sm text-primary mt-1">{tx(m.role)}</p>
                 </div>
               </motion.div>

@@ -91,7 +91,7 @@ const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogP
       <DialogContent className="sm:max-w-md">
         {step === "success" ? (
           <div className="text-center py-6">
-            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
             <DialogHeader>
               <DialogTitle className="text-2xl">{tx("Booking Confirmed!")}</DialogTitle>
               <DialogDescription className="mt-2"> {tx("You've booked")} {ticketCount} {tx("ticket")}{ticketCount > 1 ? "s" : ""} {tx("for")} <strong>{tx(event.title)}</strong>{tx(". A confirmation will be sent to")} <strong>{email}</strong>.
