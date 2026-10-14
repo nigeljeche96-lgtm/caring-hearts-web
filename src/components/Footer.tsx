@@ -51,7 +51,7 @@ const Footer = () => {
             <h4 className="font-heading text-base font-semibold mt-6 mb-4">{tx("Legal")}</h4>
             <ul className="space-y-2 text-sm opacity-70">
               <li><Link to="/policies#privacy" className="hover:opacity-100 hover:text-gold transition-all">{tx("Privacy Policy")}</Link></li>
-              <li><Link to="/policies#terms" className="hover:opacity-100 hover:text-gold transition-all">{tx("Terms &amp; Conditions")}</Link></li>
+              <li><Link to="/policies#terms" className="hover:opacity-100 hover:text-gold transition-all">{tx("Terms & Conditions")}</Link></li>
             </ul>
 
           </div>
