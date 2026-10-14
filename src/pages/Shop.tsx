@@ -254,7 +254,7 @@ const Shop = () => {
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star key={star} className={`w-2.5 h-2.5 ${
                           stats && star <= Math.round(stats.avg)
-                            ? "text-yellow-500 fill-yellow-500"
+                            ? "text-primary fill-primary"
                             : "text-muted-foreground/20"
                         }`} />
                       ))}

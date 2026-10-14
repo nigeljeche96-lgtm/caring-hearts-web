@@ -50,7 +50,7 @@ const StarRating = ({
           <Star
             className={`${size} transition-colors ${
               star <= (hovered || rating)
-                ? "text-yellow-500 fill-yellow-500"
+                ? "text-primary fill-primary"
                 : "text-muted-foreground/30"
             }`}
           />
