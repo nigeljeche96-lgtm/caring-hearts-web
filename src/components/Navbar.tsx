@@ -133,7 +133,7 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          <Button asChild variant="outline" className="inline-flex h-9 px-3 text-sm md:h-10 md:px-4 bg-transparent border-2 border-teal-light text-primary-foreground hover:bg-teal-light/20 hover:text-primary-foreground">
+          <Button asChild variant="outline" className="inline-flex h-9 px-3 text-sm md:h-10 md:px-4 bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
             <Link to="/mental-health">{tx("Get Help")}</Link>
           </Button>
           <Button asChild className="hidden sm:inline-flex h-9 px-3 text-sm md:h-10 md:px-4 font-semibold border-2 border-donate bg-donate text-donate-foreground hover:bg-donate/90">

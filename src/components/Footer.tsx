@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden bg-navy-dark text-primary-foreground">
-      <GlobeMark sizeClass="w-[70%] md:w-[520px]" positionClass="-left-[20%] md:-left-32 -bottom-24" opacityClass="opacity-[0.08] md:opacity-[0.1]" />
+      <GlobeMark sizeClass="w-[240px] md:w-[340px]" positionClass="right-4 md:right-10 top-8" opacityClass="opacity-[0.14] md:opacity-[0.18]" />
       <div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10">
           <div className="col-span-2 lg:col-span-1">
