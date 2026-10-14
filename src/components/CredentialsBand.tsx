@@ -24,8 +24,8 @@ export default function CredentialsBand() {
     <>
       <div className="md:hidden py-5 overflow-hidden">
         <div className="flex w-max animate-marquee">
-          {[0, 1].map((g) => (
-            <div key={g} className="flex" aria-hidden={g === 1}>
+          {[0, 1, 2].map((g) => (
+            <div key={g} className="flex" aria-hidden={g > 0}>
               {items.map((c) => renderItem(c, `${g}-${c.value}`))}
             </div>
           ))}
