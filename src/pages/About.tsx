@@ -1,3 +1,4 @@
+import CredentialsBand from "@/components/CredentialsBand";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
@@ -51,26 +52,8 @@ const About = () => {
       <PageHero title={t("nav.about")} subtitle={t("about.whoWeAreTitle")} bgImage={aboutBg} />
 
       {/* Credentials */}
-      <section className="pt-10 md:pt-14">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
-            {[
-              { icon: Globe, label: t("about.credFounded", "Founded in South Africa"), value: "2017" },
-              { icon: Shield, label: t("about.credNgo", "Registered NGO"), value: "238-677" },
-              { icon: Award, label: t("about.credPbo", "Public Benefits Organisation"), value: "930084594" },
-            ].map((c) => (
-              <div key={c.label} className="flex items-center gap-4 bg-card rounded-xl p-4 sm:p-5 shadow-soft border border-border">
-                <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <c.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs sm:text-sm text-muted-foreground">{tx(c.label)}</p>
-                  <p className="font-heading text-lg font-bold text-foreground">{c.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="bg-navy overflow-hidden">
+        <CredentialsBand />
       </section>
 
       {/* Who We Are */}
@@ -125,7 +108,7 @@ const About = () => {
       {/* Mission & Vision */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 gap-3 sm:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="bg-card rounded-2xl p-4 sm:p-8 shadow-card border-l-4 border-primary">
               <span className="text-sm font-semibold text-accent uppercase tracking-wider">{t("about.missionLabel")}</span>
