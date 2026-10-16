@@ -3,8 +3,8 @@
 - [x] Add uploaded previous-donor logos in an animated “Trusted by” strip above the homepage closing invitation.
 - [x] Add the three supplied YouTube Shorts to Portfolio and Programmes & Impact.
 - [x] Blue-and-white palette, two new videos, phone layout fixes, hero/footer globe
-- [ ] Current request (blocked: AI translation credits): Complete missing translations across pages, forms, donation controls, professional biographies and shared navigation.
-- [ ] Current request: Verify language switching across the site without changing form values or payment behavior.
+- [x] Complete missing translations across pages, forms, donation controls, professional biographies and shared navigation.
+- [x] Verify language switching across the site without changing form values or payment behavior.
 
 - [ ] Phase 1: Donation navigation and same-page checkout foundation
 - [x] Phase 1: Remove unsupported public impact figures and false document listings (figures dated as cumulative, South Africa, 2017–2026 — confirmed by owner 2026-09-28)
