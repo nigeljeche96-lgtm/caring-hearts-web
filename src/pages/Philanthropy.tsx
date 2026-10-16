@@ -2,7 +2,7 @@ import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Heart, Users, HandHeart, ArrowRight, Shield, Globe, Building, Star, Play, Home, Utensils } from "lucide-react";
+import { Heart, Users, HandHeart, ArrowRight, Shield, Globe, Building, Star, Home, Utensils } from "lucide-react";
 import VoiceAgent from "@/components/VoiceAgent";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
@@ -30,12 +30,6 @@ const portfolioProjects = [
   { title: "Mental Health Awareness Golf Day", cats: ["Wellness", "Fundraising"], desc: "Annual fundraising golf day raising over R500,000 for youth mental health therapy and counselling services.", image: portfolioWell1 },
   { title: "Mindfulness & Wellbeing Programs", cats: ["Wellness", "Self-Care"], desc: "Community-based mindfulness workshops, meditation sessions, and holistic wellbeing programs for all ages.", image: portfolioWell2 },
   { title: "Annual Awards & Recognition Gala", cats: ["Wellness", "Community"], desc: "Celebrating outstanding volunteers, donors, and community heroes at our annual recognition ceremony.", image: portfolioWell3 },
-];
-
-const youtubeVideos = [
-  { id: "ZgfcN2DHrz0", title: "Humanitarian Outreach" },
-  { id: "MkCq-scDGqM", title: "Community Impact" },
-  { id: "XoaGz-YXnRA", title: "Charity in Action" },
 ];
 
 const marqueeItems = ["Humanitarian Aid", "Charity", "Food Drives", "Disaster Relief", "Shelter", "Donations"];
