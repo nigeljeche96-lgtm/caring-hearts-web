@@ -49,7 +49,7 @@ export default function OutreachVideos() {
         )}
       </div>
       <div className="p-3">
-        <Button asChild variant="ghost" className="w-full h-auto whitespace-normal text-primary">
+        <Button asChild variant="ghost" className="w-full h-auto whitespace-normal text-primary px-1.5 text-xs sm:px-4 sm:text-sm">
           <a
             href={clip.short ? `https://youtube.com/shorts/${clip.id}` : `https://youtu.be/${clip.id}`}
             target="_blank"
