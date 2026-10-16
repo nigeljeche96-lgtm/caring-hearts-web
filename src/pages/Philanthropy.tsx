@@ -236,27 +236,6 @@ const Philanthropy = () => {
         </div>
       </section>
 
-      {/* YouTube Videos */}
-      <section className="section-padding">
-        <div className="container mx-auto">
-          <SectionHeading label={t("philanthropy.videosLabel")} title={t("philanthropy.videosTitle")} description={t("philanthropy.videosDesc")} />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {youtubeVideos.map((video, i) => (
-              <motion.div key={video.id} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="rounded-xl overflow-hidden shadow-soft border border-border bg-card">
-                <div className="aspect-video">
-                  <iframe src={`https://www.youtube.com/embed/${video.id}`} title={tx(video.title)}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" />
-                </div>
-                <div className="p-3">
-                  <p className="text-sm font-medium text-foreground flex items-center gap-2"><Play className="w-3.5 h-3.5 text-primary" /> {tx(video.title)}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <OutreachVideos />
 
       {/* CTA */}
