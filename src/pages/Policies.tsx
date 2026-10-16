@@ -161,7 +161,7 @@ const Policies = () => {
     <section id="terms" className="section-padding scroll-mt-28">
       <div className="container mx-auto">
         <div className="max-w-3xl mx-auto bg-card rounded-2xl shadow-card border border-border p-6 md:p-10">
-          <h2 className="font-heading text-3xl font-bold text-foreground mb-2">{tx("Terms &amp; Conditions")}</h2>
+          <h2 className="font-heading text-3xl font-bold text-foreground mb-2">{tx("Terms & Conditions")}</h2>
           <p className="text-sm text-muted-foreground mb-8"> {tx("These terms govern your use of the WCMHCO website and the services offered through it. By using the website you accept them.")} </p>
 
           <div className="space-y-6 text-sm text-foreground leading-relaxed">
