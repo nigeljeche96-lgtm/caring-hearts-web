@@ -66,9 +66,9 @@ const Events = () => {
                   </div>
                   {event.registerUrl ? (
                     <>
-                      <p className="text-xs text-muted-foreground mt-4 italic"> {tx("Individual – R3 000 · Four-Ball – R10 000. Includes 18 holes + cart access, lunch &amp; drinks, contests and prize-giving dinner.")} </p>
+                      <p className="text-xs text-muted-foreground mt-4 italic"> {tx("Individual – R3 000 · Four-Ball – R10 000. Includes 18 holes + cart access, lunch & drinks, contests and prize-giving dinner.")} </p>
                       <Button asChild size="sm" className="mt-4 bg-hero-gradient text-primary-foreground hover:opacity-90">
-                        <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">{tx("Register &amp; Buy Tickets")}</a>
+                        <a href={event.registerUrl} target="_blank" rel="noopener noreferrer">{tx("Register & Buy Tickets")}</a>
                       </Button>
                     </>
                   ) : (
