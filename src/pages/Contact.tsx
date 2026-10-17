@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import PageHero from "@/components/PageHero";
 import { useTranslation } from "react-i18next";
 import aboutBg from "@/assets/about-bg.jpg";
+import CrisisHelpline from "@/components/CrisisHelpline";
 
 const Contact = () => {
   const tx = useSiteCopy();
@@ -77,6 +78,7 @@ const Contact = () => {
 
       <SEO title={tx("Contact World Changers MHCO")} description={tx("Get in touch with World Changers Mental Health Care Organisation in Kenilworth, South Africa. Email, address and contact form.")} path="/contact" jsonLd={{"@context":"https://schema.org","@type":"LocalBusiness","name":"World Changers Mental Health Care Organisation","email":"info@worldchangersmh.org","url":"https://worldchangersmh.org/contact","address":{"@type":"PostalAddress","streetAddress":"114 George Street","addressLocality":"Kenilworth","addressCountry":"ZA"},"openingHours":"Mo-Fr 09:00-17:00"}} />
       <PageHero title={t("contact.heroTitle")} subtitle={t("contact.heroSubtitle")} bgImage={aboutBg} />
+      <CrisisHelpline />
 
       <section className="section-padding">
         <div className="container mx-auto">

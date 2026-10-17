@@ -28,6 +28,8 @@ import patienceThabede from "@/assets/patience-thabede.png";
 import mimmyLedwabaAsset from "@/assets/mimmy-ledwaba.png.asset.json";
 const mimmyLedwaba = mimmyLedwabaAsset.url;
 import zukiswaNolutshungu from "@/assets/zukiswa-nolutshungu.jpg";
+import CrisisHelpline from "@/components/CrisisHelpline";
+import SelfHelpGuides from "@/components/SelfHelpGuides";
 
 const programs = [
   { icon: Brain, title: "Cognitive Behavioral Therapy", desc: "Evidence-based approach to treating anxiety, depression, and other mental health conditions through structured therapeutic sessions." },
@@ -127,6 +129,7 @@ const MentalHealth = () => {
   const [bookingPhone, setBookingPhone] = useState("");
   const [bookingReason, setBookingReason] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [consent, setConsent] = useState(false);
   const { user } = useAuth();
   const bookingRef = useRef<HTMLDivElement>(null);
 
@@ -144,7 +147,7 @@ const MentalHealth = () => {
 
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!date || !time || !sessionType || !selectedProvider) return;
+    if (!date || !time || !sessionType || !selectedProvider || !consent) return;
     setSubmitting(true);
     try {
       const bookingData = {
@@ -212,41 +215,8 @@ const MentalHealth = () => {
         </div>
       </section>
 
-      {/* SADAG 24/7 Emergency Contact */}
-      <section className="bg-destructive text-destructive-foreground">
-        <div className="container mx-auto py-6 px-4">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wider opacity-90">{t("mentalHealth.emergencyLabel")}</p>
-                <h2 className="font-heading text-lg md:text-xl font-bold leading-tight">{t("mentalHealth.emergencyTitle")}</h2>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 flex-1 text-sm">
-              <a href="tel:0800567567" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
-                <div className="text-[11px] opacity-90">{t("mentalHealth.emergencySuicide")}</div>
-                <div className="font-bold">0800 567 567</div>
-              </a>
-              <a href="tel:0112344837" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
-                <div className="text-[11px] opacity-90">{t("mentalHealth.emergencyMH")}</div>
-                <div className="font-bold">011 234 4837</div>
-              </a>
-              <a href="sms:31393" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
-                <div className="text-[11px] opacity-90">{t("mentalHealth.emergencySMS")}</div>
-                <div className="font-bold">31393 / 32312</div>
-              </a>
-              <a href="https://wa.me/27768822775" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 rounded-lg px-3 py-2 transition-colors">
-                <div className="text-[11px] opacity-90">{tx("WhatsApp (9am–5pm)")}</div>
-                <div className="font-bold">076 882 2775</div>
-              </a>
-            </div>
-          </div>
-          <p className="text-xs opacity-90 mt-3 text-center md:text-left">{t("mentalHealth.emergencyNote")}</p>
-        </div>
-      </section>
+      {/* 24/7 crisis lines */}
+      <CrisisHelpline />
 
       {/* Call Now + Book Session - Side by Side */}
       <section className="section-padding bg-card">
@@ -409,8 +379,13 @@ const MentalHealth = () => {
                     <Textarea placeholder={tx("Please briefly describe the reason for your visit...")} rows={3} value={bookingReason} onChange={(e) => setBookingReason(e.target.value)} />
                   </div>
 
+                  <label className="flex items-start gap-3 rounded-lg border border-border bg-muted/50 p-3 text-sm text-muted-foreground cursor-pointer">
+                    <input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-primary shrink-0" />
+                    <span>{t("consent.booking", "I understand this is a confidential, non-emergency virtual session. If I am in danger or crisis, I will call 112 or a 24/7 crisis line. I agree that my details are shared with my chosen professional to arrange the session.")}</span>
+                  </label>
+
                   <Button type="submit" size="lg" className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
-                    disabled={!date || !time || !sessionType || !selectedProvider || submitting}>
+                    disabled={!date || !time || !sessionType || !selectedProvider || !consent || submitting}>
                     {submitting ? tx("Booking...") : tx("Confirm Booking")}
                   </Button>
                 </form>
@@ -479,6 +454,8 @@ const MentalHealth = () => {
           </div>
         </div>
       </section>
+
+      <SelfHelpGuides />
 
       {/* YouTube Videos */}
       <section className="section-padding bg-muted">

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useExchangeRates } from "@/hooks/useExchangeRates";
+import TaxNotice from "@/components/TaxNotice";
 
 const DONORBOX_SLUG = "international-payments";
 const DONORBOX_URL = `https://donorbox.org/${DONORBOX_SLUG}`;
@@ -171,6 +172,8 @@ const DonationWidget = () => {
             </p>
 
           </div>
+
+          <TaxNotice className="mb-6" />
 
           {/* Amounts */}
           <fieldset>
