@@ -19,16 +19,16 @@ Blocked inputs:
 - Verified reports or dated impact records for any future public statistics
 
 ## Next build (queued 2026-10-16, start 2026-10-17)
-- [ ] 24/7 crisis helpline bar (SADAG, Lifeline, GBV, Childline, 112) on Get Help + Contact, plus Quick Exit button
-- [ ] Booking form: non-emergency / consent checkbox before submitting
+- [x] 24/7 crisis helpline bar (SADAG, Lifeline, GBV, Childline, 112) on Get Help + Contact, plus Quick Exit button
+- [x] Booking form: non-emergency / consent checkbox before submitting
 - [ ] Professional cards: council registration badges (only where owner confirms numbers)
-- [ ] Section 18A tax-deductible notice + certificate request on Donation and Partnerships
+- [x] Section 18A tax-deductible notice + certificate request on Donation and Partnerships
 - [ ] B-BBEE SED note for companies on Partnerships
 - [ ] Governance & transparency section (annual reports when supplied)
-- [ ] Corporate wellness packages on Partnerships
+- [x] Corporate wellness packages on Partnerships
 - [ ] Beneficiary stories section (needs real, consented stories from owner)
-- [ ] Free self-help guides section (anxiety, burnout, grief)
-- [ ] Translate all new text into all site languages; check phone/tablet/desktop
+- [x] Free self-help guides section (anxiety, burnout, grief)
+- [x] Translate all new text into all site languages; check phone/tablet/desktop
 
 Inputs needed from owner:
 - Confirm Section 18A certificates are issued and who handles requests

@@ -14,6 +14,8 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 import { useExchangeRates } from "@/hooks/useExchangeRates";
+import CorporateWellness from "@/components/CorporateWellness";
+import TaxNotice from "@/components/TaxNotice";
 
 
 const corporateOptions = [
@@ -203,6 +205,8 @@ const Partnerships = () => {
         </div>
       </section>
 
+      <CorporateWellness />
+
       {/* CORPORATE SECTION */}
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
@@ -383,6 +387,8 @@ const Partnerships = () => {
                 ))}
               </select>
             </div>
+
+            <TaxNotice className="mb-4" />
 
             {/* Amount cards */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">

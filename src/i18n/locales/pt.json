@@ -1292,5 +1292,69 @@
     "37ac6b8568173609": "Quando inundações devastadoras atingiram KwaZulu-Natal, a equipa de resposta humanitária da World Changers MHC Org esteve no terreno em 24 horas, prestando assistência de emergência às comunidades afetadas. A equipa de resposta, composta por assistentes sociais, conselheiros, coordenadores de logística e voluntários de resposta a emergências, forneceu uma gama abrangente de serviços, incluindo abrigo de emergência, cabazes alimentares, água potável, vestuário e material essencial de higiene a mais de 800 famílias. Crucialmente, a resposta também incluiu primeiros socorros psicológicos e apoio contínuo à saúde mental para os sobreviventes das cheias, muitos dos quais sofreram traumas significativos devido ao desastre. Os conselheiros trabalharam em centros de evacuação, fornecendo apoio individual e em grupo, e identificando indivíduos que necessitavam de encaminhamento para serviços de saúde mental mais intensivos. A resposta destacou a importância de integrar o apoio à saúde mental nas operações de ajuda humanitária — uma abordagem que a World Changers tem defendido e que está a ser cada vez mais adotada por organizações humanitárias a nível global. Nas semanas que se seguiram à resposta inicial, a organização estabeleceu centros de apoio semipermanentes nas comunidades mais afetadas, fornecendo aconselhamento contínuo, atividades de reconstrução comunitária e defesa das necessidades de saúde mental dos sobreviventes de desastres.",
     "c2fa0090fd78b489": "Quando inundações devastadoras atingiram KwaZulu-Natal, a equipa de resposta humanitária da World Changers MHC Org esteve no terreno em 24 horas, prestando assistência de emergência às comunidades afetadas.",
     "9ff80e971a1526a3": "A equipa de resposta, composta por assistentes sociais, conselheiros, coordenadores de logística e voluntários de resposta a emergências, forneceu uma gama abrangente de serviços, incluindo abrigo de emergência, cabazes alimentares, água potável, vestuário e material essencial de higiene a mais de 800 famílias."
+  },
+  "crisis": {
+    "label": "Grátis · 24/7 · Confidencial",
+    "title": "Precisa de ajuda agora? Ligue para uma linha de crise",
+    "quickExit": "Saída rápida",
+    "suicide": "Linha de crise de suicídio SADAG",
+    "sadag": "Linha de saúde mental SADAG",
+    "lifeline": "Lifeline África do Sul",
+    "gbv": "Centro de violência de género",
+    "childline": "Childline África do Sul",
+    "emergency": "Emergência nacional",
+    "note": "Se você ou alguém próximo estiver em perigo imediato, ligue 112 agora. As nossas sessões agendadas não são um serviço de emergência."
+  },
+  "consent": {
+    "booking": "Compreendo que esta é uma sessão virtual confidencial e não de emergência. Se estiver em perigo ou crise, ligarei para o 112 ou uma linha de crise 24/7. Aceito que os meus dados sejam partilhados com o profissional escolhido para marcar a sessão."
+  },
+  "tax": {
+    "title": "O seu donativo pode reduzir os seus impostos",
+    "body": "A World Changers é uma Organização de Benefício Público registada (PBO 930084594). Para pedir um certificado fiscal da Secção 18A, envie-nos o seu nome, o valor e a referência do pagamento."
+  },
+  "corpWellness": {
+    "label": "Para empresas",
+    "title": "Pacotes de bem-estar no trabalho",
+    "desc": "Cuide da sua equipa enquanto apoia o nosso trabalho comunitário. Cada pacote é adaptado à sua equipa.",
+    "days": {
+      "title": "Dias de bem-estar dos colaboradores",
+      "desc": "Dias presenciais ou virtuais com palestras, sessões de grupo e conversas individuais."
+    },
+    "burnout": {
+      "title": "Seminários de burnout e resiliência",
+      "desc": "Seminários práticos para gestores e equipas sobre stress, carga de trabalho e recuperação."
+    },
+    "trauma": {
+      "title": "Apoio pós-trauma",
+      "desc": "Apoio às equipas após um incidente grave, perda ou crise no local de trabalho."
+    },
+    "training": {
+      "title": "Formação de sensibilização para a saúde mental",
+      "desc": "Ajude os colaboradores a identificar sinais de alerta e a encaminhar colegas para o apoio certo."
+    },
+    "cta": "Pedir um pacote de bem-estar"
+  },
+  "guides": {
+    "label": "Recursos gratuitos",
+    "title": "Guias de autoajuda",
+    "desc": "Passos simples e práticos para começar hoje. Estes guias não substituem cuidados profissionais.",
+    "anxiety": {
+      "title": "Lidar com a ansiedade",
+      "tip1": "Inspire contando até 4, segure 4, expire em 6. Repita cinco vezes.",
+      "tip2": "Nomeie 5 coisas que vê, 4 que ouve e 3 que pode tocar para se acalmar.",
+      "tip3": "Limite a cafeína e mantenha uma rotina de sono regular."
+    },
+    "burnout": {
+      "title": "Prevenir o burnout",
+      "tip1": "Faça pequenas pausas longe dos ecrãs durante o dia de trabalho.",
+      "tip2": "Defina horários claros de início e fim e proteja os seus dias de descanso.",
+      "tip3": "Fale com o seu gestor ou alguém de confiança antes que o stress se acumule."
+    },
+    "grief": {
+      "title": "Viver com o luto",
+      "tip1": "Não há forma certa nem prazo para o luto. Seja paciente consigo.",
+      "tip2": "Mantenha rotinas simples: coma, durma e mexa-se um pouco todos os dias.",
+      "tip3": "Partilhe memórias com quem conhecia o seu ente querido ou junte-se a um grupo de apoio."
+    }
   }
 }
