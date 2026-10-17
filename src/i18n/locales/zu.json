@@ -1292,5 +1292,69 @@
     "69752f2313b2f017": "Izindaba",
     "82c0e8c1d1d5775c": "Ubambiswano",
     "aa2f4a79e1413b44": "Ningizimu ne-Afrika"
+  },
+  "crisis": {
+    "label": "Mahhala · 24/7 · Kuyimfihlo",
+    "title": "Udinga usizo manje? Shayela ulayini wezinkinga",
+    "quickExit": "Phuma ngokushesha",
+    "suicide": "Ulayini we-SADAG wokuzibulala",
+    "sadag": "Ulayini we-SADAG wempilo yengqondo",
+    "lifeline": "Lifeline South Africa",
+    "gbv": "Isikhungo se-GBV",
+    "childline": "Childline SA",
+    "emergency": "Isimo esiphuthumayo sikazwelonke",
+    "note": "Uma wena noma othile oseduze esengozini, shayela u-112 manje. Izikhathi zethu ezibhukiwe aziyona insiza yezimo eziphuthumayo."
+  },
+  "consent": {
+    "booking": "Ngiyaqonda ukuthi lesi yisikhathi esiyimfihlo, esingaphuthumi, ku-inthanethi. Uma ngisengozini, ngizoshayela u-112 noma ulayini wezinkinga we-24/7. Ngiyavuma ukuthi imininingwane yami yabelwe uchwepheshe engimkhethile ukuze ahlele isikhathi."
+  },
+  "tax": {
+    "title": "Umnikelo wakho unganciphisa intela yakho",
+    "body": "I-World Changers iyinhlangano ebhalisiwe yeNzuzo Yomphakathi (PBO 930084594). Ukucela isitifiketi sentela seSigaba 18A, sithumelele i-imeyili negama lakho, inani kanye nesithenjwa senkokhelo."
+  },
+  "corpWellness": {
+    "label": "Ezinkampanini",
+    "title": "Amaphakheji Enhlalakahle Emsebenzini",
+    "desc": "Nakekela abasebenzi bakho ngenkathi usekela umsebenzi wethu womphakathi. Iphakheji ngalinye lenzelwe ithimba lakho.",
+    "days": {
+      "title": "Izinsuku Zenhlalakahle Yabasebenzi",
+      "desc": "Izinsuku emsebenzini noma ku-inthanethi ezinezinkulumo, amaseshini eqembu nokuhlolwa komuntu ngamunye."
+    },
+    "burnout": {
+      "title": "Amasemina Okukhathala Nokuqina",
+      "desc": "Amasemina asebenzayo abaphathi namathimba mayelana nengcindezi, umthwalo womsebenzi nokululama."
+    },
+    "trauma": {
+      "title": "Ukuxoxisana Ngokuhlukumezeka",
+      "desc": "Ukusekelwa kwamathimba ngemuva kwesigameko esibi, ukulahlekelwa noma inkinga emsebenzini."
+    },
+    "training": {
+      "title": "Ukuqeqeshwa Ngokuqwashisa Ngempilo Yengqondo",
+      "desc": "Siza abasebenzi babone izimpawu zokuqala futhi baqondise ozakwabo osizweni olufanele."
+    },
+    "cta": "Cela iphakheji lenhlalakahle"
+  },
+  "guides": {
+    "label": "Izinsiza Zamahhala",
+    "title": "Imihlahlandlela Yokuzisiza",
+    "desc": "Izinyathelo ezilula ongaziqala namuhla. Le mihlahlandlela ayithathi indawo yokunakekelwa ngochwepheshe.",
+    "anxiety": {
+      "title": "Ukubhekana nokukhathazeka",
+      "tip1": "Phefumulela ngaphakathi ubale ku-4, ubambe ku-4, ukhiphe ku-6. Phinda kahlanu.",
+      "tip2": "Shono izinto ezi-5 ozibonayo, ezi-4 ozizwayo nezi-3 ongazithinta ukuze uzinze.",
+      "tip3": "Nciphisa i-caffeine futhi ube nesimiso sokulala esijwayelekile."
+    },
+    "burnout": {
+      "title": "Ukuvimbela ukukhathala ngokweqile",
+      "tip1": "Thatha ikhefu elifushane kude nezikrini phakathi nosuku lomsebenzi.",
+      "tip2": "Beka izikhathi ezicacile zokuqala nokuqeda, futhi uvikele izinsuku zakho zokuphumula.",
+      "tip3": "Khuluma nomphathi wakho noma umuntu omethembayo ngaphambi kokuba ingcindezi yande."
+    },
+    "grief": {
+      "title": "Ukuphila nosizi",
+      "tip1": "Ayikho indlela efanele noma isikhathi sokuzila. Ziphathe ngesineke.",
+      "tip2": "Gcina izimiso ezilula: yidla, lala futhi unyakaze kancane nsuku zonke.",
+      "tip3": "Yabelana ngezinkumbulo nabantu ababemazi othandekayo wakho, noma ujoyine iqembu lokusekela."
+    }
   }
 }

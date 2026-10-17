@@ -1292,5 +1292,69 @@
     "69752f2313b2f017": "Nuus",
     "82c0e8c1d1d5775c": "Vennootskappe",
     "aa2f4a79e1413b44": "Suider-Afrika"
+  },
+  "crisis": {
+    "label": "Gratis · 24/7 · Vertroulik",
+    "title": "Het jy nou hulp nodig? Bel 'n krisislyn",
+    "quickExit": "Vinnige uitgang",
+    "suicide": "SADAG Selfmoord-krisislyn",
+    "sadag": "SADAG Geestesgesondheidslyn",
+    "lifeline": "Lifeline Suid-Afrika",
+    "gbv": "GBV-bevelsentrum",
+    "childline": "Childline SA",
+    "emergency": "Nasionale noodnommer",
+    "note": "As jy of iemand naby jou in onmiddellike gevaar is, bel nou 112. Ons bespreekte sessies is nie 'n nooddiens nie."
+  },
+  "consent": {
+    "booking": "Ek verstaan dit is 'n vertroulike, nie-nood virtuele sessie. As ek in gevaar of krisis is, sal ek 112 of 'n 24/7-krisislyn bel. Ek stem in dat my besonderhede met my gekose beroepspersoon gedeel word om die sessie te reël."
+  },
+  "tax": {
+    "title": "Jou skenking kan jou belasting verminder",
+    "body": "World Changers is 'n geregistreerde Openbare Weldaadsorganisasie (PBO 930084594). Om 'n Artikel 18A-belastingsertifikaat aan te vra, e-pos ons jou naam, die bedrag en jou betalingsverwysing."
+  },
+  "corpWellness": {
+    "label": "Vir maatskappye",
+    "title": "Werkplek-welstandpakkette",
+    "desc": "Sorg vir jou mense terwyl jy ons gemeenskapswerk ondersteun. Elke pakket word vir jou span aangepas.",
+    "days": {
+      "title": "Werknemer-welstanddae",
+      "desc": "Dae op die perseel of virtueel met praatjies, groepsessies en een-tot-een gesprekke vir jou personeel."
+    },
+    "burnout": {
+      "title": "Uitbranding- en veerkragseminare",
+      "desc": "Praktiese seminare vir bestuurders en spanne oor stres, werklading en herstel."
+    },
+    "trauma": {
+      "title": "Trauma-ontlonting",
+      "desc": "Ondersteuning vir spanne ná 'n ernstige voorval, verlies of krisis by die werk."
+    },
+    "training": {
+      "title": "Geestesgesondheid-bewusmakingsopleiding",
+      "desc": "Help personeel om vroeë waarskuwingstekens raak te sien en kollegas na die regte hulp te lei."
+    },
+    "cta": "Vra 'n welstandpakket aan"
+  },
+  "guides": {
+    "label": "Gratis hulpbronne",
+    "title": "Selfhelp-gidse",
+    "desc": "Eenvoudige, praktiese stappe wat jy vandag kan begin. Hierdie gidse vervang nie professionele sorg nie.",
+    "anxiety": {
+      "title": "Hantering van angs",
+      "tip1": "Asem in vir 4 tellings, hou vir 4, asem uit vir 6. Herhaal vyf keer.",
+      "tip2": "Noem 5 dinge wat jy sien, 4 wat jy hoor en 3 wat jy kan aanraak om jouself te aard.",
+      "tip3": "Beperk kafeïen en hou 'n gereelde slaaproetine."
+    },
+    "burnout": {
+      "title": "Voorkoming van uitbranding",
+      "tip1": "Neem kort pouses weg van skerms gedurende die werksdag.",
+      "tip2": "Stel duidelike begin- en eindtye en beskerm jou rusdae.",
+      "tip3": "Praat met jou bestuurder of iemand wat jy vertrou voordat stres opbou."
+    },
+    "grief": {
+      "title": "Lewe met rou",
+      "tip1": "Daar is geen regte manier of tydlyn om te rou nie. Wees geduldig met jouself.",
+      "tip2": "Hou eenvoudige roetines: eet, slaap en beweeg elke dag 'n bietjie.",
+      "tip3": "Deel herinneringe met mense wat jou geliefde geken het, of sluit by 'n ondersteuningsgroep aan."
+    }
   }
 }

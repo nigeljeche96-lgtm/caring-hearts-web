@@ -363,5 +363,69 @@
     "contactInfo": "Contact Info",
     "callReception": "Call Now (The Reception)",
     "allRightsReserved": "© 2026 World Changers Mental Health Care Organisation. All rights reserved."
+  },
+  "crisis": {
+    "label": "Free · 24/7 · Confidential",
+    "title": "Need help right now? Call a crisis line",
+    "quickExit": "Quick exit",
+    "suicide": "SADAG Suicide Crisis Line",
+    "sadag": "SADAG Mental Health Line",
+    "lifeline": "Lifeline South Africa",
+    "gbv": "GBV Command Centre",
+    "childline": "Childline SA",
+    "emergency": "National Emergency",
+    "note": "If you or someone near you is in immediate danger, call 112 now. Our booked sessions are not an emergency service."
+  },
+  "consent": {
+    "booking": "I understand this is a confidential, non-emergency virtual session. If I am in danger or crisis, I will call 112 or a 24/7 crisis line. I agree that my details are shared with my chosen professional to arrange the session."
+  },
+  "tax": {
+    "title": "Your donation can reduce your tax",
+    "body": "World Changers is a registered Public Benefit Organisation (PBO 930084594). To request a Section 18A tax certificate, email us with your name, the amount and your payment reference."
+  },
+  "corpWellness": {
+    "label": "For Companies",
+    "title": "Workplace Wellness Packages",
+    "desc": "Look after your people while supporting our community work. Every package is tailored to your team.",
+    "days": {
+      "title": "Employee Wellbeing Days",
+      "desc": "On-site or virtual days with talks, group sessions and one-on-one check-ins for your staff."
+    },
+    "burnout": {
+      "title": "Burnout & Resilience Seminars",
+      "desc": "Practical seminars for managers and teams on stress, workload and recovery."
+    },
+    "trauma": {
+      "title": "Trauma Debriefing",
+      "desc": "Support for teams after a serious incident, loss or crisis in the workplace."
+    },
+    "training": {
+      "title": "Mental Health Awareness Training",
+      "desc": "Help staff spot early warning signs and guide colleagues to the right support."
+    },
+    "cta": "Request a wellness package"
+  },
+  "guides": {
+    "label": "Free Resources",
+    "title": "Self-Help Guides",
+    "desc": "Simple, practical steps you can start today. These guides do not replace professional care.",
+    "anxiety": {
+      "title": "Coping with anxiety",
+      "tip1": "Breathe in for 4 counts, hold for 4, breathe out for 6. Repeat five times.",
+      "tip2": "Name 5 things you can see, 4 you can hear and 3 you can touch to ground yourself.",
+      "tip3": "Limit caffeine and keep a regular sleep routine."
+    },
+    "burnout": {
+      "title": "Preventing burnout",
+      "tip1": "Take short breaks away from screens during the working day.",
+      "tip2": "Set clear start and finish times, and protect your rest days.",
+      "tip3": "Talk to your manager or someone you trust before stress builds up."
+    },
+    "grief": {
+      "title": "Living with grief",
+      "tip1": "There is no right way or timeline to grieve. Be patient with yourself.",
+      "tip2": "Keep simple routines: eat, sleep and move a little each day.",
+      "tip3": "Share memories with people who knew your loved one, or join a support group."
+    }
   }
 }

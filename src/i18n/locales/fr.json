@@ -1292,5 +1292,69 @@
     "69752f2313b2f017": "Actualités",
     "82c0e8c1d1d5775c": "Partenariats",
     "aa2f4a79e1413b44": "Afrique australe"
+  },
+  "crisis": {
+    "label": "Gratuit · 24h/24 · Confidentiel",
+    "title": "Besoin d'aide maintenant ? Appelez une ligne de crise",
+    "quickExit": "Sortie rapide",
+    "suicide": "Ligne de crise suicide SADAG",
+    "sadag": "Ligne santé mentale SADAG",
+    "lifeline": "Lifeline Afrique du Sud",
+    "gbv": "Centre contre les violences de genre",
+    "childline": "Childline Afrique du Sud",
+    "emergency": "Urgence nationale",
+    "note": "Si vous ou une personne proche êtes en danger immédiat, appelez le 112. Nos séances réservées ne sont pas un service d'urgence."
+  },
+  "consent": {
+    "booking": "Je comprends qu'il s'agit d'une séance virtuelle confidentielle, hors urgence. En cas de danger ou de crise, j'appellerai le 112 ou une ligne de crise 24h/24. J'accepte que mes coordonnées soient transmises au professionnel choisi pour organiser la séance."
+  },
+  "tax": {
+    "title": "Votre don peut réduire vos impôts",
+    "body": "World Changers est une organisation d'utilité publique enregistrée (PBO 930084594). Pour demander un certificat fiscal Section 18A, envoyez-nous votre nom, le montant et la référence de paiement."
+  },
+  "corpWellness": {
+    "label": "Pour les entreprises",
+    "title": "Offres de bien-être au travail",
+    "desc": "Prenez soin de vos équipes tout en soutenant notre action communautaire. Chaque offre est adaptée à votre équipe.",
+    "days": {
+      "title": "Journées bien-être des employés",
+      "desc": "Journées sur site ou virtuelles avec conférences, séances de groupe et entretiens individuels."
+    },
+    "burnout": {
+      "title": "Séminaires épuisement et résilience",
+      "desc": "Séminaires pratiques pour managers et équipes sur le stress, la charge de travail et la récupération."
+    },
+    "trauma": {
+      "title": "Débriefing post-traumatique",
+      "desc": "Accompagnement des équipes après un incident grave, un deuil ou une crise au travail."
+    },
+    "training": {
+      "title": "Formation de sensibilisation à la santé mentale",
+      "desc": "Aidez le personnel à repérer les signes précoces et à orienter les collègues vers le bon soutien."
+    },
+    "cta": "Demander une offre bien-être"
+  },
+  "guides": {
+    "label": "Ressources gratuites",
+    "title": "Guides d'auto-assistance",
+    "desc": "Des gestes simples à commencer dès aujourd'hui. Ces guides ne remplacent pas un suivi professionnel.",
+    "anxiety": {
+      "title": "Gérer l'anxiété",
+      "tip1": "Inspirez sur 4 temps, retenez 4 temps, expirez sur 6. Répétez cinq fois.",
+      "tip2": "Nommez 5 choses que vous voyez, 4 que vous entendez et 3 que vous pouvez toucher pour vous ancrer.",
+      "tip3": "Limitez la caféine et gardez des horaires de sommeil réguliers."
+    },
+    "burnout": {
+      "title": "Prévenir l'épuisement",
+      "tip1": "Faites de courtes pauses loin des écrans pendant la journée.",
+      "tip2": "Fixez des heures de début et de fin claires et protégez vos jours de repos.",
+      "tip3": "Parlez à votre responsable ou à une personne de confiance avant que le stress ne s'accumule."
+    },
+    "grief": {
+      "title": "Vivre avec le deuil",
+      "tip1": "Il n'y a pas de bonne façon ni de délai pour faire son deuil. Soyez patient avec vous-même.",
+      "tip2": "Gardez des routines simples : manger, dormir et bouger un peu chaque jour.",
+      "tip3": "Partagez des souvenirs avec ceux qui connaissaient votre proche, ou rejoignez un groupe de soutien."
+    }
   }
 }

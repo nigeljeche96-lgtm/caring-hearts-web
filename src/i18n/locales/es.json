@@ -1292,5 +1292,69 @@
     "69752f2313b2f017": "Noticias",
     "82c0e8c1d1d5775c": "Alianzas",
     "aa2f4a79e1413b44": "África Austral"
+  },
+  "crisis": {
+    "label": "Gratis · 24/7 · Confidencial",
+    "title": "¿Necesitas ayuda ahora? Llama a una línea de crisis",
+    "quickExit": "Salida rápida",
+    "suicide": "Línea de crisis de suicidio SADAG",
+    "sadag": "Línea de salud mental SADAG",
+    "lifeline": "Lifeline Sudáfrica",
+    "gbv": "Centro contra la violencia de género",
+    "childline": "Childline Sudáfrica",
+    "emergency": "Emergencia nacional",
+    "note": "Si tú o alguien cercano está en peligro inmediato, llama al 112 ahora. Nuestras sesiones reservadas no son un servicio de emergencia."
+  },
+  "consent": {
+    "booking": "Entiendo que es una sesión virtual confidencial y no de emergencia. Si estoy en peligro o crisis, llamaré al 112 o a una línea de crisis 24/7. Acepto que mis datos se compartan con el profesional elegido para organizar la sesión."
+  },
+  "tax": {
+    "title": "Tu donación puede reducir tus impuestos",
+    "body": "World Changers es una Organización de Beneficio Público registrada (PBO 930084594). Para solicitar un certificado fiscal de la Sección 18A, envíanos tu nombre, el importe y la referencia del pago."
+  },
+  "corpWellness": {
+    "label": "Para empresas",
+    "title": "Paquetes de bienestar laboral",
+    "desc": "Cuida de tu equipo mientras apoyas nuestro trabajo comunitario. Cada paquete se adapta a tu equipo.",
+    "days": {
+      "title": "Jornadas de bienestar para empleados",
+      "desc": "Jornadas presenciales o virtuales con charlas, sesiones grupales y conversaciones individuales."
+    },
+    "burnout": {
+      "title": "Seminarios de agotamiento y resiliencia",
+      "desc": "Seminarios prácticos para directivos y equipos sobre estrés, carga de trabajo y recuperación."
+    },
+    "trauma": {
+      "title": "Intervención tras un trauma",
+      "desc": "Apoyo a los equipos tras un incidente grave, una pérdida o una crisis laboral."
+    },
+    "training": {
+      "title": "Formación en concienciación sobre salud mental",
+      "desc": "Ayuda al personal a detectar señales de alerta y orientar a sus compañeros hacia el apoyo adecuado."
+    },
+    "cta": "Solicitar un paquete de bienestar"
+  },
+  "guides": {
+    "label": "Recursos gratuitos",
+    "title": "Guías de autoayuda",
+    "desc": "Pasos sencillos y prácticos para empezar hoy. Estas guías no sustituyen la atención profesional.",
+    "anxiety": {
+      "title": "Afrontar la ansiedad",
+      "tip1": "Inhala contando 4, mantén 4, exhala en 6. Repite cinco veces.",
+      "tip2": "Nombra 5 cosas que ves, 4 que oyes y 3 que puedes tocar para centrarte.",
+      "tip3": "Limita la cafeína y mantén una rutina de sueño regular."
+    },
+    "burnout": {
+      "title": "Prevenir el agotamiento",
+      "tip1": "Haz pausas cortas lejos de las pantallas durante la jornada.",
+      "tip2": "Fija horarios claros de inicio y fin y protege tus días de descanso.",
+      "tip3": "Habla con tu responsable o alguien de confianza antes de que el estrés se acumule."
+    },
+    "grief": {
+      "title": "Vivir con el duelo",
+      "tip1": "No hay una forma correcta ni un plazo para el duelo. Ten paciencia contigo.",
+      "tip2": "Mantén rutinas sencillas: come, duerme y muévete un poco cada día.",
+      "tip3": "Comparte recuerdos con quienes conocían a tu ser querido o únete a un grupo de apoyo."
+    }
   }
 }
