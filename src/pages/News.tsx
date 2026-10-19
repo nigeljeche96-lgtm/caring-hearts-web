@@ -17,8 +17,20 @@ import portfolioCom3 from "@/assets/portfolio-community-3.jpg";
 import portfolioEdu1 from "@/assets/portfolio-edu-1.jpg";
 import portfolioWell1 from "@/assets/portfolio-wellness-1.jpg";
 import portfolioWell2 from "@/assets/portfolio-wellness-2.jpg";
+import phambanoFeature from "@/assets/phambano-feature.jpg.asset.json";
 
-const articles = [
+type Article = { title: string; date: string; category: string; image: string; excerpt: string; readTime: string; fullContent: string; sourceUrl?: string; sourceName?: string };
+
+const articles: Article[] = [
+  {
+    title: "Phambano Features World Changers Mental Health Care Organisation",
+    date: "Oct 2026", category: "Media Feature", image: phambanoFeature.url,
+    excerpt: "Phambano profiles World Changers — a Johannesburg-based non-profit transforming lives through accessible mental health services, advocacy, education and humanitarian initiatives since 2017.",
+    readTime: "3 min",
+    sourceUrl: "https://www.phambano.org.za/world-changers-mental-health-care-organization/",
+    sourceName: "Phambano",
+    fullContent: "World Changers Mental Health Care Organisation is a South African non-profit organisation dedicated to transforming lives through accessible mental health services, advocacy, education, research, and humanitarian initiatives. Founded in 2017 and headquartered in Johannesburg, the organisation works to close the gap between the growing demand for mental health support and the availability of quality care by empowering individuals, families, workplaces, schools, and communities with the knowledge, skills, and resources needed to promote mental well-being.\n\nThe organisation provides mental health awareness campaigns, counselling and therapy services, Mental Health First Aid training, crisis intervention support, leadership development, and community outreach programmes. Through strategic partnerships with the public and private sectors, World Changers also delivers humanitarian projects, educational initiatives, and wellness programmes that restore dignity and improve quality of life.\n\nGuided by the belief that mental health is a fundamental human right, the organisation is committed to breaking stigma, strengthening communities, and creating a future where every person has the opportunity to thrive emotionally, socially, and mentally.\n\nThe organisation's wish list includes securing sustainable funding, building strategic partnerships, expanding its mental health programmes, and increasing access to professional mental health services for underserved communities. It also welcomes sponsorships, equipment, training resources, volunteer expertise, and media partnerships that support its mission and long-term sustainability.",
+  },
   {
     title: "South Africa Unites to Break Mental Health Stigma",
     date: "10 Oct 2025", category: "Mental Health", image: mentalHealthBg,
@@ -112,7 +124,7 @@ const fadeUp = {
 
 const News = () => {
   const tx = useSiteCopy();
-  const [selectedArticle, setSelectedArticle] = useState<typeof articles[0] | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   return (
     <div>
@@ -201,6 +213,12 @@ const News = () => {
                     <p key={idx} className="mb-4">{tx(paragraph)}</p>
                   ))}
                 </div>
+                {selectedArticle.sourceUrl && (
+                  <a href={selectedArticle.sourceUrl} target="_blank" rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
+                    {tx("Read the full feature on")} {selectedArticle.sourceName} <ArrowRight className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </motion.div>
           </>
