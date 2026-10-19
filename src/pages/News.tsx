@@ -17,7 +17,7 @@ import portfolioCom3 from "@/assets/portfolio-community-3.jpg";
 import portfolioEdu1 from "@/assets/portfolio-edu-1.jpg";
 import portfolioWell1 from "@/assets/portfolio-wellness-1.jpg";
 import portfolioWell2 from "@/assets/portfolio-wellness-2.jpg";
-import phambanoFeature from "@/assets/phambano-feature.jpg.asset.json";
+import phambanoFeature from "@/assets/phambano-thumbnail.png.asset.json";
 
 type Article = { title: string; date: string; category: string; image: string; excerpt: string; readTime: string; fullContent: string; sourceUrl?: string; sourceName?: string };
 
