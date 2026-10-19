@@ -145,6 +145,8 @@ const Campaigns = () => {
         </div>
       </section>
 
+      <GoogleReviews />
+
 
 
 
