@@ -152,21 +152,6 @@ const Campaigns = () => {
 
 
 
-      {/* CTA */}
-      <section className="py-20 bg-accent">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-accent-foreground mb-4">{t("campaigns.ctaTitle")}</h2>
-          <p className="text-accent-foreground/80 max-w-xl mx-auto mb-8">{t("campaigns.ctaDesc")}</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link to="/contact">{t("campaigns.startCampaign")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
-            </Button>
-            <Button asChild size="lg" className="bg-card text-accent font-semibold border-2 border-card hover:bg-card/90">
-              <Link to="/become-volunteer">{t("common.becomeVolunteer")}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
