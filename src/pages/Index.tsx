@@ -9,6 +9,7 @@ import CountUp from "@/components/CountUp";
 import GlobeMark from "@/components/GlobeMark";
 import CredentialsBand from "@/components/CredentialsBand";
 import TrustedDonors from "@/components/TrustedDonors";
+import GoogleReviews from "@/components/GoogleReviews";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import volunteerHero from "@/assets/volunteer-hero.jpg";
@@ -319,6 +320,7 @@ const Index = () => {
       </section>
 
       <TrustedDonors />
+      <GoogleReviews />
 
       {/* CTA */}
       <section className="relative py-24 overflow-hidden">
