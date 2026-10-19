@@ -3,7 +3,6 @@ import GoogleReviews from "@/components/GoogleReviews";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { Brain, Heart, ArrowRight, DollarSign, Target, BarChart3, Users, TrendingUp, Star, ExternalLink, Globe, MapPin, Pencil, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,10 +21,6 @@ import campaignBg from "@/assets/campaign-bg.jpg";
 import DonationWidget from "@/components/DonationWidget";
 
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5 } }),
-};
 
 const fetchCampaigns = async () => {
   const { data, error } = await supabase.from("campaigns").select("*").order("created_at", { ascending: false });
@@ -150,45 +145,8 @@ const Campaigns = () => {
 
 
 
-      {/* How It Works */}
-      <section className="section-padding">
-        <div className="container mx-auto">
-          <SectionHeading label={t("campaigns.howItWorks")} title={t("campaigns.donationJourney")} description={t("campaigns.donationJourneyDesc")} />
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: t("campaigns.step1Title"), desc: t("campaigns.step1Desc") },
-              { step: "02", title: t("campaigns.step2Title"), desc: t("campaigns.step2Desc") },
-              { step: "03", title: t("campaigns.step3Title"), desc: t("campaigns.step3Desc") },
-              { step: "04", title: t("campaigns.step4Title"), desc: t("campaigns.step4Desc") },
-            ].map((item, i) => (
-              <motion.div key={item.step} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="font-heading text-2xl font-bold text-accent">{item.step}</span>
-                </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(item.title)}</h3>
-                <p className="text-sm text-muted-foreground">{tx(item.desc)}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
-      {/* CTA */}
-      <section className="py-20 bg-accent">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-accent-foreground mb-4">{t("campaigns.ctaTitle")}</h2>
-          <p className="text-accent-foreground/80 max-w-xl mx-auto mb-8">{t("campaigns.ctaDesc")}</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link to="/contact">{t("campaigns.startCampaign")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
-            </Button>
-            <Button asChild size="lg" className="bg-card text-accent font-semibold border-2 border-card hover:bg-card/90">
-              <Link to="/become-volunteer">{t("common.becomeVolunteer")}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
