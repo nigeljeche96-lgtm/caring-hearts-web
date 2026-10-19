@@ -17,7 +17,7 @@ import portfolioCom3 from "@/assets/portfolio-community-3.jpg";
 import portfolioEdu1 from "@/assets/portfolio-edu-1.jpg";
 import portfolioWell1 from "@/assets/portfolio-wellness-1.jpg";
 import portfolioWell2 from "@/assets/portfolio-wellness-2.jpg";
-import phambanoFeature from "@/assets/phambano-feature.jpg.asset.json";
+import phambanoFeature from "@/assets/phambano-thumbnail.png.asset.json";
 
 type Article = { title: string; date: string; category: string; image: string; excerpt: string; readTime: string; fullContent: string; sourceUrl?: string; sourceName?: string };
 
@@ -25,6 +25,7 @@ const articles: Article[] = [
   {
     title: "Phambano Features World Changers Mental Health Care Organisation",
     date: "Oct 2026", category: "Media Feature", image: phambanoFeature.url,
+    imageAlt: "World Changers Mental Health Care Organisation featured by Phambano Technology Development Centre",
     excerpt: "Phambano profiles World Changers — a Johannesburg-based non-profit transforming lives through accessible mental health services, advocacy, education and humanitarian initiatives since 2017.",
     readTime: "3 min",
     sourceUrl: "https://www.phambano.org.za/world-changers-mental-health-care-organization/",
