@@ -12,6 +12,7 @@ import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
 import aboutBg from "@/assets/about-bg.jpg";
 import teamPhoto from "@/assets/team-photo.jpg";
+import GoogleReviews from "@/components/GoogleReviews";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -139,6 +140,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <GoogleReviews />
 
       {/* Values */}
       <section className="section-padding">

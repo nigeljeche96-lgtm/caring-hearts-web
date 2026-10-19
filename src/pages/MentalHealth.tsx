@@ -30,6 +30,7 @@ const mimmyLedwaba = mimmyLedwabaAsset.url;
 import zukiswaNolutshungu from "@/assets/zukiswa-nolutshungu.jpg";
 import CrisisHelpline from "@/components/CrisisHelpline";
 import SelfHelpGuides from "@/components/SelfHelpGuides";
+import GoogleReviews from "@/components/GoogleReviews";
 
 const programs = [
   { icon: Brain, title: "Cognitive Behavioral Therapy", desc: "Evidence-based approach to treating anxiety, depression, and other mental health conditions through structured therapeutic sessions." },
@@ -252,6 +253,7 @@ const MentalHealth = () => {
         </div>
       </section>
 
+      <GoogleReviews />
 
       {/* Booking Calendar Modal */}
       {bookingOpen && (

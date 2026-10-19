@@ -1,4 +1,5 @@
 import { useSiteCopy } from "@/i18n/useSiteCopy";
+import GoogleReviews from "@/components/GoogleReviews";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
