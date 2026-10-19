@@ -150,28 +150,6 @@ const Campaigns = () => {
 
 
 
-      {/* How It Works */}
-      <section className="section-padding">
-        <div className="container mx-auto">
-          <SectionHeading label={t("campaigns.howItWorks")} title={t("campaigns.donationJourney")} description={t("campaigns.donationJourneyDesc")} />
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: t("campaigns.step1Title"), desc: t("campaigns.step1Desc") },
-              { step: "02", title: t("campaigns.step2Title"), desc: t("campaigns.step2Desc") },
-              { step: "03", title: t("campaigns.step3Title"), desc: t("campaigns.step3Desc") },
-              { step: "04", title: t("campaigns.step4Title"), desc: t("campaigns.step4Desc") },
-            ].map((item, i) => (
-              <motion.div key={item.step} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="font-heading text-2xl font-bold text-accent">{item.step}</span>
-                </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(item.title)}</h3>
-                <p className="text-sm text-muted-foreground">{tx(item.desc)}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* CTA */}
