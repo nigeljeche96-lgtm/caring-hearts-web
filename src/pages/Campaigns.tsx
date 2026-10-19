@@ -3,7 +3,6 @@ import GoogleReviews from "@/components/GoogleReviews";
 import { useState } from "react";
 import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { Brain, Heart, ArrowRight, DollarSign, Target, BarChart3, Users, TrendingUp, Star, ExternalLink, Globe, MapPin, Pencil, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,10 +21,6 @@ import campaignBg from "@/assets/campaign-bg.jpg";
 import DonationWidget from "@/components/DonationWidget";
 
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5 } }),
-};
 
 const fetchCampaigns = async () => {
   const { data, error } = await supabase.from("campaigns").select("*").order("created_at", { ascending: false });
