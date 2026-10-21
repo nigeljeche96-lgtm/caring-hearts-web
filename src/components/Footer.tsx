@@ -52,6 +52,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm opacity-70">
               <li><Link to="/policies#privacy" className="hover:opacity-100 hover:text-gold transition-all">{tx("Privacy Policy")}</Link></li>
               <li><Link to="/policies#terms" className="hover:opacity-100 hover:text-gold transition-all">{tx("Terms & Conditions")}</Link></li>
+              <li><button type="button" onClick={() => window.dispatchEvent(new Event("wc:open-cookie-settings"))} className="hover:opacity-100 hover:text-gold transition-all">{tx("Cookie settings")}</button></li>
             </ul>
 
           </div>
