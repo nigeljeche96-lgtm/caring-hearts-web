@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import SupportChat from "@/components/SupportChat";
+import CookieConsent from "@/components/CookieConsent";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import MentalHealth from "./pages/MentalHealth";
@@ -71,6 +72,7 @@ const AppContent = () => {
       </main>
       <Footer />
       <SupportChat />
+      <CookieConsent />
     </>
   );
 };
