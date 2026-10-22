@@ -70,6 +70,7 @@ const TicketBookingDialog = ({ event, open, onOpenChange }: TicketBookingDialogP
       phone: phone.trim(),
       ticket_count: ticketCount,
       total_price: totalPrice,
+      status: "pending",
     });
 
     if (error) {
