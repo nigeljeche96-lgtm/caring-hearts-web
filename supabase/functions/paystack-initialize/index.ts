@@ -1,4 +1,5 @@
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
+import { safeOrigin } from "../_shared/allowedOrigin.ts";
 
 interface Body {
   email?: string;
@@ -43,7 +44,7 @@ Deno.serve(async (req) => {
     }
 
     const subunits = Math.round(amount * 100);
-    const origin = req.headers.get("origin") || "https://worldchangersmh.org";
+    const origin = safeOrigin(req.headers.get("origin"));
 
     const payload: Record<string, unknown> = {
       email,

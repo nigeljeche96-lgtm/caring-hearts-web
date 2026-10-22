@@ -55,23 +55,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
     onDisconnect: () => console.log("Disconnected from AI Agent"),
     onError: (error) => console.error("Voice Agent Error:", error),
     clientTools: {
-      cal_get_2: async (params: { email?: string; phone?: string }) => {
-        try {
-          if (!params.email && !params.phone) return "Please provide an email or phone number to look up bookings.";
-          const { data, error } = await (supabase as any).rpc("voice_get_bookings", {
-            p_email: params.email ?? null,
-            p_phone: params.phone ?? null,
-          });
-          if (error) throw error;
-          if (!data || data.length === 0) return "No upcoming bookings found for this caller.";
-          return JSON.stringify(data.map((b: any) => ({
-            id: b.id, name: b.full_name, provider: b.provider_name,
-            date: b.session_date, time: b.session_time, type: b.session_type, mode: b.session_mode,
-          })));
-        } catch (err: any) {
-          return `Error retrieving bookings: ${err.message}`;
-        }
-      },
+      cal_get_2: async (_params: { email?: string; phone?: string }) => "For your privacy, I can't look up, cancel or reschedule bookings by voice. Please email info@worldchangersmh.org or reply to your booking confirmation email and the team will help you.",
       cal_availability_2: async (params: { provider_name: string; date: string }) => {
         try {
           const { data: booked, error } = await (supabase as any).rpc("voice_check_availability", {
@@ -125,68 +109,8 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
           return `Error booking session: ${err.message}`;
         }
       },
-      cal_cancel_2: async (params: { booking_id?: string; email?: string; session_date?: string }) => {
-        try {
-          if (params.booking_id && params.email) {
-            const { data, error } = await (supabase as any).rpc("voice_cancel_booking", {
-              p_booking_id: params.booking_id,
-              p_email: params.email,
-            });
-            if (error) throw error;
-            if (!data) return "No matching upcoming booking found to cancel.";
-            toast.info(tx("Booking cancelled via AI agent."));
-            return "Booking has been cancelled successfully.";
-          }
-          if (params.email && params.session_date) {
-            const { data, error } = await (supabase as any).rpc("voice_cancel_booking_by_email", {
-              p_email: params.email,
-              p_session_date: params.session_date,
-            });
-            if (error) throw error;
-            if (!data) return "No matching upcoming booking found to cancel.";
-            toast.info(tx("Booking cancelled via AI agent."));
-            return "Booking has been cancelled successfully.";
-          }
-          return "Please provide a booking ID + email, or email + date to cancel.";
-        } catch (err: any) {
-          return `Error cancelling booking: ${err.message}`;
-        }
-      },
-      cal_reschedule_2: async (params: {
-        booking_id?: string; email?: string; original_date?: string;
-        new_date: string; new_time: string;
-      }) => {
-        try {
-          if (!params.email) return "Please provide the caller's email to reschedule.";
-          if (params.booking_id) {
-            const { data, error } = await (supabase as any).rpc("voice_reschedule_booking", {
-              p_booking_id: params.booking_id,
-              p_email: params.email,
-              p_new_date: params.new_date,
-              p_new_time: params.new_time,
-            });
-            if (error) throw error;
-            if (!data) return "No matching upcoming booking found to reschedule.";
-            toast.success(tx("Booking rescheduled via AI agent!"));
-            return `Booking rescheduled to ${params.new_date} at ${params.new_time}.`;
-          }
-          if (params.original_date) {
-            const { data, error } = await (supabase as any).rpc("voice_reschedule_booking_by_email", {
-              p_email: params.email,
-              p_original_date: params.original_date,
-              p_new_date: params.new_date,
-              p_new_time: params.new_time,
-            });
-            if (error) throw error;
-            if (!data) return "No matching upcoming booking found to reschedule.";
-            toast.success(tx("Booking rescheduled via AI agent!"));
-            return `Booking rescheduled to ${params.new_date} at ${params.new_time}.`;
-          }
-          return "Please provide a booking ID or original date to reschedule.";
-        } catch (err: any) {
-          return `Error rescheduling booking: ${err.message}`;
-        }
-      },
+      cal_cancel_2: async (_params: { booking_id?: string; email?: string; session_date?: string }) => "For your privacy, I can't look up, cancel or reschedule bookings by voice. Please email info@worldchangersmh.org or reply to your booking confirmation email and the team will help you.",
+      cal_reschedule_2: async (_params: Record<string, unknown>) => "For your privacy, I can't look up, cancel or reschedule bookings by voice. Please email info@worldchangersmh.org or reply to your booking confirmation email and the team will help you.",
     },
   });
 

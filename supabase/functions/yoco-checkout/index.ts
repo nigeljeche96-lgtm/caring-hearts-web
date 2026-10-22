@@ -1,4 +1,5 @@
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
+import { safeOrigin } from "../_shared/allowedOrigin.ts";
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -18,9 +19,7 @@ Deno.serve(async (req) => {
     const frequency = body?.frequency === "monthly" ? "monthly" : "once";
     const name = String(body?.name ?? "").trim().slice(0, 120);
     const email = String(body?.email ?? "").trim().slice(0, 254);
-    const origin = typeof body?.origin === "string" && body.origin.startsWith("http")
-      ? body.origin
-      : "https://worldchangersmh.org";
+    const origin = safeOrigin(body?.origin);
 
     if (!Number.isFinite(amount) || amount < 5 || amount > 1_000_000) {
       return json({ error: "Please choose an amount between R5 and R1 000 000." }, 400);

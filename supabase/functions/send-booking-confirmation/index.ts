@@ -44,9 +44,15 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
+    // Only the organisation's listed professionals may be copied on booking emails.
+    const PROVIDER_EMAILS = new Set([
+      'nicky@worldchangersmh.org', 'rmulaudzi796@gmail.com', 'scroets@gmail.com',
+      'nzimande20@gmail.com', 'khabibmitchell02@gmail.com', 'mthembubongiwe9@gmail.com',
+      'mimmyledwaba@gmail.com', 'zukienol@gmail.com',
+    ]);
     const validProviderEmail =
-      provider_email && emailRegex.test(provider_email) && provider_email.toLowerCase() !== BOOKINGS_INBOX
-        ? provider_email
+      provider_email && PROVIDER_EMAILS.has(provider_email.toLowerCase()) && provider_email.toLowerCase() !== BOOKINGS_INBOX
+        ? provider_email.toLowerCase()
         : null;
 
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
