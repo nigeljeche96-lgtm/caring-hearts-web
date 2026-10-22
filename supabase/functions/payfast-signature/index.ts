@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { safeOrigin } from "../_shared/allowedOrigin.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -34,9 +35,7 @@ Deno.serve(async (req) => {
       return json({ error: "Please choose an amount between R5 and R1 000 000." }, 400);
     }
     const monthly = frequency === "monthly";
-    const site = typeof origin === "string" && origin.startsWith("https://")
-      ? origin
-      : "https://worldchangersmh.org";
+    const site = safeOrigin(origin);
 
     // Order matters: the signature is built from the fields in this exact order.
     const fields: Array<[string, string]> = [

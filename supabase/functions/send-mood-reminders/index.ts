@@ -97,7 +97,7 @@ Deno.serve(async (req) => {
         const data = await res.json();
         results.push({ email: profile.email, success: res.ok });
       } catch (emailErr) {
-        console.error(`Failed to send to ${profile.email}:`, emailErr);
+        console.error("Failed to send reminder to a member:", emailErr instanceof Error ? emailErr.message : "unknown error");
         results.push({ email: profile.email, success: false });
       }
     }
