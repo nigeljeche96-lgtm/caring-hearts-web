@@ -14,23 +14,24 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { useTranslation } from "react-i18next";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 
+/** Only Shopify products with product type "eBook" are shown; categories match Shopify tags. */
+const BASE_QUERY = "product_type:eBook";
 const CATEGORIES = [
   { label: "All", query: "" },
-  { label: "T-Shirts", query: "product_type:T-Shirts OR title:Tee OR title:T-Shirt" },
-  { label: "Journals", query: "product_type:Journals OR title:Journal" },
-  { label: "Workbooks", query: "product_type:Workbooks OR title:Workbook" },
-  { label: "Affirmation Cards", query: "product_type:Affirmation Cards OR title:Affirmation" },
-  { label: "Mugs", query: "product_type:Mugs OR title:Mug" },
-  { label: "Stickers", query: "product_type:Stickers OR title:Sticker" },
-  { label: "Wristbands", query: "product_type:Wristbands OR title:Wristband" },
-  { label: "Keychains", query: "product_type:Keychains OR title:Keychain" },
-  { label: "Books", query: "product_type:Books OR title:Book" },
-  { label: "Caps", query: "product_type:Caps OR title:Cap OR title:Beanie" },
-  { label: "Tote Bags", query: "product_type:Tote Bags OR title:Tote" },
-  { label: "Puzzles", query: "product_type:Puzzles OR title:Puzzle" },
-  { label: "Candles", query: "product_type:Candles OR title:Candle" },
-  { label: "Phone Cases", query: "product_type:Phone Cases OR title:Phone Case" },
-  { label: "Posters", query: "product_type:Posters OR title:Wall Art OR title:Poster" },
+  { label: "Children's Mental Wellness", query: "tag:childrens-mental-wellness" },
+  { label: "Teen Mental Wellness", query: "tag:teen-mental-wellness" },
+  { label: "Adult Mental Wellness", query: "tag:adult-mental-wellness" },
+  { label: "Anxiety, Stress and Burnout", query: "tag:anxiety-stress-burnout" },
+  { label: "Self-Esteem & Personal Growth", query: "tag:self-esteem-personal-growth" },
+  { label: "Men's Mental Health", query: "tag:mens-mental-health" },
+  { label: "Women's Mental Health", query: "tag:womens-mental-health" },
+  { label: "Parents and Caregivers", query: "tag:parents-caregivers" },
+  { label: "Relationships & Family", query: "tag:relationships-family" },
+  { label: "Trauma, Grief and Healing", query: "tag:trauma-grief-healing" },
+  { label: "Workbooks & Journals", query: "tag:workbooks-journals" },
+  { label: "Schools & Community", query: "tag:schools-community" },
+  { label: "Faith and Mental Wellness", query: "tag:faith-mental-wellness" },
+  { label: "Free Resources", query: "tag:free-resources" },
 ];
 
 const Shop = () => {
@@ -53,7 +54,7 @@ const Shop = () => {
       try {
         const category = CATEGORIES.find(c => c.label === activeCategory);
         const variables: Record<string, unknown> = { first: 50 };
-        if (category?.query) variables.query = category.query;
+        variables.query = category?.query ? `${BASE_QUERY} AND (${category.query})` : BASE_QUERY;
         const data = await storefrontApiRequest(STOREFRONT_PRODUCTS_QUERY, variables);
         if (data?.data?.products?.edges) {
           setProducts(data.data.products.edges);
@@ -119,14 +120,14 @@ const Shop = () => {
 
   return (
     <div className="bg-background min-h-screen">
-      <SEO title={tx("Shop — Branded Apparel & Merch — World Changers MHCO")} description={tx("Buy World Changers branded clothing and accessories. Every purchase supports our mental health and outreach work.")} path="/shop" />
+      <SEO title={tx("Mental Wellness eBook Store — World Changers MHCO")} description={tx("Explore practical mental health guides, illustrated children's books, workbooks and educational resources.")} path="/shop" />
       {/* Slim Hero Banner */}
       <div className="relative h-40 sm:h-48 overflow-hidden">
         <img src={philanthropyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-          <h1 className="font-heading text-2xl sm:text-3xl font-bold text-primary-foreground">{t("shop.heroTitle")}</h1>
-          <p className="text-sm text-primary-foreground/80 mt-1">{t("shop.heroSubtitle")}</p>
+          <h1 className="font-heading text-2xl sm:text-3xl font-bold text-primary-foreground">{tx("Mental Wellness eBook Store")}</h1>
+          <p className="text-sm text-primary-foreground/80 mt-1">{tx("Knowledge, compassion and practical tools for healthier minds.")}</p>
         </div>
       </div>
 
