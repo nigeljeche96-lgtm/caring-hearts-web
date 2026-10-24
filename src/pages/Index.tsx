@@ -10,6 +10,10 @@ import GlobeMark from "@/components/GlobeMark";
 import CredentialsBand from "@/components/CredentialsBand";
 import TrustedDonors from "@/components/TrustedDonors";
 import GoogleReviews from "@/components/GoogleReviews";
+import ActionPathways from "@/components/ActionPathways";
+import CrisisHelpline from "@/components/CrisisHelpline";
+import DonationWidget from "@/components/DonationWidget";
+import SelfHelpGuides from "@/components/SelfHelpGuides";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import volunteerHero from "@/assets/volunteer-hero.jpg";
@@ -108,12 +112,17 @@ const Index = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-gold text-navy hover:bg-gold/90 font-semibold px-6">
-                <Link to="/partnerships">{tx("Partner with Us")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
+                <Link to="/mental-health">{t("pathways.heroHelp", "Get Free Support")} <ArrowRight className="w-4 h-4 ml-2" /></Link>
               </Button>
               <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-6">
-                <Link to="/mental-health">{tx("Get Help")}</Link>
+                <Link to="/donation">{t("common.donateNow")}</Link>
               </Button>
             </motion.div>
+            <p className="mt-5 text-sm text-primary-foreground/80">
+              <Link to="/partnerships" className="underline underline-offset-4 hover:text-primary-foreground">{tx("Partner with Us")}</Link>
+              {" · "}
+              <Link to="/become-volunteer" className="underline underline-offset-4 hover:text-primary-foreground">{t("common.becomeVolunteer")}</Link>
+            </p>
           </div>
         </div>
       </section>
@@ -123,6 +132,9 @@ const Index = () => {
         <CredentialsBand />
       </section>
 
+      <ActionPathways />
+      <CrisisHelpline />
+
       {/* Get Inspired Section */}
       <section className="section-padding">
         <div className="container mx-auto">
@@ -130,8 +142,8 @@ const Index = () => {
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="relative">
               <img src={aboutBg} alt={tx("Support group session")} className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
-                <p className="font-heading text-xl font-bold text-primary-foreground">90%</p>
-                <p className="text-xs text-primary-foreground/80">{t("index.successRate")}</p>
+                <p className="font-heading text-xl font-bold text-primary-foreground">{t("pathways.badgeValue", "Since 2017")}</p>
+                <p className="text-xs text-primary-foreground/80">{t("pathways.badgeLabel", "Registered NPO & PBO")}</p>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
@@ -228,6 +240,16 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Quick donation */}
+      <section className="section-padding bg-muted" id="donate">
+        <div className="container mx-auto max-w-4xl">
+          <SectionHeading label={t("pathways.donateLabel", "Give today")} title={t("pathways.donateTitle", "Help someone reach care")} description={t("pathways.donateDesc", "Choose an amount and give securely in a few clicks.")} />
+          <DonationWidget />
+        </div>
+      </section>
+
+      <SelfHelpGuides />
 
       {/* Features */}
       <section className="section-padding">
