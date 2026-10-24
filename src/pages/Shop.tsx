@@ -14,10 +14,12 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { useTranslation } from "react-i18next";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 
-/** Only Shopify products with product type "eBook" are shown; categories match Shopify tags. */
-const BASE_QUERY = "product_type:eBook";
+/** Shows merchandise and eBooks. eBooks = Shopify product type "eBook"; eBook categories match Shopify tags. */
+const EBOOK_QUERY = "product_type:eBook";
 const CATEGORIES = [
   { label: "All", query: "" },
+  { label: "eBooks & Guides", query: EBOOK_QUERY },
+  { label: "Merchandise & Apparel", query: `NOT ${EBOOK_QUERY}` },
   { label: "Children's Mental Wellness", query: "tag:childrens-mental-wellness" },
   { label: "Teen Mental Wellness", query: "tag:teen-mental-wellness" },
   { label: "Adult Mental Wellness", query: "tag:adult-mental-wellness" },
