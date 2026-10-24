@@ -2,7 +2,7 @@ import { useSiteCopy } from "@/i18n/useSiteCopy";
 import SEO from "@/components/SEO";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, Loader2, Heart, Truck, Shield, RotateCcw, Star, ChevronDown } from "lucide-react";
+import { ShoppingBag, Loader2, Heart, Truck, Shield, RotateCcw, Star, ChevronDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -236,6 +236,11 @@ const Shop = () => {
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <ShoppingBag className="w-10 h-10 text-muted-foreground/20" />
+                      </div>
+                    )}
+                    {p.node.productType?.toLowerCase() === "ebook" && (
+                      <div className="absolute top-1.5 left-1.5 flex items-center gap-1 bg-primary text-primary-foreground text-[10px] font-medium px-1.5 py-0.5 rounded-full">
+                        <Download className="w-3 h-3" /> {tx("Instant download")}
                       </div>
                     )}
                     {/* Multiple images indicator */}
