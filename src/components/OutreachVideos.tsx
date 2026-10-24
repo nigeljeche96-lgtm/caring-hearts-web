@@ -11,6 +11,7 @@ const shortClips: Clip[] = [
   { id: "7DlryaT4y50", short: true },
   { id: "0qWlXLLns7w", short: true },
   { id: "3PoYrMjH2Os", short: true },
+  { id: "BIIa1P1jCUI", short: true },
 ];
 
 /** Full-length videos shown underneath the shorts. */

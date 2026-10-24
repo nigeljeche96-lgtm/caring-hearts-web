@@ -109,6 +109,7 @@ const youtubeVideos = [
   { id: "Ikzz2LWJytg", title: "Community Wellbeing" },
   { id: "Gg5fwSKUNqM", title: "Healing Through Care" },
   { id: "-NMrS9pg1ZY", title: "Mental Health Short" },
+  { id: "BIIa1P1jCUI", title: "Youth Bootcamp: Mental Health Segment by Nicky Vlantis" },
 ];
 
 const fadeUp = {
