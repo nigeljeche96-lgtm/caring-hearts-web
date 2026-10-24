@@ -2,7 +2,7 @@ import { useSiteCopy } from "@/i18n/useSiteCopy";
 import SEO from "@/components/SEO";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, Loader2, Heart, Truck, Shield, RotateCcw, Star, ChevronDown } from "lucide-react";
+import { ShoppingBag, Loader2, Heart, Truck, Shield, RotateCcw, Star, ChevronDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -14,10 +14,12 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { useTranslation } from "react-i18next";
 import philanthropyBg from "@/assets/philanthropy-bg.jpg";
 
-/** Only Shopify products with product type "eBook" are shown; categories match Shopify tags. */
-const BASE_QUERY = "product_type:eBook";
+/** Shows merchandise and eBooks. eBooks = Shopify product type "eBook"; eBook categories match Shopify tags. */
+const EBOOK_QUERY = "product_type:eBook";
 const CATEGORIES = [
   { label: "All", query: "" },
+  { label: "eBooks & Guides", query: EBOOK_QUERY },
+  { label: "Merchandise & Apparel", query: `NOT ${EBOOK_QUERY}` },
   { label: "Children's Mental Wellness", query: "tag:childrens-mental-wellness" },
   { label: "Teen Mental Wellness", query: "tag:teen-mental-wellness" },
   { label: "Adult Mental Wellness", query: "tag:adult-mental-wellness" },
@@ -54,7 +56,8 @@ const Shop = () => {
       try {
         const category = CATEGORIES.find(c => c.label === activeCategory);
         const variables: Record<string, unknown> = { first: 50 };
-        variables.query = category?.query ? `${BASE_QUERY} AND (${category.query})` : BASE_QUERY;
+        const q = category?.query ?? "";
+        if (q) variables.query = q.startsWith("tag:") ? `${EBOOK_QUERY} AND (${q})` : q;
         const data = await storefrontApiRequest(STOREFRONT_PRODUCTS_QUERY, variables);
         if (data?.data?.products?.edges) {
           setProducts(data.data.products.edges);
@@ -120,14 +123,14 @@ const Shop = () => {
 
   return (
     <div className="bg-background min-h-screen">
-      <SEO title={tx("Mental Wellness eBook Store — World Changers MHCO")} description={tx("Explore practical mental health guides, illustrated children's books, workbooks and educational resources.")} path="/shop" />
+      <SEO title={tx("Shop Merchandise & eBooks — World Changers MHCO")} description={tx("Shop World Changers merchandise and instant-download mental wellness eBooks, guides and workbooks.")} path="/shop" />
       {/* Slim Hero Banner */}
       <div className="relative h-40 sm:h-48 overflow-hidden">
         <img src={philanthropyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
-          <h1 className="font-heading text-2xl sm:text-3xl font-bold text-primary-foreground">{tx("Mental Wellness eBook Store")}</h1>
-          <p className="text-sm text-primary-foreground/80 mt-1">{tx("Knowledge, compassion and practical tools for healthier minds.")}</p>
+          <h1 className="font-heading text-2xl sm:text-3xl font-bold text-primary-foreground">{tx("Shop Merchandise & eBooks")}</h1>
+          <p className="text-sm text-primary-foreground/80 mt-1">{tx("Wear the mission and grow with practical tools for healthier minds.")}</p>
         </div>
       </div>
 
@@ -136,7 +139,8 @@ const Shop = () => {
         <div className="container mx-auto px-3 py-3 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4 sm:gap-6 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5 text-primary" /> {t("shop.charityLabel")}</span>
-            <span className="hidden sm:flex items-center gap-1"><Truck className="w-3.5 h-3.5 text-primary" /> {t("shop.freeShipping")}</span>
+            <span className="hidden sm:flex items-center gap-1"><Download className="w-3.5 h-3.5 text-primary" /> {tx("eBooks: instant download, no shipping")}</span>
+            <span className="hidden lg:flex items-center gap-1"><Truck className="w-3.5 h-3.5 text-primary" /> {tx("Shipping on merchandise only")}</span>
             <span className="hidden md:flex items-center gap-1"><Shield className="w-3.5 h-3.5 text-primary" /> {t("shop.secureCheckout")}</span>
             <span className="hidden md:flex items-center gap-1"><RotateCcw className="w-3.5 h-3.5 text-primary" /> {t("shop.returns")}</span>
           </div>
@@ -232,6 +236,11 @@ const Shop = () => {
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <ShoppingBag className="w-10 h-10 text-muted-foreground/20" />
+                      </div>
+                    )}
+                    {p.node.productType?.toLowerCase() === "ebook" && (
+                      <div className="absolute top-1.5 left-1.5 flex items-center gap-1 bg-primary text-primary-foreground text-[10px] font-medium px-1.5 py-0.5 rounded-full">
+                        <Download className="w-3 h-3" /> {tx("Instant download")}
                       </div>
                     )}
                     {/* Multiple images indicator */}
