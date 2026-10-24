@@ -109,6 +109,7 @@ const youtubeVideos = [
   { id: "Ikzz2LWJytg", title: "Community Wellbeing" },
   { id: "Gg5fwSKUNqM", title: "Healing Through Care" },
   { id: "-NMrS9pg1ZY", title: "Mental Health Short" },
+  { id: "BIIa1P1jCUI", title: "Youth Bootcamp: Mental Health Segment by Nicky Vlantis" },
 ];
 
 const fadeUp = {
@@ -464,7 +465,7 @@ const MentalHealth = () => {
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
           <SectionHeading label={tx("Watch & Learn")} title={tx("Mental Health Videos")} description={tx("Educational videos on mental health awareness and wellbeing.")} />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {youtubeVideos.map((video, i) => (
               <motion.div key={video.id} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="rounded-xl overflow-hidden shadow-soft border border-border bg-card">

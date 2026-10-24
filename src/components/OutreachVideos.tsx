@@ -11,6 +11,7 @@ const shortClips: Clip[] = [
   { id: "7DlryaT4y50", short: true },
   { id: "0qWlXLLns7w", short: true },
   { id: "3PoYrMjH2Os", short: true },
+  { id: "BIIa1P1jCUI", short: true },
 ];
 
 /** Full-length videos shown underneath the shorts. */
@@ -70,7 +71,7 @@ export default function OutreachVideos() {
           {t("outreach.title", "Community Outreach Videos")}
         </h2>
         <div className="mx-auto max-w-5xl space-y-8">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">{shortClips.map((clip, i) => clipCard(clip, i + 1))}</div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5">{shortClips.map((clip, i) => clipCard(clip, i + 1))}</div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {longClips.map((clip, i) => clipCard(clip, shortClips.length + i + 1))}
           </div>
