@@ -40,6 +40,7 @@ const Footer = () => {
               <li><Link to="/mental-health" className="hover:opacity-100 hover:text-gold transition-all">{tx("Mental Health Services")}</Link></li>
               <li><Link to="/philanthropy" className="hover:opacity-100 hover:text-gold transition-all">{tx("Programmes & Impact")}</Link></li>
               <li><Link to="/events" className="hover:opacity-100 hover:text-gold transition-all">{t("nav.events")}</Link></li>
+              <li><Link to="/shop" className="hover:opacity-100 hover:text-gold transition-all">{tx("Shop")}</Link></li>
             </ul>
           </div>
           <div>

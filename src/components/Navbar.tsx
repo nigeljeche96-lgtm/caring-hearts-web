@@ -54,6 +54,7 @@ const Navbar = () => {
         { label: "Partnerships", path: "/partnerships" },
       ],
     },
+    { label: "Shop", path: "/shop" },
     { label: "FAQ", path: "/faq" },
     { label: t("nav.contact"), path: "/contact" },
   ];
