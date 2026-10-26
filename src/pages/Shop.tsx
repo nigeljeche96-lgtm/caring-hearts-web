@@ -2,7 +2,7 @@ import { useSiteCopy } from "@/i18n/useSiteCopy";
 import SEO from "@/components/SEO";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ShoppingBag, Loader2, Heart, Truck, Shield, RotateCcw, Star, ChevronDown, Download } from "lucide-react";
+import { ShoppingBag, Loader2, Heart, Truck, Shield, RotateCcw, Star, ChevronDown, Download, Bell, BookOpen, Package, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { CartDrawer } from "@/components/CartDrawer";
@@ -45,10 +45,16 @@ const Shop = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [reviewStats, setReviewStats] = useState<Record<string, { avg: number; count: number }>>({});
   const [currencyOpen, setCurrencyOpen] = useState(false);
+  const [notifyEmail, setNotifyEmail] = useState("");
+  const [notifyLoading, setNotifyLoading] = useState(false);
+  const [notifyDone, setNotifyDone] = useState(false);
+  const [notifyMsg, setNotifyMsg] = useState("");
   const addItem = useCartStore(state => state.addItem);
   const isLoading = useCartStore(state => state.isLoading);
   const navigate = useNavigate();
   const { selectedCurrency, currencies: currencyList, changeCurrency, formatPrice } = useCurrency();
+  const isEmpty = !loading && products.length === 0;
+
 
   useEffect(() => {
     async function fetchProducts() {
