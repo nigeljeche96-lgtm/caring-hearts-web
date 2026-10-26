@@ -1,6 +1,7 @@
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { oauthReturnPath } from "@/lib/oauth-return-path";
 import { motion } from "framer-motion";
 import {
   User, Mail, Lock, ArrowRight, Eye, EyeOff, Loader2,
@@ -75,6 +76,13 @@ const Login = () => {
   const [rescheduleDate, setRescheduleDate] = useState<Date | undefined>();
   const [rescheduleTime, setRescheduleTime] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+  const rawNext = searchParams.get("next");
+  const nextPath = rawNext ? oauthReturnPath(rawNext) : null;
+
+  useEffect(() => {
+    if (user && nextPath && nextPath !== "/") navigate(nextPath, { replace: true });
+  }, [user, nextPath, navigate]);
 
   useEffect(() => {
     if (!user) return;
@@ -145,7 +153,7 @@ const Login = () => {
           password,
           options: {
             data: { full_name: fullName },
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: nextPath ? new URL(nextPath, window.location.origin).href : window.location.origin,
           },
         });
         if (error) throw error;
@@ -154,7 +162,7 @@ const Login = () => {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success(tx("Welcome back!"));
-        navigate("/");
+        navigate(nextPath ?? "/");
       }
     } catch (error: any) {
       toast.error(error.message || "Authentication failed");
@@ -167,7 +175,9 @@ const Login = () => {
     setLoading(true);
     try {
       const result = await lovable.auth.signInWithOAuth(provider, {
-        redirect_uri: window.location.origin,
+        redirect_uri: nextPath
+          ? `${window.location.origin}/login?next=${encodeURIComponent(nextPath)}`
+          : window.location.origin,
       });
       if (result.error) {
         toast.error(result.error.message || `Failed to sign in with ${provider}`);
