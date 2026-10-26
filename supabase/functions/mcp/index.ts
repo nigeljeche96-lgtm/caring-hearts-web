@@ -3,7 +3,7 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.24.0";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.24.0";
 
 // src/lib/mcp/tools/echo.ts
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.24.0";
@@ -77,11 +77,16 @@ var list_programs_default = defineTool3({
 });
 
 // src/lib/mcp/index.ts
+var projectRef = "wxtleqzdwrxnbfufxmmc";
 var mcp_default = defineMcp({
-  name: "world-changers-mcp",
-  title: "World Changers MHCO",
-  version: "0.1.0",
-  instructions: "Public tools exposing World Changers Mental Health Care Organisation information: organisation profile, programmes, and a connectivity echo tool. Use `get_org_info` for mission and contact info, `list_programs` for programme details, and `echo` to verify the connection.",
+  name: "world-changers-org",
+  title: "World Changers Org",
+  version: "0.2.0",
+  instructions: "Tools for World Changers Mental Health Care Organisation, available to signed-in users. Use `get_org_info` for mission and contact info, `list_programs` for programme details, and `echo` to verify the connection.",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated"
+  }),
   tools: [echo_default, get_org_info_default, list_programs_default]
 });
 

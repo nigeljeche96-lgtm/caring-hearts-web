@@ -3,13 +3,17 @@
   "sdk_version": "0.24.0",
   "path": "/functions/v1/mcp",
   "auth": {
-    "type": "none"
+    "type": "oauth",
+    "issuer": "https://wxtleqzdwrxnbfufxmmc.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
   },
   "mcp": {
     "server": {
-      "name": "world-changers-mcp",
-      "version": "0.1.0",
-      "title": "World Changers MHCO"
+      "name": "world-changers-org",
+      "version": "0.2.0",
+      "title": "World Changers Org"
     },
     "tools": [
       {
