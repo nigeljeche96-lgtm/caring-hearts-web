@@ -59,17 +59,17 @@ const Footer = () => {
           </div>
           <div className="col-span-2 lg:col-span-1">
             <h4 className="font-heading text-base font-semibold mb-4">{t("footer.contactInfo")}</h4>
-            <ul className="space-y-3 text-sm opacity-70">
+            <ul className="space-y-4 text-sm">
               <li>
-                <VoiceAgent variant="icon" className="text-primary-foreground [&_span]:text-primary-foreground/70 [&_span]:hover:text-primary-foreground" />
+                <VoiceAgent variant="icon" onDark />
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 shrink-0 text-accent" />
-                <a href="mailto:info@worldchangersmh.org" className="hover:opacity-100 hover:text-gold transition-all">info@worldchangersmh.org</a>
+              <li className="flex items-center gap-3">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-foreground text-primary shrink-0"><Mail className="w-4 h-4" /></span>
+                <a href="mailto:info@worldchangersmh.org" className="opacity-90 hover:opacity-100 hover:text-gold transition-all">info@worldchangersmh.org</a>
               </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-accent" />
-                <a href="https://maps.google.com/?q=114+George+Street,+Kenilworth,+Johannesburg,+2190" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-gold transition-all">{tx("114 George Street, Kenilworth, Johannesburg, 2190")}</a>
+              <li className="flex items-start gap-3">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-foreground text-primary shrink-0"><MapPin className="w-4 h-4" /></span>
+                <a href="https://maps.google.com/?q=114+George+Street,+Kenilworth,+Johannesburg,+2190" target="_blank" rel="noopener noreferrer" className="opacity-90 hover:opacity-100 hover:text-gold transition-all">{tx("114 George Street, Kenilworth, Johannesburg, 2190")}</a>
               </li>
             </ul>
           </div>

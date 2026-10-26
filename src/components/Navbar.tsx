@@ -65,8 +65,8 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-primary border-b border-gold/50">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 gap-3">
         {/* Logo — fixed size so it never shifts or stretches */}
-        <Link to="/" className="flex items-center shrink-0 rounded-lg bg-background px-2.5 py-1.5 shadow-soft">
-          <img alt={tx("World Changers Mental Health Care Organisation")} width={1532} height={494} className="h-9 md:h-11 w-auto max-w-none object-contain select-none" draggable={false} src="/logo-blue.png" />
+        <Link to="/" className="flex items-center shrink-0">
+          <img alt={tx("World Changers Mental Health Care Organisation")} width={1532} height={494} className="h-10 md:h-12 w-auto max-w-none object-contain select-none" draggable={false} src="/logo-header-white.png" />
         </Link>
 
         {/* Desktop Nav */}
