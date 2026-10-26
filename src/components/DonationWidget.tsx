@@ -332,7 +332,7 @@ const DonationWidget = () => {
       <div className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-4 mt-6">
         {[
           { icon: ShieldCheck, title: "Secure checkout", desc: "Card details are handled only by our regulated payment providers." },
-          { icon: Landmark, title: "Registered organisation", desc: "NPO 238-677 · PBO 930084594 — donations are tax deductible in South Africa." },
+          { icon: Landmark, title: "Registered organisation", desc: "NGO 238-677 · PBO 930084594 — donations are tax deductible in South Africa." },
           { icon: Heart, title: "Direct to our work", desc: "Gifts support our mental health care and community outreach programmes." },
         ].map((item) => (
           <div key={item.title} className="bg-card rounded-xl border border-border p-5">

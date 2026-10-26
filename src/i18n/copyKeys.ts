@@ -803,7 +803,7 @@ export const copyKeys: Record<string, string> = {
   "Secure checkout": "copy.58f32426c312c937",
   "Card details are handled only by our regulated payment providers.": "copy.f6de20f97f7422ed",
   "Registered organisation": "copy.6c0b62672ea2796c",
-  "NPO 238-677 · PBO 930084594 — donations are tax deductible in South Africa.": "copy.f9fdbe89107d2d45",
+  "NGO 238-677 · PBO 930084594 — donations are tax deductible in South Africa.": "copy.f9fdbe89107d2d45",
   "Direct to our work": "copy.abfef63a808c1acf",
   "Gifts support our mental health care and community outreach programmes.": "copy.2213107a6bb3eb54",
   "World Changers MHC": "copy.9ac885b99c7bbdf6",

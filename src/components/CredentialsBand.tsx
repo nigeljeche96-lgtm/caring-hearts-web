@@ -6,7 +6,7 @@ export default function CredentialsBand() {
   const { t } = useTranslation();
   const items = [
     { icon: Globe, value: "2017", label: t("about.credFounded", "Founded in South Africa") },
-    { icon: ShieldCheck, value: "NPO 238-677", label: t("about.credNgo", "Registered non-profit organisation") },
+    { icon: ShieldCheck, value: "NGO 238-677", label: t("about.credNgo", "Registered non-profit organisation") },
     { icon: Award, value: "PBO 930084594", label: t("about.credPbo", "Public benefit organisation") },
   ];
   const renderItem = (c: (typeof items)[number], key: string) => (
