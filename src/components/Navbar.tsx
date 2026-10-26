@@ -1,3 +1,4 @@
+import logoAsset from "@/assets/wc-logo-blue.png.asset.json";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
