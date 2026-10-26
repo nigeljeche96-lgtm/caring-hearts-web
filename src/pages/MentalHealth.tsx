@@ -470,7 +470,7 @@ const MentalHealth = () => {
               <motion.div key={video.id} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                 className="rounded-xl overflow-hidden shadow-soft border border-border bg-card">
                 <div className="aspect-video">
-                  <iframe src={`https://www.youtube.com/embed/${video.id}`} title={tx(video.title)}
+                  <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}`} title={tx(video.title)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen className="w-full h-full" />
                 </div>

@@ -330,7 +330,7 @@ const Index = () => {
             className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-elevated aspect-video"
           >
             <iframe
-              src="https://www.youtube.com/embed/UQM-mYx3qcY"
+              src="https://www.youtube-nocookie.com/embed/UQM-mYx3qcY"
               title={tx("World Changers - Our Impact")}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

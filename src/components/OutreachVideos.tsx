@@ -33,7 +33,7 @@ export default function OutreachVideos() {
       <div className={clip.short ? "aspect-[9/16]" : "aspect-video"}>
         {playing === clip.id ? (
           <iframe
-            src={`https://www.youtube.com/embed/${clip.id}?autoplay=1`}
+            src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1`}
             title={label(index)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
