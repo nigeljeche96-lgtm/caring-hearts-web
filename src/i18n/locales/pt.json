@@ -372,7 +372,21 @@
     "shopDesc": "100% das receitas vão para as nossas iniciativas.",
     "noProducts": "Nenhum produto encontrado",
     "checkBackSoon": "Volte em breve!",
-    "noReviews": "Sem avaliações ainda"
+    "noReviews": "Sem avaliações ainda",
+    "comingSoonBadge": "Em Breve",
+    "comingSoonHeroNote": "Novos produtos a caminho — vão aparecer aqui assim que forem adicionados.",
+    "comingSoonTitle": "A nossa loja está a ser preparada",
+    "comingSoonBody": "eBooks, guias e cadernos de bem-estar mental — além de uma pequena linha de produtos — serão apresentados aqui à medida que cada um estiver pronto.",
+    "comingSoonEbooks": "eBooks e guias: download imediato após a compra, sem taxa de envio.",
+    "comingSoonMerch": "Produtos: vestuário e acessórios, enviados dentro da África do Sul.",
+    "comingSoonFunds": "Cada compra financia aconselhamento gratuito, trabalho em escolas e programas comunitários.",
+    "comingSoonNote": "Preços, descrições e imagens de capa vão aparecer aqui quando os produtos forem adicionados.",
+    "notifyTitle": "Seja o primeiro a saber",
+    "notifyDesc": "Deixe o seu e-mail e avisaremos quando a loja abrir.",
+    "notifyPlaceholder": "O seu e-mail",
+    "notifyButton": "Avise-me",
+    "notifySuccess": "Obrigado! Enviaremos um e-mail quando a loja abrir.",
+    "notifyDuplicate": "Já está na lista — entraremos em contacto."
   },
   "footer": {
     "quickLinks": "Links Rápidos",

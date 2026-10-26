@@ -372,7 +372,21 @@
     "shopDesc": "100% van opbrengs gaan direk na ons inisiatiewe.",
     "noProducts": "Geen produkte gevind nie",
     "checkBackSoon": "Kyk binnekort weer vir nuwe items!",
-    "noReviews": "Nog geen resensies nie"
+    "noReviews": "Nog geen resensies nie",
+    "comingSoonBadge": "Kom Binnekort",
+    "comingSoonHeroNote": "Nuwe produkte is op pad — hulle verskyn hier sodra hulle bygevoeg word.",
+    "comingSoonTitle": "Ons winkel word tans voorberei",
+    "comingSoonBody": "Geestesgesondheid-eboeke, riglyne en werkboeke — plus 'n klein reeks handelware — sal hier gelys word soos elke item gereed is.",
+    "comingSoonEbooks": "eBoeke en riglyne: onmiddellike aftlaai na aankoop, geen afleweringskoste nie.",
+    "comingSoonMerch": "Handelware: klere en bykomstighede, binne Suid-Afrika afgelewer.",
+    "comingSoonFunds": "Elke aankoop finansier gratis sielkundige raadgewing, skooluitreike en gemeenskapsprogramme.",
+    "comingSoonNote": "Pryse, beskrywings en voorblad-beelde sal hier verskyn sodra produkte bygevoeg is.",
+    "notifyTitle": "Wees die eerste om te weet",
+    "notifyDesc": "Los jou e-pos en ons laat jou weet wanneer die winkel oopmaak.",
+    "notifyPlaceholder": "Jou e-posadres",
+    "notifyButton": "Stel my in kennis",
+    "notifySuccess": "Dankie! Ons sal jou 'n e-pos stuur wanneer die winkel oopmaak.",
+    "notifyDuplicate": "Jy is reeds op die lys — ons sal kontak maak."
   },
   "footer": {
     "quickLinks": "Vinnige Skakels",

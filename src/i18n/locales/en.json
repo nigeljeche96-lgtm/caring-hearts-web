@@ -355,7 +355,21 @@
     "shopDesc": "100% of proceeds go directly to our mental health care initiatives.",
     "noProducts": "No products found",
     "checkBackSoon": "Check back soon for new items!",
-    "noReviews": "No reviews yet"
+    "noReviews": "No reviews yet",
+    "comingSoonBadge": "Coming Soon",
+    "comingSoonHeroNote": "New products are on the way — they will appear here as soon as they're added.",
+    "comingSoonTitle": "Our shop is being prepared",
+    "comingSoonBody": "Mental wellness eBooks, guides and workbooks — plus a small range of merchandise — will be listed here as each one is ready.",
+    "comingSoonEbooks": "eBooks & guides: instant download after purchase, no shipping fee.",
+    "comingSoonMerch": "Merchandise: apparel and accessories, shipped within South Africa.",
+    "comingSoonFunds": "Every purchase funds free counselling, school outreach and community programmes.",
+    "comingSoonNote": "Prices, descriptions and cover images will appear here once products are added.",
+    "notifyTitle": "Be the first to know",
+    "notifyDesc": "Leave your email and we'll tell you when the shop opens.",
+    "notifyPlaceholder": "Your email address",
+    "notifyButton": "Notify me",
+    "notifySuccess": "Thank you! We'll email you when the shop opens.",
+    "notifyDuplicate": "You're already on the list — we'll be in touch."
   },
   "footer": {
     "quickLinks": "Quick Links",

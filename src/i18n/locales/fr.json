@@ -372,7 +372,21 @@
     "shopDesc": "100% des bénéfices vont directement à nos initiatives de soins.",
     "noProducts": "Aucun produit trouvé",
     "checkBackSoon": "Revenez bientôt pour de nouveaux articles !",
-    "noReviews": "Pas encore d'avis"
+    "noReviews": "Pas encore d'avis",
+    "comingSoonBadge": "Bientôt disponible",
+    "comingSoonHeroNote": "De nouveaux produits arrivent — ils apparaîtront ici dès qu'ils seront ajoutés.",
+    "comingSoonTitle": "Notre boutique est en préparation",
+    "comingSoonBody": "eBooks, guides et carnets de bien-être mental — ainsi qu'une petite gamme de produits dérivés — seront présentés ici au fur et à mesure qu'ils seront prêts.",
+    "comingSoonEbooks": "eBooks et guides : téléchargement immédiat après l'achat, sans frais de livraison.",
+    "comingSoonMerch": "Produits dérivés : vêtements et accessoires, livrés en Afrique du Sud.",
+    "comingSoonFunds": "Chaque achat finance un accompagnement psychologique gratuit, des interventions en milieu scolaire et des programmes communautaires.",
+    "comingSoonNote": "Les prix, les descriptions et les images de couverture s'afficheront ici une fois les produits ajoutés.",
+    "notifyTitle": "Soyez le premier informé",
+    "notifyDesc": "Laissez votre e-mail et nous vous dirons quand la boutique ouvrira.",
+    "notifyPlaceholder": "Votre adresse e-mail",
+    "notifyButton": "Prévenez-moi",
+    "notifySuccess": "Merci ! Nous vous enverrons un e-mail à l'ouverture de la boutique.",
+    "notifyDuplicate": "Vous êtes déjà sur la liste — nous vous contacterons."
   },
   "footer": {
     "quickLinks": "Liens Rapides",

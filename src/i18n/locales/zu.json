@@ -372,7 +372,21 @@
     "shopDesc": "100% yenzuzo iya ngqo ezinhlelweni zethu zokunakekela impilo yengqondo.",
     "noProducts": "Ayikho imikhiqizo etholakele",
     "checkBackSoon": "Buya maduze ukuze uthole izinto ezintsha!",
-    "noReviews": "Ayikho imibuyekezo okwamanje"
+    "noReviews": "Ayikho imibuyekezo okwamanje",
+    "comingSoonBadge": "Kufika Maduze",
+    "comingSoonHeroNote": "Imikhiqizo emisha iyeza — izovela lapha njengoba ifakwa.",
+    "comingSoonTitle": "Isitolo sethu siyalungiselelwa",
+    "comingSoonBody": "Ama-eBook, izincwadi zokuqondisa nemisebenzi yokuziqeqesha — kanye nezimpahla ezimbalwa — kuzovela lapha njengoba ngakunye kulungele.",
+    "comingSoonEbooks": "Ama-eBook nezincwadi: ukulanda okushesha emva kokuthenga, akukho mali yokuthumela.",
+    "comingSoonMerch": "Izimpahla: izingubo nezinto zokuhlobisa, zithunyelwa eNingizimu Afrika.",
+    "comingSoonFunds": "Ukuthenga ngakunye kuxhasa ukweluleka kwamahhala, imisebenzi ezikoleni nezinhlelo zomphakathi.",
+    "comingSoonNote": "Amanani, incazelo nezithombe zezembozo kuzovela lapha imikhiqizo isifakiwe.",
+    "notifyTitle": "Yiba wokuqala ukwazi",
+    "notifyDesc": "Shiya i-email yakho sizokwazisa isitolo sivula.",
+    "notifyPlaceholder": "I-email yakho",
+    "notifyButton": "Ngazise",
+    "notifySuccess": "Siyabonga! Sizokuthumelela i-email isitolo sivula.",
+    "notifyDuplicate": "Usesohlwini — sizoxhumana nawe."
   },
   "footer": {
     "quickLinks": "Izixhumanisi Ezisheshayo",
