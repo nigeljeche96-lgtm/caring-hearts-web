@@ -11,6 +11,7 @@ export const OPEN_SETTINGS_EVENT = "wc:open-cookie-settings";
 
 const GA_ID = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_API_KEY as string | undefined;
 const ADSENSE_CLIENT = "ca-pub-2805073948846762";
+const GTM_ID = "GTM-M6K7CGCB";
 
 export function readConsent(): ConsentChoice | null {
   try {
@@ -30,19 +31,33 @@ export function saveConsent(analytics: boolean, advertising: boolean): ConsentCh
   return choice;
 }
 
-function addScript(id: string, src: string, crossOrigin = false) {
+function addScript(id: string, src: string, crossOrigin = false, prepend = false) {
   if (document.getElementById(id)) return;
   const s = document.createElement("script");
   s.id = id;
   s.async = true;
   s.src = src;
   if (crossOrigin) s.crossOrigin = "anonymous";
-  document.head.appendChild(s);
+  if (prepend) document.head.insertBefore(s, document.head.firstChild);
+  else document.head.appendChild(s);
 }
 
 /** Loads third-party scripts only for categories the visitor accepted. Nothing loads before a choice. */
 export function applyConsent(choice: ConsentChoice | null) {
   if (!choice) return;
+  if (choice.analytics || choice.advertising) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "wc_consent_update",
+      consent: {
+        analytics_storage: choice.analytics ? "granted" : "denied",
+        ad_storage: choice.advertising ? "granted" : "denied",
+        ad_user_data: choice.advertising ? "granted" : "denied",
+        ad_personalization: choice.advertising ? "granted" : "denied",
+      },
+    });
+    addScript("wc-gtm", `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`, false, true);
+  }
   if (GA_ID) (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = !choice.analytics;
   if (choice.analytics && GA_ID) {
     window.dataLayer = window.dataLayer || [];
