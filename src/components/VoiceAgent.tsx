@@ -13,6 +13,7 @@ const AGENT_ID = "agent_3201kjfzeyyafnk97gvv3v75nfz5";
 interface VoiceAgentProps {
   variant?: "button" | "inline" | "icon";
   className?: string;
+  onDark?: boolean;
 }
 
 const SpeakingWaves = ({ isSpeaking }: { isSpeaking: boolean }) => (
@@ -46,7 +47,7 @@ const SpeakingWaves = ({ isSpeaking }: { isSpeaking: boolean }) => (
   </div>
 );
 
-const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => {
+const VoiceAgent = ({ variant = "button", className = "", onDark = false }: VoiceAgentProps) => {
   const tx = useSiteCopy();
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -142,7 +143,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
           onClick={isActive ? stopConversation : startConversation}
           disabled={isConnecting}
           aria-label={isActive ? tx("End reception call") : tx("Call the Reception now")}
-          className="inline-flex items-center justify-center gap-2 px-5 h-11 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 font-semibold text-sm"
+          className={`inline-flex items-center justify-center gap-2 px-5 h-11 rounded-lg ${onDark ? "bg-primary-foreground text-primary hover:bg-primary-foreground/90" : "bg-primary text-primary-foreground hover:bg-primary/90"} transition-colors shadow-md disabled:opacity-50 font-semibold text-sm`}
           title={isActive ? tx("End call") : tx("Call the Reception")}
         >
           <Phone className="w-4 h-4" />
@@ -160,7 +161,7 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
               src={receptionistAvatar}
               alt={tx("AI Receptionist")}
               className={`w-12 h-12 rounded-full object-cover border-2 relative z-10 transition-all ${
-                isActive ? "border-primary shadow-lg" : "border-border group-hover:border-primary/50"
+                isActive ? "border-primary shadow-lg" : onDark ? "border-primary-foreground" : "border-border group-hover:border-primary/50"
               }`}
             />
             {isActive && (
@@ -168,10 +169,10 @@ const VoiceAgent = ({ variant = "button", className = "" }: VoiceAgentProps) => 
             )}
           </div>
           <div className="text-left">
-            <span className="text-xs text-muted-foreground block">
+            <span className={`text-xs block ${onDark ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
               {isActive ? tx("On call") : tx("The Reception")}
             </span>
-            <span className="font-semibold text-sm text-foreground">
+            <span className={`font-semibold text-sm ${onDark ? "text-primary-foreground" : "text-foreground"}`}>
               {isActive
                 ? conversation.isSpeaking
                   ? "Agent speaking..."

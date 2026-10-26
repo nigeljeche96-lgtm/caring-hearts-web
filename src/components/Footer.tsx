@@ -69,7 +69,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-foreground text-primary shrink-0"><MapPin className="w-4 h-4" /></span>
-                <a href="https://maps.google.com/?q=114+George+Street,+Kenilworth,+Johannesburg,+2190" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 hover:text-gold transition-all">{tx("114 George Street, Kenilworth, Johannesburg, 2190")}</a>
+                <a href="https://maps.google.com/?q=114+George+Street,+Kenilworth,+Johannesburg,+2190" target="_blank" rel="noopener noreferrer" className="opacity-90 hover:opacity-100 hover:text-gold transition-all">{tx("114 George Street, Kenilworth, Johannesburg, 2190")}</a>
               </li>
             </ul>
           </div>
