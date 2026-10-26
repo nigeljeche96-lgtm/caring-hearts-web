@@ -1,7 +1,7 @@
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, Users, Brain, HandHeart, ArrowRight, Shield, Sparkles, Building, Star, Eye, Target, Lightbulb, Globe, BookOpen } from "lucide-react";
+import { Heart, Users, HandHeart, ArrowRight, Shield, Building, Eye, Target, Lightbulb, Globe, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import VoiceAgent from "@/components/VoiceAgent";
@@ -35,7 +35,6 @@ const boardMembers = [
   { name: "Adv. Florence Maleka", role: "Board Member", image: florenceMaleka },
 ];
 
-const marqueeItems = ["Mental Health", "Education", "Counseling", "Wellness", "Support", "Donation"];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -59,12 +58,6 @@ const Index = () => {
     { value: "50+", label: t("stats.projectsCompleted") },
   ];
 
-  const features = [
-    { icon: Shield, title: t("index.becomeVolunteerFeature"), desc: t("index.becomeVolunteerDesc") },
-    { icon: Heart, title: t("index.shelterTitle"), desc: t("index.shelterDesc") },
-    { icon: Sparkles, title: t("index.happierTitle"), desc: t("index.happierDesc") },
-    { icon: Brain, title: t("index.healthyTitle"), desc: t("index.healthyDesc") },
-  ];
 
   const values = [
     { icon: Heart, title: t("index.wwdCounselling", "Counselling and therapy"), desc: t("index.wwdCounsellingDesc", "Accessible, professional support for individuals, families and communities.") },
@@ -132,9 +125,6 @@ const Index = () => {
         <CredentialsBand />
       </section>
 
-      <ActionPathways />
-      <CrisisHelpline />
-
       {/* Get Inspired Section */}
       <section className="section-padding">
         <div className="container mx-auto">
@@ -143,7 +133,7 @@ const Index = () => {
               <img src={aboutBg} alt={tx("Support group session")} className="rounded-2xl shadow-elevated w-full object-cover aspect-[4/3]" />
               <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-4 shadow-elevated hidden md:block">
                 <p className="font-heading text-xl font-bold text-primary-foreground">{t("pathways.badgeValue", "Since 2017")}</p>
-                <p className="text-xs text-primary-foreground/80">{t("pathways.badgeLabel", "Registered NPO & PBO")}</p>
+                <p className="text-xs text-primary-foreground/80">{t("pathways.badgeLabel", "Registered NGO & PBO")}</p>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
@@ -206,6 +196,9 @@ const Index = () => {
         </div>
       </section>
 
+      <ActionPathways />
+      <CrisisHelpline />
+
       {/* Our Values */}
       <section className="section-padding bg-muted">
         <div className="container mx-auto">
@@ -238,45 +231,6 @@ const Index = () => {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Quick donation */}
-      <section className="section-padding bg-muted" id="donate">
-        <div className="container mx-auto max-w-4xl">
-          <SectionHeading label={t("pathways.donateLabel", "Give today")} title={t("pathways.donateTitle", "Help someone reach care")} description={t("pathways.donateDesc", "Choose an amount and give securely in a few clicks.")} />
-          <DonationWidget />
-        </div>
-      </section>
-
-      <SelfHelpGuides />
-
-      {/* Features */}
-      <section className="section-padding">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {features.map((f, i) => (
-              <motion.div key={f.title} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                className="bg-card rounded-xl p-4 sm:p-6 shadow-soft hover:shadow-card transition-shadow group text-center">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:bg-hero-gradient transition-all">
-                  <f.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground" />
-                </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{tx(f.title)}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{tx(f.desc)}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Marquee */}
-      <section className="py-6 bg-primary overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="mx-8 font-heading text-xl font-bold text-primary-foreground flex items-center gap-3">
-              <Star className="w-4 h-4" /> {tx(item)}
-            </span>
-          ))}
         </div>
       </section>
 
@@ -342,31 +296,23 @@ const Index = () => {
       </section>
 
       <TrustedDonors />
-      <GoogleReviews />
 
-      {/* CTA */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-hero-gradient" />
-        <div className="relative container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <Heart className="w-12 h-12 text-accent mx-auto mb-6" />
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-5">
-              {t("index.ctaTitle")}
-            </h2>
-            <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-              {t("index.ctaDesc")}
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8">
-                <Link to="/donation">{t("common.donateNow")}</Link>
-              </Button>
-              <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base px-10 font-bold">
-                <Link to="/become-volunteer">{t("common.becomeVolunteer")} <HandHeart className="w-5 h-5 ml-2" /></Link>
-              </Button>
-            </div>
-          </motion.div>
+      <SelfHelpGuides />
+
+      {/* Give today + Together, we can change the world */}
+      <section className="section-padding bg-muted" id="donate">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-8">
+            <Heart className="w-10 h-10 text-accent mx-auto mb-4" />
+            <span className="text-sm font-semibold text-accent uppercase tracking-wider">{t("pathways.donateLabel", "Give today")}</span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3 mb-4">{t("index.ctaTitle")}</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">{t("index.ctaDesc")}</p>
+          </div>
+          <DonationWidget />
         </div>
       </section>
+
+      <GoogleReviews />
     </div>
   );
 };
