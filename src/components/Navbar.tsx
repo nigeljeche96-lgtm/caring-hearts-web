@@ -1,4 +1,3 @@
-import logoAsset from "@/assets/wc-logo-blue.png.asset.json";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -67,7 +66,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 gap-3">
         {/* Logo — fixed size so it never shifts or stretches */}
         <Link to="/" className="flex items-center shrink-0 rounded-lg bg-background px-2.5 py-1.5 shadow-soft">
-          <img alt={tx("World Changers Mental Health Care Organisation")} width={1532} height={494} className="h-9 md:h-11 w-auto max-w-none object-contain select-none" draggable={false} src={logoAsset.url} />
+          <img alt={tx("World Changers Mental Health Care Organisation")} width={1532} height={494} className="h-9 md:h-11 w-auto max-w-none object-contain select-none" draggable={false} src="/logo-blue.png" />
         </Link>
 
         {/* Desktop Nav */}
