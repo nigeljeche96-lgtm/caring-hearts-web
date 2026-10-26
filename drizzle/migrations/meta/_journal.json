@@ -8,6 +8,13 @@
       "when": 1792704614725,
       "tag": "0000_harden_bookings_tickets",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793035280197,
+      "tag": "0001_storage_site_assets_policies",
+      "breakpoints": true
     }
   ]
 }
