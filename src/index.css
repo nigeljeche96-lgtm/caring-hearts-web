@@ -7,24 +7,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 215 68% 13%;
+    --foreground: 240 100% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 68% 13%;
+    --card-foreground: 240 100% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 68% 13%;
+    --popover-foreground: 240 100% 15%;
 
-    --primary: 217 65% 40%;
+    --primary: 221 100% 31%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 81% 92%;
-    --secondary-foreground: 215 68% 13%;
+    --secondary: 218 69% 93%;
+    --secondary-foreground: 240 100% 25%;
 
-    --muted: 210 71% 96%;
+    --muted: 218 69% 97%;
     --muted-foreground: 215 35% 32%;
 
-    --accent: 215 44% 51%;
+    --accent: 240 100% 25%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 78% 42%;
@@ -32,14 +32,14 @@
 
     --border: 210 81% 92%;
     --input: 210 60% 88%;
-    --ring: 217 65% 40%;
+    --ring: 221 100% 31%;
 
     --radius: 0.75rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(215 68% 13%), hsl(217 65% 40%));
-    --warm-gradient: linear-gradient(135deg, hsl(217 65% 40%), hsl(215 68% 13%));
-    --calm-gradient: linear-gradient(180deg, hsl(210 71% 96%), hsl(0 0% 100%));
-    --overlay-gradient: linear-gradient(90deg, hsla(215 68% 13% / 0.75), hsla(215 68% 13% / 0.25));
+    --hero-gradient: linear-gradient(135deg, hsl(240 100% 25%), hsl(221 100% 31%));
+    --warm-gradient: linear-gradient(135deg, hsl(221 100% 31%), hsl(240 100% 25%));
+    --calm-gradient: linear-gradient(180deg, hsl(218 69% 97%), hsl(0 0% 100%));
+    --overlay-gradient: linear-gradient(90deg, hsla(240 100% 25% / 0.75), hsla(240 100% 25% / 0.25));
 
     --shadow-soft: 0 4px 20px -4px hsla(215 25% 15% / 0.08);
     --shadow-card: 0 8px 30px -8px hsla(215 25% 15% / 0.1);
@@ -55,19 +55,19 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Custom tokens */
-    --sage: 215 44% 51%;
+    --sage: 240 100% 25%;
     --sage-light: 210 81% 92%;
-    --teal-dark: 215 68% 13%;
+    --teal-dark: 240 100% 25%;
     --gold: 210 81% 92%;
-    --navy: 215 68% 13%;
-    --navy-dark: 215 68% 13%;
-    --donate: 217 65% 40%;
+    --navy: 240 100% 25%;
+    --navy-dark: 240 100% 25%;
+    --donate: 221 100% 31%;
     --donate-foreground: 0 0% 100%;
-    --teal-light: 215 44% 51%;
-    --sand: 210 71% 96%;
-    --sage-tint: 210 71% 96%;
-    --gold-light: 210 71% 96%;
-    --cream: 210 71% 96%;
+    --teal-light: 221 100% 31%;
+    --sand: 218 69% 97%;
+    --sage-tint: 218 69% 97%;
+    --gold-light: 218 69% 97%;
+    --cream: 218 69% 97%;
   }
 
   .dark {

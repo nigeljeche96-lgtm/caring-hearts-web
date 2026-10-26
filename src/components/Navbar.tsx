@@ -62,7 +62,7 @@ const Navbar = () => {
   const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
 
   return (
-    <header className="sticky top-0 z-50 bg-navy border-b border-gold/50">
+    <header className="sticky top-0 z-50 bg-primary border-b border-gold/50">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 gap-3">
         {/* Logo — fixed size so it never shifts or stretches */}
         <Link to="/" className="flex items-center shrink-0">
@@ -137,7 +137,7 @@ const Navbar = () => {
           <Button asChild variant="outline" className="inline-flex h-9 px-3 text-sm md:h-10 md:px-4 bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
             <Link to="/mental-health">{tx("Get Help")}</Link>
           </Button>
-          <Button asChild className="hidden sm:inline-flex h-9 px-3 text-sm md:h-10 md:px-4 font-semibold border-2 border-donate bg-donate text-donate-foreground hover:bg-donate/90">
+          <Button asChild className="hidden sm:inline-flex h-9 px-3 text-sm md:h-10 md:px-4 font-semibold border-2 border-primary-foreground bg-navy text-primary-foreground hover:bg-navy/90">
             <Link to={DONATE_URL}>{t("nav.donateNow")}</Link>
           </Button>
 

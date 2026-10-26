@@ -18,7 +18,7 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="relative overflow-hidden bg-navy-dark text-primary-foreground">
+    <footer className="relative overflow-hidden bg-primary text-primary-foreground">
       <GlobeMark sizeClass="w-[240px] md:w-[340px]" positionClass="right-4 md:right-10 top-8" opacityClass="opacity-[0.14] md:opacity-[0.18]" />
       <div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10">
