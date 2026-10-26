@@ -121,6 +121,31 @@ const Shop = () => {
     toast.success(tx("Added to cart"), { description: `${product.node.title} - ${variant.title}` });
   };
 
+  const handleNotify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNotifyLoading(true);
+    try {
+      const { error } = await supabase
+        .from("newsletter_subscribers")
+        .insert({ email: notifyEmail.trim().toLowerCase() });
+      if (error) {
+        if (error.code === "23505") {
+          setNotifyMsg(t("shop.notifyDuplicate"));
+        } else {
+          throw error;
+        }
+      } else {
+        setNotifyMsg(t("shop.notifySuccess"));
+      }
+      setNotifyDone(true);
+    } catch (err) {
+      console.error(err);
+      toast.error(tx("Failed to subscribe. Please try again."));
+    } finally {
+      setNotifyLoading(false);
+    }
+  };
+
   return (
     <div className="bg-background min-h-screen">
       <SEO title={tx("Shop Merchandise & eBooks — World Changers MHCO")} description={tx("Shop World Changers merchandise and instant-download mental wellness eBooks, guides and workbooks.")} path="/shop" />
@@ -129,8 +154,13 @@ const Shop = () => {
         <img src={philanthropyBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+          {isEmpty && (
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/15 text-primary-foreground px-3 py-1 text-xs font-semibold uppercase tracking-wide mb-2">
+              <Bell className="w-3.5 h-3.5" /> {t("shop.comingSoonBadge")}
+            </span>
+          )}
           <h1 className="font-heading text-2xl sm:text-3xl font-bold text-primary-foreground">{tx("Shop Merchandise & eBooks")}</h1>
-          <p className="text-sm text-primary-foreground/80 mt-1">{tx("Wear the mission and grow with practical tools for healthier minds.")}</p>
+          <p className="text-sm text-primary-foreground/80 mt-1">{isEmpty ? t("shop.comingSoonHeroNote") : tx("Wear the mission and grow with practical tools for healthier minds.")}</p>
         </div>
       </div>
 
@@ -175,7 +205,8 @@ const Shop = () => {
         <CartDrawer />
       </div>
 
-      {/* Category Filter - horizontal scroll */}
+      {/* Category Filter - horizontal scroll (hidden while the shop is still empty) */}
+      {!isEmpty && (
       <div className="border-b border-border bg-background sticky top-0 z-30">
         <div className="container mx-auto px-2 py-2 overflow-x-auto scrollbar-hide">
           <div className="flex gap-1.5 min-w-max">
@@ -195,6 +226,7 @@ const Shop = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* Product Grid */}
       <div className="container mx-auto px-2 sm:px-4 py-4">
@@ -203,10 +235,60 @@ const Shop = () => {
             <Loader2 className="w-8 h-8 animate-spin text-primary" />
           </div>
         ) : products.length === 0 ? (
-          <div className="text-center py-20">
-            <ShoppingBag className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
-            <p className="text-sm text-muted-foreground">{t("shop.noProducts")} "{tx(activeCategory)}"</p>
-            <p className="text-xs text-muted-foreground mt-1">{t("shop.checkBackSoon")}</p>
+          <div className="max-w-3xl mx-auto py-10 sm:py-14">
+            <div className="rounded-2xl border border-border bg-card p-6 sm:p-10 text-center shadow-card">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 text-primary px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+                <Bell className="w-3.5 h-3.5" /> {t("shop.comingSoonBadge")}
+              </span>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-foreground mt-4">{t("shop.comingSoonTitle")}</h2>
+              <p className="text-sm sm:text-base text-muted-foreground mt-3 leading-relaxed">{t("shop.comingSoonBody")}</p>
+
+              <div className="grid sm:grid-cols-2 gap-3 mt-6 text-left">
+                <div className="flex gap-3 rounded-xl border border-border bg-background p-4">
+                  <BookOpen className="w-5 h-5 shrink-0 text-primary" />
+                  <p className="text-sm text-foreground">{t("shop.comingSoonEbooks")}</p>
+                </div>
+                <div className="flex gap-3 rounded-xl border border-border bg-background p-4">
+                  <Package className="w-5 h-5 shrink-0 text-primary" />
+                  <p className="text-sm text-foreground">{t("shop.comingSoonMerch")}</p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-muted-foreground mt-5">{t("shop.comingSoonFunds")}</p>
+
+              <div className="mt-8 border-t border-border pt-6">
+                <h3 className="font-heading text-base font-semibold text-foreground">{t("shop.notifyTitle")}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1">{t("shop.notifyDesc")}</p>
+                {notifyDone ? (
+                  <p className="mt-4 inline-flex items-center gap-2 text-sm text-primary">
+                    <CheckCircle2 className="w-4 h-4" /> {notifyMsg}
+                  </p>
+                ) : (
+                  <form onSubmit={handleNotify} className="mt-4 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+                    <input
+                      type="email"
+                      required
+                      value={notifyEmail}
+                      onChange={(e) => setNotifyEmail(e.target.value)}
+                      placeholder={t("shop.notifyPlaceholder")}
+                      className="flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    />
+                    <Button
+                      type="submit"
+                      disabled={notifyLoading}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
+                      {notifyLoading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <><Bell className="w-4 h-4 mr-1.5" /> {t("shop.notifyButton")}</>
+                      )}
+                    </Button>
+                  </form>
+                )}
+              </div>
+            </div>
+            <p className="text-center text-xs text-muted-foreground mt-4">{t("shop.comingSoonNote")}</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
