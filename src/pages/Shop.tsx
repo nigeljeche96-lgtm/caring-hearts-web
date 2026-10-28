@@ -258,6 +258,15 @@ const Shop = () => {
           <div className="flex justify-center py-20">
             <Loader2 className="w-8 h-8 animate-spin text-primary" />
           </div>
+        ) : categoryEmpty ? (
+          <div className="text-center py-10 sm:py-16">
+            <Package className="w-8 h-8 mx-auto text-muted-foreground/40" />
+            <p className="font-heading text-lg font-semibold text-foreground mt-3">{t("shop.categoryEmpty")}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t("shop.categoryEmptyHint")}</p>
+            <Button variant="outline" onClick={() => setActiveCategory("All")} className="mt-4">
+              {t("shop.backToAll")}
+            </Button>
+          </div>
         ) : products.length === 0 ? (
           <div className="max-w-3xl mx-auto py-10 sm:py-14">
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-10 text-center shadow-card">
