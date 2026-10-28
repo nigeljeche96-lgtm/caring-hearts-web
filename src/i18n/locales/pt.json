@@ -386,7 +386,10 @@
     "notifyPlaceholder": "O seu e-mail",
     "notifyButton": "Avise-me",
     "notifySuccess": "Obrigado! Enviaremos um e-mail quando a loja abrir.",
-    "notifyDuplicate": "Já está na lista — entraremos em contacto."
+    "notifyDuplicate": "Já está na lista — entraremos em contacto.",
+    "categoryEmpty": "Ainda não há produtos nesta categoria.",
+    "categoryEmptyHint": "Experimente outra categoria ou veja tudo.",
+    "backToAll": "Mostrar todos os produtos"
   },
   "footer": {
     "quickLinks": "Links Rápidos",

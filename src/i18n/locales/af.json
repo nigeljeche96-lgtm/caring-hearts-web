@@ -386,7 +386,10 @@
     "notifyPlaceholder": "Jou e-posadres",
     "notifyButton": "Stel my in kennis",
     "notifySuccess": "Dankie! Ons sal jou 'n e-pos stuur wanneer die winkel oopmaak.",
-    "notifyDuplicate": "Jy is reeds op die lys — ons sal kontak maak."
+    "notifyDuplicate": "Jy is reeds op die lys — ons sal kontak maak.",
+    "categoryEmpty": "Nog geen produkte in hierdie kategorie nie.",
+    "categoryEmptyHint": "Probeer 'n ander kategorie of blader alles.",
+    "backToAll": "Wys alle produkte"
   },
   "footer": {
     "quickLinks": "Vinnige Skakels",

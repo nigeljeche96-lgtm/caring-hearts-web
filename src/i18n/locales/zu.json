@@ -386,7 +386,10 @@
     "notifyPlaceholder": "I-email yakho",
     "notifyButton": "Ngazise",
     "notifySuccess": "Siyabonga! Sizokuthumelela i-email isitolo sivula.",
-    "notifyDuplicate": "Usesohlwini — sizoxhumana nawe."
+    "notifyDuplicate": "Usesohlwini — sizoxhumana nawe.",
+    "categoryEmpty": "Akukho mikhiqizo kulolu hlelo okwamanje.",
+    "categoryEmptyHint": "Zama olunye uhlelo noma buka konke.",
+    "backToAll": "Bonisa bonke umkhiqizo"
   },
   "footer": {
     "quickLinks": "Izixhumanisi Ezisheshayo",
