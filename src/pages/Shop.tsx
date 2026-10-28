@@ -41,6 +41,7 @@ const Shop = () => {
   const { t } = useTranslation();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hasAnyProducts, setHasAnyProducts] = useState<boolean | null>(null);
   const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>({});
   const [activeCategory, setActiveCategory] = useState("All");
   const [reviewStats, setReviewStats] = useState<Record<string, { avg: number; count: number }>>({});
@@ -53,7 +54,24 @@ const Shop = () => {
   const isLoading = useCartStore(state => state.isLoading);
   const navigate = useNavigate();
   const { selectedCurrency, currencies: currencyList, changeCurrency, formatPrice } = useCurrency();
-  const isEmpty = !loading && products.length === 0;
+  // "Empty shop" means the whole catalog has no products; an empty category is a filtered result, not a coming-soon state.
+  const isEmpty = !loading && hasAnyProducts === false;
+  const categoryEmpty = !loading && hasAnyProducts !== false && products.length === 0;
+
+  // One-time check so an empty category never hides the shop behind the coming-soon screen.
+  useEffect(() => {
+    async function checkCatalog() {
+      try {
+        const data = await storefrontApiRequest(STOREFRONT_PRODUCTS_QUERY, { first: 1 });
+        setHasAnyProducts(Boolean(data?.data?.products?.edges?.length));
+      } catch (error) {
+        // If the catalog check fails, prefer the normal product view over a false "coming soon".
+        console.error("Failed to check catalog:", error);
+        setHasAnyProducts(true);
+      }
+    }
+    checkCatalog();
+  }, []);
 
 
   useEffect(() => {
