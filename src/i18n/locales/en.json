@@ -369,7 +369,10 @@
     "notifyPlaceholder": "Your email address",
     "notifyButton": "Notify me",
     "notifySuccess": "Thank you! We'll email you when the shop opens.",
-    "notifyDuplicate": "You're already on the list — we'll be in touch."
+    "notifyDuplicate": "You're already on the list — we'll be in touch.",
+    "categoryEmpty": "No products in this category yet.",
+    "categoryEmptyHint": "Try another category or browse everything.",
+    "backToAll": "Show all products"
   },
   "footer": {
     "quickLinks": "Quick Links",
