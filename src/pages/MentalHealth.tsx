@@ -1,3 +1,4 @@
+import { reportBookingConversion } from "@/lib/consent";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useRef, useEffect } from "react";
 import SEO from "@/components/SEO";
@@ -173,6 +174,7 @@ const MentalHealth = () => {
       const { error } = await supabase.from("bookings").insert(bookingData);
       if (error) throw error;
       setBookingSubmitted(true);
+      reportBookingConversion();
       toast.success(tx("Booking confirmed!"));
 
       // Send confirmation email (fire-and-forget)
