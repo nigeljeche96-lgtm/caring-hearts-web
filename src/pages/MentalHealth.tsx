@@ -117,6 +117,10 @@ const fadeUp = {
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.5 } }),
 };
 
+// Set to true to let clients pick a date and time again (e.g. once full-time professionals are on staff).
+const SHOW_DATE_TIME_PICKER = false;
+const TO_BE_ARRANGED = "To be arranged by professional";
+
 const MentalHealth = () => {
   const tx = useSiteCopy();
   const { t } = useTranslation();
@@ -150,7 +154,7 @@ const MentalHealth = () => {
 
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!date || !time || !sessionType || !selectedProvider || !consent) return;
+    if ((SHOW_DATE_TIME_PICKER && (!date || !time)) || !sessionType || !selectedProvider || !consent) return;
     setSubmitting(true);
     try {
       const bookingData = {
@@ -160,8 +164,8 @@ const MentalHealth = () => {
         phone: bookingPhone,
         provider_name: selectedProvider,
         session_type: sessionType,
-        session_date: format(date, "yyyy-MM-dd"),
-        session_time: time,
+        session_date: format(SHOW_DATE_TIME_PICKER && date ? date : new Date(), "yyyy-MM-dd"),
+        session_time: SHOW_DATE_TIME_PICKER ? time : TO_BE_ARRANGED,
         reason: bookingReason || null,
         status: "upcoming",
         session_mode: "Virtual",
@@ -179,7 +183,7 @@ const MentalHealth = () => {
           provider_name: bookingData.provider_name,
           provider_email: selectedProfessional?.email,
           session_type: bookingData.session_type,
-          session_date: bookingData.session_date,
+          session_date: SHOW_DATE_TIME_PICKER ? bookingData.session_date : TO_BE_ARRANGED,
           session_time: bookingData.session_time,
           session_mode: bookingData.session_mode,
           phone: bookingData.phone,
@@ -273,17 +277,17 @@ const MentalHealth = () => {
                     <CalendarDays className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-heading text-2xl font-bold text-foreground mb-2">{tx("Booking Confirmed!")}</h3>
-                  <p className="text-muted-foreground">{tx("Your 60-minute virtual")} {sessionType} {tx("session with")} {selectedProvider} {tx("is scheduled for")} {date && format(date, "PPP")} {tx("at")} {time}.</p>
+                  <p className="text-muted-foreground">{tx("Your 60-minute virtual")} {sessionType} {tx("session with")} {selectedProvider} {SHOW_DATE_TIME_PICKER ? <>{tx("is scheduled for")} {date && format(date, "PPP")} {tx("at")} {time}.</> : <>{tx("has been requested. Your professional will contact you to arrange a date and time that suits you both.")}</>}</p>
                   <p className="text-sm text-muted-foreground mt-2">{tx("An acknowledgement email has been sent to")} {bookingEmail || "your email address"}{tx(". Your professional will be in touch shortly.")}</p>
                   <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center">
-                    <a
+                    {SHOW_DATE_TIME_PICKER && <a
                       href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(`Virtual ${sessionType} — ${selectedProvider}`)}&dates=${date ? format(date, "yyyyMMdd") : ""}T${time.replace(":", "")}00/${date ? format(date, "yyyyMMdd") : ""}T${(() => { const [h, m] = time.split(":").map(Number); return `${String(h + 1).padStart(2, "0")}${String(m).padStart(2, "0")}`; })()}00&details=${encodeURIComponent(`Virtual session with ${selectedProvider}\nType: ${sessionType}\nMode: Virtual`)}&location=Virtual`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity"
                     >
                       <CalendarDays className="w-4 h-4" /> {tx("Add to Google Calendar")} <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                    </a>}
                     <Button onClick={() => { setBookingSubmitted(false); setDate(undefined); setTime(""); setSessionType(""); setSelectedProvider(""); setBookingName(""); setBookingEmail(""); setBookingPhone(""); setBookingReason(""); }}
                       variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"> {tx("Book Another Session")} </Button>
                   </div>
@@ -291,7 +295,7 @@ const MentalHealth = () => {
               ) : (
                 <form onSubmit={handleBookingSubmit} className="space-y-5">
                   <h3 className="font-heading text-xl font-bold text-foreground mb-2">{tx("Schedule Your Virtual Session")}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{tx("All sessions are 60 minutes and conducted virtually. Select your preferred provider to see their availability.")}</p>
+                  <p className="text-sm text-muted-foreground mb-2">{tx("All sessions are 60 minutes and conducted virtually. Select your preferred provider to see their availability.")}{!SHOW_DATE_TIME_PICKER && <> {tx("Your professional will contact you to arrange a date and time.")}</>}</p>
                   <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
                     <Video className="w-3.5 h-3.5" /> {tx("Session Mode: Virtual")} </div>
 
@@ -335,7 +339,7 @@ const MentalHealth = () => {
                     </Select>
                   </div>
 
-                  {selectedProvider && (
+                  {SHOW_DATE_TIME_PICKER && selectedProvider && (
                     <>
                       <div>
                         <label className="text-sm font-medium text-foreground mb-1.5 block"> {tx("Preferred Date")} <span className="text-xs text-muted-foreground">({selectedProfessional?.days.map(tx).join(", ")})</span>
@@ -389,7 +393,7 @@ const MentalHealth = () => {
                   </label>
 
                   <Button type="submit" size="lg" className="w-full bg-hero-gradient text-primary-foreground hover:opacity-90"
-                    disabled={!date || !time || !sessionType || !selectedProvider || !consent || submitting}>
+                    disabled={(SHOW_DATE_TIME_PICKER && (!date || !time)) || !sessionType || !selectedProvider || !consent || submitting}>
                     {submitting ? tx("Booking...") : tx("Confirm Booking")}
                   </Button>
                 </form>
