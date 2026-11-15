@@ -261,8 +261,6 @@ const MentalHealth = () => {
         </div>
       </section>
 
-      <GoogleReviews />
-
       {/* Booking Calendar Modal */}
       {bookingOpen && (
         <section className="section-padding bg-muted scroll-mt-24" ref={bookingRef}>
@@ -466,6 +464,8 @@ const MentalHealth = () => {
       </section>
 
       <SelfHelpGuides />
+
+      <GoogleReviews />
 
       {/* YouTube Videos */}
       <section className="section-padding bg-muted">
