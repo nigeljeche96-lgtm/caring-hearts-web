@@ -23,7 +23,7 @@ export type Database = {
           phone: string
           provider_name: string
           reason: string | null
-          session_date: string
+          session_date: string | null
           session_mode: string
           session_time: string
           session_type: string
@@ -38,7 +38,7 @@ export type Database = {
           phone: string
           provider_name: string
           reason?: string | null
-          session_date: string
+          session_date?: string | null
           session_mode?: string
           session_time: string
           session_type: string
@@ -53,7 +53,7 @@ export type Database = {
           phone?: string
           provider_name?: string
           reason?: string | null
-          session_date?: string
+          session_date?: string | null
           session_mode?: string
           session_time?: string
           session_type?: string

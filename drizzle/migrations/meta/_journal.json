@@ -15,6 +15,13 @@
       "when": 1793035280197,
       "tag": "0001_storage_site_assets_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794813449230,
+      "tag": "0002_allow_unscheduled_counselling_requests",
+      "breakpoints": true
     }
   ]
 }

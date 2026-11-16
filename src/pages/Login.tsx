@@ -2,6 +2,8 @@ import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { oauthReturnPath } from "@/lib/oauth-return-path";
+import { isAwaitingSchedule, upcomingBookingFilter } from "@/lib/booking-schedule";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import {
   User, Mail, Lock, ArrowRight, Eye, EyeOff, Loader2,
@@ -33,7 +35,7 @@ interface Booking {
   id: string;
   session_type: string;
   provider_name: string;
-  session_date: string;
+  session_date: string | null;
   session_time: string;
   session_mode: string;
   status: string;
@@ -59,6 +61,7 @@ const availableTimes = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "1
 
 const Login = () => {
   const tx = useSiteCopy();
+  const { t } = useTranslation();
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -92,9 +95,9 @@ const Login = () => {
         .from("bookings")
         .select("id, session_type, provider_name, session_date, session_time, session_mode, status")
         .eq("user_id", user.id)
-        .gte("session_date", new Date().toISOString().split("T")[0])
-        .order("session_date", { ascending: true })
-        .limit(5);
+        .eq("status", "upcoming")
+        .or(upcomingBookingFilter(format(new Date(), "yyyy-MM-dd")))
+        .order("session_date", { ascending: true, nullsFirst: true });
       setBookings((data as Booking[]) || []);
       setBookingsLoading(false);
     };
@@ -118,7 +121,7 @@ const Login = () => {
   };
 
   const handleRescheduleBooking = async () => {
-    if (!rescheduleBooking || !rescheduleDate || !rescheduleTime) return;
+    if (!rescheduleBooking || isAwaitingSchedule(rescheduleBooking) || !rescheduleDate || !rescheduleTime) return;
     setActionLoading(true);
     try {
       const newDate = format(rescheduleDate, "yyyy-MM-dd");
@@ -281,27 +284,27 @@ const Login = () => {
                   ) : (
                     bookings.map((booking) => (
                       <motion.div key={booking.id} variants={fadeUp}
-                        className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                        className="flex flex-wrap items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
                         <div className={`w-1.5 h-14 rounded-full flex-shrink-0 ${booking.session_mode === "Virtual" ? "bg-primary" : "bg-accent"}`} />
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-foreground text-sm">{booking.session_type}</p>
                           <p className="text-xs text-muted-foreground">{tx("with")} {booking.provider_name}</p>
                         </div>
-                        <div className="text-right flex-shrink-0">
+                        <div className="text-right max-w-full sm:max-w-64">
                           <p className="text-sm font-medium text-foreground">
-                            {format(parseISO(booking.session_date), "MMM d, yyyy")}
+                            {isAwaitingSchedule(booking) ? t("bookingSchedule.pending") : booking.session_date && format(parseISO(booking.session_date), "MMM d, yyyy")}
                           </p>
                           <div className="flex items-center gap-1 justify-end">
                             <Clock className="w-3 h-3 text-muted-foreground" />
-                            <span className="text-xs text-muted-foreground">{booking.session_time}</span>
+                            <span className="text-xs text-muted-foreground">{isAwaitingSchedule(booking) ? t("bookingSchedule.followUp") : booking.session_time}</span>
                           </div>
                         </div>
                         <div className="flex gap-1 flex-shrink-0">
-                          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-primary"
-                            onClick={() => { setRescheduleBooking(booking); setRescheduleDate(parseISO(booking.session_date)); setRescheduleTime(booking.session_time); }}
+                          {!isAwaitingSchedule(booking) && <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-primary"
+                            onClick={() => { if (!booking.session_date) return; setRescheduleBooking(booking); setRescheduleDate(parseISO(booking.session_date)); setRescheduleTime(booking.session_time); }}
                             title={tx("Reschedule")}>
                             <RefreshCw className="w-4 h-4" />
-                          </Button>
+                          </Button>}
                           <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive"
                             onClick={() => setCancelBooking(booking)}
                             title={tx("Cancel")}>
@@ -385,9 +388,9 @@ const Login = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-destructive" /> {tx("Cancel Session")} </DialogTitle>
-            <DialogDescription> {tx("Are you sure you want to cancel your")} <strong>{cancelBooking?.session_type}</strong> {tx("session with")} <strong>{cancelBooking?.provider_name}</strong> {tx("on")}{" "}
-              <strong>{cancelBooking ? format(parseISO(cancelBooking.session_date), "MMM d, yyyy") : ""}</strong> {tx("at")}{" "}
-              <strong>{cancelBooking?.session_time}</strong>{tx("? This action cannot be undone.")} </DialogDescription>
+            <DialogDescription> {tx("Are you sure you want to cancel your")} <strong>{cancelBooking?.session_type}</strong> {tx("session with")} <strong>{cancelBooking?.provider_name}</strong>{" "}
+              {cancelBooking && isAwaitingSchedule(cancelBooking) ? t("bookingSchedule.pending") : <>{tx("on")}{" "}<strong>{cancelBooking?.session_date ? format(parseISO(cancelBooking.session_date), "MMM d, yyyy") : ""}</strong> {tx("at")}{" "}<strong>{cancelBooking?.session_time}</strong></>}
+              {tx("? This action cannot be undone.")} </DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setCancelBooking(null)} disabled={actionLoading}> {tx("Keep Session")} </Button>

@@ -1,4 +1,5 @@
 {
+  "bookingSchedule": { "pending": "Pendiente de programación", "followUp": "Su profesional se pondrá en contacto con usted para acordar una fecha y hora." },
   "nav": {
     "home": "Inicio",
     "about": "Sobre Nosotros",

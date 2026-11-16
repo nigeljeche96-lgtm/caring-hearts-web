@@ -1,4 +1,5 @@
 {
+  "bookingSchedule": { "pending": "Wag op skedulering", "followUp": "Jou professionele berader sal jou kontak om 'n datum en tyd te reël." },
   "nav": {
     "home": "Tuis",
     "about": "Oor Ons",

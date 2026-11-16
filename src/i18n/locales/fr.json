@@ -1,4 +1,5 @@
 {
+  "bookingSchedule": { "pending": "En attente de planification", "followUp": "Votre professionnel vous contactera pour convenir d'une date et d'une heure." },
   "nav": {
     "home": "Accueil",
     "about": "À Propos",

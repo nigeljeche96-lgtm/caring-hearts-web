@@ -1,4 +1,5 @@
 import { reportBookingConversion } from "@/lib/consent";
+import { bookingSchedule, TO_BE_ARRANGED } from "@/lib/booking-schedule";
 import { useSiteCopy } from "@/i18n/useSiteCopy";
 import { useState, useRef, useEffect } from "react";
 import SEO from "@/components/SEO";
@@ -120,7 +121,6 @@ const fadeUp = {
 
 // Set to true to let clients pick a date and time again (e.g. once full-time professionals are on staff).
 const SHOW_DATE_TIME_PICKER = false;
-const TO_BE_ARRANGED = "To be arranged by professional";
 
 const MentalHealth = () => {
   const tx = useSiteCopy();
@@ -165,8 +165,7 @@ const MentalHealth = () => {
         phone: bookingPhone,
         provider_name: selectedProvider,
         session_type: sessionType,
-        session_date: format(SHOW_DATE_TIME_PICKER && date ? date : new Date(), "yyyy-MM-dd"),
-        session_time: SHOW_DATE_TIME_PICKER ? time : TO_BE_ARRANGED,
+        ...bookingSchedule(SHOW_DATE_TIME_PICKER ? date : undefined, SHOW_DATE_TIME_PICKER ? time : undefined),
         reason: bookingReason || null,
         status: "upcoming",
         session_mode: "Virtual",

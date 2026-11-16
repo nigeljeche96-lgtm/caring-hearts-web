@@ -1,4 +1,5 @@
 {
+  "bookingSchedule": { "pending": "Awaiting scheduling", "followUp": "Your professional will contact you to arrange a date and time." },
   "nav": {
     "home": "Home",
     "about": "About Us",
