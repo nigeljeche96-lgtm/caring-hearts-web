@@ -31,6 +31,7 @@ import MoodTracker from "./pages/MoodTracker";
 import Events from "./pages/Events";
 import Policies from "./pages/Policies";
 import NotFound from "./pages/NotFound";
+import TvShows from "./pages/TvShows";
 import OAuthConsent from "./pages/OAuthConsent";
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ const AppContent = () => {
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:handle" element={<ProductDetail />} />
           <Route path="/news" element={<News />} />
+          <Route path="/tv-shows" element={<TvShows />} />
           <Route path="/login" element={<Login />} />
           <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
           <Route path="/profile-settings" element={<ProfileSettings />} />
