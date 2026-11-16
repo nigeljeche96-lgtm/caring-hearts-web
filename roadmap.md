@@ -1,5 +1,10 @@
 # WCMHCO overhaul roadmap
 
+## Current Project monitoring fixes
+- [ ] Restore home reviews after donations, leaving Mental Health reviews under Free Resources.
+- [ ] Save unscheduled requests without a date; retain them in accounts and prevent premature rescheduling.
+- [ ] Run booking regression tests and verify both pages and the signed-in booking flow.
+
 - [x] Add uploaded previous-donor logos in an animated “Trusted by” strip above the homepage closing invitation.
 - [x] Add the three supplied YouTube Shorts to Portfolio and Programmes & Impact.
 - [x] Blue-and-white palette, two new videos, phone layout fixes, hero/footer globe

@@ -299,8 +299,6 @@ const Index = () => {
 
       <SelfHelpGuides />
 
-      <GoogleReviews />
-
       {/* Give today + Together, we can change the world */}
       <section className="section-padding bg-muted" id="donate">
         <div className="container mx-auto max-w-4xl">
@@ -313,6 +311,8 @@ const Index = () => {
           <DonationWidget />
         </div>
       </section>
+
+      <GoogleReviews />
 
     </div>
   );
