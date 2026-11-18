@@ -57,22 +57,7 @@ const VoiceAgent = ({ variant = "button", className = "", onDark = false }: Voic
     onError: (error) => console.error("Voice Agent Error:", error),
     clientTools: {
       cal_get_2: async (_params: { email?: string; phone?: string }) => "For your privacy, I can't look up, cancel or reschedule bookings by voice. Please email info@worldchangersmh.org or reply to your booking confirmation email and the team will help you.",
-      cal_availability_2: async (params: { provider_name: string; date: string }) => {
-        try {
-          const { data: booked, error } = await (supabase as any).rpc("voice_check_availability", {
-            p_provider: params.provider_name,
-            p_date: params.date,
-          });
-          if (error) throw error;
-          const bookedTimes = (booked || []).map((b: any) => b.session_time);
-          const allTimes = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-          const available = allTimes.filter(t => !bookedTimes.includes(t));
-          if (available.length === 0) return `No available slots for ${params.provider_name} on ${params.date}.`;
-          return `Available times for ${params.provider_name} on ${params.date}: ${available.join(", ")}`;
-        } catch (err: any) {
-          return `Error checking availability: ${err.message}`;
-        }
-      },
+      cal_availability_2: async (_params: { provider_name: string; date: string }) => "Sessions are by appointment only. After you request a session, the professional will contact you to arrange a date and time that suits you both.",
       cal_book_2: async (params: {
         full_name: string; email: string; phone: string;
         provider_name: string; session_type: string;
