@@ -3,11 +3,11 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.24.0";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@3.5.0";
 
 // src/lib/mcp/tools/echo.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.24.0";
-import { z } from "npm:zod@^3.25.76";
+import { defineTool } from "npm:@lovable.dev/mcp-js@3.5.0";
+import { z } from "npm:zod@^4.6.7";
 var echo_default = defineTool({
   name: "echo",
   title: "Echo",
@@ -18,7 +18,7 @@ var echo_default = defineTool({
 });
 
 // src/lib/mcp/tools/get-org-info.ts
-import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.24.0";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@3.5.0";
 var get_org_info_default = defineTool2({
   name: "get_org_info",
   title: "Get organization info",
@@ -45,7 +45,7 @@ var get_org_info_default = defineTool2({
 });
 
 // src/lib/mcp/tools/list-programs.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.24.0";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@3.5.0";
 var PROGRAMS = [
   {
     name: "Individual Counselling",
@@ -91,5 +91,5 @@ var mcp_default = defineMcp({
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.24.0/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@3.5.0/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));
